@@ -1,22 +1,39 @@
+#!/usr/bin/env python
+
+"""
+an adaptation of the MySQL C API (mostly)
+
+You probably are better off using MySQLdb instead of using this
+module directly.
+
+In general, renaming goes from mysql_* to _mysql.*. _mysql.connect()
+returns a connection object (MYSQL). Functions which expect MYSQL * as
+an argument are now methods of the connection object. A number of things
+return result objects (MYSQL_RES). Functions which expect MYSQL_RES * as
+an argument are now methods of the result object. Deprecated functions
+(as of 3.23) are NOT implemented.
+"""
 
 import operator
 import ctypes
 from jaraco.mysql import _mysql_api
 
+
 server_init_done = False
 
-def Exception(conn):
+def do_exception(conn):
 	global server_init_done
 	if not server_init_done:
 		raise InternalError(-1, 'server not initialized')
 	
+	raise NotImplementedError()
 	#TODO: more to implement
 
 def check_server_init(x):
 	global server_init_done
 	if not server_init_done:
 		if(_mysql_api.mysql_server_init(0, None, None)):
-			Exception(None)
+			do_exception(None)
 			return x
 	else:
 		server_init_done = True
@@ -70,7 +87,7 @@ def server_init(args=None, groups=None):
 	
 	res = _mysql_api.mysql_server_init(args_count, args_array, groups)
 	if res:
-		return Exception(None)
+		return do_exception(None)
 	
 	server_init_done = True
 
@@ -81,7 +98,7 @@ def server_end():
 	"""
 	global server_init_done
 	if not server_init_done:
-		return Exception(None)
+		return do_exception(None)
 		
 	_mysql_api.mysql_server_end()
 	server_init_done = False
@@ -101,6 +118,8 @@ class result(object):
 	If using MySQLdb.Connection, this is done by the cursor class.
 	Just forget your ever saw this. Forget... FOR-GET...
 	"""
+
+	# todo: make check_result_connection a decorator on the appropriate methods
 
 	__slots__ = ('conn', 'use', 'result', 'converter')
 
@@ -178,3 +197,124 @@ class result(object):
 		if rowitem:
 			return converter(rowitem, length)
 
+	def row_to_tuple(self, row):
+		"""
+		@param row
+		@type MYSQL_ROW
+		"""
+		lengths = _mysql_api.mysql_fetch_lengths(self.result)
+		
+		values = (
+			self._field_to_python(conv_i, row_i, length)
+			for conv_i, row_i, length in map(None, self.converter, row, lengths)
+			)
+		return tuple(values)
+
+	def row_to_dict(self, row):
+		lengths = _mysql_api.mysql_fetch_lengths(self.result)
+		fields = _mysql_api.mysql_fetch_fields(self.result)
+		unique_field_names = self._get_unique_field_names(fields)
+		r = dict()
+		for conv_i, row_i, length, field in map(None, self.converter, row, lengths, fields):
+			v = self._field_to_python(conv_i, row_i, length)
+			if field.name not in r:
+				field_name = field.name
+			else:
+				field_name = '%s.%s' % (field.table, field.name)
+				field_name = field_name[:256]
+			r[field_name] = v
+	
+	def row_to_dict_old(self, row):
+		raise NotImplementedError
+		
+	
+	def _fetch_row(self, skiprows, maxrows, convert_row):
+		# API variance - this function is similar to _mysql__fetch_row, but
+		#  returns a sequence of rows, not the number.
+		
+		for i in range(skiprows, skiprows+maxrows+1):
+			row = _mysql_api.mysql_fetch_row(self.result)
+			if not row and _mysql_api.mysql_errno(self.conn.connection):
+				_do_exception(self.conn)
+			if not row:
+				break
+			v = self.convert_row(row)
+			yield v
+	
+	def fetch_row(self, maxrows=1, how=0):
+		"""
+		fetch_row([maxrows, how]) -- Fetches up to maxrows as a tuple.
+		The rows are formatted according to how:
+		
+		0 -- tuples (default)
+		1 -- dictionaries, key=column or table.column if duplicated
+		2 -- dictionaries, key=table.column
+		"""
+		row_converters = (
+			self.row_to_tuple,
+			self.row_to_dict,
+			self.row_to_dict_old,
+			)
+		skiprows=0
+		
+		self.check_result_connection()
+		try:
+			convert_row = row_converters[how]
+		except IndexError:
+			raise ValueError('how out of range')
+		
+		if max_rows:
+			result = tuple(self._fetch_row(skiprows, maxrows, convert_row))
+		else:
+			if self.use:
+				maxrows = 1000
+				result = ()
+				while True:
+					iter_result = tuple(self._fetch_row(skiprows, maxrows, convert_row))
+					rowsadded = len(iter_result)
+					skiprows += rowsadded
+					if rows_added < maxrows: break
+					result = result + iter_result
+			else:
+				maxrows = _mysql_api.mysql_num_rows(self.result)
+				result = tuple(self._fetch_row(skiprows, maxrows, convert_row))
+		return result
+	
+	def num_fields(self):
+		"Return the number of fields (column) in the result."
+		self.check_result_connection()
+		return int(_mysql_api.mysql_num_fields(self.result))
+	
+	def num_rows(self):
+		"""
+		Returns the number of rows in the result set. Note that if
+		use=1, this will not return a valid value until the entire result
+		set has been read.
+		"""
+		self.check_result_connection()
+		return int(_mysql_api.mysql_num_rows(self.result))
+	
+	def data_seek(self, row):
+		"data_seek(n) -- seek to row n of result set"
+		self.check_result_connection()
+		_mysql_api.mysql_data_seek(self.result, row)
+	
+	def row_seek(self, offset):
+		"row_seek(n) -- seek offset n rows of result set"
+		self.check_result_connection()
+		if self.use:
+			raise ProgrammingError('cannot be used with connection.use_result()')
+		r = _mysql_api.mysql_row_tell(self.result)
+		_mysql_api.mysql_row_seek(self.result, r+offset)
+	
+	def row_tell(self):
+		"row_tell() -- return the current row number of the result set."
+		self.check_result_connection()
+		if self.use:
+			raise ProgrammingError('cannot be used with connection.use_result()')
+		r = _mysql_api.mysql_row_tell(self.result)
+		return int(r-self.result.data.data)
+	
+	def __del__(self):
+		_mysql_api.mysql_free_result(self.result)
+	
