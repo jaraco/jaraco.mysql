@@ -318,3 +318,297 @@ class result(object):
 	def __del__(self):
 		_mysql_api.mysql_free_result(self.result)
 	
+class connection(object):
+	"""
+	Returns a MYSQL connection object. Exclusive use of
+	keyword parameters strongly recommended. Consult the
+	MySQL C API documentation for more details.
+	
+	host
+	  string, host to connect
+	
+	user
+	  string, user to connect as
+	
+	passwd
+	  string, password to use
+	
+	db
+	  string, database to use
+	
+	port
+	  integer, TCP/IP port to connect to
+	
+	unix_socket
+	  string, location of unix_socket (UNIX-ish only)
+	
+	conv
+	  mapping, maps MySQL FIELD_TYPE.* to Python functions which
+	  convert a string to the appropriate Python type
+	
+	connect_timeout
+	  number of seconds to wait before the connection
+	  attempt fails.
+	
+	compress
+	  if set, gzip compression is enabled
+	
+	named_pipe
+	  if set, connect to server via named pipe (Windows only)
+	
+	init_command
+	  command which is run once the connection is created
+	
+	read_default_file
+	  see the MySQL documentation for mysql_options()
+	
+	read_default_group
+	  see the MySQL documentation for mysql_options()
+	
+	client_flag
+	  client flags from MySQLdb.constants.CLIENT
+	
+	load_infile
+	  int, non-zero enables LOAD LOCAL INFILE, zero disables
+	"""
+	__slots__ = ('connection', 'open', 'converter')
+	
+	def __init__(self,
+		host=None, user=None, passwd=None, db=None,
+		unix_socket = None, conv=None, connect_timeout=0,
+		compress = -1, named_pipe=-1, init_command=None,
+		read_default_file=None, read_default_group=None,
+		client_flag = 0, ssl=None, local_infile=-1):
+		self.open = False
+		check_server_init(-1)
+		if conv is None: conv = dict()
+		self.converter = conv
+		
+		conn = _mysql_api.mysql_init(self.connection)
+		if connect_timeout:
+			timeout = ctypes.c_uint(connect_timeout)
+			_mysql_api.mysql_options(self.connection, _mysql_api.MYSQL_OPT_CONNECT_TIMEOUT, ctypes.byref(timeout))
+		
+		if compress != -1:
+			_mysql_api.mysql_options(self.connection, _mysql_api.MYSQL_OPT_COMPRESS, 0)
+			client_flag |= _mysql_api.CLIENT_COMPRESS
+			
+		if named_pipe != -1:
+			_mysql_api.mysql_options(self.connection, _mysql_api.MYSQL_OPT_NAMED_PIPE, 0)
+		
+		if init_command is not None:
+			_mysql_api.mysql_options(self.connection, _mysql_api.MYSQL_INIT_COMMAND, init_command)
+		
+		if read_default_file is not None:
+			_mysql_api.mysql_options(self.connection, _mysql_api.MYSQL_READ_DEFAULT_FILE, read_default_file)
+
+		if read_default_group is not None:
+			_mysql_api.mysql_options(self.connection, _mysql_api.MYSQL_READ_DEFAULT_GROUP, read_default_group)
+	
+		if local_infile is not None:
+			_mysql_api.mysql_options(self.connection, _mysql_api.MYSQL_OPT_LOCAL_INFILE, local_infile)
+			
+		if ssl:
+			ssl_args = (ssl.get(key) for key in ('key', 'cert', 'ca', 'capath', 'cipher'))
+			_mysql_api.mysql_ssl_set(self.connection, *ssl_args)
+			
+		conn = _mysql_api.mysql_real_connect(self.connection, 
+			host, user, passwd, db,
+			port, unix_socket, client_flag)
+		
+		if not conn:
+			do_exception(self)
+			
+		self.open = True
+
+	def close(self):
+		"Close the connection No further activity possible."
+		if not self.open:
+			raise ProgrammingError("closing a closed connection")
+		_mysql_api.mysql_close(self.connection)
+		self.open = False
+
+	def _check_connection(self):
+		pass
+		#stubbed
+
+	def affected_rows(self):
+		"""
+		Return number of rows affected by the last query.
+		Non-standard. Use Cursor.rowcount.
+		"""
+		self._check_connection()
+		return long(_mysql_api.mysql_affected_rows(self.connection))
+	
+	def debug(self, debug):
+		"""
+		Does a DBUG_PUSH with the given string.
+		mysql_debug() uses the Fred Fish debug library.
+		To use this function, you must use a debug build
+		of the client library..
+		"""
+		_mysql_api.mysql_debug(debug)
+
+	def dump_debug_info(self):
+		"""
+		Instructs the server to write some debug information to the
+		log. The connected user must have the process privilege for
+		this to work. Non-standard.
+		"""
+		self._check_connection()
+		err = _mysql_api.mysql_dump_debug_info(self.connection)
+		if err:
+			do_exception(self)
+		
+	def autocommit(self, flag):
+		"Set the autocommit mode. True values enable; False value disable."
+		# todo, mysql version < 4.01
+		# err = _mysql_api.mysql_query(self.connection, "SET AUTOCOMMIT=%d" % flag)
+		err = _mysql_api.mysql_autocommit(self.connection, flag)
+		if err:
+			do_exception(self)
+	
+	def commit(self):
+		"Commits the current transaction"
+		# todo: mysql version < 4.01
+		err = _mysql_api.mysql_commit(self.connection)
+		if err:
+			do_exception(self)
+		
+	def rollback(self):
+		"Rolls backs the current transaction"
+		err = _mysql_api.mysql_rollback(self.connection)
+		if err:
+			do_exception(self)
+	
+	def next_result(self):
+		"""
+		If more query results exist, next_result() reads the next query
+		results and returns the status back to application.
+		
+		After calling next_result() the state of the connection is as if
+		you had called query() for the next query. This means that you can
+		now call store_result(), warning_count(), affected_rows()
+		, and so forth. 
+		
+		Returns 0 if there are more results; -1 if there are no more results
+		
+		Non-standard.
+		"""
+		err = _mysql_api.mysql_next_result(self.connection)
+		if err > 0:
+			do_exception(self)
+		return 0
+
+	def sqlstate(self):
+		"""
+		Returns a string containing the SQLSTATE error code
+		for the last error. The error code consists of five characters.
+		'00000' means \"no error.\" The values are specified by ANSI SQL
+		and ODBC. For a list of possible values, see section 23
+		Error Handling in MySQL in the MySQL Manual.
+		
+		Note that not all MySQL errors are yet mapped to SQLSTATE's.
+		The value 'HY000' (general error) is used for unmapped errors.
+		
+		Non-standard.
+		"""
+		return str(mysql_api.mysql_sqlstate(self.connection))
+
+	def warning_count(self):
+		"""
+		Returns the number of warnings generated during execution\n\
+		of the previous SQL statement.\n\
+		\n\
+		Non-standard.\n\
+		"""
+		return int(_mysql_api.mysql_warning_count(self.connection))
+
+	def error(self):
+		"""
+		Returns the error message for the most recently invoked API function\n\
+		that can succeed or fail. An empty string ("") is returned if no error\n\
+		occurred.\n\
+		"""
+		return str(_mysql_api.mysql_error(self.connection))
+	
+	@staticmethod
+	def _escape_string(conn, s):
+		size = len(s)
+		out = ctypes.create_string_buffer(size*2+1)
+		check_server_init()
+		args = (out, s, size)
+		if conn and conn.open:
+			result_len = _mysql_api.mysql_real_escape_string(conn.connection, *args)
+		else:
+			result_len = _mysql_api.mysql_escape_string(*args)
+		return out[:result_len]
+	
+	def escape_string(self, s):
+		"""
+		escape_string(s)
+		"""
+		return connection._escape_string(self, s)
+
+	@staticmethod
+	def _string_literal(conn, o, d=None):
+		s = str(o)
+		size = len(s)
+		out = ctypes.create_string_buffer(size*2+3)
+		check_server_init()
+		args = (out+1, s, size)
+		if conn and conn.open:
+			result_len = _mysql_api.mysql_real_escape_string(conn, *args)
+		else:
+			result_len = _mysql_api.mysql_escape_string(*args)
+		out[0] = out[result_len+1] = "'"
+		return out[:result_len+2]
+
+	def string_literal(self, o, d=None):
+		return connection._string_literal(self, o, d)
+	
+	def escape(self, obj):
+		return escape(obj, self.converter)
+
+def escape_string(s):
+	"""
+	escape_string(s) -- quote any SQL-interpreted characters in string s.\n\
+	\n\
+	Use connection.escape_string(s), if you use it at all.\n\
+	_mysql.escape_string(s) cannot handle character sets. You are\n\
+	probably better off using connection.escape(o) instead, since\n\
+	it will escape entire sequences as well as strings.
+	"""
+	return connection._escape_string(None, s)
+
+def string_literal(s):
+	"""
+	string_literal(obj) -- converts object obj into a SQL string literal.\n\
+	This means, any special SQL characters are escaped, and it is enclosed\n\
+	within single quotes. In other words, it performs:\n\
+	\n\
+	\"'%s'\" % escape_string(str(obj))\n\
+	\n\
+	Use connection.string_literal(obj), if you use it at all.\n\
+	_mysql.string_literal(obj) cannot handle character sets.
+	"""
+	return connection._string_literal(None, s)
+
+def __escape_item(item, d):
+	itemtype = type(item)
+	try:
+		itemconv = d.get(itemtype) or d[str]
+	except KeyError:
+		raise TypeError('no default type converter defined')
+	quoted = itemconv(item, d)
+	return quoted
+
+def escape(obj, conv=None):
+	"""
+	escape(obj, dict) -- escape any special characters in object obj\n\
+	using mapping dict to provide quoting functions for each type.\n\
+	Returns a SQL literal string.
+	"""
+	if not isinstance(conv, dict):
+		raise TypeError("argument 2 must be a mapping")
+	return __escape_item(obj, conv)
