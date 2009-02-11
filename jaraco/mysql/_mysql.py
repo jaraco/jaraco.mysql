@@ -517,18 +517,18 @@ class connection(object):
 
 	def warning_count(self):
 		"""
-		Returns the number of warnings generated during execution\n\
-		of the previous SQL statement.\n\
-		\n\
-		Non-standard.\n\
+		Returns the number of warnings generated during execution
+		of the previous SQL statement.
+		
+		Non-standard.
 		"""
 		return int(_mysql_api.mysql_warning_count(self.connection))
 
 	def error(self):
 		"""
-		Returns the error message for the most recently invoked API function\n\
-		that can succeed or fail. An empty string ("") is returned if no error\n\
-		occurred.\n\
+		Returns the error message for the most recently invoked API function
+		that can succeed or fail. An empty string ("") is returned if no error
+		occurred.
 		"""
 		return str(_mysql_api.mysql_error(self.connection))
 	
@@ -570,26 +570,66 @@ class connection(object):
 	def escape(self, obj):
 		return escape(obj, self.converter)
 
+	def change_user(self, user, passwd=None, db=None):
+		"""
+		Changes the user and causes the database specified by db to
+		become the default (current) database on the connection
+		specified by mysql. In subsequent queries, this database is
+		the default for table references that do not include an
+		explicit database specifier.
+		
+		This function was introduced in MySQL Version 3.23.3.
+		
+		Fails unless the connected user can be authenticated or if he
+		doesn't have permission to use the database. In this case the
+		user and database are not changed.
+		
+		The db parameter may be set to None if you don't want to have
+		a default database.
+		"""
+		self.check_connection()
+		r = _mysql_api.mysql_change_user(self.connection, user, passwd, db)
+		if r:
+			do_exception(self)
+	
+	def character_set_name(self):
+		"""
+		Returns the default character set for the current connection.\n\
+		Non-standard.
+		"""
+		self.check_connection()
+		return str(_mysql_api.mysql_character_set_name(self.connection))
+	
+	def set_character_set(self, name):
+		"""
+		Sets the default character set for the current connection.\n\
+		Non-standard.
+		"""
+		self.check_connection()
+		err = _mysql_api.mysql_set_character_set(self.connection, name)
+		if err:
+			do_exception(self)
+
 def escape_string(s):
 	"""
-	escape_string(s) -- quote any SQL-interpreted characters in string s.\n\
-	\n\
-	Use connection.escape_string(s), if you use it at all.\n\
-	_mysql.escape_string(s) cannot handle character sets. You are\n\
-	probably better off using connection.escape(o) instead, since\n\
+	escape_string(s) -- quote any SQL-interpreted characters in string s.
+	
+	Use connection.escape_string(s), if you use it at all.
+	_mysql.escape_string(s) cannot handle character sets. You are
+	probably better off using connection.escape(o) instead, since
 	it will escape entire sequences as well as strings.
 	"""
 	return connection._escape_string(None, s)
 
 def string_literal(s):
 	"""
-	string_literal(obj) -- converts object obj into a SQL string literal.\n\
-	This means, any special SQL characters are escaped, and it is enclosed\n\
-	within single quotes. In other words, it performs:\n\
-	\n\
-	\"'%s'\" % escape_string(str(obj))\n\
-	\n\
-	Use connection.string_literal(obj), if you use it at all.\n\
+	string_literal(obj) -- converts object obj into a SQL string literal.
+	This means, any special SQL characters are escaped, and it is enclosed
+	within single quotes. In other words, it performs:
+	
+	\"'%s'\" % escape_string(str(obj))
+	
+	Use connection.string_literal(obj), if you use it at all.
 	_mysql.string_literal(obj) cannot handle character sets.
 	"""
 	return connection._string_literal(None, s)
@@ -605,10 +645,34 @@ def __escape_item(item, d):
 
 def escape(obj, conv=None):
 	"""
-	escape(obj, dict) -- escape any special characters in object obj\n\
-	using mapping dict to provide quoting functions for each type.\n\
+	escape(obj, conv) -- escape any special characters in object obj
+	using mapping conv to provide quoting functions for each type.
 	Returns a SQL literal string.
 	"""
 	if not isinstance(conv, dict):
 		raise TypeError("argument 2 must be a mapping")
 	return __escape_item(obj, conv)
+
+def escape_sequence(seq, conv):
+	"""
+	escape_sequence(seq, conv) -- escape any special characters in sequence
+	seq using mapping conv to provide quoting functions for each type.
+	Returns a tuple of escaped items.
+	"""
+	if not isinstance(conv, dict):
+		raise TypeError("argument 2 must be a mapping")
+	return tuple((__escape_item(item, conv) for item in seq))
+
+def escape_dict(d, conv):
+	"""
+	escape_dict(d, conv) -- escape any special characters in
+	dictionary d using mapping conv to provide quoting functions for each type.
+	Returns a dictionary of escaped items.
+	"""
+	if not isinstance(d, dict):
+		raise TypeError("argument 1 must be a mapping")
+	if not isinstance(conv, dict):
+		raise TypeError("argument 2 must be a mapping")
+	items = ((key, __escape_item(value, conv)) for key, value in d.items())
+	return dict(items)
+
