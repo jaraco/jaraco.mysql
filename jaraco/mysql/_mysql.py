@@ -610,6 +610,238 @@ class connection(object):
 		if err:
 			do_exception(self)
 
+	def get_character_set_info(self):
+		"""
+		Returns a dict with information about the current character set:\n\
+		\n\
+		collation\n\
+			collation name\n\
+		name\n\
+			character set name\n\
+		comment\n\
+			comment or descriptive name\n\
+		dir\n\
+			character set directory\n\
+		mbminlen\n\
+			min. length for multibyte string\n\
+		mbmaxlen\n\
+			max. length for multibyte string\n\
+		\n\
+		Not all keys may be present, particularly dir.\n\
+		\n\
+		Non-standard.
+		"""
+		self.check_connection()
+		cs = _mysql_api.MY_CHARSET_INFO()
+		_mysql_api.mysql_get_character_set_info(self.connection, cs)
+		return dict(
+			name = cs.csname.value,
+			collation = cs.name.value,
+			comment = cs.comment.value,
+			dir = cs.dir.value,
+			mbminlen = cs.mbminlen.value,
+			mbmaxlen = cs.mbmaxlen.value,
+			)
+
+	def get_client_info(self):
+		"""
+		get_client_info() -- Returns a string that represents\n\
+		the client library version.
+		"""
+		self.check_server_init()
+		return _mysql_api.mysql_get_client_info().value
+	
+	def get_host_info(self):
+		"""
+		Returns a string that represents the MySQL client library\n\
+		version. Non-standard.
+		"""
+		self.check_connection()
+		return _mysql_api.mysql_get_host_info(self.connection).value
+	
+	def get_proto_info(self):
+		"""
+		Returns an unsigned integer representing the protocol version\n\
+		used by the current connection. Non-standard.
+		"""
+		self.check_connection()
+		return _mysql_api.mysql_get_proto_info(self.connection).value
+		
+	def get_server_info(self):
+		"""
+		Returns a string that represents the server version number.\n\
+		Non-standard.
+		"""
+		self.check_connection()
+		return _mysql_api.mysql_get_server_info(self.connection).value
+	
+	def info(self):
+		"""
+		Retrieves a string providing information about the most\n\
+		recently executed query. Non-standard. Use messages or\n\
+		Cursor.messages.
+		"""
+		self.check_connection()
+		return _mysql_api.mysql_info(self.connection).value
+	
+	def insert(self):
+		"""
+		Returns the ID generated for an AUTO_INCREMENT column by the previous\n\
+		query. Use this function after you have performed an INSERT query into a\n\
+		table that contains an AUTO_INCREMENT field.\n\
+		\n\
+		Note that this returns 0 if the previous query does not\n\
+		generate an AUTO_INCREMENT value. If you need to save the value for\n\
+		later, be sure to call this immediately after the query\n\
+		that generates the value.\n\
+		\n\
+		The ID is updated after INSERT and UPDATE statements that generate\n\
+		an AUTO_INCREMENT value or that set a column value to\n\
+		LAST_INSERT_ID(expr). See section 6.3.5.2 Miscellaneous Functions\n\
+		in the MySQL documentation.\n\
+		\n\
+		Also note that the value of the SQL LAST_INSERT_ID() function always\n\
+		contains the most recently generated AUTO_INCREMENT value, and is not\n\
+		reset between queries because the value of that function is maintained\n\
+		in the server.
+		"""
+		self.check_connection()
+		return _mysql_api.mysql_insert_id(self.connection).value
+
+	def kill(self, pid):
+		"""
+		Asks the server to kill the thread specified by pid.\n\
+		Non-standard.
+		"""
+		self.check_connection()
+		res = _mysql_api.mysql_kill(self.connection, pid)
+		if res: do_exception(self)
+	
+	def field_count(self):
+		"""
+		Returns the number of columns for the most recent query on the\n\
+		connection. Non-standard. Will probably give you bogus results\n\
+		on most cursor classes. Use Cursor.rowcount.
+		"""
+		self.check_connection()
+		return _mysql_api.mysql_field_count(self.connection).value
+	
+	def ping(self, reconnect=-1):
+		"""
+		Checks whether or not the connection to the server is\n\
+		working. If it has gone down, an automatic reconnection is\n\
+		attempted.\n\
+		\n\
+		This function can be used by clients that remain idle for a\n\
+		long while, to check whether or not the server has closed the\n\
+		connection and reconnect if necessary.\n\
+		\n\
+		New in 1.2.2: Accepts an optional reconnect parameter. If True,\n\
+		then the client will attempt reconnection. Note that this setting\n\
+		is persistent. By default, this is on in MySQL<5.0.3, and off\n\
+		thereafter.\n\
+		\n\
+		Non-standard. You should assume that ping() performs an\n\
+		implicit rollback; use only when starting a new transaction.\n\
+		You have been warned.
+		"""
+		self.check_connection()
+		if reconnect != -1:
+			self.connection.reconnect = reconnect
+		res = _mysql_api.mysql_ping(self.connection)
+		if res: do_exception(self)
+
+	def query(self, query):
+		"""
+		Execute a query. store_result() or use_result() will get the\n\
+		result set, if any. Non-standard. Use cursor() to create a cursor,\n\
+		then cursor.execute().
+		"""
+		self.check_connection()
+		res = _mysql_api.mysql_real_query(self.connection, query, len(query))
+		if res: do_exception(self)
+
+	def select_db(self, db):
+		"""
+		Causes the database specified by db to become the default\n\
+		(current) database on the connection specified by mysql. In subsequent\n\
+		queries, this database is the default for table references that do not\n\
+		include an explicit database specifier.\n\
+		\n\
+		Fails unless the connected user can be authenticated as having\n\
+		permission to use the database.\n\
+		\n\
+		Non-standard.
+		"""
+		self.check_connection()
+		res = _mysql_api.mysql_select_db(self.connection, db)
+		if res: do_exception(self)
+		
+	def shutdown(self):
+		"""
+		Asks the database server to shut down. The connected user must\n\
+		have shutdown privileges. Non-standard.
+		"""
+		self.check_connection()
+		res = _mysql_api.mysql_shutdown(self.connection, _mysql_api.SHUTDOWN_DEFAULT)
+		if res: do_exception(self)
+	
+	def stat(self):
+		"""
+		Returns a character string containing information similar to\n\
+		that provided by the mysqladmin status command. This includes\n\
+		uptime in seconds and the number of running threads,\n\
+		questions, reloads, and open tables. Non-standard.
+		"""
+		self.check_connection()
+		res = _mysql_api.mysql_stat(self.connection)
+		if not res: do_exception(self)
+		return res.value
+
+	def store_result(self):
+		"""
+		Returns a result object acquired by mysql_store_result\n\
+		(results stored in the client). If no results are available,\n\
+		None is returned. Non-standard.\n\
+		"""
+		self.check_connection()
+		return result(self, 0, self.converter)
+
+	def thread_id(self):
+		"""
+		Returns the thread ID of the current connection. This value\n\
+		can be used as an argument to kill() to kill the thread.\n\
+		\n\
+		If the connection is lost and you reconnect with ping(), the\n\
+		thread ID will change. This means you should not get the\n\
+		thread ID and store it for later. You should get it when you\n\
+		need it.\n\
+		\n\
+		Non-standard.;
+		"""
+		self.check_connection()
+		return _mysql_api.mysql_thread_id(self.connection).value
+
+	def use_result(self):
+		"""
+		"Returns a result object acquired by mysql_use_result\n\
+		(results stored in the server). If no results are available,\n\
+		None is returned. Non-standard.\n\
+		";
+		"""
+		self.check_connection()
+		return result(self, 1, self.converter)
+
+	def __del__(self):
+		if self.open:
+			self.close()
+
+	def __repr__(self):
+		if self.open:
+			return "<%s open to '%.256s' at %lx>" % (self.__class__.__name__, self.connection.host, address(self))
+		else:
+			return "<%s closed at %lx>" % (self.__class__.__name__, address(self))
+		
 def escape_string(s):
 	"""
 	escape_string(s) -- quote any SQL-interpreted characters in string s.
