@@ -17,17 +17,119 @@ an argument are now methods of the result object. Deprecated functions
 import operator
 import ctypes
 from jaraco.mysql import _mysql_api
-
+from jaraco.mysql._mysql_exceptions import *
 
 server_init_done = False
 
+def _build_error_exception_map():
+	"""Build a mapping between error codes and exceptions
+	to be thrown."""
+	global _error_exceptions
+	exceptions = (
+		ProgrammingError,
+		DataError,
+		IntegrityError,
+		NotSupportedError,
+		)
+
+	
+	error_groups = (
+	"""
+	case CR_COMMANDS_OUT_OF_SYNC:
+	case ER_DB_CREATE_EXISTS:
+	case ER_SYNTAX_ERROR:
+	case ER_PARSE_ERROR:
+	case ER_NO_SUCH_TABLE:
+	case ER_WRONG_DB_NAME:
+	case ER_WRONG_TABLE_NAME:
+	case ER_FIELD_SPECIFIED_TWICE:
+	case ER_INVALID_GROUP_FUNC_USE:
+	case ER_UNSUPPORTED_EXTENSION:
+	case ER_TABLE_MUST_HAVE_COLUMNS:
+#ifdef ER_CANT_DO_THIS_DURING_AN_TRANSACTION
+	case ER_CANT_DO_THIS_DURING_AN_TRANSACTION:
+#endif
+	""",
+	"""
+#ifdef WARN_DATA_TRUNCATED
+	case WARN_DATA_TRUNCATED:
+#ifdef WARN_NULL_TO_NOTNULL
+	case WARN_NULL_TO_NOTNULL:
+#endif
+#ifdef ER_WARN_DATA_OUT_OF_RANGE
+	case ER_WARN_DATA_OUT_OF_RANGE:
+#endif
+#ifdef ER_NO_DEFAULT
+	case ER_NO_DEFAULT:
+#endif
+#ifdef ER_PRIMARY_CANT_HAVE_NULL
+	case ER_PRIMARY_CANT_HAVE_NULL:
+#endif
+#ifdef ER_DATA_TOO_LONG
+	case ER_DATA_TOO_LONG:
+#endif
+#ifdef ER_DATETIME_FUNCTION_OVERFLOW
+	case ER_DATETIME_FUNCTION_OVERFLOW:
+#endif
+	""",
+	"""
+#endif
+	case ER_DUP_ENTRY:
+#ifdef ER_DUP_UNIQUE
+	case ER_DUP_UNIQUE:
+#endif
+#ifdef ER_NO_REFERENCED_ROW
+	case ER_NO_REFERENCED_ROW:
+#endif
+#ifdef ER_NO_REFERENCED_ROW_2
+	case ER_NO_REFERENCED_ROW_2:
+#endif
+#ifdef ER_ROW_IS_REFERENCED
+	case ER_ROW_IS_REFERENCED:
+#endif
+#ifdef ER_ROW_IS_REFERENCED_2
+	case ER_ROW_IS_REFERENCED_2:
+#endif
+#ifdef ER_CANNOT_ADD_FOREIGN
+	case ER_CANNOT_ADD_FOREIGN:
+#endif
+	""",
+	"""
+	case ER_WARNING_NOT_COMPLETE_ROLLBACK:
+	case ER_NOT_SUPPORTED_YET:
+	case ER_FEATURE_DISABLED:
+	case ER_UNKNOWN_STORAGE_ENGINE:
+	""",
+	)
+	def parse(group):
+		pattern = re.compile('case (.*):')
+		err_ids = pattern.findall(group)
+		values = [getattr(_mysql_api, err_id) for err_id in err_ids if hasattr(_mysql_api, err_id)]
+		return values
+	parsed_error_groups = map(parse, error_groups)
+	# parsed_error_groups now contains the error values from
+	#  _mysql_api congruent to the list of exceptions
+	_error_exceptions = {}
+	for exception, err_group in zip(exceptions, parsed_error_groups):
+		for err_val in err_group:
+			_error_exceptions[err_val] = exception
+	_error_exceptions[0] = InternalError
+
 def do_exception(conn):
 	global server_init_done
+	if not '_error_exceptions' in globals(): _build_error_exception_map()
 	if not server_init_done:
 		raise InternalError(-1, 'server not initialized')
 	
-	raise NotImplementedError()
-	#TODO: more to implement
+	merr = _mysql_api.mysql_errno(conn.connection)
+	if merr > _mysql_api.CR_MAX_ERROR:
+		raise InterfaceError(-1, "error totally whack")
+	else:
+		default_exc = [OperationalError, InternalError][merr < 1000]
+		exc = _error_exceptions.get(merr, default_exc)
+	
+	msg = _mysql_api.mysql_error(conn.connection)
+	raise exc(merr.value, msg.value)
 
 def check_server_init(x):
 	global server_init_done
@@ -121,7 +223,7 @@ class result(object):
 
 	# todo: make check_result_connection a decorator on the appropriate methods
 
-	__slots__ = ('conn', 'use', 'result', 'converter')
+	__slots__ = ('conn', 'use', 'result', 'converter', 'nfields')
 
 	def __init__(self, connection, use=0, converter=None):
 		if converter is None: converter = dict()
