@@ -496,7 +496,7 @@ class connection(object):
 	__slots__ = ('connection', 'open', 'converter')
 	
 	def __init__(self,
-		host=None, user=None, passwd=None, db=None,
+		host=None, user=None, passwd=None, db=None, port=_mysql_api.MYSQL_PORT,
 		unix_socket = None, conv=None, connect_timeout=0,
 		compress = -1, named_pipe=-1, init_command=None,
 		read_default_file=None, read_default_group=None,
@@ -505,6 +505,7 @@ class connection(object):
 		check_server_init(-1)
 		if conv is None: conv = dict()
 		self.converter = conv
+		self.connection = _mysql_api.MYSQL()
 		
 		conn = _mysql_api.mysql_init(self.connection)
 		if connect_timeout:
@@ -527,7 +528,7 @@ class connection(object):
 		if read_default_group is not None:
 			_mysql_api.mysql_options(self.connection, _mysql_api.MYSQL_READ_DEFAULT_GROUP, read_default_group)
 	
-		if local_infile is not None:
+		if local_infile != -1:
 			_mysql_api.mysql_options(self.connection, _mysql_api.MYSQL_OPT_LOCAL_INFILE, local_infile)
 			
 		if ssl:
