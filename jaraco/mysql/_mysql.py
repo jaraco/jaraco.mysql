@@ -16,6 +16,7 @@ an argument are now methods of the result object. Deprecated functions
 
 import operator
 import ctypes
+import re
 
 # the following 4 lines are a quick hack to use the .dll in 
 #  the same directory as this file
@@ -25,9 +26,9 @@ os.environ['PATH'] = ';'.join((os.environ['PATH'], dirname))
 #print os.environ['PATH']
 
 from jaraco.mysql import _mysql_api
+from jaraco.mysql import _mysql_version
+from jaraco.mysql import _mysql_errmsg
 from jaraco.mysql._mysql_exceptions import *
-from jaraco.mysql._mysql_version import *
-from jaraco.mysql._mysql_errmsg import *
 
 __version__ = '1.2.3'
 version_info = (1,2,3,'beta',1)
@@ -117,7 +118,8 @@ def _build_error_exception_map():
 	def parse(group):
 		pattern = re.compile('case (.*):')
 		err_ids = pattern.findall(group)
-		values = [getattr(_mysql_api, err_id) for err_id in err_ids if hasattr(_mysql_api, err_id)]
+		values = [getattr(_mysql_errmsg, err_id) for err_id in err_ids if hasattr(_mysql_api, err_id)]
+		assert None not in values
 		return values
 	parsed_error_groups = map(parse, error_groups)
 	# parsed_error_groups now contains the error values from
@@ -135,22 +137,22 @@ def do_exception(conn):
 		raise InternalError(-1, 'server not initialized')
 	
 	merr = _mysql_api.mysql_errno(conn.connection)
-	if merr > _mysql_api.CR_MAX_ERROR:
+	if merr > _mysql_errmsg.CR_MAX_ERROR:
 		raise InterfaceError(-1, "error totally whack")
 	else:
 		default_exc = [OperationalError, InternalError][merr < 1000]
 		exc = _error_exceptions.get(merr, default_exc)
 	
 	msg = _mysql_api.mysql_error(conn.connection)
-	raise exc(merr.value, msg.value)
+	raise exc(merr, msg)
 
 def check_server_init(x):
 	global server_init_done
 	if not server_init_done:
 		if(_mysql_api.mysql_server_init(0, None, None)):
 			do_exception(None)
-	else:
-		server_init_done = True
+		else:
+			server_init_done = True
 
 def server_init(args=None, groups=None):
 	"""
@@ -498,7 +500,8 @@ class connection(object):
 	__slots__ = ('connection', 'open', 'converter')
 	
 	def __init__(self,
-		host=None, user=None, passwd=None, db=None, port=_mysql_api.MYSQL_PORT,
+		host=None, user=None, passwd=None, db=None,
+		port=_mysql_version.MYSQL_PORT,
 		unix_socket = None, conv=None, connect_timeout=0,
 		compress = -1, named_pipe=-1, init_command=None,
 		read_default_file=None, read_default_group=None,
