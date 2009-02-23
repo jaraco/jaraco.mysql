@@ -10,9 +10,12 @@ SET PATH=%PATH%;%MYSQL_HOME%\lib\opt
 
 echo Generating xml
 REM Need WIN32_LEAN_AND_MEAN to exclude most windows stuff
-h2xml -c -I "%MYSQL_HOME%\include" -D WIN32_LEAN_AND_MEAN config-win.h mysql.h -o mysql.xml 
+h2xml -I "%MYSQL_HOME%\include" -D WIN32_LEAN_AND_MEAN config-win.h mysql.h -o mysql.xml 
+h2xml -c -I "%MYSQL_HOME%\include" errmsg.h -o errmsg.xml
+h2xml -c -I "%MYSQL_HOME%\include" mysql_version.h -o mysql_version.xml
 
-echo generating python lib
+echo generating python libs
 xml2py mysql.xml -l libmysql.dll -o "jaraco\mysql\_mysql_api.py"
-
 REM Use -s MYSQL to get the MYSQL structure and ancestral structures
+xml2py errmsg.xml -o jaraco\mysql\_mysql_errmsg.py
+xml2py mysql_version.xml -o jaraco\mysql\_mysql_version.py

@@ -26,6 +26,8 @@ os.environ['PATH'] = ';'.join((os.environ['PATH'], dirname))
 
 from jaraco.mysql import _mysql_api
 from jaraco.mysql._mysql_exceptions import *
+from jaraco.mysql._mysql_version import *
+from jaraco.mysql._mysql_errmsg import *
 
 __version__ = '1.2.3'
 version_info = (1,2,3,'beta',1)
