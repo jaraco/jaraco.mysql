@@ -1,7 +1,8 @@
+import re
+import os
+
 from jaraco.mysql import _mysql
 
-db = _mysql.connect(
-	host='leviathan.imc.jaraco.com',
-	user='jaraco',
-	passwd='pa55word',
-	db='rbb')
+uri_pattern = re.compile('mysql://(?P<user>.*):(?P<passwd>.*)@(?P<host>.*)/(?P<db>.*)')
+uri_match = uri_pattern.match(os.environ['MYSQL_TEST_DB'])
+db = _mysql.connect(**uri_match.groupdict())

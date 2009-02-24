@@ -23,6 +23,7 @@ import re
 import os
 dirname = os.path.dirname(__file__)
 os.environ['PATH'] = ';'.join((os.environ['PATH'], dirname))
+os.environ['PATH'] = ';'.join((os.environ['PATH'], r'c:\Program Files\MySQL\MySQL Server 5.1\bin'))
 #print os.environ['PATH']
 
 from jaraco.mysql import _mysql_api
