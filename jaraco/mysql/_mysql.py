@@ -255,9 +255,9 @@ class result(object):
 		self.conn = connection
 		self.use = use
 		method = [_mysql_api.mysql_store_result, _mysql_api.mysql_use_result][bool(use)]
-		self.result = method(ctypes.byref(conn.connection))
+		self.result = method(self.conn.connection)
+		self.converter = ()
 		if not self.result:
-			self.converter = ()
 			return
 		
 		fields = tuple(self._get_fields())
@@ -844,7 +844,7 @@ class connection(object):
 		on most cursor classes. Use Cursor.rowcount.
 		"""
 		self._check()
-		return _mysql_api.mysql_field_count(self.connection).value
+		return _mysql_api.mysql_field_count(self.connection)
 	
 	def ping(self, reconnect=-1):
 		"""
@@ -958,9 +958,9 @@ class connection(object):
 
 	def __repr__(self):
 		if self.open:
-			return "<%s open to '%.256s' at %lx>" % (self.__class__.__name__, self.connection.host, address(self))
+			return "<%s open to '%.256s' at 0x%08X>" % (self.__class__.__name__, self.connection.host, id(self))
 		else:
-			return "<%s closed at %lx>" % (self.__class__.__name__, address(self))
+			return "<%s closed at 0x%08X>" % (self.__class__.__name__, id(self))
 
 def connect(*args, **kwargs):
 	return connection(*args, **kwargs)
