@@ -147,7 +147,7 @@ def do_exception(conn):
 	msg = _mysql_api.mysql_error(conn.connection)
 	raise exc(merr, msg)
 
-def check_server_init(x):
+def check_server_init():
 	global server_init_done
 	if not server_init_done:
 		if(_mysql_api.mysql_server_init(0, None, None)):
@@ -222,7 +222,7 @@ def server_end():
 
 def thread_safe():
 	"Indicates whether the client is compiled as thread-safe."
-	check_server_init(None)
+	check_server_init()
 	return _mysql_api.mysql_thread_safe()
 
 def get_client_info():
@@ -231,7 +231,7 @@ def get_client_info():
 	the client library version.
 	"""
 	check_server_init()
-	return _mysql_api.mysql_get_client_info().value
+	return _mysql_api.mysql_get_client_info()
 
 NULL = "NULL"
 
@@ -508,7 +508,7 @@ class connection(object):
 		read_default_file=None, read_default_group=None,
 		client_flag = 0, ssl=None, local_infile=-1):
 		self.open = False
-		check_server_init(-1)
+		check_server_init()
 		if conv is None: conv = dict()
 		self.converter = conv
 		self.connection = _mysql_api.MYSQL()
@@ -755,12 +755,12 @@ class connection(object):
 		cs = _mysql_api.MY_CHARSET_INFO()
 		_mysql_api.mysql_get_character_set_info(self.connection, cs)
 		return dict(
-			name = cs.csname.value,
-			collation = cs.name.value,
-			comment = cs.comment.value,
-			dir = cs.dir.value,
-			mbminlen = cs.mbminlen.value,
-			mbmaxlen = cs.mbmaxlen.value,
+			name = cs.csname,
+			collation = cs.name,
+			comment = cs.comment,
+			dir = cs.dir,
+			mbminlen = cs.mbminlen,
+			mbmaxlen = cs.mbmaxlen,
 			)
 
 	def get_client_info(self):
@@ -769,7 +769,7 @@ class connection(object):
 		the client library version.
 		"""
 		self._check()
-		return _mysql_api.mysql_get_client_info().value
+		return _mysql_api.mysql_get_client_info()
 	
 	def get_host_info(self):
 		"""
@@ -777,7 +777,7 @@ class connection(object):
 		version. Non-standard.
 		"""
 		self._check()
-		return _mysql_api.mysql_get_host_info(self.connection).value
+		return _mysql_api.mysql_get_host_info(self.connection)
 	
 	def get_proto_info(self):
 		"""
@@ -785,7 +785,7 @@ class connection(object):
 		used by the current connection. Non-standard.
 		"""
 		self._check()
-		return _mysql_api.mysql_get_proto_info(self.connection).value
+		return _mysql_api.mysql_get_proto_info(self.connection)
 		
 	def get_server_info(self):
 		"""
@@ -793,7 +793,7 @@ class connection(object):
 		Non-standard.
 		"""
 		self._check()
-		return _mysql_api.mysql_get_server_info(self.connection).value
+		return _mysql_api.mysql_get_server_info(self.connection)
 	
 	def info(self):
 		"""
@@ -802,7 +802,7 @@ class connection(object):
 		Cursor.messages.
 		"""
 		self._check()
-		return _mysql_api.mysql_info(self.connection).value
+		return _mysql_api.mysql_info(self.connection)
 	
 	def insert(self):
 		"""
@@ -826,7 +826,7 @@ class connection(object):
 		in the server.
 		"""
 		self._check()
-		return _mysql_api.mysql_insert_id(self.connection).value
+		return _mysql_api.mysql_insert_id(self.connection)
 
 	def kill(self, pid):
 		"""
@@ -916,7 +916,7 @@ class connection(object):
 		self._check()
 		res = _mysql_api.mysql_stat(self.connection)
 		if not res: do_exception(self)
-		return res.value
+		return res
 
 	def store_result(self):
 		"""
@@ -940,7 +940,7 @@ class connection(object):
 		Non-standard.;
 		"""
 		self._check()
-		return _mysql_api.mysql_thread_id(self.connection).value
+		return _mysql_api.mysql_thread_id(self.connection)
 
 	def use_result(self):
 		"""
