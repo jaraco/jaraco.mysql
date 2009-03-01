@@ -390,7 +390,7 @@ class result(object):
 		except IndexError:
 			raise ValueError('how out of range')
 		
-		if max_rows:
+		if maxrows:
 			result = tuple(self._fetch_row(skiprows, maxrows, convert_row))
 		else:
 			if self.use:
@@ -549,6 +549,11 @@ class connection(object):
 			do_exception(self)
 			
 		self.open = True
+
+	@property
+	def server_capabilities(self):
+		"Capabilities of server; consult MySQLdb.constants.CLIENT"
+		return self.connection.server_capabilities
 
 	def close(self):
 		"Close the connection No further activity possible."
@@ -804,7 +809,7 @@ class connection(object):
 		self._check()
 		return _mysql_api.mysql_info(self.connection)
 	
-	def insert(self):
+	def insert_id(self):
 		"""
 		Returns the ID generated for an AUTO_INCREMENT column by the previous
 		query. Use this function after you have performed an INSERT query into a
