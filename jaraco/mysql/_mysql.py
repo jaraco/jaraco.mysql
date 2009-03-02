@@ -259,7 +259,7 @@ class result(object):
 		self.converter = ()
 		if not self.result:
 			return
-		
+			
 		fields = tuple(self._get_fields())
 		self.nfields = len(fields)
 		for field in fields:
@@ -389,7 +389,7 @@ class result(object):
 			convert_row = row_converters[how]
 		except IndexError:
 			raise ValueError('how out of range')
-		
+
 		if maxrows:
 			result = tuple(self._fetch_row(skiprows, maxrows, convert_row))
 		else:
@@ -930,7 +930,9 @@ class connection(object):
 		None is returned. Non-standard.
 		"""
 		self._check()
-		return result(self, 0, self.converter)
+		res = result(self, 0, self.converter)
+		if not res.result: res = None
+		return res
 
 	def thread_id(self):
 		"""
@@ -949,13 +951,14 @@ class connection(object):
 
 	def use_result(self):
 		"""
-		"Returns a result object acquired by mysql_use_result
+		Returns a result object acquired by mysql_use_result
 		(results stored in the server). If no results are available,
 		None is returned. Non-standard.
-		";
 		"""
 		self._check()
-		return result(self, 1, self.converter)
+		res = result(self, 1, self.converter)
+		if not res.result: res = None
+		return res
 
 	def __del__(self):
 		if self.open:
