@@ -1,0 +1,53 @@
+jaraco.mysql
+============
+
+.. contents::
+
+Status and License
+------------------
+
+``jaraco.mysql`` implements an alternative compatible interface
+as the _mysql module in `mysql-python
+<https://sourceforge.net/projects/mysql-python>`_. The purpose
+is to provide a pure-python distribution of mysql-python, i.e.
+that requires no compiler.
+
+``jaraco.mysql`` is written by Jason R. Coombs.  It is licensed under an
+`MIT-style permissive license
+<http://www.opensource.org/licenses/mit-license.php>`_.
+
+You can install it with ``easy_install jaraco.mysql``, or from the
+`subversion repository
+<https://svn.jaraco.com/jaraco/python/jaraco.mysql#egg=jaraco.mysql-dev>`_ with
+``easy_install jaraco.mysql==dev``.
+
+This package currently has no official releases, as it currently
+is still not a suitable replacement due to failing unittests.
+
+Usage
+-----
+
+First, download the `latest patch for mysql-python
+<http://dl.getdropbox.com/u/54081/jaraco-mysql-integration.5.patch>`_.
+
+Apply that to the `1.2 branch of mysql-python
+<http://mysql-python.svn.sourceforge.net/svnroot/mysql-python>`_.
+
+Install mysql-python without the extension using
+``MySQLdb/setup.py --use-jaraco-mysql install``.  This will install
+``mysql-python`` as ``mysqldb-jaraco``.  If you have both libraries
+installed, they will conflict and mysql-python will use the first
+one it finds in the path.  Consider using `virtualenv
+<http://pypi.python.org/pypi/virtualenv>`_ to create an isolated
+environment if you are testing.
+
+Currently, you also have to make sure the official
+MySQL 5.x library is in your path.
+
+Changes
+-------
+
+1.0
+~~~
+
+* Initial release (still pending)
