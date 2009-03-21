@@ -32,7 +32,7 @@ from jaraco.mysql import _mysql_errmsg
 from jaraco.mysql._mysql_exceptions import *
 
 __version__ = '1.2.3'
-version_info = (1,2,3,'beta',1)
+version_info = (1,2,3,'beta',2)
 
 server_init_done = False
 
