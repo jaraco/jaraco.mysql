@@ -11,6 +11,9 @@ params = uri_match.groupdict()
 
 db = _mysql.connect(**params)
 print db
-db.query("select * from role;")
-print db.field_count()
-#db.use_result()
+#db.query("select * from role;")
+#print db.field_count()
+#res = db.use_result()
+
+db.query("CREATE TABLE `jaracotest` (col1 INT, col2 BLOB) ENGINE=INNODB CHARACTER SET UTF8")
+res = db.store_result()
