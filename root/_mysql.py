@@ -329,20 +329,23 @@ class result(object):
 		@param row
 		@type MYSQL_ROW
 		"""
+		n_fields = _mysql_api.mysql_num_fields(self.result)
 		lengths = _mysql_api.mysql_fetch_lengths(self.result)
-		
 		values = (
 			self._field_to_python(conv_i, row_i, length)
-			for conv_i, row_i, length in map(None, self.converter, row, lengths)
+			for n, conv_i, row_i, length
+			in zip(range(n_fields), self.converter, row, lengths)
 			)
 		return tuple(values)
 
 	def row_to_dict(self, row):
+		n_fields = _mysql_api.mysql_num_fields(self.result)
 		lengths = _mysql_api.mysql_fetch_lengths(self.result)
 		fields = _mysql_api.mysql_fetch_fields(self.result)
 		unique_field_names = self._get_unique_field_names(fields)
 		r = dict()
-		for conv_i, row_i, length, field in map(None, self.converter, row, lengths, fields):
+		field_specs = zip(range(n_fields), self.converter, row, lengths, fields)
+		for n, conv_i, row_i, length, field in field_specs:
 			v = self._field_to_python(conv_i, row_i, length)
 			if field.name not in r:
 				field_name = field.name
@@ -350,6 +353,7 @@ class result(object):
 				field_name = '%s.%s' % (field.table, field.name)
 				field_name = field_name[:256]
 			r[field_name] = v
+		return r
 	
 	def row_to_dict_old(self, row):
 		raise NotImplementedError
@@ -365,7 +369,7 @@ class result(object):
 				_do_exception(self.conn)
 			if not row:
 				break
-			v = self.convert_row(row)
+			v = convert_row(row)
 			yield v
 	
 	def fetch_row(self, maxrows=1, how=0):
@@ -681,9 +685,12 @@ class connection(object):
 		size = len(s)
 		out = ctypes.create_string_buffer(size*2+3)
 		check_server_init()
-		args = (ctypes.byref(out, 1), s, size)
+		# We want to pass in the buffer we just created, but reserve
+		#  one character for ourselves.
+		out_p = ctypes.cast(ctypes.byref(out, 1), ctypes.c_char_p)
+		args = (out_p, s, size)
 		if conn and conn.open:
-			result_len = _mysql_api.mysql_real_escape_string(conn, *args)
+			result_len = _mysql_api.mysql_real_escape_string(conn.connection, *args)
 		else:
 			result_len = _mysql_api.mysql_escape_string(*args)
 		out[0] = out[result_len+1] = "'"
@@ -992,7 +999,7 @@ def escape_string(s):
 	"""
 	return connection._escape_string(None, s)
 
-def string_literal(s):
+def string_literal(s, d=None):
 	"""
 	string_literal(obj) -- converts object obj into a SQL string literal.
 	This means, any special SQL characters are escaped, and it is enclosed
@@ -1003,7 +1010,7 @@ def string_literal(s):
 	Use connection.string_literal(obj), if you use it at all.
 	_mysql.string_literal(obj) cannot handle character sets.
 	"""
-	return connection._string_literal(None, s)
+	return connection._string_literal(None, s, d)
 
 def __escape_item(item, d):
 	itemtype = type(item)

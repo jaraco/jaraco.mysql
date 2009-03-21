@@ -9013,7 +9013,7 @@ list_add.argtypes = [POINTER(LIST), POINTER(LIST)]
 list_delete = _libraries['libmysql.dll'].list_delete
 list_delete.restype = POINTER(LIST)
 list_delete.argtypes = [POINTER(LIST), POINTER(LIST)]
-my_bool = c_char
+my_bool = c_int8
 class st_mysql_field(Structure):
     pass
 
