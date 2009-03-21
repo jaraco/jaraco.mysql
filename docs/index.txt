@@ -28,10 +28,10 @@ Usage
 -----
 
 First, download the `latest patch for mysql-python
-<http://dl.getdropbox.com/u/54081/jaraco-mysql-integration.5.patch>`_.
+<http://dl.getdropbox.com/u/54081/jaraco-mysql-integration.patch>`_.
 
 Apply that to the `1.2 branch of mysql-python
-<http://mysql-python.svn.sourceforge.net/svnroot/mysql-python>`_.
+<http://mysql-python.svn.sourceforge.net/svnroot/mysql-python/branches/MySQLdb-1.2>`_.
 
 Install mysql-python without the extension using
 ``MySQLdb/setup.py --use-jaraco-mysql install``.  This will install
