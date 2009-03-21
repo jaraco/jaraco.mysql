@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-an adaptation of the MySQL C API (mostly)
+an adaptation of _mysql.c from mysql-python (mostly)
 
 You probably are better off using MySQLdb instead of using this
 module directly.
@@ -26,10 +26,10 @@ os.environ['PATH'] = ';'.join((os.environ['PATH'], dirname))
 os.environ['PATH'] = ';'.join((os.environ['PATH'], r'c:\Program Files\MySQL\MySQL Server 5.1\bin'))
 #print os.environ['PATH']
 
-from jaraco.mysql import _mysql_api
-from jaraco.mysql import _mysql_version
-from jaraco.mysql import _mysql_errmsg
-from jaraco.mysql._mysql_exceptions import *
+import _mysql_api
+import _mysql_version
+import _mysql_errmsg
+from _mysql_exceptions import *
 
 __version__ = '1.2.3'
 version_info = (1,2,3,'beta',2)
@@ -623,7 +623,7 @@ class connection(object):
 		err = _mysql_api.mysql_next_result(self.connection)
 		if err > 0:
 			do_exception(self)
-		return 0
+		return err
 
 	def sqlstate(self):
 		"""
@@ -681,7 +681,7 @@ class connection(object):
 		size = len(s)
 		out = ctypes.create_string_buffer(size*2+3)
 		check_server_init()
-		args = (out+1, s, size)
+		args = (ctypes.byref(out, 1), s, size)
 		if conn and conn.open:
 			result_len = _mysql_api.mysql_real_escape_string(conn, *args)
 		else:
@@ -692,9 +692,6 @@ class connection(object):
 	def string_literal(self, o, d=None):
 		return connection._string_literal(self, o, d)
 	
-	def escape(self, obj):
-		return escape(obj, self.converter)
-
 	def change_user(self, user, passwd=None, db=None):
 		"""
 		Changes the user and causes the database specified by db to
@@ -1026,6 +1023,8 @@ def escape(obj, conv=None):
 	if not isinstance(conv, dict):
 		raise TypeError("argument 2 must be a mapping")
 	return __escape_item(obj, conv)
+
+connection.escape = staticmethod(escape)
 
 def escape_sequence(seq, conv):
 	"""
