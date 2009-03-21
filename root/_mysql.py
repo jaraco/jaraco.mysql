@@ -318,12 +318,12 @@ class result(object):
 	
 	@staticmethod
 	def _field_to_python(converter, rowitem, length):
-		default_converter = lambda item, length: item[:length]
-		converter = converter or default_converter
+		if rowitem is not None:
+			rowitem = rowitem[:length]
+			if converter:
+				rowitem = converter(rowitem)
+		return rowitem
 		
-		if rowitem:
-			return converter(rowitem, length)
-
 	def row_to_tuple(self, row):
 		"""
 		@param row
