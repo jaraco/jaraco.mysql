@@ -80,10 +80,12 @@ from ctypes.wintypes import LANGID
 from ctypes.wintypes import _ULARGE_INTEGER
 from ctypes.wintypes import ULARGE_INTEGER
 from ctypes.wintypes import BOOLEAN
+
+from _mysql_api_util import get_lib_path
 _libraries = {}
-_libraries['libmysql.dll'] = CDLL('libmysql.dll')
+_libraries['libmysql.dll'] = CDLL(get_lib_path())
 _stdcall_libraries = {}
-_stdcall_libraries['libmysql.dll'] = WinDLL('libmysql.dll')
+_stdcall_libraries['libmysql.dll'] = WinDLL(get_lib_path())
 
 
 COM_REGISTER_SLAVE = 21
