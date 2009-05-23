@@ -32,7 +32,7 @@ import _mysql_errmsg
 from _mysql_exceptions import *
 
 __version__ = '1.2.3'
-version_info = (1,2,3,'beta',2)
+version_info = (1,2,3,'gamma',1)
 
 server_init_done = False
 
