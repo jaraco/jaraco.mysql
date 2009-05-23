@@ -13,12 +13,14 @@ REM Need WIN32_LEAN_AND_MEAN to exclude most windows stuff
 h2xml -I "%MYSQL_HOME%\include" -D WIN32_LEAN_AND_MEAN config-win.h mysql.h -o mysql.xml 
 h2xml -c -I "%MYSQL_HOME%\include" errmsg.h -o errmsg.xml
 h2xml -c -I "%MYSQL_HOME%\include" mysql_version.h -o mysql_version.xml
+h2xml -c -I "%MYSQL_HOME%\include" mysqld_error.h -o mysqld_error.xml
 
 echo generating python libs
-xml2py mysql.xml -l libmysql.dll -o "jaraco\mysql\_mysql_api.py"
+xml2py mysql.xml -l libmysql.dll -o root\_mysql_api.py
 REM Use -s MYSQL to get the MYSQL structure and ancestral structures
-xml2py errmsg.xml -o jaraco\mysql\_mysql_errmsg.py
-xml2py mysql_version.xml -o jaraco\mysql\_mysql_version.py
+xml2py errmsg.xml -o root\_mysql_errmsg.py
+xml2py mysql_version.xml -o root\_mysql_version.py
+xml2py mysqld_error.xml -o root\_mysql_errors.py
 
 : TODO: patch the _mysql_api.py as follows
 : 1) Change my_bool = c_char to my_bool = c_int8
