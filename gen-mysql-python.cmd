@@ -19,3 +19,8 @@ xml2py mysql.xml -l libmysql.dll -o "jaraco\mysql\_mysql_api.py"
 REM Use -s MYSQL to get the MYSQL structure and ancestral structures
 xml2py errmsg.xml -o jaraco\mysql\_mysql_errmsg.py
 xml2py mysql_version.xml -o jaraco\mysql\_mysql_version.py
+
+: TODO: patch the _mysql_api.py as follows
+: 1) Change my_bool = c_char to my_bool = c_int8
+: 2) Change mysql_autocommit arg2 from c_char to my_bool
+: 3) Patch to support robust library location
