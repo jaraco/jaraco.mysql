@@ -506,7 +506,7 @@ class connection(object):
 	
 	def __init__(self,
 		host=None, user=None, passwd=None, db=None,
-		port=_mysql_version.MYSQL_PORT,
+		port=0,
 		unix_socket = None, conv=None, connect_timeout=0,
 		compress = -1, named_pipe=-1, init_command=None,
 		read_default_file=None, read_default_group=None,
