@@ -29,6 +29,7 @@ os.environ['PATH'] = ';'.join((os.environ['PATH'], r'c:\Program Files\MySQL\MySQ
 import _mysql_api
 import _mysql_version
 import _mysql_errmsg
+import _mysql_errors
 from _mysql_exceptions import *
 
 __version__ = '1.2.3'
@@ -119,7 +120,8 @@ def _build_error_exception_map():
 	def parse(group):
 		pattern = re.compile('case (.*):')
 		err_ids = pattern.findall(group)
-		values = [getattr(_mysql_errmsg, err_id) for err_id in err_ids if hasattr(_mysql_api, err_id)]
+		values = [getattr(_mysql_errors, err_id) for err_id in err_ids if hasattr(_mysql_errors, err_id)]
+		assert values, "No values parsed"
 		assert None not in values
 		return values
 	parsed_error_groups = map(parse, error_groups)
