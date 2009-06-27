@@ -330,16 +330,25 @@ class result(object):
 		>>> row = (ctypes.c_char_p*3)('foo', '\000bar', 'baz')
 		>>> _byte_string_items(row, [3,4], 2)
 		['foo', '\x00bar']
+		
+		It should also preserve None
+		>>> row = (ctypes.c_char_p*2)(None, 'foo')
+		>>> _byte_string_items(row, [1,3])
+		[None, 'foo']
 		"""
 		# first cast it to a pointer to void pointers
 		row = ctypes.cast(row, ctypes.POINTER(ctypes.c_void_p))
 		# limit the iterability of lengths to the number of fields
 		lengths = itertools.islice(lengths, n_fields)
 
+		def get_string_item(address, length):
+			return ctypes.string_at(address, length) \
+				if address is not None else None
+
 		# then, use string_at to get the whole byte structure
 		#  given the length
 		return [
-			ctypes.string_at(address, length)
+			get_string_item(address, length)
 			for address, length in
 			zip(row, lengths)
 			]
