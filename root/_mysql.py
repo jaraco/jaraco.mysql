@@ -17,6 +17,7 @@ an argument are now methods of the result object. Deprecated functions
 import operator
 import ctypes
 import re
+import itertools
 
 # the following 4 lines are a quick hack to use the .dll in 
 #  the same directory as this file
@@ -319,9 +320,33 @@ class result(object):
 		self.conn._check()
 	
 	@staticmethod
-	def _field_to_python(converter, rowitem, length):
+	def _byte_string_items(row, lengths, n_fields=None):
+		r"""
+		MySQL returns a **char for a row of data, but ctypes
+		interprets this as list of strings and not a list of
+		bytes.  This wrapper adapts the list of strings to a
+		list of bytes.
+
+		>>> row = (ctypes.c_char_p*3)('foo', '\000bar', 'baz')
+		>>> _byte_string_items(row, [3,4], 2)
+		['foo', '\x00bar']
+		"""
+		# first cast it to a pointer to void pointers
+		row = ctypes.cast(row, ctypes.POINTER(ctypes.c_void_p))
+		# limit the iterability of lengths to the number of fields
+		lengths = itertools.islice(lengths, n_fields)
+
+		# then, use string_at to get the whole byte structure
+		#  given the length
+		return [
+			ctypes.string_at(address, length)
+			for address, length in
+			zip(row, lengths)
+			]
+
+	@staticmethod
+	def _field_to_python(converter, rowitem):
 		if rowitem is not None:
-			rowitem = rowitem[:length]
 			if converter:
 				rowitem = converter(rowitem)
 		return rowitem
@@ -333,10 +358,11 @@ class result(object):
 		"""
 		n_fields = _mysql_api.mysql_num_fields(self.result)
 		lengths = _mysql_api.mysql_fetch_lengths(self.result)
+		row = self._byte_string_items(row, lengths, n_fields)
 		values = (
-			self._field_to_python(conv_i, row_i, length)
-			for n, conv_i, row_i, length
-			in zip(range(n_fields), self.converter, row, lengths)
+			self._field_to_python(conv_i, row_i)
+			for conv_i, row_i
+			in zip(self.converter, row)
 			)
 		return tuple(values)
 
@@ -345,6 +371,7 @@ class result(object):
 		lengths = _mysql_api.mysql_fetch_lengths(self.result)
 		fields = _mysql_api.mysql_fetch_fields(self.result)
 		unique_field_names = self._get_unique_field_names(fields)
+		row = self._byte_string_items(row, lengths, n_fields)
 		r = dict()
 		field_specs = zip(range(n_fields), self.converter, row, lengths, fields)
 		for n, conv_i, row_i, length, field in field_specs:
@@ -394,7 +421,7 @@ class result(object):
 		try:
 			convert_row = row_converters[how]
 		except IndexError:
-			raise ValueError('how out of range')
+			raise ValueError('"how" out of range')
 
 		if maxrows:
 			result = tuple(self._fetch_row(skiprows, maxrows, convert_row))
