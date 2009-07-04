@@ -303,7 +303,7 @@ class result(object):
 				field.flags is not None,
 				)
 		self._check_connection()
-		return (get_field_description(field) for field in self._get_fields())
+		return tuple(get_field_description(field) for field in self._get_fields())
 	
 	def _get_fields(self):
 		n = _mysql_api.mysql_num_fields(self.result)
