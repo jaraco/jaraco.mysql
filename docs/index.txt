@@ -21,9 +21,6 @@ You can install it with ``easy_install jaraco.mysql``, or from the
 <https://svn.jaraco.com/jaraco/python/jaraco.mysql#egg=jaraco.mysql-dev>`_ with
 ``easy_install jaraco.mysql==dev``.
 
-This package currently has no official releases, as it currently
-is still not a suitable replacement due to failing unittests.
-
 Usage
 -----
 
@@ -41,8 +38,10 @@ one it finds in the path.  Consider using `virtualenv
 <http://pypi.python.org/pypi/virtualenv>`_ to create an isolated
 environment if you are testing.
 
-Currently, you also have to make sure the official
-MySQL 5.x library is in your path.
+You must have the MySQL dynamic library installed on the system. For
+Windows, this package uses the registry informamtion to locate the
+library.  For Unix, the library location routine still needs to be
+coded (see ``root/_mysql_api_util.py`` for NotImplemented details).
 
 Changes
 -------
@@ -50,4 +49,6 @@ Changes
 1.0
 ~~~
 
-* Initial release (still pending)
+* Initial release; this first release passes all unit tests in
+  MySQLdb/tests in a 32-bit Windows environment against MySQL 5.1. Some
+  issues may still exist.
