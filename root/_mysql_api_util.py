@@ -9,7 +9,10 @@ from itertools import count
 
 # try to import winreg.  It's needed for win32
 try:
-	import _winreg
+	try:
+		import winreg
+	except ImportError:
+		import _winreg as winreg
 except ImportError:
 	pass
 
@@ -17,18 +20,18 @@ def registry_key_subkeys(key):
 	def enumerated_subkeys(key):
 		for index in count():
 			try:
-				yield _winreg.EnumKey(key, index)
+				yield winreg.EnumKey(key, index)
 			except WindowsError:
 				break
 	return list(enumerated_subkeys(key))
 
 def get_mysql_root_win32():
-	mySQLKey = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\MySQL AB")
+	mySQLKey = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\MySQL AB")
 	installedVersions = registry_key_subkeys(mySQLKey)
 	latestServerKeyName = sorted(installedVersions)[-1]
 	serverKeyName = latestServerKeyName # todo, allow selection by version
-	serverKey = _winreg.OpenKey(mySQLKey, serverKeyName)
-	mysql_root, dummy = _winreg.QueryValueEx(serverKey,'Location')
+	serverKey = winreg.OpenKey(mySQLKey, serverKeyName)
+	mysql_root, dummy = winreg.QueryValueEx(serverKey,'Location')
 	return mysql_root
 
 def get_mysql_root_posix():
