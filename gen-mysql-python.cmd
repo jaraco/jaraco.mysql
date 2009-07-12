@@ -1,8 +1,9 @@
 @echo off
 REM first install Mysql 5.1 with developer options
 REM also install gccxml (from CVS or ctypes site) and ctypeslib
-REM also, note gccxml requires MSVC 6, 7, 7.1
-REM for more info, visit http://starship.python.net/crew/theller/ctypes/old/codegen.html
+REM also, the latest gccxml is works with Visual Studio 8/9
+REM for more info, visit http://web.archive.org/web/20080115092643/starship.python.net/crew/theller/wiki/CodeGenerator
+REM (old docs at http://starship.python.net/crew/theller/ctypes/old/codegen.html)
 
 SET MYSQL_HOME=c:\Program Files\MySQL\MySQL Server 5.1
 
