@@ -18,6 +18,7 @@ http://starship.python.net/crew/theller/ctypes/old/codegen.html
 """
 
 import sys
+import os
 import subprocess
 from ctypeslib import h2xml, xml2py
 
@@ -48,7 +49,7 @@ def gen_libs_win32():
 	common_args = ['h2xml.py', '-I', mysql_include]
 	cmds = [
 		# need WIN32_LEAN_AND_MEAN to exclude most windows stuff
-		'-D WIN32_LEAN_AND_MEAN config-win.h mysql.h -o mysql.xml',
+		'-D WIN32_LEAN_AND_MEAN config-win.h mysql.h -o mysql.xml'.split(),
 		'-c errmsg.h -o errmsg.xml'.split(),
 		'-c mysql_version.h -o mysql_version.xml'.split(),
 		'-c mysqld_error.h -o mysqld_error.xml'.split(),
@@ -103,4 +104,7 @@ def patch_mysql_api():
 	"""
 	print patch_mysql_api.__doc__
 
-vars()['gen_libs_'+platform_map[sys.platform]]()
+def get_platform_name():
+	return platform_map.get(sys.platform, sys.platform)
+
+vars()['gen_libs_'+get_platform_name()]()
