@@ -59,7 +59,7 @@ def gen_libs_win32():
 	common_args = ['xml2py.py']
 	
 	cmds = [
-		'mysql.xml -l libmysql.dll -o _mysql_api_unix.py'.split(),
+		'mysql.xml -l libmysql.dll -o _mysql_api_win32.py'.split(),
 		# Use -s MYSQL to get the MYSQL structure and ancestral structures
 		'errmsg.xml -o root/_mysql_errmsg.py'.split(),
 		'mysql_version.xml -o root/_mysql_version.py'.split(),
