@@ -63,8 +63,7 @@ class LibGenerator(object):
 		xml2py_common = ['xml2py.py']
 		xml2py_cmds = map(self.patch_cmd, self.xml2py_cmds)
 		cmds = merge_args(xml2py_common, xml2py_cmds)
-		if not os.path.exists(self.libroot):
-			os.makedirs(self.libroot)
+		self.create_package()
 		map(self.xml2py_cmd, cmds)
 		
 		patch_mysql_api()
@@ -82,6 +81,12 @@ class LibGenerator(object):
 	@property
 	def libroot(self):
 		return 'root/_mysql_' + self.platform
+
+	def create_package(self):
+		if not os.path.exists(self.libroot):
+			os.makedirs(self.libroot)
+		open(os.path.join(libroot, '__init__.py')).close()
+
 
 class WindowsLibGenerator(LibGenerator):
 	platform = 'windows'
