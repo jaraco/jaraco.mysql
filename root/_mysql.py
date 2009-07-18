@@ -19,18 +19,8 @@ import ctypes
 import re
 import itertools
 
-# the following 4 lines are a quick hack to use the .dll in 
-#  the same directory as this file
-import os
-dirname = os.path.dirname(__file__)
-os.environ['PATH'] = ';'.join((os.environ['PATH'], dirname))
-os.environ['PATH'] = ';'.join((os.environ['PATH'], r'c:\Program Files\MySQL\MySQL Server 5.1\bin'))
-#print os.environ['PATH']
-
-import _mysql_api
-import _mysql_version
-import _mysql_errmsg
-import _mysql_errors
+from _mysql_api_util import setup_platform_namespace
+setup_platform_namespace(globals())
 from _mysql_exceptions import *
 
 __version__ = '1.2.3'

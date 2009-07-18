@@ -51,3 +51,30 @@ def get_lib_path():
 	lib_path = globals()['get_lib_path_' + sys.platform]()
 	assert os.path.exists(lib_path), "Could not locate MySQL library, install MySQL or set the environment variable MYSQL_LIB to the path to MySQL"
 	return lib_path
+
+platform_map = dict(
+	linux2 = 'unix',
+	darwin = 'unix',
+	win32 = 'windows',
+)
+
+def get_platform_name():
+	return platform_map.get(sys.platform, sys.platform)
+
+def setup_platform_namespace(space):
+	"""
+	This function performs the equivalent of the following:
+	
+	import _mysql_api
+	import _mysql_version
+	import _mysql_errmsg
+	import _mysql_errors
+	
+	but uses a platform-specific sub-module and imports the
+	modules into the provided space.
+	"""
+	plat = get_platform_name()
+	for mod_name in ('api', 'version', 'errmsg', 'errors'):
+		mod = __import__('_mysql_%(plat)s.%(mod_name)s' % vars, space)
+		mod_name = '_mysql_%s' % mod_name
+		space[mod_name] = mod

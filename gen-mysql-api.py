@@ -24,12 +24,7 @@ from ctypeslib import h2xml, xml2py
 
 setup_root = os.path.dirname(__file__)
 sys.path.append(os.path.join(setup_root, 'root'))
-from _mysql_api_util import get_mysql_root
-
-platform_map = dict(
-	linux2 = 'unix',
-	darwin = 'unix',
-)
+from _mysql_api_util import get_mysql_root, get_platform_name
 
 def merge_args(common_args, variable_args):
 	for args in variable_args:
@@ -97,8 +92,5 @@ def patch_mysql_api():
 	3) Patch to support robust library location
 	"""
 	print patch_mysql_api.__doc__
-
-def get_platform_name():
-	return platform_map.get(sys.platform, sys.platform)
 
 vars()[get_platform_name().capitalize()+'LibGenerator']().run()
