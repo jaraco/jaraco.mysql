@@ -66,7 +66,7 @@ class LibGenerator(object):
 		self.create_package()
 		map(self.xml2py_cmd, cmds)
 		
-		patch_mysql_api()
+		self.patch_mysql_api()
 
 	def patch_cmd(self, cmd):
 		class ObjectDict(object):
@@ -87,6 +87,20 @@ class LibGenerator(object):
 			os.makedirs(self.libroot)
 		open(os.path.join(libroot, '__init__.py')).close()
 
+	def fix_my_bool(self, api_file):
+		return api_file.replace('my_bool = c_int8\n', 'my_bool = c_char\n')
+
+	def patch_mysql_api(self):
+		"""
+		Todo:
+		1) Change mysql_autocommit arg2 from c_char to my_bool (may not be necessary under unix)
+		2) Patch to support robust library location (not necessary under unix)
+		"""
+		api_file = open(os.path.join(self.libroot, 'api.py'), 'r').read()
+		api_file = self.fix_my_bool(api_file)
+		open(os.path.join(self.libroot, 'api.py',), 'w').write(api_file)
+		print patch_mysql_api.__doc__
+
 
 class WindowsLibGenerator(LibGenerator):
 	platform = 'windows'
@@ -104,14 +118,5 @@ class UnixLibGenerator(LibGenerator):
 	platform = 'unix'
 	libname='libmysqlclient.so'
 	mysql_include = '/usr/include/mysql'
-
-def patch_mysql_api():
-	"""
-	Todo:
-	1) Change my_bool = c_char to my_bool = c_int8
-	2) Change mysql_autocommit arg2 from c_char to my_bool
-	3) Patch to support robust library location
-	"""
-	print patch_mysql_api.__doc__
 
 vars()[get_platform_name().capitalize()+'LibGenerator']().run()
