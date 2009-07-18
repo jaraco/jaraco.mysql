@@ -87,18 +87,21 @@ class LibGenerator(object):
 			os.makedirs(self.libroot)
 		open(os.path.join(self.libroot, '__init__.py')).close()
 
-	def fix_my_bool(self, api_file):
-		return api_file.replace('my_bool = c_char\n', 'my_bool = c_int8\n')
+	def fix_my_bool(self):
+		self.api_file = self.api_file.replace('my_bool = c_char\n', 'my_bool = c_int8\n')
+
+	def fix_lib_path(self):
+		pass
 
 	def patch_mysql_api(self):
 		"""
 		Todo:
 		1) Change mysql_autocommit arg2 from c_char to my_bool (may not be necessary under unix)
-		2) Patch to support robust library location (not necessary under unix)
 		"""
-		api_file = open(os.path.join(self.libroot, 'api.py'), 'r').read()
-		api_file = self.fix_my_bool(api_file)
-		open(os.path.join(self.libroot, 'api.py',), 'w').write(api_file)
+		self.api_file = open(os.path.join(self.libroot, 'api.py'), 'r').read()
+		self.fix_my_bool()
+		self.fix_lib_path()
+		open(os.path.join(self.libroot, 'api.py',), 'w').write(self.api_file)
 		print self.patch_mysql_api.__doc__
 
 
@@ -113,6 +116,16 @@ class WindowsLibGenerator(LibGenerator):
 	def run(self):
 		os.environ['PATH'] += ';%s\lib\opt' % get_mysql_root()
 		super(WindowsLibGenerator, self).run()
+
+	def fix_lib_path(self):
+		f = self.api_file
+		f = f.replace("CDLL('libmysql.dll')", "CDLL(get_lib_path())")
+		f = f.replace("WinDLL('libmysql.dll')", "WinDLL(get_lib_path())")
+		i = f.index('_libraries = {}')
+		before, after = f[:i], f[i:]
+		new_code = 'from _mysql_api_util import get_lib_path\n'
+		self.api_file = ''.join((before, new_code, after))
+
 
 class UnixLibGenerator(LibGenerator):
 	platform = 'unix'

@@ -74,6 +74,11 @@ from ctypes.wintypes import SERVICE_STATUS_HANDLE
 from ctypes.wintypes import HDWP
 from ctypes.wintypes import tagMSG
 from ctypes.wintypes import MSG
+from _mysql_api_util import get_lib_path
+_libraries = {}
+_libraries['libmysql.dll'] = CDLL(get_lib_path())
+_stdcall_libraries = {}
+_stdcall_libraries['libmysql.dll'] = WinDLL(get_lib_path())
 from ctypes import HRESULT
 from ctypes.wintypes import LCID
 from ctypes.wintypes import LANGID
@@ -81,401 +86,395 @@ from ctypes.wintypes import _ULARGE_INTEGER
 from ctypes.wintypes import ULARGE_INTEGER
 from ctypes.wintypes import BOOLEAN
 
-from _mysql_api_util import get_lib_path
-_libraries = {}
-_libraries['libmysql.dll'] = CDLL(get_lib_path())
-_stdcall_libraries = {}
-_stdcall_libraries['libmysql.dll'] = WinDLL(get_lib_path())
 
-
-COM_REGISTER_SLAVE = 21
-SystemPowerLoggingEntry = 24
-WinAccountControllersSid = 45
-MYSQL_TYPE_VARCHAR = 15
-GEO_LATITUDE = 2
-ActivationContextBasicInformation = 1
-AclRevisionInformation = 1
-BootLoad = 0
-PowerSystemWorking = 1
-PowerDeviceD3 = 4
-GEO_ISO2 = 4
-WinCreatorOwnerSid = 3
-SidTypeAlias = 4
-WinBuiltinIncomingForestTrustBuildersSid = 56
-SHUTDOWN_WAIT_UPDATES = 8
-COM_STMT_FETCH = 28
-COMP_NOTLESS = 1
-COM_STMT_RESET = 26
-WinBuiltinBackupOperatorsSid = 33
-SystemExecutionState = 16
-MYSQL_TYPE_GEOMETRY = 255
-SystemPowerStateLogging = 23
-WinAccountGuestSid = 39
-FindExInfoMaxInfoLevel = 1
-MYSQL_TYPE_FLOAT = 4
-RelationProcessorCore = 0
-RNRSERVICE_DEREGISTER = 1
-WinLocalSid = 2
-COM_DELAYED_INSERT = 16
-MYSQL_OPT_USE_REMOTE_CONNECTION = 14
-WinSelfSid = 16
-MYSQL_OPTION_MULTI_STATEMENTS_OFF = 1
-SHUTDOWN_WAIT_TRANSACTIONS = 2
-MYSQL_TYPE_NULL = 6
-IMPORT_OBJECT_CONST = 2
-PowerActionHibernate = 3
-TokenSandBoxInert = 15
-WinLogonIdsSid = 21
-MYSQL_PROTOCOL_SOCKET = 2
-SidTypeWellKnownGroup = 5
-DECIMAL_RESULT = 4
-WinOtherOrganizationSid = 55
-WinTerminalServerSid = 19
-MYSQL_TYPE_LONG = 3
-SC_ACTION_NONE = 0
-TokenSessionReference = 14
-WinAuthenticatedUserSid = 17
-FileInformationInAssemblyOfAssemblyInActivationContext = 4
-WinAnonymousSid = 13
-NATIVE_TYPE_MAX_CB = 1
-IgnoreError = 0
-WinServiceSid = 12
-WinBuiltinPrintOperatorsSid = 32
-COM_QUIT = 1
-WinWorldSid = 1
-MYSQL_PROTOCOL_TCP = 1
-ProcessorStateHandler2 = 13
-NSP_NOTIFY_EVENT = 2
-WinDialupSid = 8
-SHUTDOWN_WAIT_CONNECTIONS = 1
-ExceptionCollidedUnwind = 3
-IMPORT_OBJECT_DATA = 1
-WinCreatorGroupSid = 4
-COM_CONNECT_OUT = 20
-SC_ACTION_REBOOT = 2
-WinAccountDomainGuestsSid = 43
-WinEnterpriseControllersSid = 15
-MYSQL_TYPE_TINY_BLOB = 249
-RNRSERVICE_REGISTER = 0
-FindExSearchNameMatch = 0
-MYSQL_TYPE_BIT = 16
-WinRemoteLogonIdSid = 20
-ExceptionNestedException = 2
-MYSQL_TYPE_LONGLONG = 8
-AdministratorPowerPolicy = 9
-AuditEventObjectAccess = 0
-WinBuiltinSystemOperatorsSid = 31
-MYSQL_TYPE_TINY = 1
-COR_VTABLE_64BIT = 2
-SystemPowerCapabilities = 4
-SystemLoad = 1
-COM_REFRESH = 7
-TapeDriveSnappedTape = 13
-HeapCompatibilityInformation = 0
-WinAccountDomainUsersSid = 42
-WinProxySid = 14
-AclSizeInformation = 2
-MYSQL_TYPE_INT24 = 9
-IMPORT_OBJECT_ORDINAL = 0
-MYSQL_TYPE_SHORT = 2
-JobObjectBasicAccountingInformation = 1
-COR_VERSION_MINOR = 0
-SystemPowerPolicyAc = 0
-COM_CREATE_DB = 5
-MYSQL_STATUS_GET_RESULT = 1
-SidTypeInvalid = 7
-JobObjectExtendedLimitInformation = 9
-REAL_RESULT = 1
-MYSQL_TYPE_MEDIUM_BLOB = 250
-WinSChannelAuthenticationSid = 53
-JobObjectJobSetInformation = 10
-SecurityAnonymous = 0
-COM_STMT_PREPARE = 22
-SecurityIdentification = 1
-TokenSessionId = 12
-WinBuiltinAccountOperatorsSid = 30
-MYSQL_STATUS_USE_RESULT = 2
-ProcessorInformation = 11
-PowerDeviceUnspecified = 0
-PowerDeviceMaximum = 5
-MYSQL_TYPE_DATETIME = 12
-Win32ServiceShareProcess = 32
-AuditEventDirectoryServiceAccess = 1
-TokenType = 8
-FileInformationInAssemblyOfAssemblyInActivationContxt = 4
-CriticalError = 3
-TapeDriveMediaLifeExpired = 12
-TokenImpersonation = 2
-COR_VERSION_MAJOR = 2
-LT_DONT_CARE = 0
-STMT_ATTR_CURSOR_TYPE = 1
-WinAccountDomainAdminsSid = 41
-COM_PROCESS_KILL = 12
-TokenPrimary = 1
-GEO_NATION = 1
-TokenUser = 1
-GEO_OFFICIALLANGUAGES = 11
-MaxJobObjectInfoClass = 11
-MYSQL_STMT_FETCH_DONE = 4
-MYSQL_PROTOCOL_PIPE = 3
-MYSQL_TIMESTAMP_NONE = -2
-COM_QUERY = 3
-COM_STMT_SEND_LONG_DATA = 24
-SidTypeUnknown = 8
-WinDigestAuthenticationSid = 52
-MYSQL_OPT_NAMED_PIPE = 2
-AssemblyDetailedInformationInActivationContxt = 3
-SC_ACTION_RESTART = 1
-TokenRestrictedSids = 11
-COR_VERSION_MAJOR_V2 = 2
-WinBuiltinPowerUsersSid = 29
-MYSQL_TIMESTAMP_ERROR = -1
-MYSQL_TYPE_YEAR = 13
-FindExInfoStandard = 0
-DemandLoad = 3
-GEO_RFC1766 = 6
-MYSQL_STMT_EXECUTE_DONE = 3
-GEO_TIMEZONES = 10
-PowerDeviceD0 = 1
-TapeDriveCleanDriveNow = 11
-COM_DAEMON = 29
-COM_FIELD_LIST = 4
-WinAccountKrbtgtSid = 40
-MYSQL_OPTION_MULTI_STATEMENTS_ON = 0
-AdapterType = 4
-GEOCLASS_REGION = 14
-TapeDriveWriteError = 6
-TapeDriveReadError = 5
-MYSQL_STMT_PREPARE_DONE = 2
-WinNTLMAuthenticationSid = 51
-TapeDriveProblemNone = 0
-MaxActivationContextInfoClass = 5
-COM_END = 30
-WinNullSid = 0
-MYSQL_PROTOCOL_DEFAULT = 0
-SystemPowerPolicyCurrent = 8
-VerifyProcessorPowerPolicyDc = 21
-SystemPowerStateNotifyHandler = 17
-SHUTDOWN_DEFAULT = 0
-MYSQL_REPORT_DATA_TRUNCATION = 19
-LastSleepTime = 15
-IMPORT_OBJECT_CODE = 0
-LastWakeTime = 14
-MYSQL_OPT_COMPRESS = 1
-DisableLoad = 4
-SystemPowerInformation = 12
-TokenGroupsAndPrivileges = 13
-TapeDriveTimetoClean = 10
-COMIMAGE_FLAGS_TRACKDEBUGDATA = 65536
-SystemReserveHiberFile = 10
-WinInteractiveSid = 11
-TokenImpersonationLevel = 9
-RecognizerType = 8
-GEO_FRIENDLYNAME = 8
-JobObjectBasicAndIoAccountingInformation = 8
-TokenGroups = 2
-IMAGE_COR_EATJ_THUNK_SIZE = 32
-MYSQL_RPL_ADMIN = 2
-ProcessorStateHandler = 7
-MYSQL_TIMESTAMP_TIME = 2
-COM_SLEEP = 0
-NSP_NOTIFY_HWND = 1
-MYSQL_TYPE_STRING = 254
-WinAccountRasAndIasServersSid = 50
-COM_STATISTICS = 9
-CURSOR_TYPE_SCROLLABLE = 4
-MYSQL_TYPE_SET = 248
-GEO_OFFICIALNAME = 9
-MYSQL_OPT_GUESS_CONNECTION = 16
-PowerSystemShutdown = 6
-RelationNumaNode = 1
-PowerSystemSleeping2 = 3
-COMIMAGE_FLAGS_STRONGNAMESIGNED = 8
 WinBuiltinUsersSid = 27
-SC_ACTION_RUN_COMMAND = 3
-NSP_NOTIFY_PORT = 3
-PowerSystemUnspecified = 0
-MYSQL_TYPE_DECIMAL = 0
-MYSQL_SET_CLIENT_IP = 17
-MAX_PACKAGE_NAME = 1024
-MYSQL_OPT_CONNECT_TIMEOUT = 0
-LT_LOWEST_LATENCY = 1
-AssemblyDetailedInformationInActivationContext = 3
-PowerActionShutdownReset = 5
-TapeDriveUnsupportedMedia = 8
-PowerActionShutdown = 4
-MYSQL_RPL_SLAVE = 1
-SystemPowerStateHandler = 6
-MYSQL_TIMESTAMP_DATETIME = 1
-WinAccountAdministratorSid = 38
-WinBatchSid = 10
-ProcessorPowerPolicyDc = 19
-PowerActionReserved = 1
-PowerActionNone = 0
-MAX_CLASS_NAME = 1024
-CURSOR_TYPE_FOR_UPDATE = 2
-COMP_EQUAL = 0
-GEO_LCID = 7
-FindExSearchMaxSearchOp = 3
-MYSQL_TYPE_ENUM = 247
-TokenSource = 7
-IMAGE_COR_MIH_METHODRVA = 1
-PowerSystemMaximum = 7
-COMIMAGE_FLAGS_IL_LIBRARY = 4
-ROW_RESULT = 3
-COM_DEBUG = 13
-COR_VTABLE_CALL_MOST_DERIVED = 16
-STRING_RESULT = 0
-COR_DELETED_NAME_LENGTH = 8
-VerifyProcessorPowerPolicyAc = 20
-MYSQL_TYPE_BLOB = 252
-WinAccountPolicyAdminsSid = 49
-COM_PROCESS_INFO = 10
-MYSQL_OPT_USE_RESULT = 13
-COR_VTABLEGAP_NAME_LENGTH = 8
-MYSQL_SECURE_AUTH = 18
-MYSQL_TYPE_TIME = 11
-COM_PING = 14
-MYSQL_OPT_PROTOCOL = 9
-ActivationContextDetailedInformation = 2
-COMIMAGE_FLAGS_32BITREQUIRED = 2
-JobObjectEndOfJobTimeInformation = 6
-MYSQL_SHARED_MEMORY_BASE_NAME = 10
-ExceptionContinueExecution = 0
-COM_TIME = 15
-MYSQL_TYPE_LONG_BLOB = 251
-SystemBatteryState = 5
-MYSQL_TIMESTAMP_DATE = 0
-COMIMAGE_FLAGS_ILONLY = 1
-NSP_NOTIFY_APC = 4
-STMT_ATTR_PREFETCH_ROWS = 2
-MYSQL_OPT_WRITE_TIMEOUT = 12
-KILL_CONNECTION = 255
-TokenDefaultDacl = 6
-MYSQL_PROTOCOL_MEMORY = 4
-TapeDriveReadWriteWarning = 1
-WinBuiltinNetworkConfigurationOperatorsSid = 37
-PowerActionSleep = 2
-TokenStatistics = 10
-MYSQL_OPT_USE_EMBEDDED_CONNECTION = 15
-COM_BINLOG_DUMP = 18
-WinAccountEnterpriseAdminsSid = 48
-ExceptionContinueSearch = 1
-COMPARE_STRING = 1
-JobObjectSecurityLimitInformation = 5
-TapeDriveHardwareError = 7
-PowerSystemHibernate = 5
-WinBuiltinDomainSid = 25
-WinBuiltinPerfMonitoringUsersSid = 57
-GetFileExMaxInfoLevel = 1
-COM_SET_OPTION = 27
-CURSOR_TYPE_NO_CURSOR = 0
-WinNtAuthoritySid = 7
-MYSQL_TYPE_VAR_STRING = 253
-SidTypeUser = 1
-RNRSERVICE_DELETE = 2
-WinThisOrganizationSid = 54
-FindExSearchLimitToDevices = 2
 KILL_QUERY = 254
-MYSQL_STATUS_READY = 0
-WinRestrictedCodeSid = 18
-Win32ServiceOwnProcess = 16
-TokenPrimaryGroup = 5
-WinBuiltinRemoteDesktopUsersSid = 36
-COR_VTABLE_FROM_UNMANAGED = 4
-SevereError = 2
-SidTypeDeletedAccount = 6
-MYSQL_SET_CHARSET_NAME = 7
-GEO_ISO3 = 5
-COM_TABLE_DUMP = 19
-SC_ENUM_PROCESS_INFO = 0
-JobObjectBasicUIRestrictions = 4
-JobObjectAssociateCompletionPortInformation = 7
-SidTypeComputer = 9
-TapeDriveScsiConnectionError = 9
-IMPORT_OBJECT_NAME_UNDECORATE = 3
-MaxTokenInfoClass = 17
-COR_VTABLE_32BIT = 1
-VerifySystemPolicyDc = 3
-WinCreatorGroupServerSid = 6
-ProcessorPowerPolicyCurrent = 22
-WinAccountSchemaAdminsSid = 47
-GetFileExInfoStandard = 0
-WinBuiltinReplicatorSid = 34
-FindExSearchLimitToDirectories = 1
-GEOCLASS_NATION = 16
-MYSQL_INIT_COMMAND = 3
-SecurityDelegation = 3
-IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = 1
-MYSQL_STMT_INIT_DONE = 1
-PowerActionWarmEject = 7
-TokenOwner = 4
-PowerSystemSleeping3 = 4
-WinBuiltinGuestsSid = 28
-PowerDeviceD1 = 2
-WinNetworkServiceSid = 24
-WinBuiltinAdministratorsSid = 26
-COM_INIT_DB = 2
-SidTypeGroup = 2
-MYSQL_TYPE_NEWDECIMAL = 246
-WinBuiltinPerfLoggingUsersSid = 58
-SHUTDOWN_WAIT_CRITICAL_BUFFERS = 17
-WinLocalServiceSid = 23
-COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = 255
-MYSQL_READ_DEFAULT_FILE = 4
-WinLocalSystemSid = 22
-IMPORT_OBJECT_NAME_NO_PREFIX = 2
-DriverType = 1
-WinAccountComputersSid = 44
-JobObjectBasicProcessIdList = 3
-MYSQL_TYPE_DOUBLE = 5
-TapeDriveWriteWarning = 4
-MYSQL_TYPE_TIMESTAMP = 7
-IMAGE_COR_MIH_BASICBLOCK = 8
-VerifySystemPolicyAc = 2
-NSP_NOTIFY_IMMEDIATELY = 0
-WinBuiltinPreWindows2000CompatibleAccessSid = 35
-WinCreatorOwnerServerSid = 5
-AutoLoad = 2
-INT_RESULT = 2
-COM_CONNECT = 11
-MYSQL_OPT_SSL_VERIFY_SERVER_CERT = 21
-MYSQL_READ_DEFAULT_GROUP = 5
-SecurityImpersonation = 2
-MYSQL_TYPE_NEWDATE = 14
-COM_CHANGE_USER = 17
-PowerActionShutdownOff = 6
-TokenPrivileges = 3
-SHUTDOWN_WAIT_ALL_BUFFERS = 16
+SC_ACTION_RUN_COMMAND = 3
+VerifyProcessorPowerPolicyAc = 20
+MYSQL_STMT_EXECUTE_DONE = 3
+CURSOR_TYPE_FOR_UPDATE = 2
+MYSQL_OPT_COMPRESS = 1
+COMIMAGE_FLAGS_ILONLY = 1
+SidTypeWellKnownGroup = 5
+JobObjectBasicAndIoAccountingInformation = 8
+WinTerminalServerSid = 19
+GEO_LATITUDE = 2
+IMPORT_OBJECT_ORDINAL = 0
+COMP_EQUAL = 0
+SHUTDOWN_WAIT_TRANSACTIONS = 2
+AuditEventObjectAccess = 0
 NormalError = 1
-SC_STATUS_PROCESS_INFO = 0
-COM_SHUTDOWN = 8
-MYSQL_TYPE_DATE = 10
-WinAccountCertAdminsSid = 46
-IMPORT_OBJECT_NAME = 1
-MYSQL_OPT_LOCAL_INFILE = 8
-CURSOR_TYPE_READ_ONLY = 1
-JobObjectBasicLimitInformation = 2
-TapeDriveReadWarning = 3
-PowerDeviceD2 = 3
-IMAGE_COR_MIH_EHRVA = 2
-COM_STMT_CLOSE = 25
-SystemPowerPolicyDc = 1
-SidTypeDomain = 3
-MYSQL_OPT_READ_TIMEOUT = 11
-STMT_ATTR_UPDATE_MAX_LENGTH = 0
+ProcessorStateHandler = 7
+MaxActivationContextInfoClass = 5
+COM_PROCESS_KILL = 12
 MYSQL_OPT_RECONNECT = 20
-MYSQL_SET_CHARSET_DIR = 6
+WinBuiltinRemoteDesktopUsersSid = 36
+VerifySystemPolicyDc = 3
+IMAGE_COR_EATJ_THUNK_SIZE = 32
+MYSQL_PROTOCOL_PIPE = 3
+MYSQL_OPT_NAMED_PIPE = 2
+PowerDeviceMaximum = 5
+MYSQL_TIMESTAMP_TIME = 2
+PowerDeviceD0 = 1
+COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = 255
+GEO_RFC1766 = 6
+WinBuiltinAccountOperatorsSid = 30
+PowerDeviceD1 = 2
+PowerDeviceD2 = 3
+PowerDeviceD3 = 4
+WinAccountAdministratorSid = 38
+WinOtherOrganizationSid = 55
+SC_ACTION_RESTART = 1
+LT_DONT_CARE = 0
+COM_STATISTICS = 9
+COM_STMT_FETCH = 28
+MYSQL_INIT_COMMAND = 3
+NSP_NOTIFY_IMMEDIATELY = 0
+WinNTLMAuthenticationSid = 51
+SC_ENUM_PROCESS_INFO = 0
+WinCreatorOwnerServerSid = 5
+JobObjectAssociateCompletionPortInformation = 7
 GEO_LONGITUDE = 3
-FileSystemType = 2
-PowerSystemSleeping1 = 2
-TokenAuditPolicy = 16
-COM_DROP_DB = 6
-MYSQL_RPL_MASTER = 0
-ProcessorPowerPolicyAc = 18
+SHUTDOWN_WAIT_ALL_BUFFERS = 16
+WinAccountPolicyAdminsSid = 49
+ProcessorPowerPolicyDc = 19
+MYSQL_TYPE_LONG_BLOB = 251
+FileInformationInAssemblyOfAssemblyInActivationContext = 4
+FindExSearchMaxSearchOp = 3
+RelationProcessorCore = 0
+MYSQL_PROTOCOL_SOCKET = 2
 WinNetworkSid = 9
-TapeDriveReadWriteError = 2
+NATIVE_TYPE_MAX_CB = 1
+WinRestrictedCodeSid = 18
+GEO_ISO2 = 4
+WinAccountGuestSid = 39
+AclSizeInformation = 2
+DECIMAL_RESULT = 4
+WinBuiltinPowerUsersSid = 29
+PowerSystemHibernate = 5
+IMPORT_OBJECT_DATA = 1
+ExceptionContinueExecution = 0
+COM_TABLE_DUMP = 19
+PowerDeviceUnspecified = 0
+TapeDriveHardwareError = 7
+MYSQL_READ_DEFAULT_GROUP = 5
+DriverType = 1
+JobObjectEndOfJobTimeInformation = 6
+TapeDriveWriteWarning = 4
+TapeDriveReadWarning = 3
+GEO_ISO3 = 5
+TokenType = 8
+MYSQL_TYPE_TIME = 11
+SHUTDOWN_WAIT_CRITICAL_BUFFERS = 17
+WinBuiltinNetworkConfigurationOperatorsSid = 37
+IMAGE_COR_MIH_METHODRVA = 1
+SystemBatteryState = 5
+FindExSearchLimitToDevices = 2
+MYSQL_PROTOCOL_TCP = 1
+JobObjectJobSetInformation = 10
+AuditEventDirectoryServiceAccess = 1
+MYSQL_TYPE_BIT = 16
+FindExInfoMaxInfoLevel = 1
+ROW_RESULT = 3
+AdministratorPowerPolicy = 9
+HeapCompatibilityInformation = 0
+WinAccountEnterpriseAdminsSid = 48
+FindExInfoStandard = 0
+STMT_ATTR_PREFETCH_ROWS = 2
+COM_SLEEP = 0
+COR_DELETED_NAME_LENGTH = 8
+FindExSearchLimitToDirectories = 1
+GEO_LCID = 7
+SecurityIdentification = 1
+STMT_ATTR_UPDATE_MAX_LENGTH = 0
+ActivationContextDetailedInformation = 2
+COM_CONNECT_OUT = 20
+WinCreatorOwnerSid = 3
+WinBuiltinGuestsSid = 28
+TapeDriveCleanDriveNow = 11
+MYSQL_OPT_USE_RESULT = 13
+FileSystemType = 2
+NSP_NOTIFY_HWND = 1
+COR_VERSION_MINOR = 0
+GEO_TIMEZONES = 10
+TokenDefaultDacl = 6
+MYSQL_TYPE_YEAR = 13
+GEO_FRIENDLYNAME = 8
+IMPORT_OBJECT_CODE = 0
+WinAccountSchemaAdminsSid = 47
+SystemPowerStateNotifyHandler = 17
+WinRemoteLogonIdSid = 20
+FindExSearchNameMatch = 0
+WinLocalSid = 2
+JobObjectBasicUIRestrictions = 4
+PowerActionShutdownReset = 5
+MYSQL_TYPE_NEWDECIMAL = 246
+MYSQL_TIMESTAMP_DATETIME = 1
+WinSelfSid = 16
+GEOCLASS_NATION = 16
+MYSQL_TYPE_FLOAT = 4
+REAL_RESULT = 1
+Win32ServiceShareProcess = 32
+LT_LOWEST_LATENCY = 1
+WinBuiltinPerfLoggingUsersSid = 58
+COM_END = 30
+MYSQL_OPT_WRITE_TIMEOUT = 12
+MYSQL_OPT_USE_REMOTE_CONNECTION = 14
+MYSQL_OPT_GUESS_CONNECTION = 16
+AdapterType = 4
+COR_VERSION_MAJOR = 2
+GEO_OFFICIALLANGUAGES = 11
+MYSQL_OPT_SSL_VERIFY_SERVER_CERT = 21
+IgnoreError = 0
+CURSOR_TYPE_NO_CURSOR = 0
+COM_STMT_CLOSE = 25
+SidTypeDeletedAccount = 6
+MYSQL_OPT_LOCAL_INFILE = 8
+RNRSERVICE_REGISTER = 0
 COM_STMT_EXECUTE = 23
+COM_QUERY = 3
+PowerActionNone = 0
+NSP_NOTIFY_EVENT = 2
+WinWorldSid = 1
+JobObjectBasicProcessIdList = 3
+COMPARE_STRING = 1
+TokenPrimaryGroup = 5
+MAX_PACKAGE_NAME = 1024
+SC_ACTION_NONE = 0
+SHUTDOWN_WAIT_UPDATES = 8
+COM_DELAYED_INSERT = 16
+MYSQL_TYPE_LONG = 3
+TokenImpersonation = 2
+VerifySystemPolicyAc = 2
+WinAccountCertAdminsSid = 46
+SystemExecutionState = 16
+COM_CHANGE_USER = 17
+COR_VTABLE_32BIT = 1
+SidTypeUnknown = 8
+SidTypeInvalid = 7
+MYSQL_OPT_PROTOCOL = 9
+COR_VERSION_MAJOR_V2 = 2
+WinEnterpriseControllersSid = 15
+CURSOR_TYPE_READ_ONLY = 1
+WinAccountDomainAdminsSid = 41
+WinBuiltinPerfMonitoringUsersSid = 57
+COM_INIT_DB = 2
+MYSQL_TYPE_DATETIME = 12
+JobObjectBasicLimitInformation = 2
+TokenOwner = 4
+WinBuiltinAdministratorsSid = 26
+MYSQL_TYPE_DECIMAL = 0
+SystemPowerPolicyDc = 1
+COM_STMT_RESET = 26
+MYSQL_STATUS_USE_RESULT = 2
+KILL_CONNECTION = 255
+COM_STMT_PREPARE = 22
+SecurityImpersonation = 2
+DisableLoad = 4
+SC_STATUS_PROCESS_INFO = 0
+WinThisOrganizationSid = 54
+NSP_NOTIFY_PORT = 3
+MYSQL_TYPE_TINY = 1
+SC_ACTION_REBOOT = 2
+COM_STMT_SEND_LONG_DATA = 24
+SidTypeComputer = 9
+MYSQL_OPT_READ_TIMEOUT = 11
+COM_DROP_DB = 6
+MYSQL_OPTION_MULTI_STATEMENTS_ON = 0
+WinBuiltinIncomingForestTrustBuildersSid = 56
+COM_REFRESH = 7
+MYSQL_TIMESTAMP_DATE = 0
+AutoLoad = 2
+MYSQL_TYPE_SHORT = 2
+WinAccountRasAndIasServersSid = 50
+SHUTDOWN_DEFAULT = 0
+WinCreatorGroupServerSid = 6
+WinBuiltinReplicatorSid = 34
+COM_REGISTER_SLAVE = 21
+SevereError = 2
+PowerSystemSleeping3 = 4
+WinBuiltinSystemOperatorsSid = 31
+DemandLoad = 3
+TapeDriveSnappedTape = 13
+TokenSource = 7
+TokenGroups = 2
+TokenAuditPolicy = 16
+TapeDriveWriteError = 6
+BootLoad = 0
+PowerSystemSleeping1 = 2
+WinBuiltinDomainSid = 25
+WinAccountComputersSid = 44
+LastWakeTime = 14
+MYSQL_TYPE_ENUM = 247
+MYSQL_TYPE_VAR_STRING = 253
+STMT_ATTR_CURSOR_TYPE = 1
+WinLocalServiceSid = 23
+COM_BINLOG_DUMP = 18
+COM_SHUTDOWN = 8
+WinLocalSystemSid = 22
+TokenStatistics = 10
+MYSQL_STATUS_GET_RESULT = 1
+ExceptionNestedException = 2
+NSP_NOTIFY_APC = 4
+COMIMAGE_FLAGS_STRONGNAMESIGNED = 8
+WinAnonymousSid = 13
+WinAuthenticatedUserSid = 17
+IMPORT_OBJECT_NAME_UNDECORATE = 3
+AclRevisionInformation = 1
+MaxTokenInfoClass = 17
+WinProxySid = 14
+ActivationContextBasicInformation = 1
+RecognizerType = 8
+COM_QUIT = 1
+TokenSessionReference = 14
+COM_PROCESS_INFO = 10
+MYSQL_RPL_ADMIN = 2
+WinInteractiveSid = 11
+TokenRestrictedSids = 11
+JobObjectExtendedLimitInformation = 9
+COM_CREATE_DB = 5
+WinNetworkServiceSid = 24
+RelationNumaNode = 1
+TapeDriveReadError = 5
+COM_FIELD_LIST = 4
+WinCreatorGroupSid = 4
+WinAccountControllersSid = 45
+SHUTDOWN_WAIT_CONNECTIONS = 1
+TokenPrivileges = 3
+MYSQL_REPORT_DATA_TRUNCATION = 19
+COMIMAGE_FLAGS_IL_LIBRARY = 4
+COR_VTABLE_CALL_MOST_DERIVED = 16
+PowerSystemUnspecified = 0
+TokenSandBoxInert = 15
+TapeDriveScsiConnectionError = 9
+IMPORT_OBJECT_NAME_NO_PREFIX = 2
+WinBuiltinPreWindows2000CompatibleAccessSid = 35
+COM_CONNECT = 11
+WinAccountDomainGuestsSid = 43
+MYSQL_TYPE_TINY_BLOB = 249
+ProcessorStateHandler2 = 13
+COM_TIME = 15
+PowerSystemMaximum = 7
+GetFileExMaxInfoLevel = 1
+MYSQL_RPL_SLAVE = 1
+JobObjectSecurityLimitInformation = 5
+MYSQL_TYPE_STRING = 254
+MYSQL_TYPE_SET = 248
+WinServiceSid = 12
+MYSQL_TYPE_BLOB = 252
+MYSQL_TYPE_NEWDATE = 14
+SecurityDelegation = 3
+STRING_RESULT = 0
+SecurityAnonymous = 0
+AssemblyDetailedInformationInActivationContext = 3
+ExceptionCollidedUnwind = 3
+COMIMAGE_FLAGS_32BITREQUIRED = 2
+PowerActionShutdownOff = 6
+COR_VTABLE_FROM_UNMANAGED = 4
+PowerSystemSleeping2 = 3
+MAX_CLASS_NAME = 1024
+IMPORT_OBJECT_NAME = 1
+MYSQL_TYPE_DATE = 10
+WinAccountKrbtgtSid = 40
+MYSQL_OPTION_MULTI_STATEMENTS_OFF = 1
+MYSQL_TYPE_MEDIUM_BLOB = 250
+COR_VTABLE_64BIT = 2
+PowerSystemShutdown = 6
+MYSQL_TYPE_INT24 = 9
+SidTypeDomain = 3
+INT_RESULT = 2
+WinNullSid = 0
+COR_VTABLEGAP_NAME_LENGTH = 8
+TokenPrimary = 1
+PowerActionWarmEject = 7
+Win32ServiceOwnProcess = 16
+COMIMAGE_FLAGS_TRACKDEBUGDATA = 65536
+WinAccountDomainUsersSid = 42
+WinSChannelAuthenticationSid = 53
+PowerActionShutdown = 4
+SidTypeUser = 1
+JobObjectBasicAccountingInformation = 1
+MYSQL_TYPE_VARCHAR = 15
+IMPORT_OBJECT_CONST = 2
+SystemPowerPolicyAc = 0
+PowerActionSleep = 2
+ExceptionContinueSearch = 1
+SidTypeGroup = 2
+SystemPowerLoggingEntry = 24
+SystemPowerStateLogging = 23
+PowerSystemWorking = 1
+CriticalError = 3
+TokenGroupsAndPrivileges = 13
+TapeDriveReadWriteError = 2
+TapeDriveUnsupportedMedia = 8
+WinBuiltinBackupOperatorsSid = 33
+MYSQL_SHARED_MEMORY_BASE_NAME = 10
+CURSOR_TYPE_SCROLLABLE = 4
+ProcessorInformation = 11
+MYSQL_SET_CLIENT_IP = 17
+TapeDriveTimetoClean = 10
+WinBatchSid = 10
+ProcessorPowerPolicyAc = 18
+TokenImpersonationLevel = 9
+SystemPowerInformation = 12
+GEO_NATION = 1
+GetFileExInfoStandard = 0
+SystemReserveHiberFile = 10
+IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = 1
+WinDigestAuthenticationSid = 52
+ProcessorPowerPolicyCurrent = 22
+COM_DEBUG = 13
+SidTypeAlias = 4
+SystemPowerCapabilities = 4
+MYSQL_TIMESTAMP_NONE = -2
+MaxJobObjectInfoClass = 11
+IMAGE_COR_MIH_BASICBLOCK = 8
+MYSQL_SECURE_AUTH = 18
+WinLogonIdsSid = 21
+GEO_OFFICIALNAME = 9
+TapeDriveReadWriteWarning = 1
+MYSQL_TYPE_DOUBLE = 5
+MYSQL_OPT_USE_EMBEDDED_CONNECTION = 15
+MYSQL_TIMESTAMP_ERROR = -1
+LastSleepTime = 15
+SystemLoad = 1
+TapeDriveMediaLifeExpired = 12
+PowerActionHibernate = 3
+SystemPowerStateHandler = 6
+MYSQL_STMT_PREPARE_DONE = 2
+TokenUser = 1
+TokenSessionId = 12
+WinBuiltinPrintOperatorsSid = 32
+FileInformationInAssemblyOfAssemblyInActivationContxt = 4
+MYSQL_SET_CHARSET_NAME = 7
+WinDialupSid = 8
+IMAGE_COR_MIH_EHRVA = 2
+GEOCLASS_REGION = 14
+MYSQL_TYPE_TIMESTAMP = 7
+AssemblyDetailedInformationInActivationContxt = 3
+MYSQL_STATUS_READY = 0
+MYSQL_PROTOCOL_MEMORY = 4
+VerifyProcessorPowerPolicyDc = 21
+COM_SET_OPTION = 27
+RNRSERVICE_DELETE = 2
+MYSQL_TYPE_GEOMETRY = 255
+MYSQL_PROTOCOL_DEFAULT = 0
+MYSQL_STMT_INIT_DONE = 1
+COM_DAEMON = 29
+COMP_NOTLESS = 1
+TapeDriveProblemNone = 0
+MYSQL_RPL_MASTER = 0
+MYSQL_STMT_FETCH_DONE = 4
+MYSQL_OPT_CONNECT_TIMEOUT = 0
+WinNtAuthoritySid = 7
+MYSQL_SET_CHARSET_DIR = 6
+MYSQL_TYPE_LONGLONG = 8
+SystemPowerPolicyCurrent = 8
+MYSQL_TYPE_NULL = 6
+COM_PING = 14
+RNRSERVICE_DEREGISTER = 1
+MYSQL_READ_DEFAULT_FILE = 4
+PowerActionReserved = 1
 wint_t = c_ushort
 wctype_t = c_ushort
 
@@ -615,21 +614,21 @@ _VIDEOPARAMETERS._fields_ = [
     ('bCP_APSTriggerBits', ULONG),
     ('bOEMCopyProtection', UCHAR * 256),
 ]
-PVIDEOPARAMETERS = POINTER(_VIDEOPARAMETERS)
 VIDEOPARAMETERS = _VIDEOPARAMETERS
 LPVIDEOPARAMETERS = POINTER(_VIDEOPARAMETERS)
-INT8 = c_byte
+PVIDEOPARAMETERS = POINTER(_VIDEOPARAMETERS)
 PINT8 = POINTER(c_byte)
+INT8 = c_byte
 INT16 = c_short
 PINT16 = POINTER(c_short)
-INT32 = c_int
 PINT32 = POINTER(c_int)
+INT32 = c_int
 INT64 = c_longlong
 PINT64 = POINTER(c_longlong)
 PUINT8 = POINTER(c_ubyte)
 UINT8 = c_ubyte
-PUINT16 = POINTER(c_ushort)
 UINT16 = c_ushort
+PUINT16 = POINTER(c_ushort)
 PUINT32 = POINTER(c_uint)
 UINT32 = c_uint
 PUINT64 = POINTER(c_ulonglong)
@@ -646,24 +645,24 @@ UINT_PTR = c_uint
 PUINT_PTR = POINTER(c_uint)
 PLONG_PTR = POINTER(c_long)
 LONG_PTR = c_long
-PULONG_PTR = POINTER(c_ulong)
 ULONG_PTR = c_ulong
-UHALF_PTR = c_ushort
+PULONG_PTR = POINTER(c_ulong)
 PUHALF_PTR = POINTER(c_ushort)
-PHALF_PTR = POINTER(c_short)
+UHALF_PTR = c_ushort
 HALF_PTR = c_short
+PHALF_PTR = POINTER(c_short)
 SHANDLE_PTR = c_long
 HANDLE_PTR = c_ulong
-PSIZE_T = POINTER(ULONG_PTR)
 SIZE_T = ULONG_PTR
+PSIZE_T = POINTER(ULONG_PTR)
 SSIZE_T = LONG_PTR
 PSSIZE_T = POINTER(LONG_PTR)
-PDWORD_PTR = POINTER(ULONG_PTR)
 DWORD_PTR = ULONG_PTR
+PDWORD_PTR = POINTER(ULONG_PTR)
 LONG64 = c_longlong
 PLONG64 = POINTER(c_longlong)
-PULONG64 = POINTER(c_ulonglong)
 ULONG64 = c_ulonglong
+PULONG64 = POINTER(c_ulonglong)
 PDWORD64 = POINTER(c_ulonglong)
 DWORD64 = c_ulonglong
 KAFFINITY = ULONG_PTR
@@ -678,10 +677,10 @@ FMTID = GUID
 LPFMTID = POINTER(FMTID)
 class HIMC__(Structure):
     pass
-HIMC = POINTER(HIMC__)
 HIMC__._fields_ = [
     ('unused', c_int),
 ]
+HIMC = POINTER(HIMC__)
 class HIMCC__(Structure):
     pass
 HIMCC = POINTER(HIMCC__)
@@ -698,9 +697,9 @@ tagCOMPOSITIONFORM._fields_ = [
     ('rcArea', RECT),
 ]
 COMPOSITIONFORM = tagCOMPOSITIONFORM
-PCOMPOSITIONFORM = POINTER(tagCOMPOSITIONFORM)
-NPCOMPOSITIONFORM = POINTER(tagCOMPOSITIONFORM)
 LPCOMPOSITIONFORM = POINTER(tagCOMPOSITIONFORM)
+NPCOMPOSITIONFORM = POINTER(tagCOMPOSITIONFORM)
+PCOMPOSITIONFORM = POINTER(tagCOMPOSITIONFORM)
 class tagCANDIDATEFORM(Structure):
     pass
 tagCANDIDATEFORM._fields_ = [
@@ -709,10 +708,10 @@ tagCANDIDATEFORM._fields_ = [
     ('ptCurrentPos', POINT),
     ('rcArea', RECT),
 ]
+LPCANDIDATEFORM = POINTER(tagCANDIDATEFORM)
+CANDIDATEFORM = tagCANDIDATEFORM
 PCANDIDATEFORM = POINTER(tagCANDIDATEFORM)
 NPCANDIDATEFORM = POINTER(tagCANDIDATEFORM)
-CANDIDATEFORM = tagCANDIDATEFORM
-LPCANDIDATEFORM = POINTER(tagCANDIDATEFORM)
 class tagCANDIDATELIST(Structure):
     pass
 tagCANDIDATELIST._fields_ = [
@@ -735,9 +734,9 @@ tagREGISTERWORDA._fields_ = [
     ('lpReading', LPSTR),
     ('lpWord', LPSTR),
 ]
-PREGISTERWORDA = POINTER(tagREGISTERWORDA)
-LPREGISTERWORDA = POINTER(tagREGISTERWORDA)
 REGISTERWORDA = tagREGISTERWORDA
+LPREGISTERWORDA = POINTER(tagREGISTERWORDA)
+PREGISTERWORDA = POINTER(tagREGISTERWORDA)
 NPREGISTERWORDA = POINTER(tagREGISTERWORDA)
 class tagREGISTERWORDW(Structure):
     pass
@@ -747,8 +746,8 @@ tagREGISTERWORDW._fields_ = [
 ]
 NPREGISTERWORDW = POINTER(tagREGISTERWORDW)
 REGISTERWORDW = tagREGISTERWORDW
-PREGISTERWORDW = POINTER(tagREGISTERWORDW)
 LPREGISTERWORDW = POINTER(tagREGISTERWORDW)
+PREGISTERWORDW = POINTER(tagREGISTERWORDW)
 REGISTERWORD = REGISTERWORDA
 PREGISTERWORD = PREGISTERWORDA
 NPREGISTERWORD = NPREGISTERWORDA
@@ -765,8 +764,8 @@ tagRECONVERTSTRING._fields_ = [
     ('dwTargetStrLen', DWORD),
     ('dwTargetStrOffset', DWORD),
 ]
-NPRECONVERTSTRING = POINTER(tagRECONVERTSTRING)
 RECONVERTSTRING = tagRECONVERTSTRING
+NPRECONVERTSTRING = POINTER(tagRECONVERTSTRING)
 LPRECONVERTSTRING = POINTER(tagRECONVERTSTRING)
 PRECONVERTSTRING = POINTER(tagRECONVERTSTRING)
 class tagSTYLEBUFA(Structure):
@@ -775,9 +774,9 @@ tagSTYLEBUFA._fields_ = [
     ('dwStyle', DWORD),
     ('szDescription', CHAR * 32),
 ]
+PSTYLEBUFA = POINTER(tagSTYLEBUFA)
 STYLEBUFA = tagSTYLEBUFA
 NPSTYLEBUFA = POINTER(tagSTYLEBUFA)
-PSTYLEBUFA = POINTER(tagSTYLEBUFA)
 LPSTYLEBUFA = POINTER(tagSTYLEBUFA)
 class tagSTYLEBUFW(Structure):
     pass
@@ -785,10 +784,10 @@ tagSTYLEBUFW._fields_ = [
     ('dwStyle', DWORD),
     ('szDescription', WCHAR * 32),
 ]
-PSTYLEBUFW = POINTER(tagSTYLEBUFW)
 STYLEBUFW = tagSTYLEBUFW
-LPSTYLEBUFW = POINTER(tagSTYLEBUFW)
 NPSTYLEBUFW = POINTER(tagSTYLEBUFW)
+LPSTYLEBUFW = POINTER(tagSTYLEBUFW)
+PSTYLEBUFW = POINTER(tagSTYLEBUFW)
 STYLEBUF = STYLEBUFA
 PSTYLEBUF = PSTYLEBUFA
 NPSTYLEBUF = NPSTYLEBUFA
@@ -825,10 +824,10 @@ tagIMEMENUITEMINFOW._fields_ = [
     ('szString', WCHAR * 80),
     ('hbmpItem', HBITMAP),
 ]
-IMEMENUITEMINFOW = tagIMEMENUITEMINFOW
-LPIMEMENUITEMINFOW = POINTER(tagIMEMENUITEMINFOW)
-PIMEMENUITEMINFOW = POINTER(tagIMEMENUITEMINFOW)
 NPIMEMENUITEMINFOW = POINTER(tagIMEMENUITEMINFOW)
+IMEMENUITEMINFOW = tagIMEMENUITEMINFOW
+PIMEMENUITEMINFOW = POINTER(tagIMEMENUITEMINFOW)
+LPIMEMENUITEMINFOW = POINTER(tagIMEMENUITEMINFOW)
 IMEMENUITEMINFO = IMEMENUITEMINFOA
 PIMEMENUITEMINFO = PIMEMENUITEMINFOA
 NPIMEMENUITEMINFO = NPIMEMENUITEMINFOA
@@ -842,10 +841,10 @@ tagIMECHARPOSITION._fields_ = [
     ('cLineHeight', UINT),
     ('rcDocument', RECT),
 ]
+LPIMECHARPOSITION = POINTER(tagIMECHARPOSITION)
+NPIMECHARPOSITION = POINTER(tagIMECHARPOSITION)
 PIMECHARPOSITION = POINTER(tagIMECHARPOSITION)
 IMECHARPOSITION = tagIMECHARPOSITION
-NPIMECHARPOSITION = POINTER(tagIMECHARPOSITION)
-LPIMECHARPOSITION = POINTER(tagIMECHARPOSITION)
 IMCENUMPROC = WINFUNCTYPE(BOOL, POINTER(HIMC__), c_long)
 REGISTERWORDENUMPROCA = WINFUNCTYPE(c_int, STRING, c_ulong, STRING, c_void_p)
 REGISTERWORDENUMPROCW = WINFUNCTYPE(c_int, WSTRING, c_ulong, WSTRING, c_void_p)
@@ -874,8 +873,8 @@ _MODEMDEVCAPS._fields_ = [
     ('abVariablePortion', BYTE * 1),
 ]
 LPMODEMDEVCAPS = POINTER(_MODEMDEVCAPS)
-MODEMDEVCAPS = _MODEMDEVCAPS
 PMODEMDEVCAPS = POINTER(_MODEMDEVCAPS)
+MODEMDEVCAPS = _MODEMDEVCAPS
 class _MODEMSETTINGS(Structure):
     pass
 _MODEMSETTINGS._fields_ = [
@@ -893,8 +892,8 @@ _MODEMSETTINGS._fields_ = [
     ('abVariablePortion', BYTE * 1),
 ]
 MODEMSETTINGS = _MODEMSETTINGS
-PMODEMSETTINGS = POINTER(_MODEMSETTINGS)
 LPMODEMSETTINGS = POINTER(_MODEMSETTINGS)
+PMODEMSETTINGS = POINTER(_MODEMSETTINGS)
 SERVICETYPE = ULONG
 class _flowspec(Structure):
     pass
@@ -908,9 +907,9 @@ _flowspec._fields_ = [
     ('MaxSduSize', ULONG),
     ('MinimumPolicedSize', ULONG),
 ]
+PFLOWSPEC = POINTER(_flowspec)
 FLOWSPEC = _flowspec
 LPFLOWSPEC = POINTER(_flowspec)
-PFLOWSPEC = POINTER(_flowspec)
 class QOS_OBJECT_HDR(Structure):
     pass
 LPQOS_OBJECT_HDR = POINTER(QOS_OBJECT_HDR)
@@ -924,16 +923,16 @@ _QOS_SD_MODE._fields_ = [
     ('ObjectHdr', QOS_OBJECT_HDR),
     ('ShapeDiscardMode', ULONG),
 ]
-QOS_SD_MODE = _QOS_SD_MODE
 LPQOS_SD_MODE = POINTER(_QOS_SD_MODE)
+QOS_SD_MODE = _QOS_SD_MODE
 class _QOS_SHAPING_RATE(Structure):
     pass
 _QOS_SHAPING_RATE._fields_ = [
     ('ObjectHdr', QOS_OBJECT_HDR),
     ('ShapingRate', ULONG),
 ]
-QOS_SHAPING_RATE = _QOS_SHAPING_RATE
 LPQOS_SHAPING_RATE = POINTER(_QOS_SHAPING_RATE)
+QOS_SHAPING_RATE = _QOS_SHAPING_RATE
 class _OVERLAPPED(Structure):
     pass
 class N11_OVERLAPPED4DOLLAR_48E(Union):
@@ -957,8 +956,8 @@ _OVERLAPPED._fields_ = [
     ('_0', N11_OVERLAPPED4DOLLAR_48E),
     ('hEvent', HANDLE),
 ]
-OVERLAPPED = _OVERLAPPED
 LPOVERLAPPED = POINTER(_OVERLAPPED)
+OVERLAPPED = _OVERLAPPED
 class _SECURITY_ATTRIBUTES(Structure):
     pass
 LPVOID = c_void_p
@@ -979,8 +978,8 @@ _PROCESS_INFORMATION._fields_ = [
     ('dwThreadId', DWORD),
 ]
 PROCESS_INFORMATION = _PROCESS_INFORMATION
-PPROCESS_INFORMATION = POINTER(_PROCESS_INFORMATION)
 LPPROCESS_INFORMATION = POINTER(_PROCESS_INFORMATION)
+PPROCESS_INFORMATION = POINTER(_PROCESS_INFORMATION)
 class _SYSTEMTIME(Structure):
     pass
 _SYSTEMTIME._fields_ = [
@@ -993,9 +992,9 @@ _SYSTEMTIME._fields_ = [
     ('wSecond', WORD),
     ('wMilliseconds', WORD),
 ]
-PSYSTEMTIME = POINTER(_SYSTEMTIME)
-LPSYSTEMTIME = POINTER(_SYSTEMTIME)
 SYSTEMTIME = _SYSTEMTIME
+LPSYSTEMTIME = POINTER(_SYSTEMTIME)
+PSYSTEMTIME = POINTER(_SYSTEMTIME)
 PTHREAD_START_ROUTINE = WINFUNCTYPE(DWORD, c_void_p)
 LPTHREAD_START_ROUTINE = PTHREAD_START_ROUTINE
 PFIBER_START_ROUTINE = WINFUNCTYPE(None, c_void_p)
@@ -1090,8 +1089,8 @@ _DCB._fields_ = [
     ('EvtChar', c_char),
     ('wReserved1', WORD),
 ]
-LPDCB = POINTER(_DCB)
 DCB = _DCB
+LPDCB = POINTER(_DCB)
 class _COMMTIMEOUTS(Structure):
     pass
 _COMMTIMEOUTS._fields_ = [
@@ -1178,8 +1177,8 @@ _EXCEPTION_DEBUG_INFO._fields_ = [
     ('ExceptionRecord', EXCEPTION_RECORD),
     ('dwFirstChance', DWORD),
 ]
-EXCEPTION_DEBUG_INFO = _EXCEPTION_DEBUG_INFO
 LPEXCEPTION_DEBUG_INFO = POINTER(_EXCEPTION_DEBUG_INFO)
+EXCEPTION_DEBUG_INFO = _EXCEPTION_DEBUG_INFO
 class _CREATE_THREAD_DEBUG_INFO(Structure):
     pass
 _CREATE_THREAD_DEBUG_INFO._fields_ = [
@@ -1187,8 +1186,8 @@ _CREATE_THREAD_DEBUG_INFO._fields_ = [
     ('lpThreadLocalBase', LPVOID),
     ('lpStartAddress', LPTHREAD_START_ROUTINE),
 ]
-LPCREATE_THREAD_DEBUG_INFO = POINTER(_CREATE_THREAD_DEBUG_INFO)
 CREATE_THREAD_DEBUG_INFO = _CREATE_THREAD_DEBUG_INFO
+LPCREATE_THREAD_DEBUG_INFO = POINTER(_CREATE_THREAD_DEBUG_INFO)
 class _CREATE_PROCESS_DEBUG_INFO(Structure):
     pass
 _CREATE_PROCESS_DEBUG_INFO._fields_ = [
@@ -1210,8 +1209,8 @@ class _EXIT_THREAD_DEBUG_INFO(Structure):
 _EXIT_THREAD_DEBUG_INFO._fields_ = [
     ('dwExitCode', DWORD),
 ]
-LPEXIT_THREAD_DEBUG_INFO = POINTER(_EXIT_THREAD_DEBUG_INFO)
 EXIT_THREAD_DEBUG_INFO = _EXIT_THREAD_DEBUG_INFO
+LPEXIT_THREAD_DEBUG_INFO = POINTER(_EXIT_THREAD_DEBUG_INFO)
 class _EXIT_PROCESS_DEBUG_INFO(Structure):
     pass
 _EXIT_PROCESS_DEBUG_INFO._fields_ = [
@@ -1229,8 +1228,8 @@ _LOAD_DLL_DEBUG_INFO._fields_ = [
     ('lpImageName', LPVOID),
     ('fUnicode', WORD),
 ]
-LOAD_DLL_DEBUG_INFO = _LOAD_DLL_DEBUG_INFO
 LPLOAD_DLL_DEBUG_INFO = POINTER(_LOAD_DLL_DEBUG_INFO)
+LOAD_DLL_DEBUG_INFO = _LOAD_DLL_DEBUG_INFO
 class _UNLOAD_DLL_DEBUG_INFO(Structure):
     pass
 _UNLOAD_DLL_DEBUG_INFO._fields_ = [
@@ -1253,8 +1252,8 @@ _RIP_INFO._fields_ = [
     ('dwError', DWORD),
     ('dwType', DWORD),
 ]
-RIP_INFO = _RIP_INFO
 LPRIP_INFO = POINTER(_RIP_INFO)
+RIP_INFO = _RIP_INFO
 class _DEBUG_EVENT(Structure):
     pass
 class N12_DEBUG_EVENT4DOLLAR_52E(Union):
@@ -1350,9 +1349,9 @@ _PROCESS_HEAP_ENTRY._fields_ = [
     ('wFlags', WORD),
     ('_0', N19_PROCESS_HEAP_ENTRY4DOLLAR_53E),
 ]
+PPROCESS_HEAP_ENTRY = POINTER(_PROCESS_HEAP_ENTRY)
 LPPROCESS_HEAP_ENTRY = POINTER(_PROCESS_HEAP_ENTRY)
 PROCESS_HEAP_ENTRY = _PROCESS_HEAP_ENTRY
-PPROCESS_HEAP_ENTRY = POINTER(_PROCESS_HEAP_ENTRY)
 PTOP_LEVEL_EXCEPTION_FILTER = WINFUNCTYPE(LONG, POINTER(_EXCEPTION_POINTERS))
 LPTOP_LEVEL_EXCEPTION_FILTER = PTOP_LEVEL_EXCEPTION_FILTER
 PAPCFUNC = WINFUNCTYPE(None, c_ulong)
@@ -1370,9 +1369,9 @@ _BY_HANDLE_FILE_INFORMATION._fields_ = [
     ('nFileIndexHigh', DWORD),
     ('nFileIndexLow', DWORD),
 ]
+LPBY_HANDLE_FILE_INFORMATION = POINTER(_BY_HANDLE_FILE_INFORMATION)
 PBY_HANDLE_FILE_INFORMATION = POINTER(_BY_HANDLE_FILE_INFORMATION)
 BY_HANDLE_FILE_INFORMATION = _BY_HANDLE_FILE_INFORMATION
-LPBY_HANDLE_FILE_INFORMATION = POINTER(_BY_HANDLE_FILE_INFORMATION)
 class _TIME_ZONE_INFORMATION(Structure):
     pass
 _TIME_ZONE_INFORMATION._fields_ = [
@@ -1384,9 +1383,9 @@ _TIME_ZONE_INFORMATION._fields_ = [
     ('DaylightDate', SYSTEMTIME),
     ('DaylightBias', LONG),
 ]
+LPTIME_ZONE_INFORMATION = POINTER(_TIME_ZONE_INFORMATION)
 PTIME_ZONE_INFORMATION = POINTER(_TIME_ZONE_INFORMATION)
 TIME_ZONE_INFORMATION = _TIME_ZONE_INFORMATION
-LPTIME_ZONE_INFORMATION = POINTER(_TIME_ZONE_INFORMATION)
 PFE_EXPORT_FUNC = WINFUNCTYPE(DWORD, POINTER(BYTE), c_void_p, c_ulong)
 PFE_IMPORT_FUNC = WINFUNCTYPE(DWORD, POINTER(BYTE), c_void_p, POINTER(ULONG))
 PFLS_CALLBACK_FUNCTION = WINFUNCTYPE(None, c_void_p)
@@ -1400,8 +1399,8 @@ _WIN32_STREAM_ID._fields_ = [
     ('dwStreamNameSize', DWORD),
     ('cStreamName', WCHAR * 1),
 ]
-WIN32_STREAM_ID = _WIN32_STREAM_ID
 LPWIN32_STREAM_ID = POINTER(_WIN32_STREAM_ID)
+WIN32_STREAM_ID = _WIN32_STREAM_ID
 class _STARTUPINFOA(Structure):
     pass
 LPBYTE = POINTER(BYTE)
@@ -1425,8 +1424,8 @@ _STARTUPINFOA._fields_ = [
     ('hStdOutput', HANDLE),
     ('hStdError', HANDLE),
 ]
-STARTUPINFOA = _STARTUPINFOA
 LPSTARTUPINFOA = POINTER(_STARTUPINFOA)
+STARTUPINFOA = _STARTUPINFOA
 class _STARTUPINFOW(Structure):
     pass
 _STARTUPINFOW._fields_ = [
@@ -1449,8 +1448,8 @@ _STARTUPINFOW._fields_ = [
     ('hStdOutput', HANDLE),
     ('hStdError', HANDLE),
 ]
-STARTUPINFOW = _STARTUPINFOW
 LPSTARTUPINFOW = POINTER(_STARTUPINFOW)
+STARTUPINFOW = _STARTUPINFOW
 STARTUPINFO = STARTUPINFOA
 LPSTARTUPINFO = LPSTARTUPINFOA
 class _WIN32_FIND_DATAA(Structure):
@@ -1536,8 +1535,8 @@ tagHW_PROFILE_INFOA._fields_ = [
     ('szHwProfileGuid', CHAR * 39),
     ('szHwProfileName', CHAR * 80),
 ]
-LPHW_PROFILE_INFOA = POINTER(tagHW_PROFILE_INFOA)
 HW_PROFILE_INFOA = tagHW_PROFILE_INFOA
+LPHW_PROFILE_INFOA = POINTER(tagHW_PROFILE_INFOA)
 class tagHW_PROFILE_INFOW(Structure):
     pass
 tagHW_PROFILE_INFOW._fields_ = [
@@ -1561,8 +1560,8 @@ _SYSTEM_POWER_STATUS._fields_ = [
 ]
 LPSYSTEM_POWER_STATUS = POINTER(_SYSTEM_POWER_STATUS)
 SYSTEM_POWER_STATUS = _SYSTEM_POWER_STATUS
-PCOORD = POINTER(_COORD)
 COORD = _COORD
+PCOORD = POINTER(_COORD)
 PSMALL_RECT = POINTER(_SMALL_RECT)
 class _KEY_EVENT_RECORD(Structure):
     pass
@@ -1580,8 +1579,8 @@ _KEY_EVENT_RECORD._fields_ = [
     ('uChar', N17_KEY_EVENT_RECORD4DOLLAR_72E),
     ('dwControlKeyState', DWORD),
 ]
-KEY_EVENT_RECORD = _KEY_EVENT_RECORD
 PKEY_EVENT_RECORD = POINTER(_KEY_EVENT_RECORD)
+KEY_EVENT_RECORD = _KEY_EVENT_RECORD
 class _MOUSE_EVENT_RECORD(Structure):
     pass
 _MOUSE_EVENT_RECORD._fields_ = [
@@ -1590,29 +1589,29 @@ _MOUSE_EVENT_RECORD._fields_ = [
     ('dwControlKeyState', DWORD),
     ('dwEventFlags', DWORD),
 ]
-PMOUSE_EVENT_RECORD = POINTER(_MOUSE_EVENT_RECORD)
 MOUSE_EVENT_RECORD = _MOUSE_EVENT_RECORD
+PMOUSE_EVENT_RECORD = POINTER(_MOUSE_EVENT_RECORD)
 class _WINDOW_BUFFER_SIZE_RECORD(Structure):
     pass
 _WINDOW_BUFFER_SIZE_RECORD._fields_ = [
     ('dwSize', COORD),
 ]
-WINDOW_BUFFER_SIZE_RECORD = _WINDOW_BUFFER_SIZE_RECORD
 PWINDOW_BUFFER_SIZE_RECORD = POINTER(_WINDOW_BUFFER_SIZE_RECORD)
+WINDOW_BUFFER_SIZE_RECORD = _WINDOW_BUFFER_SIZE_RECORD
 class _MENU_EVENT_RECORD(Structure):
     pass
 _MENU_EVENT_RECORD._fields_ = [
     ('dwCommandId', UINT),
 ]
-MENU_EVENT_RECORD = _MENU_EVENT_RECORD
 PMENU_EVENT_RECORD = POINTER(_MENU_EVENT_RECORD)
+MENU_EVENT_RECORD = _MENU_EVENT_RECORD
 class _FOCUS_EVENT_RECORD(Structure):
     pass
 _FOCUS_EVENT_RECORD._fields_ = [
     ('bSetFocus', BOOL),
 ]
-FOCUS_EVENT_RECORD = _FOCUS_EVENT_RECORD
 PFOCUS_EVENT_RECORD = POINTER(_FOCUS_EVENT_RECORD)
+FOCUS_EVENT_RECORD = _FOCUS_EVENT_RECORD
 class _INPUT_RECORD(Structure):
     pass
 class N13_INPUT_RECORD4DOLLAR_73E(Union):
@@ -1669,8 +1668,8 @@ _CONSOLE_FONT_INFO._fields_ = [
     ('nFont', DWORD),
     ('dwFontSize', COORD),
 ]
-CONSOLE_FONT_INFO = _CONSOLE_FONT_INFO
 PCONSOLE_FONT_INFO = POINTER(_CONSOLE_FONT_INFO)
+CONSOLE_FONT_INFO = _CONSOLE_FONT_INFO
 PHANDLER_ROUTINE = WINFUNCTYPE(BOOL, c_ulong)
 PULONG = POINTER(ULONG)
 USHORT = c_ushort
@@ -1838,12 +1837,12 @@ HUMPD = POINTER(HUMPD__)
 HFILE = c_int
 HCURSOR = HICON
 LPCOLORREF = POINTER(DWORD)
-NPRECT = POINTER(tagRECT)
-LPRECT = POINTER(tagRECT)
 PRECT = POINTER(tagRECT)
+LPRECT = POINTER(tagRECT)
+NPRECT = POINTER(tagRECT)
 LPCRECT = POINTER(RECT)
-PRECTL = POINTER(_RECTL)
 LPRECTL = POINTER(_RECTL)
+PRECTL = POINTER(_RECTL)
 LPCRECTL = POINTER(RECTL)
 LPPOINT = POINTER(tagPOINT)
 NPPOINT = POINTER(tagPOINT)
@@ -1860,9 +1859,9 @@ tagPOINTS._fields_ = [
     ('x', SHORT),
     ('y', SHORT),
 ]
-PPOINTS = POINTER(tagPOINTS)
 LPPOINTS = POINTER(tagPOINTS)
 POINTS = tagPOINTS
+PPOINTS = POINTER(tagPOINTS)
 LPFILETIME = POINTER(_FILETIME)
 PFILETIME = POINTER(_FILETIME)
 class _DRAWPATRECT(Structure):
@@ -1873,8 +1872,8 @@ _DRAWPATRECT._fields_ = [
     ('wStyle', WORD),
     ('wPattern', WORD),
 ]
-DRAWPATRECT = _DRAWPATRECT
 PDRAWPATRECT = POINTER(_DRAWPATRECT)
+DRAWPATRECT = _DRAWPATRECT
 class _PSINJECTDATA(Structure):
     pass
 _PSINJECTDATA._fields_ = [
@@ -1882,8 +1881,8 @@ _PSINJECTDATA._fields_ = [
     ('InjectionPoint', WORD),
     ('PageNumber', WORD),
 ]
-PPSINJECTDATA = POINTER(_PSINJECTDATA)
 PSINJECTDATA = _PSINJECTDATA
+PPSINJECTDATA = POINTER(_PSINJECTDATA)
 class _PSFEATURE_OUTPUT(Structure):
     pass
 _PSFEATURE_OUTPUT._fields_ = [
@@ -1927,10 +1926,10 @@ tagBITMAP._fields_ = [
     ('bmBitsPixel', WORD),
     ('bmBits', LPVOID),
 ]
-BITMAP = tagBITMAP
-NPBITMAP = POINTER(tagBITMAP)
-PBITMAP = POINTER(tagBITMAP)
 LPBITMAP = POINTER(tagBITMAP)
+NPBITMAP = POINTER(tagBITMAP)
+BITMAP = tagBITMAP
+PBITMAP = POINTER(tagBITMAP)
 class tagRGBTRIPLE(Structure):
     pass
 tagRGBTRIPLE._fields_ = [
@@ -1951,8 +1950,8 @@ RGBQUAD = tagRGBQUAD
 LPRGBQUAD = POINTER(RGBQUAD)
 LCSCSTYPE = LONG
 LCSGAMUTMATCH = LONG
-FXPT16DOT16 = c_long
 LPFXPT16DOT16 = POINTER(c_long)
+FXPT16DOT16 = c_long
 LPFXPT2DOT30 = POINTER(c_long)
 FXPT2DOT30 = c_long
 class tagCIEXYZ(Structure):
@@ -1987,8 +1986,8 @@ tagLOGCOLORSPACEA._fields_ = [
     ('lcsGammaBlue', DWORD),
     ('lcsFilename', CHAR * 260),
 ]
-LOGCOLORSPACEA = tagLOGCOLORSPACEA
 LPLOGCOLORSPACEA = POINTER(tagLOGCOLORSPACEA)
+LOGCOLORSPACEA = tagLOGCOLORSPACEA
 class tagLOGCOLORSPACEW(Structure):
     pass
 tagLOGCOLORSPACEW._fields_ = [
@@ -2003,8 +2002,8 @@ tagLOGCOLORSPACEW._fields_ = [
     ('lcsGammaBlue', DWORD),
     ('lcsFilename', WCHAR * 260),
 ]
-LPLOGCOLORSPACEW = POINTER(tagLOGCOLORSPACEW)
 LOGCOLORSPACEW = tagLOGCOLORSPACEW
+LPLOGCOLORSPACEW = POINTER(tagLOGCOLORSPACEW)
 LOGCOLORSPACE = LOGCOLORSPACEA
 LPLOGCOLORSPACE = LPLOGCOLORSPACEA
 class tagBITMAPCOREHEADER(Structure):
@@ -2016,9 +2015,9 @@ tagBITMAPCOREHEADER._fields_ = [
     ('bcPlanes', WORD),
     ('bcBitCount', WORD),
 ]
-LPBITMAPCOREHEADER = POINTER(tagBITMAPCOREHEADER)
 PBITMAPCOREHEADER = POINTER(tagBITMAPCOREHEADER)
 BITMAPCOREHEADER = tagBITMAPCOREHEADER
+LPBITMAPCOREHEADER = POINTER(tagBITMAPCOREHEADER)
 class tagBITMAPINFOHEADER(Structure):
     pass
 tagBITMAPINFOHEADER._fields_ = [
@@ -2034,12 +2033,11 @@ tagBITMAPINFOHEADER._fields_ = [
     ('biClrUsed', DWORD),
     ('biClrImportant', DWORD),
 ]
+PBITMAPINFOHEADER = POINTER(tagBITMAPINFOHEADER)
 LPBITMAPINFOHEADER = POINTER(tagBITMAPINFOHEADER)
 BITMAPINFOHEADER = tagBITMAPINFOHEADER
-PBITMAPINFOHEADER = POINTER(tagBITMAPINFOHEADER)
 class BITMAPV4HEADER(Structure):
     pass
-LPBITMAPV4HEADER = POINTER(BITMAPV4HEADER)
 BITMAPV4HEADER._fields_ = [
     ('bV4Size', DWORD),
     ('bV4Width', LONG),
@@ -2062,11 +2060,12 @@ BITMAPV4HEADER._fields_ = [
     ('bV4GammaGreen', DWORD),
     ('bV4GammaBlue', DWORD),
 ]
+LPBITMAPV4HEADER = POINTER(BITMAPV4HEADER)
 PBITMAPV4HEADER = POINTER(BITMAPV4HEADER)
 class BITMAPV5HEADER(Structure):
     pass
-PBITMAPV5HEADER = POINTER(BITMAPV5HEADER)
 LPBITMAPV5HEADER = POINTER(BITMAPV5HEADER)
+PBITMAPV5HEADER = POINTER(BITMAPV5HEADER)
 BITMAPV5HEADER._fields_ = [
     ('bV5Size', DWORD),
     ('bV5Width', LONG),
@@ -2099,17 +2098,17 @@ tagBITMAPINFO._fields_ = [
     ('bmiHeader', BITMAPINFOHEADER),
     ('bmiColors', RGBQUAD * 1),
 ]
-BITMAPINFO = tagBITMAPINFO
-PBITMAPINFO = POINTER(tagBITMAPINFO)
 LPBITMAPINFO = POINTER(tagBITMAPINFO)
+PBITMAPINFO = POINTER(tagBITMAPINFO)
+BITMAPINFO = tagBITMAPINFO
 class tagBITMAPCOREINFO(Structure):
     pass
 tagBITMAPCOREINFO._fields_ = [
     ('bmciHeader', BITMAPCOREHEADER),
     ('bmciColors', RGBTRIPLE * 1),
 ]
-BITMAPCOREINFO = tagBITMAPCOREINFO
 PBITMAPCOREINFO = POINTER(tagBITMAPCOREINFO)
+BITMAPCOREINFO = tagBITMAPCOREINFO
 LPBITMAPCOREINFO = POINTER(tagBITMAPCOREINFO)
 class tagBITMAPFILEHEADER(Structure):
     pass
@@ -2121,9 +2120,9 @@ tagBITMAPFILEHEADER._fields_ = [
     ('bfReserved2', WORD),
     ('bfOffBits', DWORD),
 ]
+LPBITMAPFILEHEADER = POINTER(tagBITMAPFILEHEADER)
 PBITMAPFILEHEADER = POINTER(tagBITMAPFILEHEADER)
 BITMAPFILEHEADER = tagBITMAPFILEHEADER
-LPBITMAPFILEHEADER = POINTER(tagBITMAPFILEHEADER)
 class tagFONTSIGNATURE(Structure):
     pass
 tagFONTSIGNATURE._fields_ = [
@@ -2131,8 +2130,8 @@ tagFONTSIGNATURE._fields_ = [
     ('fsCsb', DWORD * 2),
 ]
 PFONTSIGNATURE = POINTER(tagFONTSIGNATURE)
-FONTSIGNATURE = tagFONTSIGNATURE
 LPFONTSIGNATURE = POINTER(tagFONTSIGNATURE)
+FONTSIGNATURE = tagFONTSIGNATURE
 class tagCHARSETINFO(Structure):
     pass
 tagCHARSETINFO._fields_ = [
@@ -2152,16 +2151,16 @@ tagLOCALESIGNATURE._fields_ = [
     ('lsCsbSupported', DWORD * 2),
 ]
 PLOCALESIGNATURE = POINTER(tagLOCALESIGNATURE)
-LPLOCALESIGNATURE = POINTER(tagLOCALESIGNATURE)
 LOCALESIGNATURE = tagLOCALESIGNATURE
+LPLOCALESIGNATURE = POINTER(tagLOCALESIGNATURE)
 class tagHANDLETABLE(Structure):
     pass
 tagHANDLETABLE._fields_ = [
     ('objectHandle', HGDIOBJ * 1),
 ]
-PHANDLETABLE = POINTER(tagHANDLETABLE)
 HANDLETABLE = tagHANDLETABLE
 LPHANDLETABLE = POINTER(tagHANDLETABLE)
+PHANDLETABLE = POINTER(tagHANDLETABLE)
 class tagMETARECORD(Structure):
     pass
 tagMETARECORD._fields_ = [
@@ -2180,8 +2179,8 @@ tagMETAFILEPICT._fields_ = [
     ('yExt', LONG),
     ('hMF', HMETAFILE),
 ]
-LPMETAFILEPICT = POINTER(tagMETAFILEPICT)
 METAFILEPICT = tagMETAFILEPICT
+LPMETAFILEPICT = POINTER(tagMETAFILEPICT)
 class tagMETAHEADER(Structure):
     pass
 tagMETAHEADER._pack_ = 2
@@ -2204,9 +2203,9 @@ tagENHMETARECORD._fields_ = [
     ('nSize', DWORD),
     ('dParm', DWORD * 1),
 ]
+PENHMETARECORD = POINTER(tagENHMETARECORD)
 ENHMETARECORD = tagENHMETARECORD
 LPENHMETARECORD = POINTER(tagENHMETARECORD)
-PENHMETARECORD = POINTER(tagENHMETARECORD)
 class tagENHMETAHEADER(Structure):
     pass
 tagENHMETAHEADER._fields_ = [
@@ -2259,9 +2258,9 @@ tagTEXTMETRICA._fields_ = [
     ('tmCharSet', BYTE),
 ]
 LPTEXTMETRICA = POINTER(tagTEXTMETRICA)
+NPTEXTMETRICA = POINTER(tagTEXTMETRICA)
 PTEXTMETRICA = POINTER(tagTEXTMETRICA)
 TEXTMETRICA = tagTEXTMETRICA
-NPTEXTMETRICA = POINTER(tagTEXTMETRICA)
 class tagTEXTMETRICW(Structure):
     pass
 tagTEXTMETRICW._fields_ = [
@@ -2286,10 +2285,10 @@ tagTEXTMETRICW._fields_ = [
     ('tmPitchAndFamily', BYTE),
     ('tmCharSet', BYTE),
 ]
+TEXTMETRICW = tagTEXTMETRICW
 LPTEXTMETRICW = POINTER(tagTEXTMETRICW)
 NPTEXTMETRICW = POINTER(tagTEXTMETRICW)
 PTEXTMETRICW = POINTER(tagTEXTMETRICW)
-TEXTMETRICW = tagTEXTMETRICW
 TEXTMETRIC = TEXTMETRICA
 PTEXTMETRIC = PTEXTMETRICA
 NPTEXTMETRIC = NPTEXTMETRICA
@@ -2354,10 +2353,10 @@ tagNEWTEXTMETRICW._fields_ = [
     ('ntmCellHeight', UINT),
     ('ntmAvgWidth', UINT),
 ]
+PNEWTEXTMETRICW = POINTER(tagNEWTEXTMETRICW)
 NEWTEXTMETRICW = tagNEWTEXTMETRICW
 LPNEWTEXTMETRICW = POINTER(tagNEWTEXTMETRICW)
 NPNEWTEXTMETRICW = POINTER(tagNEWTEXTMETRICW)
-PNEWTEXTMETRICW = POINTER(tagNEWTEXTMETRICW)
 NEWTEXTMETRIC = NEWTEXTMETRICA
 PNEWTEXTMETRIC = PNEWTEXTMETRICA
 NPNEWTEXTMETRIC = NPNEWTEXTMETRICA
@@ -2386,10 +2385,10 @@ tagPELARRAY._fields_ = [
     ('paYExt', LONG),
     ('paRGBs', BYTE),
 ]
+PPELARRAY = POINTER(tagPELARRAY)
 PELARRAY = tagPELARRAY
 LPPELARRAY = POINTER(tagPELARRAY)
 NPPELARRAY = POINTER(tagPELARRAY)
-PPELARRAY = POINTER(tagPELARRAY)
 class tagLOGBRUSH(Structure):
     pass
 tagLOGBRUSH._fields_ = [
@@ -2398,8 +2397,8 @@ tagLOGBRUSH._fields_ = [
     ('lbHatch', ULONG_PTR),
 ]
 LOGBRUSH = tagLOGBRUSH
-LPLOGBRUSH = POINTER(tagLOGBRUSH)
 NPLOGBRUSH = POINTER(tagLOGBRUSH)
+LPLOGBRUSH = POINTER(tagLOGBRUSH)
 PLOGBRUSH = POINTER(tagLOGBRUSH)
 class tagLOGBRUSH32(Structure):
     pass
@@ -2408,10 +2407,10 @@ tagLOGBRUSH32._fields_ = [
     ('lbColor', COLORREF),
     ('lbHatch', ULONG),
 ]
-NPLOGBRUSH32 = POINTER(tagLOGBRUSH32)
-PLOGBRUSH32 = POINTER(tagLOGBRUSH32)
 LOGBRUSH32 = tagLOGBRUSH32
 LPLOGBRUSH32 = POINTER(tagLOGBRUSH32)
+NPLOGBRUSH32 = POINTER(tagLOGBRUSH32)
+PLOGBRUSH32 = POINTER(tagLOGBRUSH32)
 PATTERN = LOGBRUSH
 PPATTERN = POINTER(PATTERN)
 NPPATTERN = POINTER(PATTERN)
@@ -2423,10 +2422,10 @@ tagLOGPEN._fields_ = [
     ('lopnWidth', POINT),
     ('lopnColor', COLORREF),
 ]
-LOGPEN = tagLOGPEN
 NPLOGPEN = POINTER(tagLOGPEN)
-PLOGPEN = POINTER(tagLOGPEN)
 LPLOGPEN = POINTER(tagLOGPEN)
+LOGPEN = tagLOGPEN
+PLOGPEN = POINTER(tagLOGPEN)
 class tagEXTLOGPEN(Structure):
     pass
 tagEXTLOGPEN._fields_ = [
@@ -2451,8 +2450,8 @@ tagPALETTEENTRY._fields_ = [
     ('peFlags', BYTE),
 ]
 PALETTEENTRY = tagPALETTEENTRY
-PPALETTEENTRY = POINTER(tagPALETTEENTRY)
 LPPALETTEENTRY = POINTER(tagPALETTEENTRY)
+PPALETTEENTRY = POINTER(tagPALETTEENTRY)
 class tagLOGPALETTE(Structure):
     pass
 tagLOGPALETTE._fields_ = [
@@ -2460,9 +2459,9 @@ tagLOGPALETTE._fields_ = [
     ('palNumEntries', WORD),
     ('palPalEntry', PALETTEENTRY * 1),
 ]
-LPLOGPALETTE = POINTER(tagLOGPALETTE)
 LOGPALETTE = tagLOGPALETTE
 NPLOGPALETTE = POINTER(tagLOGPALETTE)
+LPLOGPALETTE = POINTER(tagLOGPALETTE)
 PLOGPALETTE = POINTER(tagLOGPALETTE)
 class tagLOGFONTA(Structure):
     pass
@@ -2483,9 +2482,9 @@ tagLOGFONTA._fields_ = [
     ('lfFaceName', CHAR * 32),
 ]
 LPLOGFONTA = POINTER(tagLOGFONTA)
-LOGFONTA = tagLOGFONTA
 NPLOGFONTA = POINTER(tagLOGFONTA)
 PLOGFONTA = POINTER(tagLOGFONTA)
+LOGFONTA = tagLOGFONTA
 class tagLOGFONTW(Structure):
     pass
 tagLOGFONTW._fields_ = [
@@ -2506,8 +2505,8 @@ tagLOGFONTW._fields_ = [
 ]
 PLOGFONTW = POINTER(tagLOGFONTW)
 NPLOGFONTW = POINTER(tagLOGFONTW)
-LPLOGFONTW = POINTER(tagLOGFONTW)
 LOGFONTW = tagLOGFONTW
+LPLOGFONTW = POINTER(tagLOGFONTW)
 LOGFONT = LOGFONTA
 PLOGFONT = PLOGFONTA
 NPLOGFONT = NPLOGFONTA
@@ -2528,8 +2527,8 @@ tagENUMLOGFONTW._fields_ = [
     ('elfFullName', WCHAR * 64),
     ('elfStyle', WCHAR * 32),
 ]
-ENUMLOGFONTW = tagENUMLOGFONTW
 LPENUMLOGFONTW = POINTER(tagENUMLOGFONTW)
+ENUMLOGFONTW = tagENUMLOGFONTW
 ENUMLOGFONT = ENUMLOGFONTA
 LPENUMLOGFONT = LPENUMLOGFONTA
 class tagENUMLOGFONTEXA(Structure):
@@ -2550,8 +2549,8 @@ tagENUMLOGFONTEXW._fields_ = [
     ('elfStyle', WCHAR * 32),
     ('elfScript', WCHAR * 32),
 ]
-LPENUMLOGFONTEXW = POINTER(tagENUMLOGFONTEXW)
 ENUMLOGFONTEXW = tagENUMLOGFONTEXW
+LPENUMLOGFONTEXW = POINTER(tagENUMLOGFONTEXW)
 ENUMLOGFONTEX = ENUMLOGFONTEXA
 LPENUMLOGFONTEX = LPENUMLOGFONTEXA
 class tagPANOSE(Structure):
@@ -2585,9 +2584,9 @@ tagEXTLOGFONTA._fields_ = [
     ('elfPanose', PANOSE),
 ]
 PEXTLOGFONTA = POINTER(tagEXTLOGFONTA)
+NPEXTLOGFONTA = POINTER(tagEXTLOGFONTA)
 EXTLOGFONTA = tagEXTLOGFONTA
 LPEXTLOGFONTA = POINTER(tagEXTLOGFONTA)
-NPEXTLOGFONTA = POINTER(tagEXTLOGFONTA)
 class tagEXTLOGFONTW(Structure):
     pass
 tagEXTLOGFONTW._fields_ = [
@@ -2602,10 +2601,10 @@ tagEXTLOGFONTW._fields_ = [
     ('elfCulture', DWORD),
     ('elfPanose', PANOSE),
 ]
+PEXTLOGFONTW = POINTER(tagEXTLOGFONTW)
 EXTLOGFONTW = tagEXTLOGFONTW
 LPEXTLOGFONTW = POINTER(tagEXTLOGFONTW)
 NPEXTLOGFONTW = POINTER(tagEXTLOGFONTW)
-PEXTLOGFONTW = POINTER(tagEXTLOGFONTW)
 EXTLOGFONT = EXTLOGFONTA
 PEXTLOGFONT = PEXTLOGFONTA
 NPEXTLOGFONT = NPEXTLOGFONTA
@@ -2674,10 +2673,10 @@ _devicemodeA._fields_ = [
     ('dmPanningWidth', DWORD),
     ('dmPanningHeight', DWORD),
 ]
+LPDEVMODEA = POINTER(_devicemodeA)
 NPDEVMODEA = POINTER(_devicemodeA)
 PDEVMODEA = POINTER(_devicemodeA)
 DEVMODEA = _devicemodeA
-LPDEVMODEA = POINTER(_devicemodeA)
 class _devicemodeW(Structure):
     pass
 class N12_devicemodeW4DOLLAR_62E(Union):
@@ -2742,10 +2741,10 @@ _devicemodeW._fields_ = [
     ('dmPanningWidth', DWORD),
     ('dmPanningHeight', DWORD),
 ]
+NPDEVMODEW = POINTER(_devicemodeW)
 PDEVMODEW = POINTER(_devicemodeW)
 DEVMODEW = _devicemodeW
 LPDEVMODEW = POINTER(_devicemodeW)
-NPDEVMODEW = POINTER(_devicemodeW)
 DEVMODE = DEVMODEA
 PDEVMODE = PDEVMODEA
 NPDEVMODE = NPDEVMODEA
@@ -2760,9 +2759,9 @@ _DISPLAY_DEVICEA._fields_ = [
     ('DeviceID', CHAR * 128),
     ('DeviceKey', CHAR * 128),
 ]
-LPDISPLAY_DEVICEA = POINTER(_DISPLAY_DEVICEA)
 PDISPLAY_DEVICEA = POINTER(_DISPLAY_DEVICEA)
 DISPLAY_DEVICEA = _DISPLAY_DEVICEA
+LPDISPLAY_DEVICEA = POINTER(_DISPLAY_DEVICEA)
 class _DISPLAY_DEVICEW(Structure):
     pass
 _DISPLAY_DEVICEW._fields_ = [
@@ -2774,8 +2773,8 @@ _DISPLAY_DEVICEW._fields_ = [
     ('DeviceKey', WCHAR * 128),
 ]
 LPDISPLAY_DEVICEW = POINTER(_DISPLAY_DEVICEW)
-DISPLAY_DEVICEW = _DISPLAY_DEVICEW
 PDISPLAY_DEVICEW = POINTER(_DISPLAY_DEVICEW)
+DISPLAY_DEVICEW = _DISPLAY_DEVICEW
 DISPLAY_DEVICE = DISPLAY_DEVICEA
 PDISPLAY_DEVICE = PDISPLAY_DEVICEA
 LPDISPLAY_DEVICE = LPDISPLAY_DEVICEA
@@ -2788,18 +2787,18 @@ _RGNDATAHEADER._fields_ = [
     ('nRgnSize', DWORD),
     ('rcBound', RECT),
 ]
-PRGNDATAHEADER = POINTER(_RGNDATAHEADER)
 RGNDATAHEADER = _RGNDATAHEADER
+PRGNDATAHEADER = POINTER(_RGNDATAHEADER)
 class _RGNDATA(Structure):
     pass
 _RGNDATA._fields_ = [
     ('rdh', RGNDATAHEADER),
     ('Buffer', c_char * 1),
 ]
-RGNDATA = _RGNDATA
-PRGNDATA = POINTER(_RGNDATA)
 LPRGNDATA = POINTER(_RGNDATA)
 NPRGNDATA = POINTER(_RGNDATA)
+PRGNDATA = POINTER(_RGNDATA)
+RGNDATA = _RGNDATA
 class _ABC(Structure):
     pass
 _ABC._fields_ = [
@@ -2807,10 +2806,10 @@ _ABC._fields_ = [
     ('abcB', UINT),
     ('abcC', c_int),
 ]
-NPABC = POINTER(_ABC)
-ABC = _ABC
 PABC = POINTER(_ABC)
 LPABC = POINTER(_ABC)
+NPABC = POINTER(_ABC)
+ABC = _ABC
 class _ABCFLOAT(Structure):
     pass
 _ABCFLOAT._fields_ = [
@@ -2818,10 +2817,10 @@ _ABCFLOAT._fields_ = [
     ('abcfB', FLOAT),
     ('abcfC', FLOAT),
 ]
-LPABCFLOAT = POINTER(_ABCFLOAT)
-ABCFLOAT = _ABCFLOAT
-PABCFLOAT = POINTER(_ABCFLOAT)
 NPABCFLOAT = POINTER(_ABCFLOAT)
+ABCFLOAT = _ABCFLOAT
+LPABCFLOAT = POINTER(_ABCFLOAT)
+PABCFLOAT = POINTER(_ABCFLOAT)
 class _OUTLINETEXTMETRICA(Structure):
     pass
 PSTR = STRING
@@ -2859,9 +2858,9 @@ _OUTLINETEXTMETRICA._fields_ = [
     ('otmpStyleName', PSTR),
     ('otmpFullName', PSTR),
 ]
-POUTLINETEXTMETRICA = POINTER(_OUTLINETEXTMETRICA)
-LPOUTLINETEXTMETRICA = POINTER(_OUTLINETEXTMETRICA)
 NPOUTLINETEXTMETRICA = POINTER(_OUTLINETEXTMETRICA)
+LPOUTLINETEXTMETRICA = POINTER(_OUTLINETEXTMETRICA)
+POUTLINETEXTMETRICA = POINTER(_OUTLINETEXTMETRICA)
 OUTLINETEXTMETRICA = _OUTLINETEXTMETRICA
 class _OUTLINETEXTMETRICW(Structure):
     pass
@@ -2900,8 +2899,8 @@ _OUTLINETEXTMETRICW._fields_ = [
     ('otmpFullName', PSTR),
 ]
 OUTLINETEXTMETRICW = _OUTLINETEXTMETRICW
-LPOUTLINETEXTMETRICW = POINTER(_OUTLINETEXTMETRICW)
 POUTLINETEXTMETRICW = POINTER(_OUTLINETEXTMETRICW)
+LPOUTLINETEXTMETRICW = POINTER(_OUTLINETEXTMETRICW)
 NPOUTLINETEXTMETRICW = POINTER(_OUTLINETEXTMETRICW)
 OUTLINETEXTMETRIC = OUTLINETEXTMETRICA
 POUTLINETEXTMETRIC = POUTLINETEXTMETRICA
@@ -2918,10 +2917,10 @@ tagPOLYTEXTA._fields_ = [
     ('rcl', RECT),
     ('pdx', POINTER(c_int)),
 ]
-LPPOLYTEXTA = POINTER(tagPOLYTEXTA)
 POLYTEXTA = tagPOLYTEXTA
 NPPOLYTEXTA = POINTER(tagPOLYTEXTA)
 PPOLYTEXTA = POINTER(tagPOLYTEXTA)
+LPPOLYTEXTA = POINTER(tagPOLYTEXTA)
 class tagPOLYTEXTW(Structure):
     pass
 tagPOLYTEXTW._fields_ = [
@@ -2933,10 +2932,10 @@ tagPOLYTEXTW._fields_ = [
     ('rcl', RECT),
     ('pdx', POINTER(c_int)),
 ]
-POLYTEXTW = tagPOLYTEXTW
-NPPOLYTEXTW = POINTER(tagPOLYTEXTW)
 LPPOLYTEXTW = POINTER(tagPOLYTEXTW)
+NPPOLYTEXTW = POINTER(tagPOLYTEXTW)
 PPOLYTEXTW = POINTER(tagPOLYTEXTW)
+POLYTEXTW = tagPOLYTEXTW
 POLYTEXT = POLYTEXTA
 PPOLYTEXT = PPOLYTEXTA
 NPPOLYTEXT = NPPOLYTEXTA
@@ -2956,8 +2955,8 @@ _MAT2._fields_ = [
     ('eM21', FIXED),
     ('eM22', FIXED),
 ]
-LPMAT2 = POINTER(_MAT2)
 MAT2 = _MAT2
+LPMAT2 = POINTER(_MAT2)
 class _GLYPHMETRICS(Structure):
     pass
 _GLYPHMETRICS._fields_ = [
@@ -2975,8 +2974,8 @@ tagPOINTFX._fields_ = [
     ('x', FIXED),
     ('y', FIXED),
 ]
-POINTFX = tagPOINTFX
 LPPOINTFX = POINTER(tagPOINTFX)
+POINTFX = tagPOINTFX
 class tagTTPOLYCURVE(Structure):
     pass
 tagTTPOLYCURVE._fields_ = [
@@ -2984,8 +2983,8 @@ tagTTPOLYCURVE._fields_ = [
     ('cpfx', WORD),
     ('apfx', POINTFX * 1),
 ]
-LPTTPOLYCURVE = POINTER(tagTTPOLYCURVE)
 TTPOLYCURVE = tagTTPOLYCURVE
+LPTTPOLYCURVE = POINTER(tagTTPOLYCURVE)
 class tagTTPOLYGONHEADER(Structure):
     pass
 tagTTPOLYGONHEADER._fields_ = [
@@ -3090,8 +3089,8 @@ _TRIVERTEX._fields_ = [
     ('Alpha', COLOR16),
 ]
 LPTRIVERTEX = POINTER(_TRIVERTEX)
-PTRIVERTEX = POINTER(_TRIVERTEX)
 TRIVERTEX = _TRIVERTEX
+PTRIVERTEX = POINTER(_TRIVERTEX)
 class _GRADIENT_TRIANGLE(Structure):
     pass
 _GRADIENT_TRIANGLE._fields_ = [
@@ -3099,18 +3098,18 @@ _GRADIENT_TRIANGLE._fields_ = [
     ('Vertex2', ULONG),
     ('Vertex3', ULONG),
 ]
-LPGRADIENT_TRIANGLE = POINTER(_GRADIENT_TRIANGLE)
 GRADIENT_TRIANGLE = _GRADIENT_TRIANGLE
 PGRADIENT_TRIANGLE = POINTER(_GRADIENT_TRIANGLE)
+LPGRADIENT_TRIANGLE = POINTER(_GRADIENT_TRIANGLE)
 class _GRADIENT_RECT(Structure):
     pass
 _GRADIENT_RECT._fields_ = [
     ('UpperLeft', ULONG),
     ('LowerRight', ULONG),
 ]
-PGRADIENT_RECT = POINTER(_GRADIENT_RECT)
 GRADIENT_RECT = _GRADIENT_RECT
 LPGRADIENT_RECT = POINTER(_GRADIENT_RECT)
+PGRADIENT_RECT = POINTER(_GRADIENT_RECT)
 class _BLENDFUNCTION(Structure):
     pass
 _BLENDFUNCTION._fields_ = [
@@ -3132,8 +3131,8 @@ tagDIBSECTION._fields_ = [
     ('dshSection', HANDLE),
     ('dsOffset', DWORD),
 ]
-DIBSECTION = tagDIBSECTION
 LPDIBSECTION = POINTER(tagDIBSECTION)
+DIBSECTION = tagDIBSECTION
 PDIBSECTION = POINTER(tagDIBSECTION)
 class tagCOLORADJUSTMENT(Structure):
     pass
@@ -3151,9 +3150,9 @@ tagCOLORADJUSTMENT._fields_ = [
     ('caColorfulness', SHORT),
     ('caRedGreenTint', SHORT),
 ]
-LPCOLORADJUSTMENT = POINTER(tagCOLORADJUSTMENT)
-COLORADJUSTMENT = tagCOLORADJUSTMENT
 PCOLORADJUSTMENT = POINTER(tagCOLORADJUSTMENT)
+COLORADJUSTMENT = tagCOLORADJUSTMENT
+LPCOLORADJUSTMENT = POINTER(tagCOLORADJUSTMENT)
 ABORTPROC = WINFUNCTYPE(BOOL, POINTER(HDC__), c_int)
 class _DOCINFOA(Structure):
     pass
@@ -3196,8 +3195,8 @@ tagEMR._fields_ = [
     ('iType', DWORD),
     ('nSize', DWORD),
 ]
-EMR = tagEMR
 PEMR = POINTER(tagEMR)
+EMR = tagEMR
 class tagEMRTEXT(Structure):
     pass
 tagEMRTEXT._fields_ = [
@@ -3208,8 +3207,8 @@ tagEMRTEXT._fields_ = [
     ('rcl', RECTL),
     ('offDx', DWORD),
 ]
-EMRTEXT = tagEMRTEXT
 PEMRTEXT = POINTER(tagEMRTEXT)
+EMRTEXT = tagEMRTEXT
 class tagABORTPATH(Structure):
     pass
 tagABORTPATH._fields_ = [
@@ -3219,42 +3218,42 @@ PEMRABORTPATH = POINTER(tagABORTPATH)
 EMRABORTPATH = tagABORTPATH
 PEMRBEGINPATH = POINTER(tagABORTPATH)
 EMRBEGINPATH = tagABORTPATH
-PEMRENDPATH = POINTER(tagABORTPATH)
 EMRENDPATH = tagABORTPATH
+PEMRENDPATH = POINTER(tagABORTPATH)
 PEMRCLOSEFIGURE = POINTER(tagABORTPATH)
 EMRCLOSEFIGURE = tagABORTPATH
-PEMRFLATTENPATH = POINTER(tagABORTPATH)
 EMRFLATTENPATH = tagABORTPATH
+PEMRFLATTENPATH = POINTER(tagABORTPATH)
 PEMRWIDENPATH = POINTER(tagABORTPATH)
 EMRWIDENPATH = tagABORTPATH
 PEMRSETMETARGN = POINTER(tagABORTPATH)
 EMRSETMETARGN = tagABORTPATH
-PEMRSAVEDC = POINTER(tagABORTPATH)
 EMRSAVEDC = tagABORTPATH
-PEMRREALIZEPALETTE = POINTER(tagABORTPATH)
+PEMRSAVEDC = POINTER(tagABORTPATH)
 EMRREALIZEPALETTE = tagABORTPATH
+PEMRREALIZEPALETTE = POINTER(tagABORTPATH)
 class tagEMRSELECTCLIPPATH(Structure):
     pass
 tagEMRSELECTCLIPPATH._fields_ = [
     ('emr', EMR),
     ('iMode', DWORD),
 ]
-EMRSELECTCLIPPATH = tagEMRSELECTCLIPPATH
 PEMRSELECTCLIPPATH = POINTER(tagEMRSELECTCLIPPATH)
+EMRSELECTCLIPPATH = tagEMRSELECTCLIPPATH
 EMRSETBKMODE = tagEMRSELECTCLIPPATH
 PEMRSETBKMODE = POINTER(tagEMRSELECTCLIPPATH)
 PEMRSETMAPMODE = POINTER(tagEMRSELECTCLIPPATH)
 EMRSETMAPMODE = tagEMRSELECTCLIPPATH
-PEMRSETLAYOUT = POINTER(tagEMRSELECTCLIPPATH)
 EMRSETLAYOUT = tagEMRSELECTCLIPPATH
-EMRSETPOLYFILLMODE = tagEMRSELECTCLIPPATH
+PEMRSETLAYOUT = POINTER(tagEMRSELECTCLIPPATH)
 PEMRSETPOLYFILLMODE = POINTER(tagEMRSELECTCLIPPATH)
+EMRSETPOLYFILLMODE = tagEMRSELECTCLIPPATH
 PEMRSETROP2 = POINTER(tagEMRSELECTCLIPPATH)
 EMRSETROP2 = tagEMRSELECTCLIPPATH
-PEMRSETSTRETCHBLTMODE = POINTER(tagEMRSELECTCLIPPATH)
 EMRSETSTRETCHBLTMODE = tagEMRSELECTCLIPPATH
-PEMRSETICMMODE = POINTER(tagEMRSELECTCLIPPATH)
+PEMRSETSTRETCHBLTMODE = POINTER(tagEMRSELECTCLIPPATH)
 EMRSETICMMODE = tagEMRSELECTCLIPPATH
+PEMRSETICMMODE = POINTER(tagEMRSELECTCLIPPATH)
 EMRSETTEXTALIGN = tagEMRSELECTCLIPPATH
 PEMRSETTEXTALIGN = POINTER(tagEMRSELECTCLIPPATH)
 class tagEMRSETMITERLIMIT(Structure):
@@ -3279,8 +3278,8 @@ tagEMRSETARCDIRECTION._fields_ = [
     ('emr', EMR),
     ('iArcDirection', DWORD),
 ]
-EMRSETARCDIRECTION = tagEMRSETARCDIRECTION
 PEMRSETARCDIRECTION = POINTER(tagEMRSETARCDIRECTION)
+EMRSETARCDIRECTION = tagEMRSETARCDIRECTION
 class tagEMRSETMAPPERFLAGS(Structure):
     pass
 tagEMRSETMAPPERFLAGS._fields_ = [
@@ -3295,8 +3294,8 @@ tagEMRSETTEXTCOLOR._fields_ = [
     ('emr', EMR),
     ('crColor', COLORREF),
 ]
-EMRSETBKCOLOR = tagEMRSETTEXTCOLOR
 PEMRSETBKCOLOR = POINTER(tagEMRSETTEXTCOLOR)
+EMRSETBKCOLOR = tagEMRSETTEXTCOLOR
 EMRSETTEXTCOLOR = tagEMRSETTEXTCOLOR
 PEMRSETTEXTCOLOR = POINTER(tagEMRSETTEXTCOLOR)
 class tagEMRSELECTOBJECT(Structure):
@@ -3315,8 +3314,8 @@ tagEMRSELECTPALETTE._fields_ = [
     ('emr', EMR),
     ('ihPal', DWORD),
 ]
-PEMRSELECTPALETTE = POINTER(tagEMRSELECTPALETTE)
 EMRSELECTPALETTE = tagEMRSELECTPALETTE
+PEMRSELECTPALETTE = POINTER(tagEMRSELECTPALETTE)
 class tagEMRRESIZEPALETTE(Structure):
     pass
 tagEMRRESIZEPALETTE._fields_ = [
@@ -3335,8 +3334,8 @@ tagEMRSETPALETTEENTRIES._fields_ = [
     ('cEntries', DWORD),
     ('aPalEntries', PALETTEENTRY * 1),
 ]
-EMRSETPALETTEENTRIES = tagEMRSETPALETTEENTRIES
 PEMRSETPALETTEENTRIES = POINTER(tagEMRSETPALETTEENTRIES)
+EMRSETPALETTEENTRIES = tagEMRSETPALETTEENTRIES
 class tagEMRSETCOLORADJUSTMENT(Structure):
     pass
 tagEMRSETCOLORADJUSTMENT._fields_ = [
@@ -3352,8 +3351,8 @@ tagEMRGDICOMMENT._fields_ = [
     ('cbData', DWORD),
     ('Data', BYTE * 1),
 ]
-PEMRGDICOMMENT = POINTER(tagEMRGDICOMMENT)
 EMRGDICOMMENT = tagEMRGDICOMMENT
+PEMRGDICOMMENT = POINTER(tagEMRGDICOMMENT)
 class tagEMREOF(Structure):
     pass
 tagEMREOF._fields_ = [
@@ -3370,10 +3369,10 @@ tagEMRLINETO._fields_ = [
     ('emr', EMR),
     ('ptl', POINTL),
 ]
-PEMRLINETO = POINTER(tagEMRLINETO)
 EMRLINETO = tagEMRLINETO
-PEMRMOVETOEX = POINTER(tagEMRLINETO)
+PEMRLINETO = POINTER(tagEMRLINETO)
 EMRMOVETOEX = tagEMRLINETO
+PEMRMOVETOEX = POINTER(tagEMRLINETO)
 class tagEMROFFSETCLIPRGN(Structure):
     pass
 tagEMROFFSETCLIPRGN._fields_ = [
@@ -3390,32 +3389,32 @@ tagEMRFILLPATH._fields_ = [
 ]
 EMRFILLPATH = tagEMRFILLPATH
 PEMRFILLPATH = POINTER(tagEMRFILLPATH)
-PEMRSTROKEANDFILLPATH = POINTER(tagEMRFILLPATH)
 EMRSTROKEANDFILLPATH = tagEMRFILLPATH
-EMRSTROKEPATH = tagEMRFILLPATH
+PEMRSTROKEANDFILLPATH = POINTER(tagEMRFILLPATH)
 PEMRSTROKEPATH = POINTER(tagEMRFILLPATH)
+EMRSTROKEPATH = tagEMRFILLPATH
 class tagEMREXCLUDECLIPRECT(Structure):
     pass
 tagEMREXCLUDECLIPRECT._fields_ = [
     ('emr', EMR),
     ('rclClip', RECTL),
 ]
-PEMREXCLUDECLIPRECT = POINTER(tagEMREXCLUDECLIPRECT)
 EMREXCLUDECLIPRECT = tagEMREXCLUDECLIPRECT
-PEMRINTERSECTCLIPRECT = POINTER(tagEMREXCLUDECLIPRECT)
+PEMREXCLUDECLIPRECT = POINTER(tagEMREXCLUDECLIPRECT)
 EMRINTERSECTCLIPRECT = tagEMREXCLUDECLIPRECT
+PEMRINTERSECTCLIPRECT = POINTER(tagEMREXCLUDECLIPRECT)
 class tagEMRSETVIEWPORTORGEX(Structure):
     pass
 tagEMRSETVIEWPORTORGEX._fields_ = [
     ('emr', EMR),
     ('ptlOrigin', POINTL),
 ]
-EMRSETVIEWPORTORGEX = tagEMRSETVIEWPORTORGEX
 PEMRSETVIEWPORTORGEX = POINTER(tagEMRSETVIEWPORTORGEX)
+EMRSETVIEWPORTORGEX = tagEMRSETVIEWPORTORGEX
 PEMRSETWINDOWORGEX = POINTER(tagEMRSETVIEWPORTORGEX)
 EMRSETWINDOWORGEX = tagEMRSETVIEWPORTORGEX
-PEMRSETBRUSHORGEX = POINTER(tagEMRSETVIEWPORTORGEX)
 EMRSETBRUSHORGEX = tagEMRSETVIEWPORTORGEX
+PEMRSETBRUSHORGEX = POINTER(tagEMRSETVIEWPORTORGEX)
 class tagEMRSETVIEWPORTEXTEX(Structure):
     pass
 tagEMRSETVIEWPORTEXTEX._fields_ = [
@@ -3463,8 +3462,8 @@ tagEMRSETPIXELV._fields_ = [
     ('ptlPixel', POINTL),
     ('crColor', COLORREF),
 ]
-PEMRSETPIXELV = POINTER(tagEMRSETPIXELV)
 EMRSETPIXELV = tagEMRSETPIXELV
+PEMRSETPIXELV = POINTER(tagEMRSETPIXELV)
 class tagEMREXTFLOODFILL(Structure):
     pass
 tagEMREXTFLOODFILL._fields_ = [
@@ -3473,16 +3472,16 @@ tagEMREXTFLOODFILL._fields_ = [
     ('crColor', COLORREF),
     ('iMode', DWORD),
 ]
-PEMREXTFLOODFILL = POINTER(tagEMREXTFLOODFILL)
 EMREXTFLOODFILL = tagEMREXTFLOODFILL
+PEMREXTFLOODFILL = POINTER(tagEMREXTFLOODFILL)
 class tagEMRELLIPSE(Structure):
     pass
 tagEMRELLIPSE._fields_ = [
     ('emr', EMR),
     ('rclBox', RECTL),
 ]
-PEMRELLIPSE = POINTER(tagEMRELLIPSE)
 EMRELLIPSE = tagEMRELLIPSE
+PEMRELLIPSE = POINTER(tagEMRELLIPSE)
 PEMRRECTANGLE = POINTER(tagEMRELLIPSE)
 EMRRECTANGLE = tagEMRELLIPSE
 class tagEMRROUNDRECT(Structure):
@@ -3492,8 +3491,8 @@ tagEMRROUNDRECT._fields_ = [
     ('rclBox', RECTL),
     ('szlCorner', SIZEL),
 ]
-PEMRROUNDRECT = POINTER(tagEMRROUNDRECT)
 EMRROUNDRECT = tagEMRROUNDRECT
+PEMRROUNDRECT = POINTER(tagEMRROUNDRECT)
 class tagEMRARC(Structure):
     pass
 tagEMRARC._fields_ = [
@@ -3506,10 +3505,10 @@ PEMRARC = POINTER(tagEMRARC)
 EMRARC = tagEMRARC
 EMRARCTO = tagEMRARC
 PEMRARCTO = POINTER(tagEMRARC)
-PEMRCHORD = POINTER(tagEMRARC)
 EMRCHORD = tagEMRARC
-EMRPIE = tagEMRARC
+PEMRCHORD = POINTER(tagEMRARC)
 PEMRPIE = POINTER(tagEMRARC)
+EMRPIE = tagEMRARC
 class tagEMRANGLEARC(Structure):
     pass
 tagEMRANGLEARC._fields_ = [
@@ -3519,8 +3518,8 @@ tagEMRANGLEARC._fields_ = [
     ('eStartAngle', FLOAT),
     ('eSweepAngle', FLOAT),
 ]
-EMRANGLEARC = tagEMRANGLEARC
 PEMRANGLEARC = POINTER(tagEMRANGLEARC)
+EMRANGLEARC = tagEMRANGLEARC
 class tagEMRPOLYLINE(Structure):
     pass
 tagEMRPOLYLINE._fields_ = [
@@ -3549,14 +3548,14 @@ tagEMRPOLYLINE16._fields_ = [
 ]
 EMRPOLYLINE16 = tagEMRPOLYLINE16
 PEMRPOLYLINE16 = POINTER(tagEMRPOLYLINE16)
-EMRPOLYBEZIER16 = tagEMRPOLYLINE16
 PEMRPOLYBEZIER16 = POINTER(tagEMRPOLYLINE16)
-PEMRPOLYGON16 = POINTER(tagEMRPOLYLINE16)
+EMRPOLYBEZIER16 = tagEMRPOLYLINE16
 EMRPOLYGON16 = tagEMRPOLYLINE16
+PEMRPOLYGON16 = POINTER(tagEMRPOLYLINE16)
 EMRPOLYBEZIERTO16 = tagEMRPOLYLINE16
 PEMRPOLYBEZIERTO16 = POINTER(tagEMRPOLYLINE16)
-EMRPOLYLINETO16 = tagEMRPOLYLINE16
 PEMRPOLYLINETO16 = POINTER(tagEMRPOLYLINE16)
+EMRPOLYLINETO16 = tagEMRPOLYLINE16
 class tagEMRPOLYDRAW(Structure):
     pass
 tagEMRPOLYDRAW._fields_ = [
@@ -3589,10 +3588,10 @@ tagEMRPOLYPOLYLINE._fields_ = [
     ('aPolyCounts', DWORD * 1),
     ('aptl', POINTL * 1),
 ]
-PEMRPOLYPOLYLINE = POINTER(tagEMRPOLYPOLYLINE)
 EMRPOLYPOLYLINE = tagEMRPOLYPOLYLINE
-EMRPOLYPOLYGON = tagEMRPOLYPOLYLINE
+PEMRPOLYPOLYLINE = POINTER(tagEMRPOLYPOLYLINE)
 PEMRPOLYPOLYGON = POINTER(tagEMRPOLYPOLYLINE)
+EMRPOLYPOLYGON = tagEMRPOLYPOLYLINE
 class tagEMRPOLYPOLYLINE16(Structure):
     pass
 tagEMRPOLYPOLYLINE16._fields_ = [
@@ -3605,8 +3604,8 @@ tagEMRPOLYPOLYLINE16._fields_ = [
 ]
 PEMRPOLYPOLYLINE16 = POINTER(tagEMRPOLYPOLYLINE16)
 EMRPOLYPOLYLINE16 = tagEMRPOLYPOLYLINE16
-EMRPOLYPOLYGON16 = tagEMRPOLYPOLYLINE16
 PEMRPOLYPOLYGON16 = POINTER(tagEMRPOLYPOLYLINE16)
+EMRPOLYPOLYGON16 = tagEMRPOLYPOLYLINE16
 class tagEMRINVERTRGN(Structure):
     pass
 tagEMRINVERTRGN._fields_ = [
@@ -3640,8 +3639,8 @@ tagEMRFRAMERGN._fields_ = [
     ('szlStroke', SIZEL),
     ('RgnData', BYTE * 1),
 ]
-PEMRFRAMERGN = POINTER(tagEMRFRAMERGN)
 EMRFRAMERGN = tagEMRFRAMERGN
+PEMRFRAMERGN = POINTER(tagEMRFRAMERGN)
 class tagEMREXTSELECTCLIPRGN(Structure):
     pass
 tagEMREXTSELECTCLIPRGN._fields_ = [
@@ -3662,10 +3661,10 @@ tagEMREXTTEXTOUTA._fields_ = [
     ('eyScale', FLOAT),
     ('emrtext', EMRTEXT),
 ]
-EMREXTTEXTOUTA = tagEMREXTTEXTOUTA
 PEMREXTTEXTOUTA = POINTER(tagEMREXTTEXTOUTA)
-PEMREXTTEXTOUTW = POINTER(tagEMREXTTEXTOUTA)
+EMREXTTEXTOUTA = tagEMREXTTEXTOUTA
 EMREXTTEXTOUTW = tagEMREXTTEXTOUTA
+PEMREXTTEXTOUTW = POINTER(tagEMREXTTEXTOUTA)
 class tagEMRPOLYTEXTOUTA(Structure):
     pass
 tagEMRPOLYTEXTOUTA._fields_ = [
@@ -3679,8 +3678,8 @@ tagEMRPOLYTEXTOUTA._fields_ = [
 ]
 PEMRPOLYTEXTOUTA = POINTER(tagEMRPOLYTEXTOUTA)
 EMRPOLYTEXTOUTA = tagEMRPOLYTEXTOUTA
-EMRPOLYTEXTOUTW = tagEMRPOLYTEXTOUTA
 PEMRPOLYTEXTOUTW = POINTER(tagEMRPOLYTEXTOUTA)
+EMRPOLYTEXTOUTW = tagEMRPOLYTEXTOUTA
 class tagEMRBITBLT(Structure):
     pass
 tagEMRBITBLT._fields_ = [
@@ -3781,8 +3780,8 @@ tagEMRPLGBLT._fields_ = [
     ('offBitsMask', DWORD),
     ('cbBitsMask', DWORD),
 ]
-PEMRPLGBLT = POINTER(tagEMRPLGBLT)
 EMRPLGBLT = tagEMRPLGBLT
+PEMRPLGBLT = POINTER(tagEMRPLGBLT)
 class tagEMRSETDIBITSTODEVICE(Structure):
     pass
 tagEMRSETDIBITSTODEVICE._fields_ = [
@@ -3833,8 +3832,8 @@ tagEMREXTCREATEFONTINDIRECTW._fields_ = [
     ('ihFont', DWORD),
     ('elfw', EXTLOGFONTW),
 ]
-PEMREXTCREATEFONTINDIRECTW = POINTER(tagEMREXTCREATEFONTINDIRECTW)
 EMREXTCREATEFONTINDIRECTW = tagEMREXTCREATEFONTINDIRECTW
+PEMREXTCREATEFONTINDIRECTW = POINTER(tagEMREXTCREATEFONTINDIRECTW)
 class tagEMRCREATEPALETTE(Structure):
     pass
 tagEMRCREATEPALETTE._fields_ = [
@@ -3842,8 +3841,8 @@ tagEMRCREATEPALETTE._fields_ = [
     ('ihPal', DWORD),
     ('lgpl', LOGPALETTE),
 ]
-PEMRCREATEPALETTE = POINTER(tagEMRCREATEPALETTE)
 EMRCREATEPALETTE = tagEMRCREATEPALETTE
+PEMRCREATEPALETTE = POINTER(tagEMRCREATEPALETTE)
 class tagEMRCREATEPEN(Structure):
     pass
 tagEMRCREATEPEN._fields_ = [
@@ -3851,8 +3850,8 @@ tagEMRCREATEPEN._fields_ = [
     ('ihPen', DWORD),
     ('lopn', LOGPEN),
 ]
-PEMRCREATEPEN = POINTER(tagEMRCREATEPEN)
 EMRCREATEPEN = tagEMRCREATEPEN
+PEMRCREATEPEN = POINTER(tagEMRCREATEPEN)
 class tagEMREXTCREATEPEN(Structure):
     pass
 tagEMREXTCREATEPEN._fields_ = [
@@ -3873,8 +3872,8 @@ tagEMRCREATEBRUSHINDIRECT._fields_ = [
     ('ihBrush', DWORD),
     ('lb', LOGBRUSH32),
 ]
-EMRCREATEBRUSHINDIRECT = tagEMRCREATEBRUSHINDIRECT
 PEMRCREATEBRUSHINDIRECT = POINTER(tagEMRCREATEBRUSHINDIRECT)
+EMRCREATEBRUSHINDIRECT = tagEMRCREATEBRUSHINDIRECT
 class tagEMRCREATEMONOBRUSH(Structure):
     pass
 tagEMRCREATEMONOBRUSH._fields_ = [
@@ -3886,8 +3885,8 @@ tagEMRCREATEMONOBRUSH._fields_ = [
     ('offBits', DWORD),
     ('cbBits', DWORD),
 ]
-PEMRCREATEMONOBRUSH = POINTER(tagEMRCREATEMONOBRUSH)
 EMRCREATEMONOBRUSH = tagEMRCREATEMONOBRUSH
+PEMRCREATEMONOBRUSH = POINTER(tagEMRCREATEMONOBRUSH)
 class tagEMRCREATEDIBPATTERNBRUSHPT(Structure):
     pass
 tagEMRCREATEDIBPATTERNBRUSHPT._fields_ = [
@@ -3909,8 +3908,8 @@ tagEMRFORMAT._fields_ = [
     ('cbData', DWORD),
     ('offData', DWORD),
 ]
-EMRFORMAT = tagEMRFORMAT
 PEMRFORMAT = POINTER(tagEMRFORMAT)
+EMRFORMAT = tagEMRFORMAT
 class tagEMRGLSRECORD(Structure):
     pass
 tagEMRGLSRECORD._fields_ = [
@@ -3953,12 +3952,12 @@ tagEMRSETCOLORSPACE._fields_ = [
     ('emr', EMR),
     ('ihCS', DWORD),
 ]
-EMRSETCOLORSPACE = tagEMRSETCOLORSPACE
 PEMRSETCOLORSPACE = POINTER(tagEMRSETCOLORSPACE)
+EMRSETCOLORSPACE = tagEMRSETCOLORSPACE
 EMRSELECTCOLORSPACE = tagEMRSETCOLORSPACE
 PEMRSELECTCOLORSPACE = POINTER(tagEMRSETCOLORSPACE)
-PEMRDELETECOLORSPACE = POINTER(tagEMRSETCOLORSPACE)
 EMRDELETECOLORSPACE = tagEMRSETCOLORSPACE
+PEMRDELETECOLORSPACE = POINTER(tagEMRSETCOLORSPACE)
 class tagEMREXTESCAPE(Structure):
     pass
 tagEMREXTESCAPE._fields_ = [
@@ -3967,10 +3966,10 @@ tagEMREXTESCAPE._fields_ = [
     ('cbEscData', INT),
     ('EscData', BYTE * 1),
 ]
-EMREXTESCAPE = tagEMREXTESCAPE
 PEMREXTESCAPE = POINTER(tagEMREXTESCAPE)
-PEMRDRAWESCAPE = POINTER(tagEMREXTESCAPE)
+EMREXTESCAPE = tagEMREXTESCAPE
 EMRDRAWESCAPE = tagEMREXTESCAPE
+PEMRDRAWESCAPE = POINTER(tagEMREXTESCAPE)
 class tagEMRNAMEDESCAPE(Structure):
     pass
 tagEMRNAMEDESCAPE._fields_ = [
@@ -3991,12 +3990,12 @@ tagEMRSETICMPROFILE._fields_ = [
     ('cbData', DWORD),
     ('Data', BYTE * 1),
 ]
-PEMRSETICMPROFILE = POINTER(tagEMRSETICMPROFILE)
 EMRSETICMPROFILE = tagEMRSETICMPROFILE
-EMRSETICMPROFILEA = tagEMRSETICMPROFILE
+PEMRSETICMPROFILE = POINTER(tagEMRSETICMPROFILE)
 PEMRSETICMPROFILEA = POINTER(tagEMRSETICMPROFILE)
-EMRSETICMPROFILEW = tagEMRSETICMPROFILE
+EMRSETICMPROFILEA = tagEMRSETICMPROFILE
 PEMRSETICMPROFILEW = POINTER(tagEMRSETICMPROFILE)
+EMRSETICMPROFILEW = tagEMRSETICMPROFILE
 class tagEMRCREATECOLORSPACEW(Structure):
     pass
 tagEMRCREATECOLORSPACEW._fields_ = [
@@ -4007,8 +4006,8 @@ tagEMRCREATECOLORSPACEW._fields_ = [
     ('cbData', DWORD),
     ('Data', BYTE * 1),
 ]
-EMRCREATECOLORSPACEW = tagEMRCREATECOLORSPACEW
 PEMRCREATECOLORSPACEW = POINTER(tagEMRCREATECOLORSPACEW)
+EMRCREATECOLORSPACEW = tagEMRCREATECOLORSPACEW
 class tagCOLORMATCHTOTARGET(Structure):
     pass
 tagCOLORMATCHTOTARGET._fields_ = [
@@ -4019,8 +4018,8 @@ tagCOLORMATCHTOTARGET._fields_ = [
     ('cbData', DWORD),
     ('Data', BYTE * 1),
 ]
-PEMRCOLORMATCHTOTARGET = POINTER(tagCOLORMATCHTOTARGET)
 EMRCOLORMATCHTOTARGET = tagCOLORMATCHTOTARGET
+PEMRCOLORMATCHTOTARGET = POINTER(tagCOLORMATCHTOTARGET)
 class tagCOLORCORRECTPALETTE(Structure):
     pass
 tagCOLORCORRECTPALETTE._fields_ = [
@@ -4030,8 +4029,8 @@ tagCOLORCORRECTPALETTE._fields_ = [
     ('nPalEntries', DWORD),
     ('nReserved', DWORD),
 ]
-EMRCOLORCORRECTPALETTE = tagCOLORCORRECTPALETTE
 PEMRCOLORCORRECTPALETTE = POINTER(tagCOLORCORRECTPALETTE)
+EMRCOLORCORRECTPALETTE = tagCOLORCORRECTPALETTE
 class tagEMRALPHABLEND(Structure):
     pass
 tagEMRALPHABLEND._fields_ = [
@@ -4098,8 +4097,8 @@ _POINTFLOAT._fields_ = [
     ('x', FLOAT),
     ('y', FLOAT),
 ]
-PPOINTFLOAT = POINTER(_POINTFLOAT)
 POINTFLOAT = _POINTFLOAT
+PPOINTFLOAT = POINTER(_POINTFLOAT)
 class _GLYPHMETRICSFLOAT(Structure):
     pass
 _GLYPHMETRICSFLOAT._fields_ = [
@@ -4149,9 +4148,9 @@ _WGLSWAP._fields_ = [
     ('hdc', HDC),
     ('uiFlags', UINT),
 ]
-PWGLSWAP = POINTER(_WGLSWAP)
 WGLSWAP = _WGLSWAP
 LPWGLSWAP = POINTER(_WGLSWAP)
+PWGLSWAP = POINTER(_WGLSWAP)
 class _NETRESOURCEA(Structure):
     pass
 _NETRESOURCEA._fields_ = [
@@ -4164,8 +4163,8 @@ _NETRESOURCEA._fields_ = [
     ('lpComment', LPSTR),
     ('lpProvider', LPSTR),
 ]
-NETRESOURCEA = _NETRESOURCEA
 LPNETRESOURCEA = POINTER(_NETRESOURCEA)
+NETRESOURCEA = _NETRESOURCEA
 class _NETRESOURCEW(Structure):
     pass
 _NETRESOURCEW._fields_ = [
@@ -4202,8 +4201,8 @@ _CONNECTDLGSTRUCTW._fields_ = [
     ('dwFlags', DWORD),
     ('dwDevNum', DWORD),
 ]
-CONNECTDLGSTRUCTW = _CONNECTDLGSTRUCTW
 LPCONNECTDLGSTRUCTW = POINTER(_CONNECTDLGSTRUCTW)
+CONNECTDLGSTRUCTW = _CONNECTDLGSTRUCTW
 CONNECTDLGSTRUCT = CONNECTDLGSTRUCTA
 LPCONNECTDLGSTRUCT = LPCONNECTDLGSTRUCTA
 class _DISCDLGSTRUCTA(Structure):
@@ -4306,8 +4305,8 @@ _cpinfo._fields_ = [
     ('DefaultChar', BYTE * 2),
     ('LeadByte', BYTE * 12),
 ]
-LPCPINFO = POINTER(_cpinfo)
 CPINFO = _cpinfo
+LPCPINFO = POINTER(_cpinfo)
 class _cpinfoexA(Structure):
     pass
 _cpinfoexA._fields_ = [
@@ -4344,8 +4343,8 @@ _numberfmtA._fields_ = [
     ('lpThousandSep', LPSTR),
     ('NegativeOrder', UINT),
 ]
-LPNUMBERFMTA = POINTER(_numberfmtA)
 NUMBERFMTA = _numberfmtA
+LPNUMBERFMTA = POINTER(_numberfmtA)
 class _numberfmtW(Structure):
     pass
 _numberfmtW._fields_ = [
@@ -4356,8 +4355,8 @@ _numberfmtW._fields_ = [
     ('lpThousandSep', LPWSTR),
     ('NegativeOrder', UINT),
 ]
-NUMBERFMTW = _numberfmtW
 LPNUMBERFMTW = POINTER(_numberfmtW)
+NUMBERFMTW = _numberfmtW
 NUMBERFMT = NUMBERFMTA
 LPNUMBERFMT = LPNUMBERFMTA
 class _currencyfmtA(Structure):
@@ -4372,8 +4371,8 @@ _currencyfmtA._fields_ = [
     ('PositiveOrder', UINT),
     ('lpCurrencySymbol', LPSTR),
 ]
-CURRENCYFMTA = _currencyfmtA
 LPCURRENCYFMTA = POINTER(_currencyfmtA)
+CURRENCYFMTA = _currencyfmtA
 class _currencyfmtW(Structure):
     pass
 _currencyfmtW._fields_ = [
@@ -4386,8 +4385,8 @@ _currencyfmtW._fields_ = [
     ('PositiveOrder', UINT),
     ('lpCurrencySymbol', LPWSTR),
 ]
-LPCURRENCYFMTW = POINTER(_currencyfmtW)
 CURRENCYFMTW = _currencyfmtW
+LPCURRENCYFMTW = POINTER(_currencyfmtW)
 CURRENCYFMT = CURRENCYFMTA
 LPCURRENCYFMT = LPCURRENCYFMTA
 
@@ -4596,8 +4595,8 @@ WSAData._fields_ = [
     ('iMaxUdpDg', c_ushort),
     ('lpVendorInfo', STRING),
 ]
-WSADATA = WSAData
 LPWSADATA = POINTER(WSAData)
+WSADATA = WSAData
 class sockaddr(Structure):
     pass
 sockaddr._fields_ = [
@@ -4631,8 +4630,8 @@ _WSABUF._fields_ = [
     ('len', u_long),
     ('buf', STRING),
 ]
-WSABUF = _WSABUF
 LPWSABUF = POINTER(_WSABUF)
+WSABUF = _WSABUF
 class _QualityOfService(Structure):
     pass
 _QualityOfService._fields_ = [
@@ -4649,8 +4648,8 @@ _WSANETWORKEVENTS._fields_ = [
     ('lNetworkEvents', c_long),
     ('iErrorCode', c_int * 10),
 ]
-WSANETWORKEVENTS = _WSANETWORKEVENTS
 LPWSANETWORKEVENTS = POINTER(_WSANETWORKEVENTS)
+WSANETWORKEVENTS = _WSANETWORKEVENTS
 class _WSAPROTOCOLCHAIN(Structure):
     pass
 _WSAPROTOCOLCHAIN._fields_ = [
@@ -4683,8 +4682,8 @@ _WSAPROTOCOL_INFOA._fields_ = [
     ('dwProviderReserved', DWORD),
     ('szProtocol', CHAR * 256),
 ]
-LPWSAPROTOCOL_INFOA = POINTER(_WSAPROTOCOL_INFOA)
 WSAPROTOCOL_INFOA = _WSAPROTOCOL_INFOA
+LPWSAPROTOCOL_INFOA = POINTER(_WSAPROTOCOL_INFOA)
 class _WSAPROTOCOL_INFOW(Structure):
     pass
 _WSAPROTOCOL_INFOW._fields_ = [
@@ -4760,8 +4759,8 @@ _WSACOMPLETION._fields_ = [
     ('Type', WSACOMPLETIONTYPE),
     ('Parameters', N14_WSACOMPLETION4DOLLAR_79E),
 ]
-LPWSACOMPLETION = POINTER(_WSACOMPLETION)
 WSACOMPLETION = _WSACOMPLETION
+LPWSACOMPLETION = POINTER(_WSACOMPLETION)
 PWSACOMPLETION = POINTER(_WSACOMPLETION)
 SOCKADDR = sockaddr
 PSOCKADDR = POINTER(sockaddr)
@@ -4775,8 +4774,8 @@ _BLOB._fields_ = [
     ('cbSize', ULONG),
     ('pBlobData', POINTER(BYTE)),
 ]
-BLOB = _BLOB
 LPBLOB = POINTER(_BLOB)
+BLOB = _BLOB
 class _SOCKET_ADDRESS(Structure):
     pass
 _SOCKET_ADDRESS._fields_ = [
@@ -4784,8 +4783,8 @@ _SOCKET_ADDRESS._fields_ = [
     ('iSockaddrLength', INT),
 ]
 SOCKET_ADDRESS = _SOCKET_ADDRESS
-LPSOCKET_ADDRESS = POINTER(_SOCKET_ADDRESS)
 PSOCKET_ADDRESS = POINTER(_SOCKET_ADDRESS)
+LPSOCKET_ADDRESS = POINTER(_SOCKET_ADDRESS)
 class _CSADDR_INFO(Structure):
     pass
 _CSADDR_INFO._fields_ = [
@@ -4811,24 +4810,24 @@ _AFPROTOCOLS._fields_ = [
     ('iAddressFamily', INT),
     ('iProtocol', INT),
 ]
-LPAFPROTOCOLS = POINTER(_AFPROTOCOLS)
 AFPROTOCOLS = _AFPROTOCOLS
 PAFPROTOCOLS = POINTER(_AFPROTOCOLS)
+LPAFPROTOCOLS = POINTER(_AFPROTOCOLS)
 
 # values for enumeration '_WSAEcomparator'
 _WSAEcomparator = c_int # enum
-WSAECOMPARATOR = _WSAEcomparator
 PWSAECOMPARATOR = POINTER(_WSAEcomparator)
 LPWSAECOMPARATOR = POINTER(_WSAEcomparator)
+WSAECOMPARATOR = _WSAEcomparator
 class _WSAVersion(Structure):
     pass
 _WSAVersion._fields_ = [
     ('dwVersion', DWORD),
     ('ecHow', WSAECOMPARATOR),
 ]
-WSAVERSION = _WSAVersion
 LPWSAVERSION = POINTER(_WSAVersion)
 PWSAVERSION = POINTER(_WSAVersion)
+WSAVERSION = _WSAVersion
 class _WSAQuerySetA(Structure):
     pass
 _WSAQuerySetA._fields_ = [
@@ -4848,9 +4847,9 @@ _WSAQuerySetA._fields_ = [
     ('dwOutputFlags', DWORD),
     ('lpBlob', LPBLOB),
 ]
-LPWSAQUERYSETA = POINTER(_WSAQuerySetA)
 WSAQUERYSETA = _WSAQuerySetA
 PWSAQUERYSETA = POINTER(_WSAQuerySetA)
+LPWSAQUERYSETA = POINTER(_WSAQuerySetA)
 class _WSAQuerySetW(Structure):
     pass
 _WSAQuerySetW._fields_ = [
@@ -4879,8 +4878,8 @@ LPWSAQUERYSET = LPWSAQUERYSETA
 
 # values for enumeration '_WSAESETSERVICEOP'
 _WSAESETSERVICEOP = c_int # enum
-LPWSAESETSERVICEOP = POINTER(_WSAESETSERVICEOP)
 WSAESETSERVICEOP = _WSAESETSERVICEOP
+LPWSAESETSERVICEOP = POINTER(_WSAESETSERVICEOP)
 PWSAESETSERVICEOP = POINTER(_WSAESETSERVICEOP)
 class _WSANSClassInfoA(Structure):
     pass
@@ -4891,9 +4890,9 @@ _WSANSClassInfoA._fields_ = [
     ('dwValueSize', DWORD),
     ('lpValue', LPVOID),
 ]
-LPWSANSCLASSINFOA = POINTER(_WSANSClassInfoA)
 PWSANSCLASSINFOA = POINTER(_WSANSClassInfoA)
 WSANSCLASSINFOA = _WSANSClassInfoA
+LPWSANSCLASSINFOA = POINTER(_WSANSClassInfoA)
 class _WSANSClassInfoW(Structure):
     pass
 _WSANSClassInfoW._fields_ = [
@@ -4943,9 +4942,9 @@ _WSANAMESPACE_INFOA._fields_ = [
     ('dwVersion', DWORD),
     ('lpszIdentifier', LPSTR),
 ]
-LPWSANAMESPACE_INFOA = POINTER(_WSANAMESPACE_INFOA)
 WSANAMESPACE_INFOA = _WSANAMESPACE_INFOA
 PWSANAMESPACE_INFOA = POINTER(_WSANAMESPACE_INFOA)
+LPWSANAMESPACE_INFOA = POINTER(_WSANAMESPACE_INFOA)
 class _WSANAMESPACE_INFOW(Structure):
     pass
 _WSANAMESPACE_INFOW._fields_ = [
@@ -4955,9 +4954,9 @@ _WSANAMESPACE_INFOW._fields_ = [
     ('dwVersion', DWORD),
     ('lpszIdentifier', LPWSTR),
 ]
+WSANAMESPACE_INFOW = _WSANAMESPACE_INFOW
 LPWSANAMESPACE_INFOW = POINTER(_WSANAMESPACE_INFOW)
 PWSANAMESPACE_INFOW = POINTER(_WSANAMESPACE_INFOW)
-WSANAMESPACE_INFOW = _WSANAMESPACE_INFOW
 WSANAMESPACE_INFO = WSANAMESPACE_INFOA
 PWSANAMESPACE_INFO = PWSANAMESPACE_INFOA
 LPWSANAMESPACE_INFO = LPWSANAMESPACE_INFOA
@@ -5011,8 +5010,8 @@ _SC_ACTION._fields_ = [
     ('Type', SC_ACTION_TYPE),
     ('Delay', DWORD),
 ]
-SC_ACTION = _SC_ACTION
 LPSC_ACTION = POINTER(_SC_ACTION)
+SC_ACTION = _SC_ACTION
 class _SERVICE_FAILURE_ACTIONSA(Structure):
     pass
 _SERVICE_FAILURE_ACTIONSA._fields_ = [
@@ -5022,8 +5021,8 @@ _SERVICE_FAILURE_ACTIONSA._fields_ = [
     ('cActions', DWORD),
     ('lpsaActions', POINTER(SC_ACTION)),
 ]
-SERVICE_FAILURE_ACTIONSA = _SERVICE_FAILURE_ACTIONSA
 LPSERVICE_FAILURE_ACTIONSA = POINTER(_SERVICE_FAILURE_ACTIONSA)
+SERVICE_FAILURE_ACTIONSA = _SERVICE_FAILURE_ACTIONSA
 class _SERVICE_FAILURE_ACTIONSW(Structure):
     pass
 _SERVICE_FAILURE_ACTIONSW._fields_ = [
@@ -5033,8 +5032,8 @@ _SERVICE_FAILURE_ACTIONSW._fields_ = [
     ('cActions', DWORD),
     ('lpsaActions', POINTER(SC_ACTION)),
 ]
-SERVICE_FAILURE_ACTIONSW = _SERVICE_FAILURE_ACTIONSW
 LPSERVICE_FAILURE_ACTIONSW = POINTER(_SERVICE_FAILURE_ACTIONSW)
+SERVICE_FAILURE_ACTIONSW = _SERVICE_FAILURE_ACTIONSW
 SERVICE_FAILURE_ACTIONS = SERVICE_FAILURE_ACTIONSA
 LPSERVICE_FAILURE_ACTIONS = LPSERVICE_FAILURE_ACTIONSA
 class SC_HANDLE__(Structure):
@@ -5082,8 +5081,8 @@ _SERVICE_STATUS_PROCESS._fields_ = [
     ('dwProcessId', DWORD),
     ('dwServiceFlags', DWORD),
 ]
-SERVICE_STATUS_PROCESS = _SERVICE_STATUS_PROCESS
 LPSERVICE_STATUS_PROCESS = POINTER(_SERVICE_STATUS_PROCESS)
+SERVICE_STATUS_PROCESS = _SERVICE_STATUS_PROCESS
 class _ENUM_SERVICE_STATUSA(Structure):
     pass
 _ENUM_SERVICE_STATUSA._fields_ = [
@@ -5091,8 +5090,8 @@ _ENUM_SERVICE_STATUSA._fields_ = [
     ('lpDisplayName', LPSTR),
     ('ServiceStatus', SERVICE_STATUS),
 ]
-ENUM_SERVICE_STATUSA = _ENUM_SERVICE_STATUSA
 LPENUM_SERVICE_STATUSA = POINTER(_ENUM_SERVICE_STATUSA)
+ENUM_SERVICE_STATUSA = _ENUM_SERVICE_STATUSA
 class _ENUM_SERVICE_STATUSW(Structure):
     pass
 _ENUM_SERVICE_STATUSW._fields_ = [
@@ -5132,8 +5131,8 @@ _QUERY_SERVICE_LOCK_STATUSA._fields_ = [
     ('lpLockOwner', LPSTR),
     ('dwLockDuration', DWORD),
 ]
-QUERY_SERVICE_LOCK_STATUSA = _QUERY_SERVICE_LOCK_STATUSA
 LPQUERY_SERVICE_LOCK_STATUSA = POINTER(_QUERY_SERVICE_LOCK_STATUSA)
+QUERY_SERVICE_LOCK_STATUSA = _QUERY_SERVICE_LOCK_STATUSA
 class _QUERY_SERVICE_LOCK_STATUSW(Structure):
     pass
 _QUERY_SERVICE_LOCK_STATUSW._fields_ = [
@@ -5141,8 +5140,8 @@ _QUERY_SERVICE_LOCK_STATUSW._fields_ = [
     ('lpLockOwner', LPWSTR),
     ('dwLockDuration', DWORD),
 ]
-LPQUERY_SERVICE_LOCK_STATUSW = POINTER(_QUERY_SERVICE_LOCK_STATUSW)
 QUERY_SERVICE_LOCK_STATUSW = _QUERY_SERVICE_LOCK_STATUSW
+LPQUERY_SERVICE_LOCK_STATUSW = POINTER(_QUERY_SERVICE_LOCK_STATUSW)
 QUERY_SERVICE_LOCK_STATUS = QUERY_SERVICE_LOCK_STATUSA
 LPQUERY_SERVICE_LOCK_STATUS = LPQUERY_SERVICE_LOCK_STATUSA
 class _QUERY_SERVICE_CONFIGA(Structure):
@@ -5173,8 +5172,8 @@ _QUERY_SERVICE_CONFIGW._fields_ = [
     ('lpServiceStartName', LPWSTR),
     ('lpDisplayName', LPWSTR),
 ]
-LPQUERY_SERVICE_CONFIGW = POINTER(_QUERY_SERVICE_CONFIGW)
 QUERY_SERVICE_CONFIGW = _QUERY_SERVICE_CONFIGW
+LPQUERY_SERVICE_CONFIGW = POINTER(_QUERY_SERVICE_CONFIGW)
 QUERY_SERVICE_CONFIG = QUERY_SERVICE_CONFIGA
 LPQUERY_SERVICE_CONFIG = LPQUERY_SERVICE_CONFIGA
 LPSERVICE_MAIN_FUNCTIONW = WINFUNCTYPE(None, c_ulong, POINTER(LPWSTR))
@@ -5248,8 +5247,8 @@ tagCBT_CREATEWNDW._fields_ = [
     ('lpcs', POINTER(tagCREATESTRUCTW)),
     ('hwndInsertAfter', HWND),
 ]
-LPCBT_CREATEWNDW = POINTER(tagCBT_CREATEWNDW)
 CBT_CREATEWNDW = tagCBT_CREATEWNDW
+LPCBT_CREATEWNDW = POINTER(tagCBT_CREATEWNDW)
 CBT_CREATEWND = CBT_CREATEWNDA
 LPCBT_CREATEWND = LPCBT_CREATEWNDA
 class tagCBTACTIVATESTRUCT(Structure):
@@ -5262,11 +5261,11 @@ CBTACTIVATESTRUCT = tagCBTACTIVATESTRUCT
 LPCBTACTIVATESTRUCT = POINTER(tagCBTACTIVATESTRUCT)
 class SHELLHOOKINFO(Structure):
     pass
+LPSHELLHOOKINFO = POINTER(SHELLHOOKINFO)
 SHELLHOOKINFO._fields_ = [
     ('hwnd', HWND),
     ('rc', RECT),
 ]
-LPSHELLHOOKINFO = POINTER(SHELLHOOKINFO)
 class tagEVENTMSG(Structure):
     pass
 tagEVENTMSG._fields_ = [
@@ -5276,10 +5275,10 @@ tagEVENTMSG._fields_ = [
     ('time', DWORD),
     ('hwnd', HWND),
 ]
-PEVENTMSGMSG = POINTER(tagEVENTMSG)
-LPEVENTMSGMSG = POINTER(tagEVENTMSG)
-EVENTMSG = tagEVENTMSG
 NPEVENTMSGMSG = POINTER(tagEVENTMSG)
+PEVENTMSGMSG = POINTER(tagEVENTMSG)
+EVENTMSG = tagEVENTMSG
+LPEVENTMSGMSG = POINTER(tagEVENTMSG)
 LPEVENTMSG = POINTER(tagEVENTMSG)
 NPEVENTMSG = POINTER(tagEVENTMSG)
 PEVENTMSG = POINTER(tagEVENTMSG)
@@ -5291,10 +5290,10 @@ tagCWPSTRUCT._fields_ = [
     ('message', UINT),
     ('hwnd', HWND),
 ]
+LPCWPSTRUCT = POINTER(tagCWPSTRUCT)
 NPCWPSTRUCT = POINTER(tagCWPSTRUCT)
 PCWPSTRUCT = POINTER(tagCWPSTRUCT)
 CWPSTRUCT = tagCWPSTRUCT
-LPCWPSTRUCT = POINTER(tagCWPSTRUCT)
 class tagCWPRETSTRUCT(Structure):
     pass
 tagCWPRETSTRUCT._fields_ = [
@@ -5305,9 +5304,9 @@ tagCWPRETSTRUCT._fields_ = [
     ('hwnd', HWND),
 ]
 PCWPRETSTRUCT = POINTER(tagCWPRETSTRUCT)
+CWPRETSTRUCT = tagCWPRETSTRUCT
 LPCWPRETSTRUCT = POINTER(tagCWPRETSTRUCT)
 NPCWPRETSTRUCT = POINTER(tagCWPRETSTRUCT)
-CWPRETSTRUCT = tagCWPRETSTRUCT
 class tagKBDLLHOOKSTRUCT(Structure):
     pass
 tagKBDLLHOOKSTRUCT._fields_ = [
@@ -5317,9 +5316,9 @@ tagKBDLLHOOKSTRUCT._fields_ = [
     ('time', DWORD),
     ('dwExtraInfo', ULONG_PTR),
 ]
-LPKBDLLHOOKSTRUCT = POINTER(tagKBDLLHOOKSTRUCT)
-KBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT
 PKBDLLHOOKSTRUCT = POINTER(tagKBDLLHOOKSTRUCT)
+KBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT
+LPKBDLLHOOKSTRUCT = POINTER(tagKBDLLHOOKSTRUCT)
 class tagMSLLHOOKSTRUCT(Structure):
     pass
 tagMSLLHOOKSTRUCT._fields_ = [
@@ -5330,8 +5329,8 @@ tagMSLLHOOKSTRUCT._fields_ = [
     ('dwExtraInfo', ULONG_PTR),
 ]
 PMSLLHOOKSTRUCT = POINTER(tagMSLLHOOKSTRUCT)
-LPMSLLHOOKSTRUCT = POINTER(tagMSLLHOOKSTRUCT)
 MSLLHOOKSTRUCT = tagMSLLHOOKSTRUCT
+LPMSLLHOOKSTRUCT = POINTER(tagMSLLHOOKSTRUCT)
 class tagDEBUGHOOKINFO(Structure):
     pass
 tagDEBUGHOOKINFO._fields_ = [
@@ -5341,8 +5340,8 @@ tagDEBUGHOOKINFO._fields_ = [
     ('wParam', WPARAM),
     ('code', c_int),
 ]
-LPDEBUGHOOKINFO = POINTER(tagDEBUGHOOKINFO)
 DEBUGHOOKINFO = tagDEBUGHOOKINFO
+LPDEBUGHOOKINFO = POINTER(tagDEBUGHOOKINFO)
 NPDEBUGHOOKINFO = POINTER(tagDEBUGHOOKINFO)
 PDEBUGHOOKINFO = POINTER(tagDEBUGHOOKINFO)
 class tagMOUSEHOOKSTRUCT(Structure):
@@ -5353,9 +5352,9 @@ tagMOUSEHOOKSTRUCT._fields_ = [
     ('wHitTestCode', UINT),
     ('dwExtraInfo', ULONG_PTR),
 ]
-MOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT
-LPMOUSEHOOKSTRUCT = POINTER(tagMOUSEHOOKSTRUCT)
 PMOUSEHOOKSTRUCT = POINTER(tagMOUSEHOOKSTRUCT)
+LPMOUSEHOOKSTRUCT = POINTER(tagMOUSEHOOKSTRUCT)
+MOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT
 class tagHARDWAREHOOKSTRUCT(Structure):
     pass
 tagHARDWAREHOOKSTRUCT._fields_ = [
@@ -5364,9 +5363,9 @@ tagHARDWAREHOOKSTRUCT._fields_ = [
     ('wParam', WPARAM),
     ('lParam', LPARAM),
 ]
-PHARDWAREHOOKSTRUCT = POINTER(tagHARDWAREHOOKSTRUCT)
 LPHARDWAREHOOKSTRUCT = POINTER(tagHARDWAREHOOKSTRUCT)
 HARDWAREHOOKSTRUCT = tagHARDWAREHOOKSTRUCT
+PHARDWAREHOOKSTRUCT = POINTER(tagHARDWAREHOOKSTRUCT)
 class tagMOUSEMOVEPOINT(Structure):
     pass
 tagMOUSEMOVEPOINT._fields_ = [
@@ -5376,8 +5375,8 @@ tagMOUSEMOVEPOINT._fields_ = [
     ('dwExtraInfo', ULONG_PTR),
 ]
 PMOUSEMOVEPOINT = POINTER(tagMOUSEMOVEPOINT)
-LPMOUSEMOVEPOINT = POINTER(tagMOUSEMOVEPOINT)
 MOUSEMOVEPOINT = tagMOUSEMOVEPOINT
+LPMOUSEMOVEPOINT = POINTER(tagMOUSEMOVEPOINT)
 class tagUSEROBJECTFLAGS(Structure):
     pass
 tagUSEROBJECTFLAGS._fields_ = [
@@ -5403,8 +5402,8 @@ tagWNDCLASSEXA._fields_ = [
     ('lpszClassName', LPCSTR),
     ('hIconSm', HICON),
 ]
-WNDCLASSEXA = tagWNDCLASSEXA
 PWNDCLASSEXA = POINTER(tagWNDCLASSEXA)
+WNDCLASSEXA = tagWNDCLASSEXA
 LPWNDCLASSEXA = POINTER(tagWNDCLASSEXA)
 NPWNDCLASSEXA = POINTER(tagWNDCLASSEXA)
 class tagWNDCLASSEXW(Structure):
@@ -5423,10 +5422,10 @@ tagWNDCLASSEXW._fields_ = [
     ('lpszClassName', LPCWSTR),
     ('hIconSm', HICON),
 ]
-WNDCLASSEXW = tagWNDCLASSEXW
-LPWNDCLASSEXW = POINTER(tagWNDCLASSEXW)
-NPWNDCLASSEXW = POINTER(tagWNDCLASSEXW)
 PWNDCLASSEXW = POINTER(tagWNDCLASSEXW)
+LPWNDCLASSEXW = POINTER(tagWNDCLASSEXW)
+WNDCLASSEXW = tagWNDCLASSEXW
+NPWNDCLASSEXW = POINTER(tagWNDCLASSEXW)
 WNDCLASSEX = WNDCLASSEXA
 PWNDCLASSEX = PWNDCLASSEXA
 NPWNDCLASSEX = NPWNDCLASSEXA
@@ -5463,17 +5462,17 @@ tagWNDCLASSW._fields_ = [
     ('lpszMenuName', LPCWSTR),
     ('lpszClassName', LPCWSTR),
 ]
-NPWNDCLASSW = POINTER(tagWNDCLASSW)
 PWNDCLASSW = POINTER(tagWNDCLASSW)
+NPWNDCLASSW = POINTER(tagWNDCLASSW)
 WNDCLASSW = tagWNDCLASSW
 LPWNDCLASSW = POINTER(tagWNDCLASSW)
 WNDCLASS = WNDCLASSA
 PWNDCLASS = PWNDCLASSA
 NPWNDCLASS = NPWNDCLASSA
 LPWNDCLASS = LPWNDCLASSA
-NPMSG = POINTER(tagMSG)
-LPMSG = POINTER(tagMSG)
 PMSG = POINTER(tagMSG)
+LPMSG = POINTER(tagMSG)
+NPMSG = POINTER(tagMSG)
 class tagMINMAXINFO(Structure):
     pass
 tagMINMAXINFO._fields_ = [
@@ -5483,9 +5482,9 @@ tagMINMAXINFO._fields_ = [
     ('ptMinTrackSize', POINT),
     ('ptMaxTrackSize', POINT),
 ]
-LPMINMAXINFO = POINTER(tagMINMAXINFO)
-PMINMAXINFO = POINTER(tagMINMAXINFO)
 MINMAXINFO = tagMINMAXINFO
+PMINMAXINFO = POINTER(tagMINMAXINFO)
+LPMINMAXINFO = POINTER(tagMINMAXINFO)
 class tagCOPYDATASTRUCT(Structure):
     pass
 tagCOPYDATASTRUCT._fields_ = [
@@ -5502,9 +5501,9 @@ tagMDINEXTMENU._fields_ = [
     ('hmenuNext', HMENU),
     ('hwndNext', HWND),
 ]
-PMDINEXTMENU = POINTER(tagMDINEXTMENU)
-MDINEXTMENU = tagMDINEXTMENU
 LPMDINEXTMENU = POINTER(tagMDINEXTMENU)
+MDINEXTMENU = tagMDINEXTMENU
+PMDINEXTMENU = POINTER(tagMDINEXTMENU)
 class tagWINDOWPOS(Structure):
     pass
 tagWINDOWPOS._fields_ = [
@@ -5516,17 +5515,17 @@ tagWINDOWPOS._fields_ = [
     ('cy', c_int),
     ('flags', UINT),
 ]
-LPWINDOWPOS = POINTER(tagWINDOWPOS)
 PWINDOWPOS = POINTER(tagWINDOWPOS)
 WINDOWPOS = tagWINDOWPOS
+LPWINDOWPOS = POINTER(tagWINDOWPOS)
 class tagNCCALCSIZE_PARAMS(Structure):
     pass
 tagNCCALCSIZE_PARAMS._fields_ = [
     ('rgrc', RECT * 3),
     ('lppos', PWINDOWPOS),
 ]
-LPNCCALCSIZE_PARAMS = POINTER(tagNCCALCSIZE_PARAMS)
 NCCALCSIZE_PARAMS = tagNCCALCSIZE_PARAMS
+LPNCCALCSIZE_PARAMS = POINTER(tagNCCALCSIZE_PARAMS)
 class tagTRACKMOUSEEVENT(Structure):
     pass
 tagTRACKMOUSEEVENT._fields_ = [
@@ -5544,8 +5543,8 @@ tagACCEL._fields_ = [
     ('key', WORD),
     ('cmd', WORD),
 ]
-LPACCEL = POINTER(tagACCEL)
 ACCEL = tagACCEL
+LPACCEL = POINTER(tagACCEL)
 class tagPAINTSTRUCT(Structure):
     pass
 tagPAINTSTRUCT._fields_ = [
@@ -5556,10 +5555,10 @@ tagPAINTSTRUCT._fields_ = [
     ('fIncUpdate', BOOL),
     ('rgbReserved', BYTE * 32),
 ]
-PAINTSTRUCT = tagPAINTSTRUCT
+NPPAINTSTRUCT = POINTER(tagPAINTSTRUCT)
 PPAINTSTRUCT = POINTER(tagPAINTSTRUCT)
 LPPAINTSTRUCT = POINTER(tagPAINTSTRUCT)
-NPPAINTSTRUCT = POINTER(tagPAINTSTRUCT)
+PAINTSTRUCT = tagPAINTSTRUCT
 tagCREATESTRUCTA._fields_ = [
     ('lpCreateParams', LPVOID),
     ('hInstance', HINSTANCE),
@@ -5574,8 +5573,8 @@ tagCREATESTRUCTA._fields_ = [
     ('lpszClass', LPCSTR),
     ('dwExStyle', DWORD),
 ]
-CREATESTRUCTA = tagCREATESTRUCTA
 LPCREATESTRUCTA = POINTER(tagCREATESTRUCTA)
+CREATESTRUCTA = tagCREATESTRUCTA
 tagCREATESTRUCTW._fields_ = [
     ('lpCreateParams', LPVOID),
     ('hInstance', HINSTANCE),
@@ -5605,8 +5604,8 @@ tagWINDOWPLACEMENT._fields_ = [
     ('rcNormalPosition', RECT),
 ]
 WINDOWPLACEMENT = tagWINDOWPLACEMENT
-LPWINDOWPLACEMENT = POINTER(WINDOWPLACEMENT)
 PWINDOWPLACEMENT = POINTER(WINDOWPLACEMENT)
+LPWINDOWPLACEMENT = POINTER(WINDOWPLACEMENT)
 class tagNMHDR(Structure):
     pass
 tagNMHDR._fields_ = [
@@ -5650,9 +5649,9 @@ tagDRAWITEMSTRUCT._fields_ = [
     ('rcItem', RECT),
     ('itemData', ULONG_PTR),
 ]
-DRAWITEMSTRUCT = tagDRAWITEMSTRUCT
 LPDRAWITEMSTRUCT = POINTER(tagDRAWITEMSTRUCT)
 PDRAWITEMSTRUCT = POINTER(tagDRAWITEMSTRUCT)
+DRAWITEMSTRUCT = tagDRAWITEMSTRUCT
 class tagDELETEITEMSTRUCT(Structure):
     pass
 tagDELETEITEMSTRUCT._fields_ = [
@@ -5662,8 +5661,8 @@ tagDELETEITEMSTRUCT._fields_ = [
     ('hwndItem', HWND),
     ('itemData', ULONG_PTR),
 ]
-DELETEITEMSTRUCT = tagDELETEITEMSTRUCT
 LPDELETEITEMSTRUCT = POINTER(tagDELETEITEMSTRUCT)
+DELETEITEMSTRUCT = tagDELETEITEMSTRUCT
 PDELETEITEMSTRUCT = POINTER(tagDELETEITEMSTRUCT)
 class tagCOMPAREITEMSTRUCT(Structure):
     pass
@@ -5677,9 +5676,9 @@ tagCOMPAREITEMSTRUCT._fields_ = [
     ('itemData2', ULONG_PTR),
     ('dwLocaleId', DWORD),
 ]
-LPCOMPAREITEMSTRUCT = POINTER(tagCOMPAREITEMSTRUCT)
 PCOMPAREITEMSTRUCT = POINTER(tagCOMPAREITEMSTRUCT)
 COMPAREITEMSTRUCT = tagCOMPAREITEMSTRUCT
+LPCOMPAREITEMSTRUCT = POINTER(tagCOMPAREITEMSTRUCT)
 HDEVNOTIFY = PVOID
 PHDEVNOTIFY = POINTER(HDEVNOTIFY)
 class FLASHWINFO(Structure):
@@ -5747,8 +5746,8 @@ tagMENUINFO._fields_ = [
     ('dwContextHelpID', DWORD),
     ('dwMenuData', ULONG_PTR),
 ]
-LPMENUINFO = POINTER(tagMENUINFO)
 MENUINFO = tagMENUINFO
+LPMENUINFO = POINTER(tagMENUINFO)
 LPCMENUINFO = POINTER(MENUINFO)
 class tagMENUGETOBJECTINFO(Structure):
     pass
@@ -5759,8 +5758,8 @@ tagMENUGETOBJECTINFO._fields_ = [
     ('riid', PVOID),
     ('pvObj', PVOID),
 ]
-PMENUGETOBJECTINFO = POINTER(tagMENUGETOBJECTINFO)
 MENUGETOBJECTINFO = tagMENUGETOBJECTINFO
+PMENUGETOBJECTINFO = POINTER(tagMENUGETOBJECTINFO)
 class tagMENUITEMINFOA(Structure):
     pass
 tagMENUITEMINFOA._fields_ = [
@@ -5812,9 +5811,9 @@ tagDROPSTRUCT._fields_ = [
     ('ptDrop', POINT),
     ('dwControlData', DWORD),
 ]
-PDROPSTRUCT = POINTER(tagDROPSTRUCT)
-LPDROPSTRUCT = POINTER(tagDROPSTRUCT)
 DROPSTRUCT = tagDROPSTRUCT
+LPDROPSTRUCT = POINTER(tagDROPSTRUCT)
+PDROPSTRUCT = POINTER(tagDROPSTRUCT)
 class tagDRAWTEXTPARAMS(Structure):
     pass
 tagDRAWTEXTPARAMS._fields_ = [
@@ -5836,8 +5835,8 @@ tagHELPINFO._fields_ = [
     ('dwContextId', DWORD_PTR),
     ('MousePos', POINT),
 ]
-HELPINFO = tagHELPINFO
 LPHELPINFO = POINTER(tagHELPINFO)
+HELPINFO = tagHELPINFO
 MSGBOXCALLBACK = WINFUNCTYPE(None, POINTER(tagHELPINFO))
 class tagMSGBOXPARAMSA(Structure):
     pass
@@ -5853,8 +5852,8 @@ tagMSGBOXPARAMSA._fields_ = [
     ('lpfnMsgBoxCallback', MSGBOXCALLBACK),
     ('dwLanguageId', DWORD),
 ]
-MSGBOXPARAMSA = tagMSGBOXPARAMSA
 LPMSGBOXPARAMSA = POINTER(tagMSGBOXPARAMSA)
+MSGBOXPARAMSA = tagMSGBOXPARAMSA
 PMSGBOXPARAMSA = POINTER(tagMSGBOXPARAMSA)
 class tagMSGBOXPARAMSW(Structure):
     pass
@@ -5913,8 +5912,8 @@ tagCURSORSHAPE._fields_ = [
     ('Planes', BYTE),
     ('BitsPixel', BYTE),
 ]
-CURSORSHAPE = tagCURSORSHAPE
 LPCURSORSHAPE = POINTER(tagCURSORSHAPE)
+CURSORSHAPE = tagCURSORSHAPE
 class tagSCROLLINFO(Structure):
     pass
 tagSCROLLINFO._fields_ = [
@@ -5926,8 +5925,8 @@ tagSCROLLINFO._fields_ = [
     ('nPos', c_int),
     ('nTrackPos', c_int),
 ]
-SCROLLINFO = tagSCROLLINFO
 LPSCROLLINFO = POINTER(tagSCROLLINFO)
+SCROLLINFO = tagSCROLLINFO
 LPCSCROLLINFO = POINTER(SCROLLINFO)
 class tagMDICREATESTRUCTA(Structure):
     pass
@@ -5957,8 +5956,8 @@ tagMDICREATESTRUCTW._fields_ = [
     ('style', DWORD),
     ('lParam', LPARAM),
 ]
-LPMDICREATESTRUCTW = POINTER(tagMDICREATESTRUCTW)
 MDICREATESTRUCTW = tagMDICREATESTRUCTW
+LPMDICREATESTRUCTW = POINTER(tagMDICREATESTRUCTW)
 MDICREATESTRUCT = MDICREATESTRUCTA
 LPMDICREATESTRUCT = LPMDICREATESTRUCTA
 class tagCLIENTCREATESTRUCT(Structure):
@@ -5977,8 +5976,8 @@ tagMULTIKEYHELPA._fields_ = [
     ('mkKeylist', CHAR),
     ('szKeyphrase', CHAR * 1),
 ]
-MULTIKEYHELPA = tagMULTIKEYHELPA
 LPMULTIKEYHELPA = POINTER(tagMULTIKEYHELPA)
+MULTIKEYHELPA = tagMULTIKEYHELPA
 PMULTIKEYHELPA = POINTER(tagMULTIKEYHELPA)
 class tagMULTIKEYHELPW(Structure):
     pass
@@ -5987,9 +5986,9 @@ tagMULTIKEYHELPW._fields_ = [
     ('mkKeylist', WCHAR),
     ('szKeyphrase', WCHAR * 1),
 ]
-MULTIKEYHELPW = tagMULTIKEYHELPW
 LPMULTIKEYHELPW = POINTER(tagMULTIKEYHELPW)
 PMULTIKEYHELPW = POINTER(tagMULTIKEYHELPW)
+MULTIKEYHELPW = tagMULTIKEYHELPW
 MULTIKEYHELP = MULTIKEYHELPA
 PMULTIKEYHELP = PMULTIKEYHELPA
 LPMULTIKEYHELP = LPMULTIKEYHELPA
@@ -6004,9 +6003,9 @@ tagHELPWININFOA._fields_ = [
     ('wMax', c_int),
     ('rgchMember', CHAR * 2),
 ]
-HELPWININFOA = tagHELPWININFOA
-LPHELPWININFOA = POINTER(tagHELPWININFOA)
 PHELPWININFOA = POINTER(tagHELPWININFOA)
+LPHELPWININFOA = POINTER(tagHELPWININFOA)
+HELPWININFOA = tagHELPWININFOA
 class tagHELPWININFOW(Structure):
     pass
 tagHELPWININFOW._fields_ = [
@@ -6019,8 +6018,8 @@ tagHELPWININFOW._fields_ = [
     ('rgchMember', WCHAR * 2),
 ]
 HELPWININFOW = tagHELPWININFOW
-LPHELPWININFOW = POINTER(tagHELPWININFOW)
 PHELPWININFOW = POINTER(tagHELPWININFOW)
+LPHELPWININFOW = POINTER(tagHELPWININFOW)
 HELPWININFO = HELPWININFOA
 PHELPWININFO = PHELPWININFOA
 LPHELPWININFO = LPHELPWININFOA
@@ -6043,9 +6042,9 @@ tagNONCLIENTMETRICSA._fields_ = [
     ('lfStatusFont', LOGFONTA),
     ('lfMessageFont', LOGFONTA),
 ]
-PNONCLIENTMETRICSA = POINTER(tagNONCLIENTMETRICSA)
 NONCLIENTMETRICSA = tagNONCLIENTMETRICSA
 LPNONCLIENTMETRICSA = POINTER(tagNONCLIENTMETRICSA)
+PNONCLIENTMETRICSA = POINTER(tagNONCLIENTMETRICSA)
 class tagNONCLIENTMETRICSW(Structure):
     pass
 tagNONCLIENTMETRICSW._fields_ = [
@@ -6065,9 +6064,9 @@ tagNONCLIENTMETRICSW._fields_ = [
     ('lfStatusFont', LOGFONTW),
     ('lfMessageFont', LOGFONTW),
 ]
-NONCLIENTMETRICSW = tagNONCLIENTMETRICSW
 LPNONCLIENTMETRICSW = POINTER(tagNONCLIENTMETRICSW)
 PNONCLIENTMETRICSW = POINTER(tagNONCLIENTMETRICSW)
+NONCLIENTMETRICSW = tagNONCLIENTMETRICSW
 NONCLIENTMETRICS = NONCLIENTMETRICSA
 PNONCLIENTMETRICS = PNONCLIENTMETRICSA
 LPNONCLIENTMETRICS = LPNONCLIENTMETRICSA
@@ -6092,8 +6091,8 @@ tagICONMETRICSA._fields_ = [
     ('iTitleWrap', c_int),
     ('lfFont', LOGFONTA),
 ]
-LPICONMETRICSA = POINTER(tagICONMETRICSA)
 PICONMETRICSA = POINTER(tagICONMETRICSA)
+LPICONMETRICSA = POINTER(tagICONMETRICSA)
 ICONMETRICSA = tagICONMETRICSA
 class tagICONMETRICSW(Structure):
     pass
@@ -6105,8 +6104,8 @@ tagICONMETRICSW._fields_ = [
     ('lfFont', LOGFONTW),
 ]
 PICONMETRICSW = POINTER(tagICONMETRICSW)
-ICONMETRICSW = tagICONMETRICSW
 LPICONMETRICSW = POINTER(tagICONMETRICSW)
+ICONMETRICSW = tagICONMETRICSW
 ICONMETRICS = ICONMETRICSA
 PICONMETRICS = PICONMETRICSA
 LPICONMETRICS = LPICONMETRICSA
@@ -6116,8 +6115,8 @@ tagANIMATIONINFO._fields_ = [
     ('cbSize', UINT),
     ('iMinAnimate', c_int),
 ]
-ANIMATIONINFO = tagANIMATIONINFO
 LPANIMATIONINFO = POINTER(tagANIMATIONINFO)
+ANIMATIONINFO = tagANIMATIONINFO
 class tagSERIALKEYSA(Structure):
     pass
 tagSERIALKEYSA._fields_ = [
@@ -6129,8 +6128,8 @@ tagSERIALKEYSA._fields_ = [
     ('iPortState', UINT),
     ('iActive', UINT),
 ]
-LPSERIALKEYSA = POINTER(tagSERIALKEYSA)
 SERIALKEYSA = tagSERIALKEYSA
+LPSERIALKEYSA = POINTER(tagSERIALKEYSA)
 class tagSERIALKEYSW(Structure):
     pass
 tagSERIALKEYSW._fields_ = [
@@ -6142,8 +6141,8 @@ tagSERIALKEYSW._fields_ = [
     ('iPortState', UINT),
     ('iActive', UINT),
 ]
-SERIALKEYSW = tagSERIALKEYSW
 LPSERIALKEYSW = POINTER(tagSERIALKEYSW)
+SERIALKEYSW = tagSERIALKEYSW
 SERIALKEYS = SERIALKEYSA
 LPSERIALKEYS = LPSERIALKEYSA
 class tagHIGHCONTRASTA(Structure):
@@ -6176,16 +6175,16 @@ tagFILTERKEYS._fields_ = [
     ('iRepeatMSec', DWORD),
     ('iBounceMSec', DWORD),
 ]
-LPFILTERKEYS = POINTER(tagFILTERKEYS)
 FILTERKEYS = tagFILTERKEYS
+LPFILTERKEYS = POINTER(tagFILTERKEYS)
 class tagSTICKYKEYS(Structure):
     pass
 tagSTICKYKEYS._fields_ = [
     ('cbSize', UINT),
     ('dwFlags', DWORD),
 ]
-STICKYKEYS = tagSTICKYKEYS
 LPSTICKYKEYS = POINTER(tagSTICKYKEYS)
+STICKYKEYS = tagSTICKYKEYS
 class tagMOUSEKEYS(Structure):
     pass
 tagMOUSEKEYS._fields_ = [
@@ -6197,8 +6196,8 @@ tagMOUSEKEYS._fields_ = [
     ('dwReserved1', DWORD),
     ('dwReserved2', DWORD),
 ]
-MOUSEKEYS = tagMOUSEKEYS
 LPMOUSEKEYS = POINTER(tagMOUSEKEYS)
+MOUSEKEYS = tagMOUSEKEYS
 class tagACCESSTIMEOUT(Structure):
     pass
 tagACCESSTIMEOUT._fields_ = [
@@ -6224,8 +6223,8 @@ tagSOUNDSENTRYA._fields_ = [
     ('lpszWindowsEffectDLL', LPSTR),
     ('iWindowsEffectOrdinal', DWORD),
 ]
-LPSOUNDSENTRYA = POINTER(tagSOUNDSENTRYA)
 SOUNDSENTRYA = tagSOUNDSENTRYA
+LPSOUNDSENTRYA = POINTER(tagSOUNDSENTRYA)
 class tagSOUNDSENTRYW(Structure):
     pass
 tagSOUNDSENTRYW._fields_ = [
@@ -6242,8 +6241,8 @@ tagSOUNDSENTRYW._fields_ = [
     ('lpszWindowsEffectDLL', LPWSTR),
     ('iWindowsEffectOrdinal', DWORD),
 ]
-SOUNDSENTRYW = tagSOUNDSENTRYW
 LPSOUNDSENTRYW = POINTER(tagSOUNDSENTRYW)
+SOUNDSENTRYW = tagSOUNDSENTRYW
 SOUNDSENTRY = SOUNDSENTRYA
 LPSOUNDSENTRY = LPSOUNDSENTRYA
 class tagTOGGLEKEYS(Structure):
@@ -6252,8 +6251,8 @@ tagTOGGLEKEYS._fields_ = [
     ('cbSize', UINT),
     ('dwFlags', DWORD),
 ]
-LPTOGGLEKEYS = POINTER(tagTOGGLEKEYS)
 TOGGLEKEYS = tagTOGGLEKEYS
+LPTOGGLEKEYS = POINTER(tagTOGGLEKEYS)
 class tagMONITORINFO(Structure):
     pass
 tagMONITORINFO._fields_ = [
@@ -6276,8 +6275,8 @@ class tagMONITORINFOEXW(tagMONITORINFO):
 tagMONITORINFOEXW._fields_ = [
     ('szDevice', WCHAR * 32),
 ]
-MONITORINFOEXW = tagMONITORINFOEXW
 LPMONITORINFOEXW = POINTER(tagMONITORINFOEXW)
+MONITORINFOEXW = tagMONITORINFOEXW
 MONITORINFOEX = MONITORINFOEXA
 LPMONITORINFOEX = LPMONITORINFOEXA
 MONITORENUMPROC = WINFUNCTYPE(BOOL, POINTER(HMONITOR__), POINTER(HDC__), POINTER(tagRECT), c_long)
@@ -6306,9 +6305,9 @@ tagCURSORINFO._fields_ = [
     ('hCursor', HCURSOR),
     ('ptScreenPos', POINT),
 ]
+LPCURSORINFO = POINTER(tagCURSORINFO)
 PCURSORINFO = POINTER(tagCURSORINFO)
 CURSORINFO = tagCURSORINFO
-LPCURSORINFO = POINTER(tagCURSORINFO)
 class tagWINDOWINFO(Structure):
     pass
 tagWINDOWINFO._fields_ = [
@@ -6323,9 +6322,9 @@ tagWINDOWINFO._fields_ = [
     ('atomWindowType', ATOM),
     ('wCreatorVersion', WORD),
 ]
-LPWINDOWINFO = POINTER(tagWINDOWINFO)
-PWINDOWINFO = POINTER(tagWINDOWINFO)
 WINDOWINFO = tagWINDOWINFO
+PWINDOWINFO = POINTER(tagWINDOWINFO)
+LPWINDOWINFO = POINTER(tagWINDOWINFO)
 class tagTITLEBARINFO(Structure):
     pass
 tagTITLEBARINFO._fields_ = [
@@ -6346,9 +6345,9 @@ tagMENUBARINFO._fields_ = [
     ('fBarFocused', BOOL, 1),
     ('fFocused', BOOL, 1),
 ]
-MENUBARINFO = tagMENUBARINFO
-PMENUBARINFO = POINTER(tagMENUBARINFO)
 LPMENUBARINFO = POINTER(tagMENUBARINFO)
+PMENUBARINFO = POINTER(tagMENUBARINFO)
+MENUBARINFO = tagMENUBARINFO
 class tagSCROLLBARINFO(Structure):
     pass
 tagSCROLLBARINFO._fields_ = [
@@ -6361,8 +6360,8 @@ tagSCROLLBARINFO._fields_ = [
     ('rgstate', DWORD * 6),
 ]
 PSCROLLBARINFO = POINTER(tagSCROLLBARINFO)
-SCROLLBARINFO = tagSCROLLBARINFO
 LPSCROLLBARINFO = POINTER(tagSCROLLBARINFO)
+SCROLLBARINFO = tagSCROLLBARINFO
 class tagCOMBOBOXINFO(Structure):
     pass
 tagCOMBOBOXINFO._fields_ = [
@@ -6374,9 +6373,9 @@ tagCOMBOBOXINFO._fields_ = [
     ('hwndItem', HWND),
     ('hwndList', HWND),
 ]
+LPCOMBOBOXINFO = POINTER(tagCOMBOBOXINFO)
 PCOMBOBOXINFO = POINTER(tagCOMBOBOXINFO)
 COMBOBOXINFO = tagCOMBOBOXINFO
-LPCOMBOBOXINFO = POINTER(tagCOMBOBOXINFO)
 class tagALTTABINFO(Structure):
     pass
 tagALTTABINFO._fields_ = [
@@ -6390,9 +6389,9 @@ tagALTTABINFO._fields_ = [
     ('cyItem', c_int),
     ('ptStart', POINT),
 ]
-LPALTTABINFO = POINTER(tagALTTABINFO)
-PALTTABINFO = POINTER(tagALTTABINFO)
 ALTTABINFO = tagALTTABINFO
+PALTTABINFO = POINTER(tagALTTABINFO)
+LPALTTABINFO = POINTER(tagALTTABINFO)
 class tagVS_FIXEDFILEINFO(Structure):
     pass
 tagVS_FIXEDFILEINFO._fields_ = [
@@ -6411,2567 +6410,6 @@ tagVS_FIXEDFILEINFO._fields_ = [
     ('dwFileDateLS', DWORD),
 ]
 VS_FIXEDFILEINFO = tagVS_FIXEDFILEINFO
-POINTER_64_INT = c_ulong
-PVOID64 = c_void_p
-PWCHAR = WSTRING
-LPWCH = WSTRING
-PWCH = WSTRING
-LPCWCH = WSTRING
-PCWCH = WSTRING
-NWPSTR = WSTRING
-PWSTR = WSTRING
-PUWSTR = WSTRING
-LPUWSTR = WSTRING
-PCWSTR = WSTRING
-PCUWSTR = WSTRING
-LPCUWSTR = WSTRING
-PCHAR = STRING
-LPCH = STRING
-PCH = STRING
-LPCCH = STRING
-PCCH = STRING
-NPSTR = STRING
-PCSTR = STRING
-PTCHAR = STRING
-TCHAR = c_char
-PTBYTE = POINTER(c_ubyte)
-TBYTE = c_ubyte
-LPTCH = LPSTR
-PTCH = LPSTR
-LPUTSTR = LPSTR
-LPTSTR = LPSTR
-PTSTR = LPSTR
-PUTSTR = LPSTR
-PCTSTR = LPCSTR
-LPCUTSTR = LPCSTR
-PCUTSTR = LPCSTR
-LPCTSTR = LPCSTR
-PSHORT = POINTER(SHORT)
-PLONG = POINTER(LONG)
-PHANDLE = POINTER(HANDLE)
-FCHAR = BYTE
-FSHORT = WORD
-FLONG = DWORD
-CCHAR = c_char
-PLCID = PDWORD
-class _FLOAT128(Structure):
-    pass
-_FLOAT128._fields_ = [
-    ('LowPart', c_longlong),
-    ('HighPart', c_longlong),
-]
-FLOAT128 = _FLOAT128
-PFLOAT128 = POINTER(FLOAT128)
-LONGLONG = c_longlong
-PLONGLONG = POINTER(LONGLONG)
-PULONGLONG = POINTER(ULONGLONG)
-USN = LONGLONG
-class N14_LARGE_INTEGER3DOLLAR_0E(Structure):
-    pass
-N14_LARGE_INTEGER3DOLLAR_0E._fields_ = [
-    ('LowPart', DWORD),
-    ('HighPart', LONG),
-]
-class N14_LARGE_INTEGER3DOLLAR_1E(Structure):
-    pass
-N14_LARGE_INTEGER3DOLLAR_1E._fields_ = [
-    ('LowPart', DWORD),
-    ('HighPart', LONG),
-]
-PLARGE_INTEGER = POINTER(LARGE_INTEGER)
-class N15_ULARGE_INTEGER3DOLLAR_2E(Structure):
-    pass
-N15_ULARGE_INTEGER3DOLLAR_2E._fields_ = [
-    ('LowPart', DWORD),
-    ('HighPart', DWORD),
-]
-class N15_ULARGE_INTEGER3DOLLAR_3E(Structure):
-    pass
-N15_ULARGE_INTEGER3DOLLAR_3E._fields_ = [
-    ('LowPart', DWORD),
-    ('HighPart', DWORD),
-]
-PULARGE_INTEGER = POINTER(ULARGE_INTEGER)
-class _LUID(Structure):
-    pass
-_LUID._fields_ = [
-    ('LowPart', DWORD),
-    ('HighPart', LONG),
-]
-PLUID = POINTER(_LUID)
-LUID = _LUID
-PDWORDLONG = POINTER(DWORDLONG)
-PBOOLEAN = POINTER(BOOLEAN)
-class _LIST_ENTRY(Structure):
-    pass
-_LIST_ENTRY._fields_ = [
-    ('Flink', POINTER(_LIST_ENTRY)),
-    ('Blink', POINTER(_LIST_ENTRY)),
-]
-PRLIST_ENTRY = POINTER(_LIST_ENTRY)
-PLIST_ENTRY = POINTER(_LIST_ENTRY)
-LIST_ENTRY = _LIST_ENTRY
-class _SINGLE_LIST_ENTRY(Structure):
-    pass
-_SINGLE_LIST_ENTRY._fields_ = [
-    ('Next', POINTER(_SINGLE_LIST_ENTRY)),
-]
-PSINGLE_LIST_ENTRY = POINTER(_SINGLE_LIST_ENTRY)
-SINGLE_LIST_ENTRY = _SINGLE_LIST_ENTRY
-class LIST_ENTRY32(Structure):
-    pass
-LIST_ENTRY32._fields_ = [
-    ('Flink', DWORD),
-    ('Blink', DWORD),
-]
-PLIST_ENTRY32 = POINTER(LIST_ENTRY32)
-class LIST_ENTRY64(Structure):
-    pass
-LIST_ENTRY64._fields_ = [
-    ('Flink', ULONGLONG),
-    ('Blink', ULONGLONG),
-]
-PLIST_ENTRY64 = POINTER(LIST_ENTRY64)
-class _OBJECTID(Structure):
-    pass
-_OBJECTID._fields_ = [
-    ('Lineage', GUID),
-    ('Uniquifier', DWORD),
-]
-OBJECTID = _OBJECTID
-KSPIN_LOCK = ULONG_PTR
-PKSPIN_LOCK = POINTER(KSPIN_LOCK)
-class _TEB(Structure):
-    pass
-_TEB._fields_ = [
-]
-class _FLOATING_SAVE_AREA(Structure):
-    pass
-_FLOATING_SAVE_AREA._fields_ = [
-    ('ControlWord', DWORD),
-    ('StatusWord', DWORD),
-    ('TagWord', DWORD),
-    ('ErrorOffset', DWORD),
-    ('ErrorSelector', DWORD),
-    ('DataOffset', DWORD),
-    ('DataSelector', DWORD),
-    ('RegisterArea', BYTE * 80),
-    ('Cr0NpxState', DWORD),
-]
-FLOATING_SAVE_AREA = _FLOATING_SAVE_AREA
-PFLOATING_SAVE_AREA = POINTER(FLOATING_SAVE_AREA)
-_CONTEXT._fields_ = [
-    ('ContextFlags', DWORD),
-    ('Dr0', DWORD),
-    ('Dr1', DWORD),
-    ('Dr2', DWORD),
-    ('Dr3', DWORD),
-    ('Dr6', DWORD),
-    ('Dr7', DWORD),
-    ('FloatSave', FLOATING_SAVE_AREA),
-    ('SegGs', DWORD),
-    ('SegFs', DWORD),
-    ('SegEs', DWORD),
-    ('SegDs', DWORD),
-    ('Edi', DWORD),
-    ('Esi', DWORD),
-    ('Ebx', DWORD),
-    ('Edx', DWORD),
-    ('Ecx', DWORD),
-    ('Eax', DWORD),
-    ('Ebp', DWORD),
-    ('Eip', DWORD),
-    ('SegCs', DWORD),
-    ('EFlags', DWORD),
-    ('Esp', DWORD),
-    ('SegSs', DWORD),
-    ('ExtendedRegisters', BYTE * 512),
-]
-class N10_LDT_ENTRY3DOLLAR_4E(Union):
-    pass
-class N10_LDT_ENTRY3DOLLAR_43DOLLAR_5E(Structure):
-    pass
-N10_LDT_ENTRY3DOLLAR_43DOLLAR_5E._fields_ = [
-    ('BaseMid', BYTE),
-    ('Flags1', BYTE),
-    ('Flags2', BYTE),
-    ('BaseHi', BYTE),
-]
-class N10_LDT_ENTRY3DOLLAR_43DOLLAR_6E(Structure):
-    pass
-N10_LDT_ENTRY3DOLLAR_43DOLLAR_6E._fields_ = [
-    ('BaseMid', DWORD, 8),
-    ('Type', DWORD, 5),
-    ('Dpl', DWORD, 2),
-    ('Pres', DWORD, 1),
-    ('LimitHi', DWORD, 4),
-    ('Sys', DWORD, 1),
-    ('Reserved_0', DWORD, 1),
-    ('Default_Big', DWORD, 1),
-    ('Granularity', DWORD, 1),
-    ('BaseHi', DWORD, 8),
-]
-N10_LDT_ENTRY3DOLLAR_4E._fields_ = [
-    ('Bytes', N10_LDT_ENTRY3DOLLAR_43DOLLAR_5E),
-    ('Bits', N10_LDT_ENTRY3DOLLAR_43DOLLAR_6E),
-]
-_LDT_ENTRY._fields_ = [
-    ('LimitLow', WORD),
-    ('BaseLow', WORD),
-    ('HighWord', N10_LDT_ENTRY3DOLLAR_4E),
-]
-LDT_ENTRY = _LDT_ENTRY
-class _EXCEPTION_RECORD32(Structure):
-    pass
-_EXCEPTION_RECORD32._fields_ = [
-    ('ExceptionCode', DWORD),
-    ('ExceptionFlags', DWORD),
-    ('ExceptionRecord', DWORD),
-    ('ExceptionAddress', DWORD),
-    ('NumberParameters', DWORD),
-    ('ExceptionInformation', DWORD * 15),
-]
-PEXCEPTION_RECORD32 = POINTER(_EXCEPTION_RECORD32)
-EXCEPTION_RECORD32 = _EXCEPTION_RECORD32
-class _EXCEPTION_RECORD64(Structure):
-    pass
-_EXCEPTION_RECORD64._fields_ = [
-    ('ExceptionCode', DWORD),
-    ('ExceptionFlags', DWORD),
-    ('ExceptionRecord', DWORD64),
-    ('ExceptionAddress', DWORD64),
-    ('NumberParameters', DWORD),
-    ('__unusedAlignment', DWORD),
-    ('ExceptionInformation', DWORD64 * 15),
-]
-EXCEPTION_RECORD64 = _EXCEPTION_RECORD64
-PEXCEPTION_RECORD64 = POINTER(_EXCEPTION_RECORD64)
-_EXCEPTION_POINTERS._fields_ = [
-    ('ExceptionRecord', PEXCEPTION_RECORD),
-    ('ContextRecord', PCONTEXT),
-]
-EXCEPTION_POINTERS = _EXCEPTION_POINTERS
-PACCESS_TOKEN = PVOID
-PSECURITY_DESCRIPTOR = PVOID
-PSID = PVOID
-PACCESS_MASK = POINTER(ACCESS_MASK)
-class _GENERIC_MAPPING(Structure):
-    pass
-_GENERIC_MAPPING._fields_ = [
-    ('GenericRead', ACCESS_MASK),
-    ('GenericWrite', ACCESS_MASK),
-    ('GenericExecute', ACCESS_MASK),
-    ('GenericAll', ACCESS_MASK),
-]
-GENERIC_MAPPING = _GENERIC_MAPPING
-PGENERIC_MAPPING = POINTER(GENERIC_MAPPING)
-class _LUID_AND_ATTRIBUTES(Structure):
-    pass
-_LUID_AND_ATTRIBUTES._fields_ = [
-    ('Luid', LUID),
-    ('Attributes', DWORD),
-]
-PLUID_AND_ATTRIBUTES = POINTER(_LUID_AND_ATTRIBUTES)
-LUID_AND_ATTRIBUTES = _LUID_AND_ATTRIBUTES
-LUID_AND_ATTRIBUTES_ARRAY = LUID_AND_ATTRIBUTES * 1
-PLUID_AND_ATTRIBUTES_ARRAY = POINTER(LUID_AND_ATTRIBUTES_ARRAY)
-class _SID_IDENTIFIER_AUTHORITY(Structure):
-    pass
-_SID_IDENTIFIER_AUTHORITY._fields_ = [
-    ('Value', BYTE * 6),
-]
-PSID_IDENTIFIER_AUTHORITY = POINTER(_SID_IDENTIFIER_AUTHORITY)
-SID_IDENTIFIER_AUTHORITY = _SID_IDENTIFIER_AUTHORITY
-class _SID(Structure):
-    pass
-_SID._fields_ = [
-    ('Revision', BYTE),
-    ('SubAuthorityCount', BYTE),
-    ('IdentifierAuthority', SID_IDENTIFIER_AUTHORITY),
-    ('SubAuthority', DWORD * 1),
-]
-SID = _SID
-PISID = POINTER(_SID)
-
-# values for enumeration '_SID_NAME_USE'
-_SID_NAME_USE = c_int # enum
-PSID_NAME_USE = POINTER(_SID_NAME_USE)
-SID_NAME_USE = _SID_NAME_USE
-class _SID_AND_ATTRIBUTES(Structure):
-    pass
-_SID_AND_ATTRIBUTES._fields_ = [
-    ('Sid', PSID),
-    ('Attributes', DWORD),
-]
-SID_AND_ATTRIBUTES = _SID_AND_ATTRIBUTES
-PSID_AND_ATTRIBUTES = POINTER(_SID_AND_ATTRIBUTES)
-SID_AND_ATTRIBUTES_ARRAY = SID_AND_ATTRIBUTES * 1
-PSID_AND_ATTRIBUTES_ARRAY = POINTER(SID_AND_ATTRIBUTES_ARRAY)
-
-# values for enumeration 'WELL_KNOWN_SID_TYPE'
-WELL_KNOWN_SID_TYPE = c_int # enum
-class _ACL(Structure):
-    pass
-_ACL._fields_ = [
-    ('AclRevision', BYTE),
-    ('Sbz1', BYTE),
-    ('AclSize', WORD),
-    ('AceCount', WORD),
-    ('Sbz2', WORD),
-]
-ACL = _ACL
-PACL = POINTER(ACL)
-class _ACE_HEADER(Structure):
-    pass
-_ACE_HEADER._fields_ = [
-    ('AceType', BYTE),
-    ('AceFlags', BYTE),
-    ('AceSize', WORD),
-]
-ACE_HEADER = _ACE_HEADER
-PACE_HEADER = POINTER(ACE_HEADER)
-class _ACCESS_ALLOWED_ACE(Structure):
-    pass
-_ACCESS_ALLOWED_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('SidStart', DWORD),
-]
-ACCESS_ALLOWED_ACE = _ACCESS_ALLOWED_ACE
-PACCESS_ALLOWED_ACE = POINTER(ACCESS_ALLOWED_ACE)
-class _ACCESS_DENIED_ACE(Structure):
-    pass
-_ACCESS_DENIED_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('SidStart', DWORD),
-]
-ACCESS_DENIED_ACE = _ACCESS_DENIED_ACE
-PACCESS_DENIED_ACE = POINTER(ACCESS_DENIED_ACE)
-class _SYSTEM_AUDIT_ACE(Structure):
-    pass
-_SYSTEM_AUDIT_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('SidStart', DWORD),
-]
-SYSTEM_AUDIT_ACE = _SYSTEM_AUDIT_ACE
-PSYSTEM_AUDIT_ACE = POINTER(SYSTEM_AUDIT_ACE)
-class _SYSTEM_ALARM_ACE(Structure):
-    pass
-_SYSTEM_ALARM_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('SidStart', DWORD),
-]
-SYSTEM_ALARM_ACE = _SYSTEM_ALARM_ACE
-PSYSTEM_ALARM_ACE = POINTER(SYSTEM_ALARM_ACE)
-class _ACCESS_ALLOWED_OBJECT_ACE(Structure):
-    pass
-_ACCESS_ALLOWED_OBJECT_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('Flags', DWORD),
-    ('ObjectType', GUID),
-    ('InheritedObjectType', GUID),
-    ('SidStart', DWORD),
-]
-PACCESS_ALLOWED_OBJECT_ACE = POINTER(_ACCESS_ALLOWED_OBJECT_ACE)
-ACCESS_ALLOWED_OBJECT_ACE = _ACCESS_ALLOWED_OBJECT_ACE
-class _ACCESS_DENIED_OBJECT_ACE(Structure):
-    pass
-_ACCESS_DENIED_OBJECT_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('Flags', DWORD),
-    ('ObjectType', GUID),
-    ('InheritedObjectType', GUID),
-    ('SidStart', DWORD),
-]
-PACCESS_DENIED_OBJECT_ACE = POINTER(_ACCESS_DENIED_OBJECT_ACE)
-ACCESS_DENIED_OBJECT_ACE = _ACCESS_DENIED_OBJECT_ACE
-class _SYSTEM_AUDIT_OBJECT_ACE(Structure):
-    pass
-_SYSTEM_AUDIT_OBJECT_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('Flags', DWORD),
-    ('ObjectType', GUID),
-    ('InheritedObjectType', GUID),
-    ('SidStart', DWORD),
-]
-SYSTEM_AUDIT_OBJECT_ACE = _SYSTEM_AUDIT_OBJECT_ACE
-PSYSTEM_AUDIT_OBJECT_ACE = POINTER(_SYSTEM_AUDIT_OBJECT_ACE)
-class _SYSTEM_ALARM_OBJECT_ACE(Structure):
-    pass
-_SYSTEM_ALARM_OBJECT_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('Flags', DWORD),
-    ('ObjectType', GUID),
-    ('InheritedObjectType', GUID),
-    ('SidStart', DWORD),
-]
-PSYSTEM_ALARM_OBJECT_ACE = POINTER(_SYSTEM_ALARM_OBJECT_ACE)
-SYSTEM_ALARM_OBJECT_ACE = _SYSTEM_ALARM_OBJECT_ACE
-class _ACCESS_ALLOWED_CALLBACK_ACE(Structure):
-    pass
-_ACCESS_ALLOWED_CALLBACK_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('SidStart', DWORD),
-]
-PACCESS_ALLOWED_CALLBACK_ACE = POINTER(_ACCESS_ALLOWED_CALLBACK_ACE)
-ACCESS_ALLOWED_CALLBACK_ACE = _ACCESS_ALLOWED_CALLBACK_ACE
-class _ACCESS_DENIED_CALLBACK_ACE(Structure):
-    pass
-_ACCESS_DENIED_CALLBACK_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('SidStart', DWORD),
-]
-ACCESS_DENIED_CALLBACK_ACE = _ACCESS_DENIED_CALLBACK_ACE
-PACCESS_DENIED_CALLBACK_ACE = POINTER(_ACCESS_DENIED_CALLBACK_ACE)
-class _SYSTEM_AUDIT_CALLBACK_ACE(Structure):
-    pass
-_SYSTEM_AUDIT_CALLBACK_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('SidStart', DWORD),
-]
-PSYSTEM_AUDIT_CALLBACK_ACE = POINTER(_SYSTEM_AUDIT_CALLBACK_ACE)
-SYSTEM_AUDIT_CALLBACK_ACE = _SYSTEM_AUDIT_CALLBACK_ACE
-class _SYSTEM_ALARM_CALLBACK_ACE(Structure):
-    pass
-_SYSTEM_ALARM_CALLBACK_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('SidStart', DWORD),
-]
-PSYSTEM_ALARM_CALLBACK_ACE = POINTER(_SYSTEM_ALARM_CALLBACK_ACE)
-SYSTEM_ALARM_CALLBACK_ACE = _SYSTEM_ALARM_CALLBACK_ACE
-class _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE(Structure):
-    pass
-_ACCESS_ALLOWED_CALLBACK_OBJECT_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('Flags', DWORD),
-    ('ObjectType', GUID),
-    ('InheritedObjectType', GUID),
-    ('SidStart', DWORD),
-]
-ACCESS_ALLOWED_CALLBACK_OBJECT_ACE = _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE
-PACCESS_ALLOWED_CALLBACK_OBJECT_ACE = POINTER(_ACCESS_ALLOWED_CALLBACK_OBJECT_ACE)
-class _ACCESS_DENIED_CALLBACK_OBJECT_ACE(Structure):
-    pass
-_ACCESS_DENIED_CALLBACK_OBJECT_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('Flags', DWORD),
-    ('ObjectType', GUID),
-    ('InheritedObjectType', GUID),
-    ('SidStart', DWORD),
-]
-PACCESS_DENIED_CALLBACK_OBJECT_ACE = POINTER(_ACCESS_DENIED_CALLBACK_OBJECT_ACE)
-ACCESS_DENIED_CALLBACK_OBJECT_ACE = _ACCESS_DENIED_CALLBACK_OBJECT_ACE
-class _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE(Structure):
-    pass
-_SYSTEM_AUDIT_CALLBACK_OBJECT_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('Flags', DWORD),
-    ('ObjectType', GUID),
-    ('InheritedObjectType', GUID),
-    ('SidStart', DWORD),
-]
-PSYSTEM_AUDIT_CALLBACK_OBJECT_ACE = POINTER(_SYSTEM_AUDIT_CALLBACK_OBJECT_ACE)
-SYSTEM_AUDIT_CALLBACK_OBJECT_ACE = _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE
-class _SYSTEM_ALARM_CALLBACK_OBJECT_ACE(Structure):
-    pass
-_SYSTEM_ALARM_CALLBACK_OBJECT_ACE._fields_ = [
-    ('Header', ACE_HEADER),
-    ('Mask', ACCESS_MASK),
-    ('Flags', DWORD),
-    ('ObjectType', GUID),
-    ('InheritedObjectType', GUID),
-    ('SidStart', DWORD),
-]
-SYSTEM_ALARM_CALLBACK_OBJECT_ACE = _SYSTEM_ALARM_CALLBACK_OBJECT_ACE
-PSYSTEM_ALARM_CALLBACK_OBJECT_ACE = POINTER(_SYSTEM_ALARM_CALLBACK_OBJECT_ACE)
-
-# values for enumeration '_ACL_INFORMATION_CLASS'
-_ACL_INFORMATION_CLASS = c_int # enum
-ACL_INFORMATION_CLASS = _ACL_INFORMATION_CLASS
-class _ACL_REVISION_INFORMATION(Structure):
-    pass
-_ACL_REVISION_INFORMATION._fields_ = [
-    ('AclRevision', DWORD),
-]
-ACL_REVISION_INFORMATION = _ACL_REVISION_INFORMATION
-PACL_REVISION_INFORMATION = POINTER(ACL_REVISION_INFORMATION)
-class _ACL_SIZE_INFORMATION(Structure):
-    pass
-_ACL_SIZE_INFORMATION._fields_ = [
-    ('AceCount', DWORD),
-    ('AclBytesInUse', DWORD),
-    ('AclBytesFree', DWORD),
-]
-ACL_SIZE_INFORMATION = _ACL_SIZE_INFORMATION
-PACL_SIZE_INFORMATION = POINTER(ACL_SIZE_INFORMATION)
-SECURITY_DESCRIPTOR_CONTROL = WORD
-PSECURITY_DESCRIPTOR_CONTROL = POINTER(WORD)
-class _SECURITY_DESCRIPTOR_RELATIVE(Structure):
-    pass
-_SECURITY_DESCRIPTOR_RELATIVE._fields_ = [
-    ('Revision', BYTE),
-    ('Sbz1', BYTE),
-    ('Control', SECURITY_DESCRIPTOR_CONTROL),
-    ('Owner', DWORD),
-    ('Group', DWORD),
-    ('Sacl', DWORD),
-    ('Dacl', DWORD),
-]
-SECURITY_DESCRIPTOR_RELATIVE = _SECURITY_DESCRIPTOR_RELATIVE
-PISECURITY_DESCRIPTOR_RELATIVE = POINTER(_SECURITY_DESCRIPTOR_RELATIVE)
-class _SECURITY_DESCRIPTOR(Structure):
-    pass
-_SECURITY_DESCRIPTOR._fields_ = [
-    ('Revision', BYTE),
-    ('Sbz1', BYTE),
-    ('Control', SECURITY_DESCRIPTOR_CONTROL),
-    ('Owner', PSID),
-    ('Group', PSID),
-    ('Sacl', PACL),
-    ('Dacl', PACL),
-]
-PISECURITY_DESCRIPTOR = POINTER(_SECURITY_DESCRIPTOR)
-SECURITY_DESCRIPTOR = _SECURITY_DESCRIPTOR
-class _OBJECT_TYPE_LIST(Structure):
-    pass
-_OBJECT_TYPE_LIST._fields_ = [
-    ('Level', WORD),
-    ('Sbz', WORD),
-    ('ObjectType', POINTER(GUID)),
-]
-POBJECT_TYPE_LIST = POINTER(_OBJECT_TYPE_LIST)
-OBJECT_TYPE_LIST = _OBJECT_TYPE_LIST
-
-# values for enumeration '_AUDIT_EVENT_TYPE'
-_AUDIT_EVENT_TYPE = c_int # enum
-PAUDIT_EVENT_TYPE = POINTER(_AUDIT_EVENT_TYPE)
-AUDIT_EVENT_TYPE = _AUDIT_EVENT_TYPE
-class _PRIVILEGE_SET(Structure):
-    pass
-_PRIVILEGE_SET._fields_ = [
-    ('PrivilegeCount', DWORD),
-    ('Control', DWORD),
-    ('Privilege', LUID_AND_ATTRIBUTES * 1),
-]
-PRIVILEGE_SET = _PRIVILEGE_SET
-PPRIVILEGE_SET = POINTER(_PRIVILEGE_SET)
-
-# values for enumeration '_SECURITY_IMPERSONATION_LEVEL'
-_SECURITY_IMPERSONATION_LEVEL = c_int # enum
-SECURITY_IMPERSONATION_LEVEL = _SECURITY_IMPERSONATION_LEVEL
-PSECURITY_IMPERSONATION_LEVEL = POINTER(_SECURITY_IMPERSONATION_LEVEL)
-
-# values for enumeration '_TOKEN_TYPE'
-_TOKEN_TYPE = c_int # enum
-TOKEN_TYPE = _TOKEN_TYPE
-PTOKEN_TYPE = POINTER(TOKEN_TYPE)
-
-# values for enumeration '_TOKEN_INFORMATION_CLASS'
-_TOKEN_INFORMATION_CLASS = c_int # enum
-TOKEN_INFORMATION_CLASS = _TOKEN_INFORMATION_CLASS
-PTOKEN_INFORMATION_CLASS = POINTER(_TOKEN_INFORMATION_CLASS)
-class _TOKEN_USER(Structure):
-    pass
-_TOKEN_USER._fields_ = [
-    ('User', SID_AND_ATTRIBUTES),
-]
-PTOKEN_USER = POINTER(_TOKEN_USER)
-TOKEN_USER = _TOKEN_USER
-class _TOKEN_GROUPS(Structure):
-    pass
-_TOKEN_GROUPS._fields_ = [
-    ('GroupCount', DWORD),
-    ('Groups', SID_AND_ATTRIBUTES * 1),
-]
-TOKEN_GROUPS = _TOKEN_GROUPS
-PTOKEN_GROUPS = POINTER(_TOKEN_GROUPS)
-class _TOKEN_PRIVILEGES(Structure):
-    pass
-_TOKEN_PRIVILEGES._fields_ = [
-    ('PrivilegeCount', DWORD),
-    ('Privileges', LUID_AND_ATTRIBUTES * 1),
-]
-TOKEN_PRIVILEGES = _TOKEN_PRIVILEGES
-PTOKEN_PRIVILEGES = POINTER(_TOKEN_PRIVILEGES)
-class _TOKEN_OWNER(Structure):
-    pass
-_TOKEN_OWNER._fields_ = [
-    ('Owner', PSID),
-]
-PTOKEN_OWNER = POINTER(_TOKEN_OWNER)
-TOKEN_OWNER = _TOKEN_OWNER
-class _TOKEN_PRIMARY_GROUP(Structure):
-    pass
-_TOKEN_PRIMARY_GROUP._fields_ = [
-    ('PrimaryGroup', PSID),
-]
-TOKEN_PRIMARY_GROUP = _TOKEN_PRIMARY_GROUP
-PTOKEN_PRIMARY_GROUP = POINTER(_TOKEN_PRIMARY_GROUP)
-class _TOKEN_DEFAULT_DACL(Structure):
-    pass
-_TOKEN_DEFAULT_DACL._fields_ = [
-    ('DefaultDacl', PACL),
-]
-PTOKEN_DEFAULT_DACL = POINTER(_TOKEN_DEFAULT_DACL)
-TOKEN_DEFAULT_DACL = _TOKEN_DEFAULT_DACL
-class _TOKEN_GROUPS_AND_PRIVILEGES(Structure):
-    pass
-_TOKEN_GROUPS_AND_PRIVILEGES._fields_ = [
-    ('SidCount', DWORD),
-    ('SidLength', DWORD),
-    ('Sids', PSID_AND_ATTRIBUTES),
-    ('RestrictedSidCount', DWORD),
-    ('RestrictedSidLength', DWORD),
-    ('RestrictedSids', PSID_AND_ATTRIBUTES),
-    ('PrivilegeCount', DWORD),
-    ('PrivilegeLength', DWORD),
-    ('Privileges', PLUID_AND_ATTRIBUTES),
-    ('AuthenticationId', LUID),
-]
-PTOKEN_GROUPS_AND_PRIVILEGES = POINTER(_TOKEN_GROUPS_AND_PRIVILEGES)
-TOKEN_GROUPS_AND_PRIVILEGES = _TOKEN_GROUPS_AND_PRIVILEGES
-class _TOKEN_AUDIT_POLICY_ELEMENT(Structure):
-    pass
-_TOKEN_AUDIT_POLICY_ELEMENT._fields_ = [
-    ('Category', DWORD),
-    ('PolicyMask', DWORD),
-]
-TOKEN_AUDIT_POLICY_ELEMENT = _TOKEN_AUDIT_POLICY_ELEMENT
-PTOKEN_AUDIT_POLICY_ELEMENT = POINTER(_TOKEN_AUDIT_POLICY_ELEMENT)
-class _TOKEN_AUDIT_POLICY(Structure):
-    pass
-_TOKEN_AUDIT_POLICY._fields_ = [
-    ('PolicyCount', DWORD),
-    ('Policy', TOKEN_AUDIT_POLICY_ELEMENT * 1),
-]
-TOKEN_AUDIT_POLICY = _TOKEN_AUDIT_POLICY
-PTOKEN_AUDIT_POLICY = POINTER(_TOKEN_AUDIT_POLICY)
-class _TOKEN_SOURCE(Structure):
-    pass
-_TOKEN_SOURCE._fields_ = [
-    ('SourceName', CHAR * 8),
-    ('SourceIdentifier', LUID),
-]
-TOKEN_SOURCE = _TOKEN_SOURCE
-PTOKEN_SOURCE = POINTER(_TOKEN_SOURCE)
-class _TOKEN_STATISTICS(Structure):
-    pass
-_TOKEN_STATISTICS._fields_ = [
-    ('TokenId', LUID),
-    ('AuthenticationId', LUID),
-    ('ExpirationTime', LARGE_INTEGER),
-    ('TokenType', TOKEN_TYPE),
-    ('ImpersonationLevel', SECURITY_IMPERSONATION_LEVEL),
-    ('DynamicCharged', DWORD),
-    ('DynamicAvailable', DWORD),
-    ('GroupCount', DWORD),
-    ('PrivilegeCount', DWORD),
-    ('ModifiedId', LUID),
-]
-PTOKEN_STATISTICS = POINTER(_TOKEN_STATISTICS)
-TOKEN_STATISTICS = _TOKEN_STATISTICS
-class _TOKEN_CONTROL(Structure):
-    pass
-_TOKEN_CONTROL._fields_ = [
-    ('TokenId', LUID),
-    ('AuthenticationId', LUID),
-    ('ModifiedId', LUID),
-    ('TokenSource', TOKEN_SOURCE),
-]
-PTOKEN_CONTROL = POINTER(_TOKEN_CONTROL)
-TOKEN_CONTROL = _TOKEN_CONTROL
-SECURITY_CONTEXT_TRACKING_MODE = BOOLEAN
-PSECURITY_CONTEXT_TRACKING_MODE = POINTER(BOOLEAN)
-class _SECURITY_QUALITY_OF_SERVICE(Structure):
-    pass
-_SECURITY_QUALITY_OF_SERVICE._fields_ = [
-    ('Length', DWORD),
-    ('ImpersonationLevel', SECURITY_IMPERSONATION_LEVEL),
-    ('ContextTrackingMode', SECURITY_CONTEXT_TRACKING_MODE),
-    ('EffectiveOnly', BOOLEAN),
-]
-PSECURITY_QUALITY_OF_SERVICE = POINTER(_SECURITY_QUALITY_OF_SERVICE)
-SECURITY_QUALITY_OF_SERVICE = _SECURITY_QUALITY_OF_SERVICE
-class _SE_IMPERSONATION_STATE(Structure):
-    pass
-_SE_IMPERSONATION_STATE._fields_ = [
-    ('Token', PACCESS_TOKEN),
-    ('CopyOnOpen', BOOLEAN),
-    ('EffectiveOnly', BOOLEAN),
-    ('Level', SECURITY_IMPERSONATION_LEVEL),
-]
-PSE_IMPERSONATION_STATE = POINTER(_SE_IMPERSONATION_STATE)
-SE_IMPERSONATION_STATE = _SE_IMPERSONATION_STATE
-SECURITY_INFORMATION = DWORD
-PSECURITY_INFORMATION = POINTER(DWORD)
-class _JOB_SET_ARRAY(Structure):
-    pass
-_JOB_SET_ARRAY._fields_ = [
-    ('JobHandle', HANDLE),
-    ('MemberLevel', DWORD),
-    ('Flags', DWORD),
-]
-PJOB_SET_ARRAY = POINTER(_JOB_SET_ARRAY)
-JOB_SET_ARRAY = _JOB_SET_ARRAY
-class _NT_TIB(Structure):
-    pass
-class _EXCEPTION_REGISTRATION_RECORD(Structure):
-    pass
-class N7_NT_TIB3DOLLAR_8E(Union):
-    pass
-N7_NT_TIB3DOLLAR_8E._fields_ = [
-    ('FiberData', PVOID),
-    ('Version', DWORD),
-]
-_NT_TIB._anonymous_ = ['_0']
-_NT_TIB._fields_ = [
-    ('ExceptionList', POINTER(_EXCEPTION_REGISTRATION_RECORD)),
-    ('StackBase', PVOID),
-    ('StackLimit', PVOID),
-    ('SubSystemTib', PVOID),
-    ('_0', N7_NT_TIB3DOLLAR_8E),
-    ('ArbitraryUserPointer', PVOID),
-    ('Self', POINTER(_NT_TIB)),
-]
-_EXCEPTION_REGISTRATION_RECORD._fields_ = [
-]
-NT_TIB = _NT_TIB
-PNT_TIB = POINTER(NT_TIB)
-class _NT_TIB32(Structure):
-    pass
-class N9_NT_TIB323DOLLAR_9E(Union):
-    pass
-N9_NT_TIB323DOLLAR_9E._fields_ = [
-    ('FiberData', DWORD),
-    ('Version', DWORD),
-]
-_NT_TIB32._anonymous_ = ['_0']
-_NT_TIB32._fields_ = [
-    ('ExceptionList', DWORD),
-    ('StackBase', DWORD),
-    ('StackLimit', DWORD),
-    ('SubSystemTib', DWORD),
-    ('_0', N9_NT_TIB323DOLLAR_9E),
-    ('ArbitraryUserPointer', DWORD),
-    ('Self', DWORD),
-]
-PNT_TIB32 = POINTER(_NT_TIB32)
-NT_TIB32 = _NT_TIB32
-class _NT_TIB64(Structure):
-    pass
-class N9_NT_TIB644DOLLAR_10E(Union):
-    pass
-N9_NT_TIB644DOLLAR_10E._fields_ = [
-    ('FiberData', DWORD64),
-    ('Version', DWORD),
-]
-_NT_TIB64._anonymous_ = ['_0']
-_NT_TIB64._fields_ = [
-    ('ExceptionList', DWORD64),
-    ('StackBase', DWORD64),
-    ('StackLimit', DWORD64),
-    ('SubSystemTib', DWORD64),
-    ('_0', N9_NT_TIB644DOLLAR_10E),
-    ('ArbitraryUserPointer', DWORD64),
-    ('Self', DWORD64),
-]
-NT_TIB64 = _NT_TIB64
-PNT_TIB64 = POINTER(_NT_TIB64)
-class _QUOTA_LIMITS(Structure):
-    pass
-_QUOTA_LIMITS._fields_ = [
-    ('PagedPoolLimit', SIZE_T),
-    ('NonPagedPoolLimit', SIZE_T),
-    ('MinimumWorkingSetSize', SIZE_T),
-    ('MaximumWorkingSetSize', SIZE_T),
-    ('PagefileLimit', SIZE_T),
-    ('TimeLimit', LARGE_INTEGER),
-]
-QUOTA_LIMITS = _QUOTA_LIMITS
-PQUOTA_LIMITS = POINTER(_QUOTA_LIMITS)
-class _QUOTA_LIMITS_EX(Structure):
-    pass
-_QUOTA_LIMITS_EX._fields_ = [
-    ('PagedPoolLimit', SIZE_T),
-    ('NonPagedPoolLimit', SIZE_T),
-    ('MinimumWorkingSetSize', SIZE_T),
-    ('MaximumWorkingSetSize', SIZE_T),
-    ('PagefileLimit', SIZE_T),
-    ('TimeLimit', LARGE_INTEGER),
-    ('Reserved1', SIZE_T),
-    ('Reserved2', SIZE_T),
-    ('Reserved3', SIZE_T),
-    ('Reserved4', SIZE_T),
-    ('Flags', DWORD),
-    ('Reserved5', DWORD),
-]
-QUOTA_LIMITS_EX = _QUOTA_LIMITS_EX
-PQUOTA_LIMITS_EX = POINTER(_QUOTA_LIMITS_EX)
-class _IO_COUNTERS(Structure):
-    pass
-_IO_COUNTERS._fields_ = [
-    ('ReadOperationCount', ULONGLONG),
-    ('WriteOperationCount', ULONGLONG),
-    ('OtherOperationCount', ULONGLONG),
-    ('ReadTransferCount', ULONGLONG),
-    ('WriteTransferCount', ULONGLONG),
-    ('OtherTransferCount', ULONGLONG),
-]
-IO_COUNTERS = _IO_COUNTERS
-PIO_COUNTERS = POINTER(IO_COUNTERS)
-class _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION(Structure):
-    pass
-_JOBOBJECT_BASIC_ACCOUNTING_INFORMATION._fields_ = [
-    ('TotalUserTime', LARGE_INTEGER),
-    ('TotalKernelTime', LARGE_INTEGER),
-    ('ThisPeriodTotalUserTime', LARGE_INTEGER),
-    ('ThisPeriodTotalKernelTime', LARGE_INTEGER),
-    ('TotalPageFaultCount', DWORD),
-    ('TotalProcesses', DWORD),
-    ('ActiveProcesses', DWORD),
-    ('TotalTerminatedProcesses', DWORD),
-]
-JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION
-PJOBOBJECT_BASIC_ACCOUNTING_INFORMATION = POINTER(_JOBOBJECT_BASIC_ACCOUNTING_INFORMATION)
-class _JOBOBJECT_BASIC_LIMIT_INFORMATION(Structure):
-    pass
-_JOBOBJECT_BASIC_LIMIT_INFORMATION._fields_ = [
-    ('PerProcessUserTimeLimit', LARGE_INTEGER),
-    ('PerJobUserTimeLimit', LARGE_INTEGER),
-    ('LimitFlags', DWORD),
-    ('MinimumWorkingSetSize', SIZE_T),
-    ('MaximumWorkingSetSize', SIZE_T),
-    ('ActiveProcessLimit', DWORD),
-    ('Affinity', ULONG_PTR),
-    ('PriorityClass', DWORD),
-    ('SchedulingClass', DWORD),
-]
-JOBOBJECT_BASIC_LIMIT_INFORMATION = _JOBOBJECT_BASIC_LIMIT_INFORMATION
-PJOBOBJECT_BASIC_LIMIT_INFORMATION = POINTER(_JOBOBJECT_BASIC_LIMIT_INFORMATION)
-class _JOBOBJECT_EXTENDED_LIMIT_INFORMATION(Structure):
-    pass
-_JOBOBJECT_EXTENDED_LIMIT_INFORMATION._fields_ = [
-    ('BasicLimitInformation', JOBOBJECT_BASIC_LIMIT_INFORMATION),
-    ('IoInfo', IO_COUNTERS),
-    ('ProcessMemoryLimit', SIZE_T),
-    ('JobMemoryLimit', SIZE_T),
-    ('PeakProcessMemoryUsed', SIZE_T),
-    ('PeakJobMemoryUsed', SIZE_T),
-]
-PJOBOBJECT_EXTENDED_LIMIT_INFORMATION = POINTER(_JOBOBJECT_EXTENDED_LIMIT_INFORMATION)
-JOBOBJECT_EXTENDED_LIMIT_INFORMATION = _JOBOBJECT_EXTENDED_LIMIT_INFORMATION
-class _JOBOBJECT_BASIC_PROCESS_ID_LIST(Structure):
-    pass
-_JOBOBJECT_BASIC_PROCESS_ID_LIST._fields_ = [
-    ('NumberOfAssignedProcesses', DWORD),
-    ('NumberOfProcessIdsInList', DWORD),
-    ('ProcessIdList', ULONG_PTR * 1),
-]
-PJOBOBJECT_BASIC_PROCESS_ID_LIST = POINTER(_JOBOBJECT_BASIC_PROCESS_ID_LIST)
-JOBOBJECT_BASIC_PROCESS_ID_LIST = _JOBOBJECT_BASIC_PROCESS_ID_LIST
-class _JOBOBJECT_BASIC_UI_RESTRICTIONS(Structure):
-    pass
-_JOBOBJECT_BASIC_UI_RESTRICTIONS._fields_ = [
-    ('UIRestrictionsClass', DWORD),
-]
-JOBOBJECT_BASIC_UI_RESTRICTIONS = _JOBOBJECT_BASIC_UI_RESTRICTIONS
-PJOBOBJECT_BASIC_UI_RESTRICTIONS = POINTER(_JOBOBJECT_BASIC_UI_RESTRICTIONS)
-class _JOBOBJECT_SECURITY_LIMIT_INFORMATION(Structure):
-    pass
-_JOBOBJECT_SECURITY_LIMIT_INFORMATION._fields_ = [
-    ('SecurityLimitFlags', DWORD),
-    ('JobToken', HANDLE),
-    ('SidsToDisable', PTOKEN_GROUPS),
-    ('PrivilegesToDelete', PTOKEN_PRIVILEGES),
-    ('RestrictedSids', PTOKEN_GROUPS),
-]
-JOBOBJECT_SECURITY_LIMIT_INFORMATION = _JOBOBJECT_SECURITY_LIMIT_INFORMATION
-PJOBOBJECT_SECURITY_LIMIT_INFORMATION = POINTER(_JOBOBJECT_SECURITY_LIMIT_INFORMATION)
-class _JOBOBJECT_END_OF_JOB_TIME_INFORMATION(Structure):
-    pass
-_JOBOBJECT_END_OF_JOB_TIME_INFORMATION._fields_ = [
-    ('EndOfJobTimeAction', DWORD),
-]
-JOBOBJECT_END_OF_JOB_TIME_INFORMATION = _JOBOBJECT_END_OF_JOB_TIME_INFORMATION
-PJOBOBJECT_END_OF_JOB_TIME_INFORMATION = POINTER(_JOBOBJECT_END_OF_JOB_TIME_INFORMATION)
-class _JOBOBJECT_ASSOCIATE_COMPLETION_PORT(Structure):
-    pass
-_JOBOBJECT_ASSOCIATE_COMPLETION_PORT._fields_ = [
-    ('CompletionKey', PVOID),
-    ('CompletionPort', HANDLE),
-]
-PJOBOBJECT_ASSOCIATE_COMPLETION_PORT = POINTER(_JOBOBJECT_ASSOCIATE_COMPLETION_PORT)
-JOBOBJECT_ASSOCIATE_COMPLETION_PORT = _JOBOBJECT_ASSOCIATE_COMPLETION_PORT
-class _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION(Structure):
-    pass
-_JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION._fields_ = [
-    ('BasicInfo', JOBOBJECT_BASIC_ACCOUNTING_INFORMATION),
-    ('IoInfo', IO_COUNTERS),
-]
-PJOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = POINTER(_JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION)
-JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION
-class _JOBOBJECT_JOBSET_INFORMATION(Structure):
-    pass
-_JOBOBJECT_JOBSET_INFORMATION._fields_ = [
-    ('MemberLevel', DWORD),
-]
-PJOBOBJECT_JOBSET_INFORMATION = POINTER(_JOBOBJECT_JOBSET_INFORMATION)
-JOBOBJECT_JOBSET_INFORMATION = _JOBOBJECT_JOBSET_INFORMATION
-
-# values for enumeration '_JOBOBJECTINFOCLASS'
-_JOBOBJECTINFOCLASS = c_int # enum
-JOBOBJECTINFOCLASS = _JOBOBJECTINFOCLASS
-
-# values for enumeration '_LOGICAL_PROCESSOR_RELATIONSHIP'
-_LOGICAL_PROCESSOR_RELATIONSHIP = c_int # enum
-LOGICAL_PROCESSOR_RELATIONSHIP = _LOGICAL_PROCESSOR_RELATIONSHIP
-class _SYSTEM_LOGICAL_PROCESSOR_INFORMATION(Structure):
-    pass
-class N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_11E(Union):
-    pass
-class N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_12E(Structure):
-    pass
-N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_12E._fields_ = [
-    ('Flags', BYTE),
-]
-class N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_13E(Structure):
-    pass
-N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_13E._fields_ = [
-    ('NodeNumber', DWORD),
-]
-N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_11E._fields_ = [
-    ('ProcessorCore', N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_12E),
-    ('NumaNode', N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_13E),
-    ('Reserved', ULONGLONG * 2),
-]
-_SYSTEM_LOGICAL_PROCESSOR_INFORMATION._anonymous_ = ['_0']
-_SYSTEM_LOGICAL_PROCESSOR_INFORMATION._fields_ = [
-    ('ProcessorMask', ULONG_PTR),
-    ('Relationship', LOGICAL_PROCESSOR_RELATIONSHIP),
-    ('_0', N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_11E),
-]
-PSYSTEM_LOGICAL_PROCESSOR_INFORMATION = POINTER(_SYSTEM_LOGICAL_PROCESSOR_INFORMATION)
-SYSTEM_LOGICAL_PROCESSOR_INFORMATION = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION
-class _MEMORY_BASIC_INFORMATION(Structure):
-    pass
-_MEMORY_BASIC_INFORMATION._fields_ = [
-    ('BaseAddress', PVOID),
-    ('AllocationBase', PVOID),
-    ('AllocationProtect', DWORD),
-    ('RegionSize', SIZE_T),
-    ('State', DWORD),
-    ('Protect', DWORD),
-    ('Type', DWORD),
-]
-PMEMORY_BASIC_INFORMATION = POINTER(_MEMORY_BASIC_INFORMATION)
-MEMORY_BASIC_INFORMATION = _MEMORY_BASIC_INFORMATION
-class _MEMORY_BASIC_INFORMATION32(Structure):
-    pass
-_MEMORY_BASIC_INFORMATION32._fields_ = [
-    ('BaseAddress', DWORD),
-    ('AllocationBase', DWORD),
-    ('AllocationProtect', DWORD),
-    ('RegionSize', DWORD),
-    ('State', DWORD),
-    ('Protect', DWORD),
-    ('Type', DWORD),
-]
-MEMORY_BASIC_INFORMATION32 = _MEMORY_BASIC_INFORMATION32
-PMEMORY_BASIC_INFORMATION32 = POINTER(_MEMORY_BASIC_INFORMATION32)
-class _MEMORY_BASIC_INFORMATION64(Structure):
-    pass
-_MEMORY_BASIC_INFORMATION64._fields_ = [
-    ('BaseAddress', ULONGLONG),
-    ('AllocationBase', ULONGLONG),
-    ('AllocationProtect', DWORD),
-    ('__alignment1', DWORD),
-    ('RegionSize', ULONGLONG),
-    ('State', DWORD),
-    ('Protect', DWORD),
-    ('Type', DWORD),
-    ('__alignment2', DWORD),
-]
-MEMORY_BASIC_INFORMATION64 = _MEMORY_BASIC_INFORMATION64
-PMEMORY_BASIC_INFORMATION64 = POINTER(_MEMORY_BASIC_INFORMATION64)
-class _FILE_NOTIFY_INFORMATION(Structure):
-    pass
-_FILE_NOTIFY_INFORMATION._fields_ = [
-    ('NextEntryOffset', DWORD),
-    ('Action', DWORD),
-    ('FileNameLength', DWORD),
-    ('FileName', WCHAR * 1),
-]
-FILE_NOTIFY_INFORMATION = _FILE_NOTIFY_INFORMATION
-PFILE_NOTIFY_INFORMATION = POINTER(_FILE_NOTIFY_INFORMATION)
-class _FILE_SEGMENT_ELEMENT(Union):
-    pass
-_FILE_SEGMENT_ELEMENT._fields_ = [
-    ('Buffer', PVOID64),
-    ('Alignment', ULONGLONG),
-]
-FILE_SEGMENT_ELEMENT = _FILE_SEGMENT_ELEMENT
-PFILE_SEGMENT_ELEMENT = POINTER(_FILE_SEGMENT_ELEMENT)
-class _REPARSE_GUID_DATA_BUFFER(Structure):
-    pass
-class N25_REPARSE_GUID_DATA_BUFFER4DOLLAR_14E(Structure):
-    pass
-N25_REPARSE_GUID_DATA_BUFFER4DOLLAR_14E._fields_ = [
-    ('DataBuffer', BYTE * 1),
-]
-_REPARSE_GUID_DATA_BUFFER._fields_ = [
-    ('ReparseTag', DWORD),
-    ('ReparseDataLength', WORD),
-    ('Reserved', WORD),
-    ('ReparseGuid', GUID),
-    ('GenericReparseBuffer', N25_REPARSE_GUID_DATA_BUFFER4DOLLAR_14E),
-]
-REPARSE_GUID_DATA_BUFFER = _REPARSE_GUID_DATA_BUFFER
-PREPARSE_GUID_DATA_BUFFER = POINTER(_REPARSE_GUID_DATA_BUFFER)
-
-# values for enumeration '_SYSTEM_POWER_STATE'
-_SYSTEM_POWER_STATE = c_int # enum
-PSYSTEM_POWER_STATE = POINTER(_SYSTEM_POWER_STATE)
-SYSTEM_POWER_STATE = _SYSTEM_POWER_STATE
-
-# values for enumeration 'POWER_ACTION'
-POWER_ACTION = c_int # enum
-PPOWER_ACTION = POINTER(POWER_ACTION)
-
-# values for enumeration '_DEVICE_POWER_STATE'
-_DEVICE_POWER_STATE = c_int # enum
-PDEVICE_POWER_STATE = POINTER(_DEVICE_POWER_STATE)
-DEVICE_POWER_STATE = _DEVICE_POWER_STATE
-EXECUTION_STATE = DWORD
-
-# values for enumeration 'LATENCY_TIME'
-LATENCY_TIME = c_int # enum
-class CM_Power_Data_s(Structure):
-    pass
-CM_Power_Data_s._fields_ = [
-    ('PD_Size', DWORD),
-    ('PD_MostRecentPowerState', DEVICE_POWER_STATE),
-    ('PD_Capabilities', DWORD),
-    ('PD_D1Latency', DWORD),
-    ('PD_D2Latency', DWORD),
-    ('PD_D3Latency', DWORD),
-    ('PD_PowerStateMapping', DEVICE_POWER_STATE * 7),
-    ('PD_DeepestSystemWake', SYSTEM_POWER_STATE),
-]
-CM_POWER_DATA = CM_Power_Data_s
-PCM_POWER_DATA = POINTER(CM_Power_Data_s)
-
-# values for enumeration 'POWER_INFORMATION_LEVEL'
-POWER_INFORMATION_LEVEL = c_int # enum
-class BATTERY_REPORTING_SCALE(Structure):
-    pass
-PBATTERY_REPORTING_SCALE = POINTER(BATTERY_REPORTING_SCALE)
-BATTERY_REPORTING_SCALE._fields_ = [
-    ('Granularity', DWORD),
-    ('Capacity', DWORD),
-]
-class POWER_ACTION_POLICY(Structure):
-    pass
-POWER_ACTION_POLICY._fields_ = [
-    ('Action', POWER_ACTION),
-    ('Flags', DWORD),
-    ('EventCode', DWORD),
-]
-PPOWER_ACTION_POLICY = POINTER(POWER_ACTION_POLICY)
-class SYSTEM_POWER_LEVEL(Structure):
-    pass
-SYSTEM_POWER_LEVEL._fields_ = [
-    ('Enable', BOOLEAN),
-    ('Spare', BYTE * 3),
-    ('BatteryLevel', DWORD),
-    ('PowerPolicy', POWER_ACTION_POLICY),
-    ('MinSystemState', SYSTEM_POWER_STATE),
-]
-PSYSTEM_POWER_LEVEL = POINTER(SYSTEM_POWER_LEVEL)
-class _SYSTEM_POWER_POLICY(Structure):
-    pass
-_SYSTEM_POWER_POLICY._fields_ = [
-    ('Revision', DWORD),
-    ('PowerButton', POWER_ACTION_POLICY),
-    ('SleepButton', POWER_ACTION_POLICY),
-    ('LidClose', POWER_ACTION_POLICY),
-    ('LidOpenWake', SYSTEM_POWER_STATE),
-    ('Reserved', DWORD),
-    ('Idle', POWER_ACTION_POLICY),
-    ('IdleTimeout', DWORD),
-    ('IdleSensitivity', BYTE),
-    ('DynamicThrottle', BYTE),
-    ('Spare2', BYTE * 2),
-    ('MinSleep', SYSTEM_POWER_STATE),
-    ('MaxSleep', SYSTEM_POWER_STATE),
-    ('ReducedLatencySleep', SYSTEM_POWER_STATE),
-    ('WinLogonFlags', DWORD),
-    ('Spare3', DWORD),
-    ('DozeS4Timeout', DWORD),
-    ('BroadcastCapacityResolution', DWORD),
-    ('DischargePolicy', SYSTEM_POWER_LEVEL * 4),
-    ('VideoTimeout', DWORD),
-    ('VideoDimDisplay', BOOLEAN),
-    ('VideoReserved', DWORD * 3),
-    ('SpindownTimeout', DWORD),
-    ('OptimizeForPower', BOOLEAN),
-    ('FanThrottleTolerance', BYTE),
-    ('ForcedThrottle', BYTE),
-    ('MinThrottle', BYTE),
-    ('OverThrottled', POWER_ACTION_POLICY),
-]
-PSYSTEM_POWER_POLICY = POINTER(_SYSTEM_POWER_POLICY)
-SYSTEM_POWER_POLICY = _SYSTEM_POWER_POLICY
-class _PROCESSOR_POWER_POLICY_INFO(Structure):
-    pass
-_PROCESSOR_POWER_POLICY_INFO._fields_ = [
-    ('TimeCheck', DWORD),
-    ('DemoteLimit', DWORD),
-    ('PromoteLimit', DWORD),
-    ('DemotePercent', BYTE),
-    ('PromotePercent', BYTE),
-    ('Spare', BYTE * 2),
-    ('AllowDemotion', DWORD, 1),
-    ('AllowPromotion', DWORD, 1),
-    ('Reserved', DWORD, 30),
-]
-PROCESSOR_POWER_POLICY_INFO = _PROCESSOR_POWER_POLICY_INFO
-PPROCESSOR_POWER_POLICY_INFO = POINTER(_PROCESSOR_POWER_POLICY_INFO)
-class _PROCESSOR_POWER_POLICY(Structure):
-    pass
-_PROCESSOR_POWER_POLICY._fields_ = [
-    ('Revision', DWORD),
-    ('DynamicThrottle', BYTE),
-    ('Spare', BYTE * 3),
-    ('DisableCStates', DWORD, 1),
-    ('Reserved', DWORD, 31),
-    ('PolicyCount', DWORD),
-    ('Policy', PROCESSOR_POWER_POLICY_INFO * 3),
-]
-PPROCESSOR_POWER_POLICY = POINTER(_PROCESSOR_POWER_POLICY)
-PROCESSOR_POWER_POLICY = _PROCESSOR_POWER_POLICY
-class _ADMINISTRATOR_POWER_POLICY(Structure):
-    pass
-_ADMINISTRATOR_POWER_POLICY._fields_ = [
-    ('MinSleep', SYSTEM_POWER_STATE),
-    ('MaxSleep', SYSTEM_POWER_STATE),
-    ('MinVideoTimeout', DWORD),
-    ('MaxVideoTimeout', DWORD),
-    ('MinSpindownTimeout', DWORD),
-    ('MaxSpindownTimeout', DWORD),
-]
-PADMINISTRATOR_POWER_POLICY = POINTER(_ADMINISTRATOR_POWER_POLICY)
-ADMINISTRATOR_POWER_POLICY = _ADMINISTRATOR_POWER_POLICY
-class SYSTEM_POWER_CAPABILITIES(Structure):
-    pass
-SYSTEM_POWER_CAPABILITIES._fields_ = [
-    ('PowerButtonPresent', BOOLEAN),
-    ('SleepButtonPresent', BOOLEAN),
-    ('LidPresent', BOOLEAN),
-    ('SystemS1', BOOLEAN),
-    ('SystemS2', BOOLEAN),
-    ('SystemS3', BOOLEAN),
-    ('SystemS4', BOOLEAN),
-    ('SystemS5', BOOLEAN),
-    ('HiberFilePresent', BOOLEAN),
-    ('FullWake', BOOLEAN),
-    ('VideoDimPresent', BOOLEAN),
-    ('ApmPresent', BOOLEAN),
-    ('UpsPresent', BOOLEAN),
-    ('ThermalControl', BOOLEAN),
-    ('ProcessorThrottle', BOOLEAN),
-    ('ProcessorMinThrottle', BYTE),
-    ('ProcessorMaxThrottle', BYTE),
-    ('spare2', BYTE * 4),
-    ('DiskSpinDown', BOOLEAN),
-    ('spare3', BYTE * 8),
-    ('SystemBatteriesPresent', BOOLEAN),
-    ('BatteriesAreShortTerm', BOOLEAN),
-    ('BatteryScale', BATTERY_REPORTING_SCALE * 3),
-    ('AcOnLineWake', SYSTEM_POWER_STATE),
-    ('SoftLidWake', SYSTEM_POWER_STATE),
-    ('RtcWake', SYSTEM_POWER_STATE),
-    ('MinDeviceWakeState', SYSTEM_POWER_STATE),
-    ('DefaultLowLatencyWake', SYSTEM_POWER_STATE),
-]
-PSYSTEM_POWER_CAPABILITIES = POINTER(SYSTEM_POWER_CAPABILITIES)
-class SYSTEM_BATTERY_STATE(Structure):
-    pass
-PSYSTEM_BATTERY_STATE = POINTER(SYSTEM_BATTERY_STATE)
-SYSTEM_BATTERY_STATE._fields_ = [
-    ('AcOnLine', BOOLEAN),
-    ('BatteryPresent', BOOLEAN),
-    ('Charging', BOOLEAN),
-    ('Discharging', BOOLEAN),
-    ('Spare1', BOOLEAN * 4),
-    ('MaxCapacity', DWORD),
-    ('RemainingCapacity', DWORD),
-    ('Rate', DWORD),
-    ('EstimatedTime', DWORD),
-    ('DefaultAlert1', DWORD),
-    ('DefaultAlert2', DWORD),
-]
-class _IMAGE_DOS_HEADER(Structure):
-    pass
-_IMAGE_DOS_HEADER._pack_ = 2
-_IMAGE_DOS_HEADER._fields_ = [
-    ('e_magic', WORD),
-    ('e_cblp', WORD),
-    ('e_cp', WORD),
-    ('e_crlc', WORD),
-    ('e_cparhdr', WORD),
-    ('e_minalloc', WORD),
-    ('e_maxalloc', WORD),
-    ('e_ss', WORD),
-    ('e_sp', WORD),
-    ('e_csum', WORD),
-    ('e_ip', WORD),
-    ('e_cs', WORD),
-    ('e_lfarlc', WORD),
-    ('e_ovno', WORD),
-    ('e_res', WORD * 4),
-    ('e_oemid', WORD),
-    ('e_oeminfo', WORD),
-    ('e_res2', WORD * 10),
-    ('e_lfanew', LONG),
-]
-IMAGE_DOS_HEADER = _IMAGE_DOS_HEADER
-PIMAGE_DOS_HEADER = POINTER(_IMAGE_DOS_HEADER)
-class _IMAGE_OS2_HEADER(Structure):
-    pass
-_IMAGE_OS2_HEADER._pack_ = 2
-_IMAGE_OS2_HEADER._fields_ = [
-    ('ne_magic', WORD),
-    ('ne_ver', CHAR),
-    ('ne_rev', CHAR),
-    ('ne_enttab', WORD),
-    ('ne_cbenttab', WORD),
-    ('ne_crc', LONG),
-    ('ne_flags', WORD),
-    ('ne_autodata', WORD),
-    ('ne_heap', WORD),
-    ('ne_stack', WORD),
-    ('ne_csip', LONG),
-    ('ne_sssp', LONG),
-    ('ne_cseg', WORD),
-    ('ne_cmod', WORD),
-    ('ne_cbnrestab', WORD),
-    ('ne_segtab', WORD),
-    ('ne_rsrctab', WORD),
-    ('ne_restab', WORD),
-    ('ne_modtab', WORD),
-    ('ne_imptab', WORD),
-    ('ne_nrestab', LONG),
-    ('ne_cmovent', WORD),
-    ('ne_align', WORD),
-    ('ne_cres', WORD),
-    ('ne_exetyp', BYTE),
-    ('ne_flagsothers', BYTE),
-    ('ne_pretthunks', WORD),
-    ('ne_psegrefbytes', WORD),
-    ('ne_swaparea', WORD),
-    ('ne_expver', WORD),
-]
-PIMAGE_OS2_HEADER = POINTER(_IMAGE_OS2_HEADER)
-IMAGE_OS2_HEADER = _IMAGE_OS2_HEADER
-class _IMAGE_VXD_HEADER(Structure):
-    pass
-_IMAGE_VXD_HEADER._pack_ = 2
-_IMAGE_VXD_HEADER._fields_ = [
-    ('e32_magic', WORD),
-    ('e32_border', BYTE),
-    ('e32_worder', BYTE),
-    ('e32_level', DWORD),
-    ('e32_cpu', WORD),
-    ('e32_os', WORD),
-    ('e32_ver', DWORD),
-    ('e32_mflags', DWORD),
-    ('e32_mpages', DWORD),
-    ('e32_startobj', DWORD),
-    ('e32_eip', DWORD),
-    ('e32_stackobj', DWORD),
-    ('e32_esp', DWORD),
-    ('e32_pagesize', DWORD),
-    ('e32_lastpagesize', DWORD),
-    ('e32_fixupsize', DWORD),
-    ('e32_fixupsum', DWORD),
-    ('e32_ldrsize', DWORD),
-    ('e32_ldrsum', DWORD),
-    ('e32_objtab', DWORD),
-    ('e32_objcnt', DWORD),
-    ('e32_objmap', DWORD),
-    ('e32_itermap', DWORD),
-    ('e32_rsrctab', DWORD),
-    ('e32_rsrccnt', DWORD),
-    ('e32_restab', DWORD),
-    ('e32_enttab', DWORD),
-    ('e32_dirtab', DWORD),
-    ('e32_dircnt', DWORD),
-    ('e32_fpagetab', DWORD),
-    ('e32_frectab', DWORD),
-    ('e32_impmod', DWORD),
-    ('e32_impmodcnt', DWORD),
-    ('e32_impproc', DWORD),
-    ('e32_pagesum', DWORD),
-    ('e32_datapage', DWORD),
-    ('e32_preload', DWORD),
-    ('e32_nrestab', DWORD),
-    ('e32_cbnrestab', DWORD),
-    ('e32_nressum', DWORD),
-    ('e32_autodata', DWORD),
-    ('e32_debuginfo', DWORD),
-    ('e32_debuglen', DWORD),
-    ('e32_instpreload', DWORD),
-    ('e32_instdemand', DWORD),
-    ('e32_heapsize', DWORD),
-    ('e32_res3', BYTE * 12),
-    ('e32_winresoff', DWORD),
-    ('e32_winreslen', DWORD),
-    ('e32_devid', WORD),
-    ('e32_ddkver', WORD),
-]
-IMAGE_VXD_HEADER = _IMAGE_VXD_HEADER
-PIMAGE_VXD_HEADER = POINTER(_IMAGE_VXD_HEADER)
-class _IMAGE_FILE_HEADER(Structure):
-    pass
-_IMAGE_FILE_HEADER._fields_ = [
-    ('Machine', WORD),
-    ('NumberOfSections', WORD),
-    ('TimeDateStamp', DWORD),
-    ('PointerToSymbolTable', DWORD),
-    ('NumberOfSymbols', DWORD),
-    ('SizeOfOptionalHeader', WORD),
-    ('Characteristics', WORD),
-]
-IMAGE_FILE_HEADER = _IMAGE_FILE_HEADER
-PIMAGE_FILE_HEADER = POINTER(_IMAGE_FILE_HEADER)
-class _IMAGE_DATA_DIRECTORY(Structure):
-    pass
-_IMAGE_DATA_DIRECTORY._fields_ = [
-    ('VirtualAddress', DWORD),
-    ('Size', DWORD),
-]
-PIMAGE_DATA_DIRECTORY = POINTER(_IMAGE_DATA_DIRECTORY)
-IMAGE_DATA_DIRECTORY = _IMAGE_DATA_DIRECTORY
-class _IMAGE_OPTIONAL_HEADER(Structure):
-    pass
-_IMAGE_OPTIONAL_HEADER._fields_ = [
-    ('Magic', WORD),
-    ('MajorLinkerVersion', BYTE),
-    ('MinorLinkerVersion', BYTE),
-    ('SizeOfCode', DWORD),
-    ('SizeOfInitializedData', DWORD),
-    ('SizeOfUninitializedData', DWORD),
-    ('AddressOfEntryPoint', DWORD),
-    ('BaseOfCode', DWORD),
-    ('BaseOfData', DWORD),
-    ('ImageBase', DWORD),
-    ('SectionAlignment', DWORD),
-    ('FileAlignment', DWORD),
-    ('MajorOperatingSystemVersion', WORD),
-    ('MinorOperatingSystemVersion', WORD),
-    ('MajorImageVersion', WORD),
-    ('MinorImageVersion', WORD),
-    ('MajorSubsystemVersion', WORD),
-    ('MinorSubsystemVersion', WORD),
-    ('Win32VersionValue', DWORD),
-    ('SizeOfImage', DWORD),
-    ('SizeOfHeaders', DWORD),
-    ('CheckSum', DWORD),
-    ('Subsystem', WORD),
-    ('DllCharacteristics', WORD),
-    ('SizeOfStackReserve', DWORD),
-    ('SizeOfStackCommit', DWORD),
-    ('SizeOfHeapReserve', DWORD),
-    ('SizeOfHeapCommit', DWORD),
-    ('LoaderFlags', DWORD),
-    ('NumberOfRvaAndSizes', DWORD),
-    ('DataDirectory', IMAGE_DATA_DIRECTORY * 16),
-]
-PIMAGE_OPTIONAL_HEADER32 = POINTER(_IMAGE_OPTIONAL_HEADER)
-IMAGE_OPTIONAL_HEADER32 = _IMAGE_OPTIONAL_HEADER
-class _IMAGE_ROM_OPTIONAL_HEADER(Structure):
-    pass
-_IMAGE_ROM_OPTIONAL_HEADER._fields_ = [
-    ('Magic', WORD),
-    ('MajorLinkerVersion', BYTE),
-    ('MinorLinkerVersion', BYTE),
-    ('SizeOfCode', DWORD),
-    ('SizeOfInitializedData', DWORD),
-    ('SizeOfUninitializedData', DWORD),
-    ('AddressOfEntryPoint', DWORD),
-    ('BaseOfCode', DWORD),
-    ('BaseOfData', DWORD),
-    ('BaseOfBss', DWORD),
-    ('GprMask', DWORD),
-    ('CprMask', DWORD * 4),
-    ('GpValue', DWORD),
-]
-IMAGE_ROM_OPTIONAL_HEADER = _IMAGE_ROM_OPTIONAL_HEADER
-PIMAGE_ROM_OPTIONAL_HEADER = POINTER(_IMAGE_ROM_OPTIONAL_HEADER)
-class _IMAGE_OPTIONAL_HEADER64(Structure):
-    pass
-_IMAGE_OPTIONAL_HEADER64._pack_ = 4
-_IMAGE_OPTIONAL_HEADER64._fields_ = [
-    ('Magic', WORD),
-    ('MajorLinkerVersion', BYTE),
-    ('MinorLinkerVersion', BYTE),
-    ('SizeOfCode', DWORD),
-    ('SizeOfInitializedData', DWORD),
-    ('SizeOfUninitializedData', DWORD),
-    ('AddressOfEntryPoint', DWORD),
-    ('BaseOfCode', DWORD),
-    ('ImageBase', ULONGLONG),
-    ('SectionAlignment', DWORD),
-    ('FileAlignment', DWORD),
-    ('MajorOperatingSystemVersion', WORD),
-    ('MinorOperatingSystemVersion', WORD),
-    ('MajorImageVersion', WORD),
-    ('MinorImageVersion', WORD),
-    ('MajorSubsystemVersion', WORD),
-    ('MinorSubsystemVersion', WORD),
-    ('Win32VersionValue', DWORD),
-    ('SizeOfImage', DWORD),
-    ('SizeOfHeaders', DWORD),
-    ('CheckSum', DWORD),
-    ('Subsystem', WORD),
-    ('DllCharacteristics', WORD),
-    ('SizeOfStackReserve', ULONGLONG),
-    ('SizeOfStackCommit', ULONGLONG),
-    ('SizeOfHeapReserve', ULONGLONG),
-    ('SizeOfHeapCommit', ULONGLONG),
-    ('LoaderFlags', DWORD),
-    ('NumberOfRvaAndSizes', DWORD),
-    ('DataDirectory', IMAGE_DATA_DIRECTORY * 16),
-]
-PIMAGE_OPTIONAL_HEADER64 = POINTER(_IMAGE_OPTIONAL_HEADER64)
-IMAGE_OPTIONAL_HEADER64 = _IMAGE_OPTIONAL_HEADER64
-IMAGE_OPTIONAL_HEADER = IMAGE_OPTIONAL_HEADER32
-PIMAGE_OPTIONAL_HEADER = PIMAGE_OPTIONAL_HEADER32
-class _IMAGE_NT_HEADERS64(Structure):
-    pass
-_IMAGE_NT_HEADERS64._fields_ = [
-    ('Signature', DWORD),
-    ('FileHeader', IMAGE_FILE_HEADER),
-    ('OptionalHeader', IMAGE_OPTIONAL_HEADER64),
-]
-PIMAGE_NT_HEADERS64 = POINTER(_IMAGE_NT_HEADERS64)
-IMAGE_NT_HEADERS64 = _IMAGE_NT_HEADERS64
-class _IMAGE_NT_HEADERS(Structure):
-    pass
-_IMAGE_NT_HEADERS._fields_ = [
-    ('Signature', DWORD),
-    ('FileHeader', IMAGE_FILE_HEADER),
-    ('OptionalHeader', IMAGE_OPTIONAL_HEADER32),
-]
-IMAGE_NT_HEADERS32 = _IMAGE_NT_HEADERS
-PIMAGE_NT_HEADERS32 = POINTER(_IMAGE_NT_HEADERS)
-class _IMAGE_ROM_HEADERS(Structure):
-    pass
-_IMAGE_ROM_HEADERS._fields_ = [
-    ('FileHeader', IMAGE_FILE_HEADER),
-    ('OptionalHeader', IMAGE_ROM_OPTIONAL_HEADER),
-]
-PIMAGE_ROM_HEADERS = POINTER(_IMAGE_ROM_HEADERS)
-IMAGE_ROM_HEADERS = _IMAGE_ROM_HEADERS
-IMAGE_NT_HEADERS = IMAGE_NT_HEADERS32
-PIMAGE_NT_HEADERS = PIMAGE_NT_HEADERS32
-class ANON_OBJECT_HEADER(Structure):
-    pass
-ANON_OBJECT_HEADER._fields_ = [
-    ('Sig1', WORD),
-    ('Sig2', WORD),
-    ('Version', WORD),
-    ('Machine', WORD),
-    ('TimeDateStamp', DWORD),
-    ('ClassID', CLSID),
-    ('SizeOfData', DWORD),
-]
-class _IMAGE_SECTION_HEADER(Structure):
-    pass
-class N21_IMAGE_SECTION_HEADER4DOLLAR_23E(Union):
-    pass
-N21_IMAGE_SECTION_HEADER4DOLLAR_23E._fields_ = [
-    ('PhysicalAddress', DWORD),
-    ('VirtualSize', DWORD),
-]
-_IMAGE_SECTION_HEADER._fields_ = [
-    ('Name', BYTE * 8),
-    ('Misc', N21_IMAGE_SECTION_HEADER4DOLLAR_23E),
-    ('VirtualAddress', DWORD),
-    ('SizeOfRawData', DWORD),
-    ('PointerToRawData', DWORD),
-    ('PointerToRelocations', DWORD),
-    ('PointerToLinenumbers', DWORD),
-    ('NumberOfRelocations', WORD),
-    ('NumberOfLinenumbers', WORD),
-    ('Characteristics', DWORD),
-]
-PIMAGE_SECTION_HEADER = POINTER(_IMAGE_SECTION_HEADER)
-IMAGE_SECTION_HEADER = _IMAGE_SECTION_HEADER
-class _IMAGE_SYMBOL(Structure):
-    pass
-class N13_IMAGE_SYMBOL4DOLLAR_24E(Union):
-    pass
-class N13_IMAGE_SYMBOL4DOLLAR_244DOLLAR_25E(Structure):
-    pass
-N13_IMAGE_SYMBOL4DOLLAR_244DOLLAR_25E._pack_ = 2
-N13_IMAGE_SYMBOL4DOLLAR_244DOLLAR_25E._fields_ = [
-    ('Short', DWORD),
-    ('Long', DWORD),
-]
-N13_IMAGE_SYMBOL4DOLLAR_24E._pack_ = 2
-N13_IMAGE_SYMBOL4DOLLAR_24E._fields_ = [
-    ('ShortName', BYTE * 8),
-    ('Name', N13_IMAGE_SYMBOL4DOLLAR_244DOLLAR_25E),
-    ('LongName', DWORD * 2),
-]
-_IMAGE_SYMBOL._pack_ = 2
-_IMAGE_SYMBOL._fields_ = [
-    ('N', N13_IMAGE_SYMBOL4DOLLAR_24E),
-    ('Value', DWORD),
-    ('SectionNumber', SHORT),
-    ('Type', WORD),
-    ('StorageClass', BYTE),
-    ('NumberOfAuxSymbols', BYTE),
-]
-IMAGE_SYMBOL = _IMAGE_SYMBOL
-PIMAGE_SYMBOL = POINTER(IMAGE_SYMBOL)
-class _IMAGE_AUX_SYMBOL(Union):
-    pass
-class N17_IMAGE_AUX_SYMBOL4DOLLAR_26E(Structure):
-    pass
-class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_27E(Union):
-    pass
-class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_274DOLLAR_28E(Structure):
-    pass
-N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_274DOLLAR_28E._fields_ = [
-    ('Linenumber', WORD),
-    ('Size', WORD),
-]
-N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_27E._pack_ = 2
-N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_27E._fields_ = [
-    ('LnSz', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_274DOLLAR_28E),
-    ('TotalSize', DWORD),
-]
-class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_29E(Union):
-    pass
-class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_30E(Structure):
-    pass
-N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_30E._pack_ = 2
-N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_30E._fields_ = [
-    ('PointerToLinenumber', DWORD),
-    ('PointerToNextFunction', DWORD),
-]
-class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_31E(Structure):
-    pass
-N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_31E._fields_ = [
-    ('Dimension', WORD * 4),
-]
-N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_29E._fields_ = [
-    ('Function', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_30E),
-    ('Array', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_31E),
-]
-N17_IMAGE_AUX_SYMBOL4DOLLAR_26E._pack_ = 2
-N17_IMAGE_AUX_SYMBOL4DOLLAR_26E._fields_ = [
-    ('TagIndex', DWORD),
-    ('Misc', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_27E),
-    ('FcnAry', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_29E),
-    ('TvIndex', WORD),
-]
-class N17_IMAGE_AUX_SYMBOL4DOLLAR_32E(Structure):
-    pass
-N17_IMAGE_AUX_SYMBOL4DOLLAR_32E._fields_ = [
-    ('Name', BYTE * 18),
-]
-class N17_IMAGE_AUX_SYMBOL4DOLLAR_33E(Structure):
-    pass
-N17_IMAGE_AUX_SYMBOL4DOLLAR_33E._pack_ = 2
-N17_IMAGE_AUX_SYMBOL4DOLLAR_33E._fields_ = [
-    ('Length', DWORD),
-    ('NumberOfRelocations', WORD),
-    ('NumberOfLinenumbers', WORD),
-    ('CheckSum', DWORD),
-    ('Number', SHORT),
-    ('Selection', BYTE),
-]
-_IMAGE_AUX_SYMBOL._fields_ = [
-    ('Sym', N17_IMAGE_AUX_SYMBOL4DOLLAR_26E),
-    ('File', N17_IMAGE_AUX_SYMBOL4DOLLAR_32E),
-    ('Section', N17_IMAGE_AUX_SYMBOL4DOLLAR_33E),
-]
-IMAGE_AUX_SYMBOL = _IMAGE_AUX_SYMBOL
-PIMAGE_AUX_SYMBOL = POINTER(IMAGE_AUX_SYMBOL)
-
-# values for enumeration 'IMAGE_AUX_SYMBOL_TYPE'
-IMAGE_AUX_SYMBOL_TYPE = c_int # enum
-class IMAGE_AUX_SYMBOL_TOKEN_DEF(Structure):
-    pass
-IMAGE_AUX_SYMBOL_TOKEN_DEF._pack_ = 2
-IMAGE_AUX_SYMBOL_TOKEN_DEF._fields_ = [
-    ('bAuxType', BYTE),
-    ('bReserved', BYTE),
-    ('SymbolTableIndex', DWORD),
-    ('rgbReserved', BYTE * 12),
-]
-PIMAGE_AUX_SYMBOL_TOKEN_DEF = POINTER(IMAGE_AUX_SYMBOL_TOKEN_DEF)
-class _IMAGE_RELOCATION(Structure):
-    pass
-class N17_IMAGE_RELOCATION4DOLLAR_34E(Union):
-    pass
-N17_IMAGE_RELOCATION4DOLLAR_34E._pack_ = 2
-N17_IMAGE_RELOCATION4DOLLAR_34E._fields_ = [
-    ('VirtualAddress', DWORD),
-    ('RelocCount', DWORD),
-]
-_IMAGE_RELOCATION._pack_ = 2
-_IMAGE_RELOCATION._anonymous_ = ['_0']
-_IMAGE_RELOCATION._fields_ = [
-    ('_0', N17_IMAGE_RELOCATION4DOLLAR_34E),
-    ('SymbolTableIndex', DWORD),
-    ('Type', WORD),
-]
-IMAGE_RELOCATION = _IMAGE_RELOCATION
-PIMAGE_RELOCATION = POINTER(IMAGE_RELOCATION)
-class _IMAGE_LINENUMBER(Structure):
-    pass
-class N17_IMAGE_LINENUMBER4DOLLAR_35E(Union):
-    pass
-N17_IMAGE_LINENUMBER4DOLLAR_35E._pack_ = 2
-N17_IMAGE_LINENUMBER4DOLLAR_35E._fields_ = [
-    ('SymbolTableIndex', DWORD),
-    ('VirtualAddress', DWORD),
-]
-_IMAGE_LINENUMBER._fields_ = [
-    ('Type', N17_IMAGE_LINENUMBER4DOLLAR_35E),
-    ('Linenumber', WORD),
-]
-IMAGE_LINENUMBER = _IMAGE_LINENUMBER
-PIMAGE_LINENUMBER = POINTER(IMAGE_LINENUMBER)
-class _IMAGE_BASE_RELOCATION(Structure):
-    pass
-_IMAGE_BASE_RELOCATION._fields_ = [
-    ('VirtualAddress', DWORD),
-    ('SizeOfBlock', DWORD),
-]
-IMAGE_BASE_RELOCATION = _IMAGE_BASE_RELOCATION
-PIMAGE_BASE_RELOCATION = POINTER(IMAGE_BASE_RELOCATION)
-class _IMAGE_ARCHIVE_MEMBER_HEADER(Structure):
-    pass
-_IMAGE_ARCHIVE_MEMBER_HEADER._fields_ = [
-    ('Name', BYTE * 16),
-    ('Date', BYTE * 12),
-    ('UserID', BYTE * 6),
-    ('GroupID', BYTE * 6),
-    ('Mode', BYTE * 8),
-    ('Size', BYTE * 10),
-    ('EndHeader', BYTE * 2),
-]
-IMAGE_ARCHIVE_MEMBER_HEADER = _IMAGE_ARCHIVE_MEMBER_HEADER
-PIMAGE_ARCHIVE_MEMBER_HEADER = POINTER(_IMAGE_ARCHIVE_MEMBER_HEADER)
-class _IMAGE_EXPORT_DIRECTORY(Structure):
-    pass
-_IMAGE_EXPORT_DIRECTORY._fields_ = [
-    ('Characteristics', DWORD),
-    ('TimeDateStamp', DWORD),
-    ('MajorVersion', WORD),
-    ('MinorVersion', WORD),
-    ('Name', DWORD),
-    ('Base', DWORD),
-    ('NumberOfFunctions', DWORD),
-    ('NumberOfNames', DWORD),
-    ('AddressOfFunctions', DWORD),
-    ('AddressOfNames', DWORD),
-    ('AddressOfNameOrdinals', DWORD),
-]
-IMAGE_EXPORT_DIRECTORY = _IMAGE_EXPORT_DIRECTORY
-PIMAGE_EXPORT_DIRECTORY = POINTER(_IMAGE_EXPORT_DIRECTORY)
-class _IMAGE_IMPORT_BY_NAME(Structure):
-    pass
-_IMAGE_IMPORT_BY_NAME._fields_ = [
-    ('Hint', WORD),
-    ('Name', BYTE * 1),
-]
-PIMAGE_IMPORT_BY_NAME = POINTER(_IMAGE_IMPORT_BY_NAME)
-IMAGE_IMPORT_BY_NAME = _IMAGE_IMPORT_BY_NAME
-class _IMAGE_THUNK_DATA64(Structure):
-    pass
-class N19_IMAGE_THUNK_DATA644DOLLAR_36E(Union):
-    pass
-N19_IMAGE_THUNK_DATA644DOLLAR_36E._fields_ = [
-    ('ForwarderString', ULONGLONG),
-    ('Function', ULONGLONG),
-    ('Ordinal', ULONGLONG),
-    ('AddressOfData', ULONGLONG),
-]
-_IMAGE_THUNK_DATA64._fields_ = [
-    ('u1', N19_IMAGE_THUNK_DATA644DOLLAR_36E),
-]
-IMAGE_THUNK_DATA64 = _IMAGE_THUNK_DATA64
-PIMAGE_THUNK_DATA64 = POINTER(IMAGE_THUNK_DATA64)
-class _IMAGE_THUNK_DATA32(Structure):
-    pass
-class N19_IMAGE_THUNK_DATA324DOLLAR_37E(Union):
-    pass
-N19_IMAGE_THUNK_DATA324DOLLAR_37E._fields_ = [
-    ('ForwarderString', DWORD),
-    ('Function', DWORD),
-    ('Ordinal', DWORD),
-    ('AddressOfData', DWORD),
-]
-_IMAGE_THUNK_DATA32._fields_ = [
-    ('u1', N19_IMAGE_THUNK_DATA324DOLLAR_37E),
-]
-IMAGE_THUNK_DATA32 = _IMAGE_THUNK_DATA32
-PIMAGE_THUNK_DATA32 = POINTER(IMAGE_THUNK_DATA32)
-PIMAGE_TLS_CALLBACK = WINFUNCTYPE(None, c_void_p, c_ulong, c_void_p)
-class _IMAGE_TLS_DIRECTORY64(Structure):
-    pass
-_IMAGE_TLS_DIRECTORY64._pack_ = 4
-_IMAGE_TLS_DIRECTORY64._fields_ = [
-    ('StartAddressOfRawData', ULONGLONG),
-    ('EndAddressOfRawData', ULONGLONG),
-    ('AddressOfIndex', ULONGLONG),
-    ('AddressOfCallBacks', ULONGLONG),
-    ('SizeOfZeroFill', DWORD),
-    ('Characteristics', DWORD),
-]
-IMAGE_TLS_DIRECTORY64 = _IMAGE_TLS_DIRECTORY64
-PIMAGE_TLS_DIRECTORY64 = POINTER(IMAGE_TLS_DIRECTORY64)
-class _IMAGE_TLS_DIRECTORY32(Structure):
-    pass
-_IMAGE_TLS_DIRECTORY32._fields_ = [
-    ('StartAddressOfRawData', DWORD),
-    ('EndAddressOfRawData', DWORD),
-    ('AddressOfIndex', DWORD),
-    ('AddressOfCallBacks', DWORD),
-    ('SizeOfZeroFill', DWORD),
-    ('Characteristics', DWORD),
-]
-IMAGE_TLS_DIRECTORY32 = _IMAGE_TLS_DIRECTORY32
-PIMAGE_TLS_DIRECTORY32 = POINTER(IMAGE_TLS_DIRECTORY32)
-IMAGE_THUNK_DATA = IMAGE_THUNK_DATA32
-PIMAGE_THUNK_DATA = PIMAGE_THUNK_DATA32
-IMAGE_TLS_DIRECTORY = IMAGE_TLS_DIRECTORY32
-PIMAGE_TLS_DIRECTORY = PIMAGE_TLS_DIRECTORY32
-class _IMAGE_IMPORT_DESCRIPTOR(Structure):
-    pass
-class N24_IMAGE_IMPORT_DESCRIPTOR4DOLLAR_38E(Union):
-    pass
-N24_IMAGE_IMPORT_DESCRIPTOR4DOLLAR_38E._fields_ = [
-    ('Characteristics', DWORD),
-    ('OriginalFirstThunk', DWORD),
-]
-_IMAGE_IMPORT_DESCRIPTOR._anonymous_ = ['_0']
-_IMAGE_IMPORT_DESCRIPTOR._fields_ = [
-    ('_0', N24_IMAGE_IMPORT_DESCRIPTOR4DOLLAR_38E),
-    ('TimeDateStamp', DWORD),
-    ('ForwarderChain', DWORD),
-    ('Name', DWORD),
-    ('FirstThunk', DWORD),
-]
-IMAGE_IMPORT_DESCRIPTOR = _IMAGE_IMPORT_DESCRIPTOR
-PIMAGE_IMPORT_DESCRIPTOR = POINTER(IMAGE_IMPORT_DESCRIPTOR)
-class _IMAGE_BOUND_IMPORT_DESCRIPTOR(Structure):
-    pass
-_IMAGE_BOUND_IMPORT_DESCRIPTOR._fields_ = [
-    ('TimeDateStamp', DWORD),
-    ('OffsetModuleName', WORD),
-    ('NumberOfModuleForwarderRefs', WORD),
-]
-PIMAGE_BOUND_IMPORT_DESCRIPTOR = POINTER(_IMAGE_BOUND_IMPORT_DESCRIPTOR)
-IMAGE_BOUND_IMPORT_DESCRIPTOR = _IMAGE_BOUND_IMPORT_DESCRIPTOR
-class _IMAGE_BOUND_FORWARDER_REF(Structure):
-    pass
-_IMAGE_BOUND_FORWARDER_REF._fields_ = [
-    ('TimeDateStamp', DWORD),
-    ('OffsetModuleName', WORD),
-    ('Reserved', WORD),
-]
-PIMAGE_BOUND_FORWARDER_REF = POINTER(_IMAGE_BOUND_FORWARDER_REF)
-IMAGE_BOUND_FORWARDER_REF = _IMAGE_BOUND_FORWARDER_REF
-class _IMAGE_RESOURCE_DIRECTORY(Structure):
-    pass
-_IMAGE_RESOURCE_DIRECTORY._fields_ = [
-    ('Characteristics', DWORD),
-    ('TimeDateStamp', DWORD),
-    ('MajorVersion', WORD),
-    ('MinorVersion', WORD),
-    ('NumberOfNamedEntries', WORD),
-    ('NumberOfIdEntries', WORD),
-]
-PIMAGE_RESOURCE_DIRECTORY = POINTER(_IMAGE_RESOURCE_DIRECTORY)
-IMAGE_RESOURCE_DIRECTORY = _IMAGE_RESOURCE_DIRECTORY
-class _IMAGE_RESOURCE_DIRECTORY_ENTRY(Structure):
-    pass
-class N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E(Union):
-    pass
-class N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_394DOLLAR_40E(Structure):
-    pass
-N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_394DOLLAR_40E._fields_ = [
-    ('NameOffset', DWORD, 31),
-    ('NameIsString', DWORD, 1),
-]
-N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E._anonymous_ = ['_0']
-N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E._fields_ = [
-    ('_0', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_394DOLLAR_40E),
-    ('Name', DWORD),
-    ('Id', WORD),
-]
-class N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E(Union):
-    pass
-class N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_414DOLLAR_42E(Structure):
-    pass
-N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_414DOLLAR_42E._fields_ = [
-    ('OffsetToDirectory', DWORD, 31),
-    ('DataIsDirectory', DWORD, 1),
-]
-N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E._anonymous_ = ['_0']
-N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E._fields_ = [
-    ('OffsetToData', DWORD),
-    ('_0', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_414DOLLAR_42E),
-]
-_IMAGE_RESOURCE_DIRECTORY_ENTRY._anonymous_ = ['_0', '_1']
-_IMAGE_RESOURCE_DIRECTORY_ENTRY._fields_ = [
-    ('_0', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E),
-    ('_1', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E),
-]
-IMAGE_RESOURCE_DIRECTORY_ENTRY = _IMAGE_RESOURCE_DIRECTORY_ENTRY
-PIMAGE_RESOURCE_DIRECTORY_ENTRY = POINTER(_IMAGE_RESOURCE_DIRECTORY_ENTRY)
-class _IMAGE_RESOURCE_DIRECTORY_STRING(Structure):
-    pass
-_IMAGE_RESOURCE_DIRECTORY_STRING._fields_ = [
-    ('Length', WORD),
-    ('NameString', CHAR * 1),
-]
-IMAGE_RESOURCE_DIRECTORY_STRING = _IMAGE_RESOURCE_DIRECTORY_STRING
-PIMAGE_RESOURCE_DIRECTORY_STRING = POINTER(_IMAGE_RESOURCE_DIRECTORY_STRING)
-class _IMAGE_RESOURCE_DIR_STRING_U(Structure):
-    pass
-_IMAGE_RESOURCE_DIR_STRING_U._fields_ = [
-    ('Length', WORD),
-    ('NameString', WCHAR * 1),
-]
-IMAGE_RESOURCE_DIR_STRING_U = _IMAGE_RESOURCE_DIR_STRING_U
-PIMAGE_RESOURCE_DIR_STRING_U = POINTER(_IMAGE_RESOURCE_DIR_STRING_U)
-class _IMAGE_RESOURCE_DATA_ENTRY(Structure):
-    pass
-_IMAGE_RESOURCE_DATA_ENTRY._fields_ = [
-    ('OffsetToData', DWORD),
-    ('Size', DWORD),
-    ('CodePage', DWORD),
-    ('Reserved', DWORD),
-]
-IMAGE_RESOURCE_DATA_ENTRY = _IMAGE_RESOURCE_DATA_ENTRY
-PIMAGE_RESOURCE_DATA_ENTRY = POINTER(_IMAGE_RESOURCE_DATA_ENTRY)
-class IMAGE_LOAD_CONFIG_DIRECTORY32(Structure):
-    pass
-PIMAGE_LOAD_CONFIG_DIRECTORY32 = POINTER(IMAGE_LOAD_CONFIG_DIRECTORY32)
-IMAGE_LOAD_CONFIG_DIRECTORY32._fields_ = [
-    ('Size', DWORD),
-    ('TimeDateStamp', DWORD),
-    ('MajorVersion', WORD),
-    ('MinorVersion', WORD),
-    ('GlobalFlagsClear', DWORD),
-    ('GlobalFlagsSet', DWORD),
-    ('CriticalSectionDefaultTimeout', DWORD),
-    ('DeCommitFreeBlockThreshold', DWORD),
-    ('DeCommitTotalFreeThreshold', DWORD),
-    ('LockPrefixTable', DWORD),
-    ('MaximumAllocationSize', DWORD),
-    ('VirtualMemoryThreshold', DWORD),
-    ('ProcessHeapFlags', DWORD),
-    ('ProcessAffinityMask', DWORD),
-    ('CSDVersion', WORD),
-    ('Reserved1', WORD),
-    ('EditList', DWORD),
-    ('SecurityCookie', DWORD),
-    ('SEHandlerTable', DWORD),
-    ('SEHandlerCount', DWORD),
-]
-class IMAGE_LOAD_CONFIG_DIRECTORY64(Structure):
-    pass
-IMAGE_LOAD_CONFIG_DIRECTORY64._pack_ = 4
-IMAGE_LOAD_CONFIG_DIRECTORY64._fields_ = [
-    ('Size', DWORD),
-    ('TimeDateStamp', DWORD),
-    ('MajorVersion', WORD),
-    ('MinorVersion', WORD),
-    ('GlobalFlagsClear', DWORD),
-    ('GlobalFlagsSet', DWORD),
-    ('CriticalSectionDefaultTimeout', DWORD),
-    ('DeCommitFreeBlockThreshold', ULONGLONG),
-    ('DeCommitTotalFreeThreshold', ULONGLONG),
-    ('LockPrefixTable', ULONGLONG),
-    ('MaximumAllocationSize', ULONGLONG),
-    ('VirtualMemoryThreshold', ULONGLONG),
-    ('ProcessAffinityMask', ULONGLONG),
-    ('ProcessHeapFlags', DWORD),
-    ('CSDVersion', WORD),
-    ('Reserved1', WORD),
-    ('EditList', ULONGLONG),
-    ('SecurityCookie', ULONGLONG),
-    ('SEHandlerTable', ULONGLONG),
-    ('SEHandlerCount', ULONGLONG),
-]
-PIMAGE_LOAD_CONFIG_DIRECTORY64 = POINTER(IMAGE_LOAD_CONFIG_DIRECTORY64)
-IMAGE_LOAD_CONFIG_DIRECTORY = IMAGE_LOAD_CONFIG_DIRECTORY32
-PIMAGE_LOAD_CONFIG_DIRECTORY = PIMAGE_LOAD_CONFIG_DIRECTORY32
-class _IMAGE_CE_RUNTIME_FUNCTION_ENTRY(Structure):
-    pass
-_IMAGE_CE_RUNTIME_FUNCTION_ENTRY._fields_ = [
-    ('FuncStart', DWORD),
-    ('PrologLen', DWORD, 8),
-    ('FuncLen', DWORD, 22),
-    ('ThirtyTwoBit', DWORD, 1),
-    ('ExceptionFlag', DWORD, 1),
-]
-PIMAGE_CE_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_CE_RUNTIME_FUNCTION_ENTRY)
-IMAGE_CE_RUNTIME_FUNCTION_ENTRY = _IMAGE_CE_RUNTIME_FUNCTION_ENTRY
-class _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY(Structure):
-    pass
-_IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY._pack_ = 4
-_IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY._fields_ = [
-    ('BeginAddress', ULONGLONG),
-    ('EndAddress', ULONGLONG),
-    ('ExceptionHandler', ULONGLONG),
-    ('HandlerData', ULONGLONG),
-    ('PrologEndAddress', ULONGLONG),
-]
-IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY
-PIMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY)
-class _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY(Structure):
-    pass
-_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY._fields_ = [
-    ('BeginAddress', DWORD),
-    ('EndAddress', DWORD),
-    ('ExceptionHandler', DWORD),
-    ('HandlerData', DWORD),
-    ('PrologEndAddress', DWORD),
-]
-IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY
-PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY)
-class _IMAGE_RUNTIME_FUNCTION_ENTRY(Structure):
-    pass
-_IMAGE_RUNTIME_FUNCTION_ENTRY._fields_ = [
-    ('BeginAddress', DWORD),
-    ('EndAddress', DWORD),
-    ('UnwindInfoAddress', DWORD),
-]
-_PIMAGE_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_RUNTIME_FUNCTION_ENTRY)
-IMAGE_IA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY
-PIMAGE_IA64_RUNTIME_FUNCTION_ENTRY = _PIMAGE_RUNTIME_FUNCTION_ENTRY
-IMAGE_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY
-PIMAGE_RUNTIME_FUNCTION_ENTRY = _PIMAGE_RUNTIME_FUNCTION_ENTRY
-class _IMAGE_DEBUG_DIRECTORY(Structure):
-    pass
-_IMAGE_DEBUG_DIRECTORY._fields_ = [
-    ('Characteristics', DWORD),
-    ('TimeDateStamp', DWORD),
-    ('MajorVersion', WORD),
-    ('MinorVersion', WORD),
-    ('Type', DWORD),
-    ('SizeOfData', DWORD),
-    ('AddressOfRawData', DWORD),
-    ('PointerToRawData', DWORD),
-]
-IMAGE_DEBUG_DIRECTORY = _IMAGE_DEBUG_DIRECTORY
-PIMAGE_DEBUG_DIRECTORY = POINTER(_IMAGE_DEBUG_DIRECTORY)
-class _IMAGE_COFF_SYMBOLS_HEADER(Structure):
-    pass
-_IMAGE_COFF_SYMBOLS_HEADER._fields_ = [
-    ('NumberOfSymbols', DWORD),
-    ('LvaToFirstSymbol', DWORD),
-    ('NumberOfLinenumbers', DWORD),
-    ('LvaToFirstLinenumber', DWORD),
-    ('RvaToFirstByteOfCode', DWORD),
-    ('RvaToLastByteOfCode', DWORD),
-    ('RvaToFirstByteOfData', DWORD),
-    ('RvaToLastByteOfData', DWORD),
-]
-IMAGE_COFF_SYMBOLS_HEADER = _IMAGE_COFF_SYMBOLS_HEADER
-PIMAGE_COFF_SYMBOLS_HEADER = POINTER(_IMAGE_COFF_SYMBOLS_HEADER)
-class _FPO_DATA(Structure):
-    pass
-_FPO_DATA._fields_ = [
-    ('ulOffStart', DWORD),
-    ('cbProcSize', DWORD),
-    ('cdwLocals', DWORD),
-    ('cdwParams', WORD),
-    ('cbProlog', WORD, 8),
-    ('cbRegs', WORD, 3),
-    ('fHasSEH', WORD, 1),
-    ('fUseBP', WORD, 1),
-    ('reserved', WORD, 1),
-    ('cbFrame', WORD, 2),
-]
-FPO_DATA = _FPO_DATA
-PFPO_DATA = POINTER(_FPO_DATA)
-class _IMAGE_DEBUG_MISC(Structure):
-    pass
-_IMAGE_DEBUG_MISC._fields_ = [
-    ('DataType', DWORD),
-    ('Length', DWORD),
-    ('Unicode', BOOLEAN),
-    ('Reserved', BYTE * 3),
-    ('Data', BYTE * 1),
-]
-IMAGE_DEBUG_MISC = _IMAGE_DEBUG_MISC
-PIMAGE_DEBUG_MISC = POINTER(_IMAGE_DEBUG_MISC)
-class _IMAGE_FUNCTION_ENTRY(Structure):
-    pass
-_IMAGE_FUNCTION_ENTRY._fields_ = [
-    ('StartingAddress', DWORD),
-    ('EndingAddress', DWORD),
-    ('EndOfPrologue', DWORD),
-]
-IMAGE_FUNCTION_ENTRY = _IMAGE_FUNCTION_ENTRY
-PIMAGE_FUNCTION_ENTRY = POINTER(_IMAGE_FUNCTION_ENTRY)
-class _IMAGE_FUNCTION_ENTRY64(Structure):
-    pass
-class N23_IMAGE_FUNCTION_ENTRY644DOLLAR_45E(Union):
-    pass
-N23_IMAGE_FUNCTION_ENTRY644DOLLAR_45E._pack_ = 4
-N23_IMAGE_FUNCTION_ENTRY644DOLLAR_45E._fields_ = [
-    ('EndOfPrologue', ULONGLONG),
-    ('UnwindInfoAddress', ULONGLONG),
-]
-_IMAGE_FUNCTION_ENTRY64._pack_ = 4
-_IMAGE_FUNCTION_ENTRY64._anonymous_ = ['_0']
-_IMAGE_FUNCTION_ENTRY64._fields_ = [
-    ('StartingAddress', ULONGLONG),
-    ('EndingAddress', ULONGLONG),
-    ('_0', N23_IMAGE_FUNCTION_ENTRY644DOLLAR_45E),
-]
-PIMAGE_FUNCTION_ENTRY64 = POINTER(_IMAGE_FUNCTION_ENTRY64)
-IMAGE_FUNCTION_ENTRY64 = _IMAGE_FUNCTION_ENTRY64
-class _IMAGE_SEPARATE_DEBUG_HEADER(Structure):
-    pass
-_IMAGE_SEPARATE_DEBUG_HEADER._fields_ = [
-    ('Signature', WORD),
-    ('Flags', WORD),
-    ('Machine', WORD),
-    ('Characteristics', WORD),
-    ('TimeDateStamp', DWORD),
-    ('CheckSum', DWORD),
-    ('ImageBase', DWORD),
-    ('SizeOfImage', DWORD),
-    ('NumberOfSections', DWORD),
-    ('ExportedNamesSize', DWORD),
-    ('DebugDirectorySize', DWORD),
-    ('SectionAlignment', DWORD),
-    ('Reserved', DWORD * 2),
-]
-PIMAGE_SEPARATE_DEBUG_HEADER = POINTER(_IMAGE_SEPARATE_DEBUG_HEADER)
-IMAGE_SEPARATE_DEBUG_HEADER = _IMAGE_SEPARATE_DEBUG_HEADER
-class _NON_PAGED_DEBUG_INFO(Structure):
-    pass
-_NON_PAGED_DEBUG_INFO._pack_ = 4
-_NON_PAGED_DEBUG_INFO._fields_ = [
-    ('Signature', WORD),
-    ('Flags', WORD),
-    ('Size', DWORD),
-    ('Machine', WORD),
-    ('Characteristics', WORD),
-    ('TimeDateStamp', DWORD),
-    ('CheckSum', DWORD),
-    ('SizeOfImage', DWORD),
-    ('ImageBase', ULONGLONG),
-]
-PNON_PAGED_DEBUG_INFO = POINTER(_NON_PAGED_DEBUG_INFO)
-NON_PAGED_DEBUG_INFO = _NON_PAGED_DEBUG_INFO
-class _ImageArchitectureHeader(Structure):
-    pass
-_ImageArchitectureHeader._fields_ = [
-    ('AmaskValue', c_uint, 1),
-    ('', c_int, 7),
-    ('AmaskShift', c_uint, 8),
-    ('', c_int, 16),
-    ('FirstEntryRVA', DWORD),
-]
-IMAGE_ARCHITECTURE_HEADER = _ImageArchitectureHeader
-PIMAGE_ARCHITECTURE_HEADER = POINTER(_ImageArchitectureHeader)
-class _ImageArchitectureEntry(Structure):
-    pass
-_ImageArchitectureEntry._fields_ = [
-    ('FixupInstRVA', DWORD),
-    ('NewInst', DWORD),
-]
-IMAGE_ARCHITECTURE_ENTRY = _ImageArchitectureEntry
-PIMAGE_ARCHITECTURE_ENTRY = POINTER(_ImageArchitectureEntry)
-class IMPORT_OBJECT_HEADER(Structure):
-    pass
-class N20IMPORT_OBJECT_HEADER4DOLLAR_46E(Union):
-    pass
-N20IMPORT_OBJECT_HEADER4DOLLAR_46E._fields_ = [
-    ('Ordinal', WORD),
-    ('Hint', WORD),
-]
-IMPORT_OBJECT_HEADER._anonymous_ = ['_0']
-IMPORT_OBJECT_HEADER._fields_ = [
-    ('Sig1', WORD),
-    ('Sig2', WORD),
-    ('Version', WORD),
-    ('Machine', WORD),
-    ('TimeDateStamp', DWORD),
-    ('SizeOfData', DWORD),
-    ('_0', N20IMPORT_OBJECT_HEADER4DOLLAR_46E),
-    ('Type', WORD, 2),
-    ('NameType', WORD, 3),
-    ('Reserved', WORD, 11),
-]
-
-# values for enumeration 'IMPORT_OBJECT_TYPE'
-IMPORT_OBJECT_TYPE = c_int # enum
-
-# values for enumeration 'IMPORT_OBJECT_NAME_TYPE'
-IMPORT_OBJECT_NAME_TYPE = c_int # enum
-
-# values for enumeration 'ReplacesCorHdrNumericDefines'
-ReplacesCorHdrNumericDefines = c_int # enum
-class IMAGE_COR20_HEADER(Structure):
-    pass
-IMAGE_COR20_HEADER._fields_ = [
-    ('cb', DWORD),
-    ('MajorRuntimeVersion', WORD),
-    ('MinorRuntimeVersion', WORD),
-    ('MetaData', IMAGE_DATA_DIRECTORY),
-    ('Flags', DWORD),
-    ('EntryPointToken', DWORD),
-    ('Resources', IMAGE_DATA_DIRECTORY),
-    ('StrongNameSignature', IMAGE_DATA_DIRECTORY),
-    ('CodeManagerTable', IMAGE_DATA_DIRECTORY),
-    ('VTableFixups', IMAGE_DATA_DIRECTORY),
-    ('ExportAddressTableJumps', IMAGE_DATA_DIRECTORY),
-    ('ManagedNativeHeader', IMAGE_DATA_DIRECTORY),
-]
-PIMAGE_COR20_HEADER = POINTER(IMAGE_COR20_HEADER)
-class _SLIST_HEADER(Union):
-    pass
-class N13_SLIST_HEADER4DOLLAR_47E(Structure):
-    pass
-N13_SLIST_HEADER4DOLLAR_47E._fields_ = [
-    ('Next', SINGLE_LIST_ENTRY),
-    ('Depth', WORD),
-    ('Sequence', WORD),
-]
-_SLIST_HEADER._anonymous_ = ['_0']
-_SLIST_HEADER._fields_ = [
-    ('Alignment', ULONGLONG),
-    ('_0', N13_SLIST_HEADER4DOLLAR_47E),
-]
-PSLIST_HEADER = POINTER(_SLIST_HEADER)
-SLIST_HEADER = _SLIST_HEADER
-class _MESSAGE_RESOURCE_ENTRY(Structure):
-    pass
-_MESSAGE_RESOURCE_ENTRY._fields_ = [
-    ('Length', WORD),
-    ('Flags', WORD),
-    ('Text', BYTE * 1),
-]
-PMESSAGE_RESOURCE_ENTRY = POINTER(_MESSAGE_RESOURCE_ENTRY)
-MESSAGE_RESOURCE_ENTRY = _MESSAGE_RESOURCE_ENTRY
-class _MESSAGE_RESOURCE_BLOCK(Structure):
-    pass
-_MESSAGE_RESOURCE_BLOCK._fields_ = [
-    ('LowId', DWORD),
-    ('HighId', DWORD),
-    ('OffsetToEntries', DWORD),
-]
-PMESSAGE_RESOURCE_BLOCK = POINTER(_MESSAGE_RESOURCE_BLOCK)
-MESSAGE_RESOURCE_BLOCK = _MESSAGE_RESOURCE_BLOCK
-class _MESSAGE_RESOURCE_DATA(Structure):
-    pass
-_MESSAGE_RESOURCE_DATA._fields_ = [
-    ('NumberOfBlocks', DWORD),
-    ('Blocks', MESSAGE_RESOURCE_BLOCK * 1),
-]
-MESSAGE_RESOURCE_DATA = _MESSAGE_RESOURCE_DATA
-PMESSAGE_RESOURCE_DATA = POINTER(_MESSAGE_RESOURCE_DATA)
-class _OSVERSIONINFOA(Structure):
-    pass
-_OSVERSIONINFOA._fields_ = [
-    ('dwOSVersionInfoSize', DWORD),
-    ('dwMajorVersion', DWORD),
-    ('dwMinorVersion', DWORD),
-    ('dwBuildNumber', DWORD),
-    ('dwPlatformId', DWORD),
-    ('szCSDVersion', CHAR * 128),
-]
-POSVERSIONINFOA = POINTER(_OSVERSIONINFOA)
-OSVERSIONINFOA = _OSVERSIONINFOA
-LPOSVERSIONINFOA = POINTER(_OSVERSIONINFOA)
-class _OSVERSIONINFOW(Structure):
-    pass
-_OSVERSIONINFOW._fields_ = [
-    ('dwOSVersionInfoSize', DWORD),
-    ('dwMajorVersion', DWORD),
-    ('dwMinorVersion', DWORD),
-    ('dwBuildNumber', DWORD),
-    ('dwPlatformId', DWORD),
-    ('szCSDVersion', WCHAR * 128),
-]
-OSVERSIONINFOW = _OSVERSIONINFOW
-PRTL_OSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
-POSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
-RTL_OSVERSIONINFOW = _OSVERSIONINFOW
-LPOSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
-OSVERSIONINFO = OSVERSIONINFOA
-POSVERSIONINFO = POSVERSIONINFOA
-LPOSVERSIONINFO = LPOSVERSIONINFOA
-class _OSVERSIONINFOEXA(Structure):
-    pass
-_OSVERSIONINFOEXA._fields_ = [
-    ('dwOSVersionInfoSize', DWORD),
-    ('dwMajorVersion', DWORD),
-    ('dwMinorVersion', DWORD),
-    ('dwBuildNumber', DWORD),
-    ('dwPlatformId', DWORD),
-    ('szCSDVersion', CHAR * 128),
-    ('wServicePackMajor', WORD),
-    ('wServicePackMinor', WORD),
-    ('wSuiteMask', WORD),
-    ('wProductType', BYTE),
-    ('wReserved', BYTE),
-]
-OSVERSIONINFOEXA = _OSVERSIONINFOEXA
-POSVERSIONINFOEXA = POINTER(_OSVERSIONINFOEXA)
-LPOSVERSIONINFOEXA = POINTER(_OSVERSIONINFOEXA)
-class _OSVERSIONINFOEXW(Structure):
-    pass
-_OSVERSIONINFOEXW._fields_ = [
-    ('dwOSVersionInfoSize', DWORD),
-    ('dwMajorVersion', DWORD),
-    ('dwMinorVersion', DWORD),
-    ('dwBuildNumber', DWORD),
-    ('dwPlatformId', DWORD),
-    ('szCSDVersion', WCHAR * 128),
-    ('wServicePackMajor', WORD),
-    ('wServicePackMinor', WORD),
-    ('wSuiteMask', WORD),
-    ('wProductType', BYTE),
-    ('wReserved', BYTE),
-]
-PRTL_OSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
-OSVERSIONINFOEXW = _OSVERSIONINFOEXW
-LPOSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
-RTL_OSVERSIONINFOEXW = _OSVERSIONINFOEXW
-POSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
-OSVERSIONINFOEX = OSVERSIONINFOEXA
-POSVERSIONINFOEX = POSVERSIONINFOEXA
-LPOSVERSIONINFOEX = LPOSVERSIONINFOEXA
-_RTL_CRITICAL_SECTION_DEBUG._fields_ = [
-    ('Type', WORD),
-    ('CreatorBackTraceIndex', WORD),
-    ('CriticalSection', POINTER(_RTL_CRITICAL_SECTION)),
-    ('ProcessLocksList', LIST_ENTRY),
-    ('EntryCount', DWORD),
-    ('ContentionCount', DWORD),
-    ('Spare', DWORD * 2),
-]
-PRTL_RESOURCE_DEBUG = POINTER(_RTL_CRITICAL_SECTION_DEBUG)
-RTL_RESOURCE_DEBUG = _RTL_CRITICAL_SECTION_DEBUG
-_RTL_CRITICAL_SECTION._fields_ = [
-    ('DebugInfo', PRTL_CRITICAL_SECTION_DEBUG),
-    ('LockCount', LONG),
-    ('RecursionCount', LONG),
-    ('OwningThread', HANDLE),
-    ('LockSemaphore', HANDLE),
-    ('SpinCount', ULONG_PTR),
-]
-RTL_VERIFIER_DLL_LOAD_CALLBACK = WINFUNCTYPE(None, WSTRING, c_void_p, c_ulong, c_void_p)
-RTL_VERIFIER_DLL_UNLOAD_CALLBACK = WINFUNCTYPE(None, WSTRING, c_void_p, c_ulong, c_void_p)
-class _RTL_VERIFIER_THUNK_DESCRIPTOR(Structure):
-    pass
-_RTL_VERIFIER_THUNK_DESCRIPTOR._fields_ = [
-    ('ThunkName', PCHAR),
-    ('ThunkOldAddress', PVOID),
-    ('ThunkNewAddress', PVOID),
-]
-RTL_VERIFIER_THUNK_DESCRIPTOR = _RTL_VERIFIER_THUNK_DESCRIPTOR
-PRTL_VERIFIER_THUNK_DESCRIPTOR = POINTER(_RTL_VERIFIER_THUNK_DESCRIPTOR)
-class _RTL_VERIFIER_DLL_DESCRIPTOR(Structure):
-    pass
-_RTL_VERIFIER_DLL_DESCRIPTOR._fields_ = [
-    ('DllName', PWCHAR),
-    ('DllFlags', DWORD),
-    ('DllAddress', PVOID),
-    ('DllThunks', PRTL_VERIFIER_THUNK_DESCRIPTOR),
-]
-RTL_VERIFIER_DLL_DESCRIPTOR = _RTL_VERIFIER_DLL_DESCRIPTOR
-PRTL_VERIFIER_DLL_DESCRIPTOR = POINTER(_RTL_VERIFIER_DLL_DESCRIPTOR)
-class _RTL_VERIFIER_PROVIDER_DESCRIPTOR(Structure):
-    pass
-_RTL_VERIFIER_PROVIDER_DESCRIPTOR._fields_ = [
-    ('Length', DWORD),
-    ('ProviderDlls', PRTL_VERIFIER_DLL_DESCRIPTOR),
-    ('ProviderDllLoadCallback', RTL_VERIFIER_DLL_LOAD_CALLBACK),
-    ('ProviderDllUnloadCallback', RTL_VERIFIER_DLL_UNLOAD_CALLBACK),
-    ('VerifierImage', PWSTR),
-    ('VerifierFlags', DWORD),
-    ('VerifierDebug', DWORD),
-    ('RtlpGetStackTraceAddress', PVOID),
-    ('RtlpDebugPageHeapCreate', PVOID),
-    ('RtlpDebugPageHeapDestroy', PVOID),
-]
-RTL_VERIFIER_PROVIDER_DESCRIPTOR = _RTL_VERIFIER_PROVIDER_DESCRIPTOR
-PRTL_VERIFIER_PROVIDER_DESCRIPTOR = POINTER(_RTL_VERIFIER_PROVIDER_DESCRIPTOR)
-PVECTORED_EXCEPTION_HANDLER = WINFUNCTYPE(LONG, POINTER(_EXCEPTION_POINTERS))
-
-# values for enumeration '_HEAP_INFORMATION_CLASS'
-_HEAP_INFORMATION_CLASS = c_int # enum
-HEAP_INFORMATION_CLASS = _HEAP_INFORMATION_CLASS
-WAITORTIMERCALLBACKFUNC = WINFUNCTYPE(None, c_void_p, c_ubyte)
-WORKERCALLBACKFUNC = WINFUNCTYPE(None, c_void_p)
-APC_CALLBACK_FUNCTION = WINFUNCTYPE(None, c_ulong, c_void_p, c_void_p)
-
-# values for enumeration '_ACTIVATION_CONTEXT_INFO_CLASS'
-_ACTIVATION_CONTEXT_INFO_CLASS = c_int # enum
-ACTIVATION_CONTEXT_INFO_CLASS = _ACTIVATION_CONTEXT_INFO_CLASS
-class _ACTIVATION_CONTEXT_QUERY_INDEX(Structure):
-    pass
-_ACTIVATION_CONTEXT_QUERY_INDEX._fields_ = [
-    ('ulAssemblyIndex', DWORD),
-    ('ulFileIndexInAssembly', DWORD),
-]
-PACTIVATION_CONTEXT_QUERY_INDEX = POINTER(_ACTIVATION_CONTEXT_QUERY_INDEX)
-ACTIVATION_CONTEXT_QUERY_INDEX = _ACTIVATION_CONTEXT_QUERY_INDEX
-PCACTIVATION_CONTEXT_QUERY_INDEX = POINTER(_ACTIVATION_CONTEXT_QUERY_INDEX)
-class _ASSEMBLY_FILE_DETAILED_INFORMATION(Structure):
-    pass
-_ASSEMBLY_FILE_DETAILED_INFORMATION._fields_ = [
-    ('ulFlags', DWORD),
-    ('ulFilenameLength', DWORD),
-    ('ulPathLength', DWORD),
-    ('lpFileName', PCWSTR),
-    ('lpFilePath', PCWSTR),
-]
-ASSEMBLY_FILE_DETAILED_INFORMATION = _ASSEMBLY_FILE_DETAILED_INFORMATION
-PASSEMBLY_FILE_DETAILED_INFORMATION = POINTER(_ASSEMBLY_FILE_DETAILED_INFORMATION)
-PCASSEMBLY_FILE_DETAILED_INFORMATION = POINTER(ASSEMBLY_FILE_DETAILED_INFORMATION)
-class _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION(Structure):
-    pass
-_ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION._fields_ = [
-    ('ulFlags', DWORD),
-    ('ulEncodedAssemblyIdentityLength', DWORD),
-    ('ulManifestPathType', DWORD),
-    ('ulManifestPathLength', DWORD),
-    ('liManifestLastWriteTime', LARGE_INTEGER),
-    ('ulPolicyPathType', DWORD),
-    ('ulPolicyPathLength', DWORD),
-    ('liPolicyLastWriteTime', LARGE_INTEGER),
-    ('ulMetadataSatelliteRosterIndex', DWORD),
-    ('ulManifestVersionMajor', DWORD),
-    ('ulManifestVersionMinor', DWORD),
-    ('ulPolicyVersionMajor', DWORD),
-    ('ulPolicyVersionMinor', DWORD),
-    ('ulAssemblyDirectoryNameLength', DWORD),
-    ('lpAssemblyEncodedAssemblyIdentity', PCWSTR),
-    ('lpAssemblyManifestPath', PCWSTR),
-    ('lpAssemblyPolicyPath', PCWSTR),
-    ('lpAssemblyDirectoryName', PCWSTR),
-    ('ulFileCount', DWORD),
-]
-ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION
-PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION)
-PCACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION)
-class _ACTIVATION_CONTEXT_DETAILED_INFORMATION(Structure):
-    pass
-_ACTIVATION_CONTEXT_DETAILED_INFORMATION._fields_ = [
-    ('dwFlags', DWORD),
-    ('ulFormatVersion', DWORD),
-    ('ulAssemblyCount', DWORD),
-    ('ulRootManifestPathType', DWORD),
-    ('ulRootManifestPathChars', DWORD),
-    ('ulRootConfigurationPathType', DWORD),
-    ('ulRootConfigurationPathChars', DWORD),
-    ('ulAppDirPathType', DWORD),
-    ('ulAppDirPathChars', DWORD),
-    ('lpRootManifestPath', PCWSTR),
-    ('lpRootConfigurationPath', PCWSTR),
-    ('lpAppDirPath', PCWSTR),
-]
-PACTIVATION_CONTEXT_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_DETAILED_INFORMATION)
-ACTIVATION_CONTEXT_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_DETAILED_INFORMATION
-PCACTIVATION_CONTEXT_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_DETAILED_INFORMATION)
-class _EVENTLOGRECORD(Structure):
-    pass
-_EVENTLOGRECORD._fields_ = [
-    ('Length', DWORD),
-    ('Reserved', DWORD),
-    ('RecordNumber', DWORD),
-    ('TimeGenerated', DWORD),
-    ('TimeWritten', DWORD),
-    ('EventID', DWORD),
-    ('EventType', WORD),
-    ('NumStrings', WORD),
-    ('EventCategory', WORD),
-    ('ReservedFlags', WORD),
-    ('ClosingRecordNumber', DWORD),
-    ('StringOffset', DWORD),
-    ('UserSidLength', DWORD),
-    ('UserSidOffset', DWORD),
-    ('DataLength', DWORD),
-    ('DataOffset', DWORD),
-]
-PEVENTLOGRECORD = POINTER(_EVENTLOGRECORD)
-EVENTLOGRECORD = _EVENTLOGRECORD
-class _EVENTSFORLOGFILE(Structure):
-    pass
-_EVENTSFORLOGFILE._fields_ = [
-    ('ulSize', DWORD),
-    ('szLogicalLogFile', WCHAR * 256),
-    ('ulNumRecords', DWORD),
-    ('pEventLogRecords', EVENTLOGRECORD * 0),
-]
-PEVENTSFORLOGFILE = POINTER(_EVENTSFORLOGFILE)
-EVENTSFORLOGFILE = _EVENTSFORLOGFILE
-class _PACKEDEVENTINFO(Structure):
-    pass
-_PACKEDEVENTINFO._fields_ = [
-    ('ulSize', DWORD),
-    ('ulNumEventsForLogFile', DWORD),
-    ('ulOffsets', DWORD * 0),
-]
-PACKEDEVENTINFO = _PACKEDEVENTINFO
-PPACKEDEVENTINFO = POINTER(_PACKEDEVENTINFO)
-
-# values for enumeration '_CM_SERVICE_NODE_TYPE'
-_CM_SERVICE_NODE_TYPE = c_int # enum
-SERVICE_NODE_TYPE = _CM_SERVICE_NODE_TYPE
-
-# values for enumeration '_CM_SERVICE_LOAD_TYPE'
-_CM_SERVICE_LOAD_TYPE = c_int # enum
-SERVICE_LOAD_TYPE = _CM_SERVICE_LOAD_TYPE
-
-# values for enumeration '_CM_ERROR_CONTROL_TYPE'
-_CM_ERROR_CONTROL_TYPE = c_int # enum
-SERVICE_ERROR_TYPE = _CM_ERROR_CONTROL_TYPE
-class _TAPE_ERASE(Structure):
-    pass
-_TAPE_ERASE._fields_ = [
-    ('Type', DWORD),
-    ('Immediate', BOOLEAN),
-]
-TAPE_ERASE = _TAPE_ERASE
-PTAPE_ERASE = POINTER(_TAPE_ERASE)
-class _TAPE_PREPARE(Structure):
-    pass
-_TAPE_PREPARE._fields_ = [
-    ('Operation', DWORD),
-    ('Immediate', BOOLEAN),
-]
-TAPE_PREPARE = _TAPE_PREPARE
-PTAPE_PREPARE = POINTER(_TAPE_PREPARE)
-class _TAPE_WRITE_MARKS(Structure):
-    pass
-_TAPE_WRITE_MARKS._fields_ = [
-    ('Type', DWORD),
-    ('Count', DWORD),
-    ('Immediate', BOOLEAN),
-]
-TAPE_WRITE_MARKS = _TAPE_WRITE_MARKS
-PTAPE_WRITE_MARKS = POINTER(_TAPE_WRITE_MARKS)
-class _TAPE_GET_POSITION(Structure):
-    pass
-_TAPE_GET_POSITION._fields_ = [
-    ('Type', DWORD),
-    ('Partition', DWORD),
-    ('Offset', LARGE_INTEGER),
-]
-PTAPE_GET_POSITION = POINTER(_TAPE_GET_POSITION)
-TAPE_GET_POSITION = _TAPE_GET_POSITION
-class _TAPE_SET_POSITION(Structure):
-    pass
-_TAPE_SET_POSITION._fields_ = [
-    ('Method', DWORD),
-    ('Partition', DWORD),
-    ('Offset', LARGE_INTEGER),
-    ('Immediate', BOOLEAN),
-]
-PTAPE_SET_POSITION = POINTER(_TAPE_SET_POSITION)
-TAPE_SET_POSITION = _TAPE_SET_POSITION
-class _TAPE_GET_DRIVE_PARAMETERS(Structure):
-    pass
-_TAPE_GET_DRIVE_PARAMETERS._fields_ = [
-    ('ECC', BOOLEAN),
-    ('Compression', BOOLEAN),
-    ('DataPadding', BOOLEAN),
-    ('ReportSetmarks', BOOLEAN),
-    ('DefaultBlockSize', DWORD),
-    ('MaximumBlockSize', DWORD),
-    ('MinimumBlockSize', DWORD),
-    ('MaximumPartitionCount', DWORD),
-    ('FeaturesLow', DWORD),
-    ('FeaturesHigh', DWORD),
-    ('EOTWarningZoneSize', DWORD),
-]
-PTAPE_GET_DRIVE_PARAMETERS = POINTER(_TAPE_GET_DRIVE_PARAMETERS)
-TAPE_GET_DRIVE_PARAMETERS = _TAPE_GET_DRIVE_PARAMETERS
-class _TAPE_SET_DRIVE_PARAMETERS(Structure):
-    pass
-_TAPE_SET_DRIVE_PARAMETERS._fields_ = [
-    ('ECC', BOOLEAN),
-    ('Compression', BOOLEAN),
-    ('DataPadding', BOOLEAN),
-    ('ReportSetmarks', BOOLEAN),
-    ('EOTWarningZoneSize', DWORD),
-]
-PTAPE_SET_DRIVE_PARAMETERS = POINTER(_TAPE_SET_DRIVE_PARAMETERS)
-TAPE_SET_DRIVE_PARAMETERS = _TAPE_SET_DRIVE_PARAMETERS
-class _TAPE_GET_MEDIA_PARAMETERS(Structure):
-    pass
-_TAPE_GET_MEDIA_PARAMETERS._fields_ = [
-    ('Capacity', LARGE_INTEGER),
-    ('Remaining', LARGE_INTEGER),
-    ('BlockSize', DWORD),
-    ('PartitionCount', DWORD),
-    ('WriteProtected', BOOLEAN),
-]
-PTAPE_GET_MEDIA_PARAMETERS = POINTER(_TAPE_GET_MEDIA_PARAMETERS)
-TAPE_GET_MEDIA_PARAMETERS = _TAPE_GET_MEDIA_PARAMETERS
-class _TAPE_SET_MEDIA_PARAMETERS(Structure):
-    pass
-_TAPE_SET_MEDIA_PARAMETERS._fields_ = [
-    ('BlockSize', DWORD),
-]
-PTAPE_SET_MEDIA_PARAMETERS = POINTER(_TAPE_SET_MEDIA_PARAMETERS)
-TAPE_SET_MEDIA_PARAMETERS = _TAPE_SET_MEDIA_PARAMETERS
-class _TAPE_CREATE_PARTITION(Structure):
-    pass
-_TAPE_CREATE_PARTITION._fields_ = [
-    ('Method', DWORD),
-    ('Count', DWORD),
-    ('Size', DWORD),
-]
-PTAPE_CREATE_PARTITION = POINTER(_TAPE_CREATE_PARTITION)
-TAPE_CREATE_PARTITION = _TAPE_CREATE_PARTITION
-class _TAPE_WMI_OPERATIONS(Structure):
-    pass
-_TAPE_WMI_OPERATIONS._fields_ = [
-    ('Method', DWORD),
-    ('DataBufferSize', DWORD),
-    ('DataBuffer', PVOID),
-]
-PTAPE_WMI_OPERATIONS = POINTER(_TAPE_WMI_OPERATIONS)
-TAPE_WMI_OPERATIONS = _TAPE_WMI_OPERATIONS
-
-# values for enumeration '_TAPE_DRIVE_PROBLEM_TYPE'
-_TAPE_DRIVE_PROBLEM_TYPE = c_int # enum
-TAPE_DRIVE_PROBLEM_TYPE = _TAPE_DRIVE_PROBLEM_TYPE
 ushort = c_ushort
 uint = c_uint
 ulonglong = c_ulonglong
@@ -9059,9 +6497,9 @@ MYSQL_ROWS = st_mysql_rows
 MYSQL_ROW_OFFSET = POINTER(MYSQL_ROWS)
 class embedded_query_result(Structure):
     pass
-EMBEDDED_QUERY_RESULT = embedded_query_result
 embedded_query_result._fields_ = [
 ]
+EMBEDDED_QUERY_RESULT = embedded_query_result
 class st_mysql_data(Structure):
     pass
 st_mysql_data._fields_ = [
@@ -9704,7 +7142,7 @@ mysql_rollback.restype = my_bool
 mysql_rollback.argtypes = [POINTER(MYSQL)]
 mysql_autocommit = _stdcall_libraries['libmysql.dll'].mysql_autocommit
 mysql_autocommit.restype = my_bool
-mysql_autocommit.argtypes = [POINTER(MYSQL), my_bool]
+mysql_autocommit.argtypes = [POINTER(MYSQL), c_char]
 mysql_more_results = _stdcall_libraries['libmysql.dll'].mysql_more_results
 mysql_more_results.restype = my_bool
 mysql_more_results.argtypes = [POINTER(MYSQL)]
@@ -9780,6 +7218,2567 @@ st_typelib._fields_ = [
     ('type_lengths', POINTER(c_uint)),
 ]
 TYPELIB = st_typelib
+POINTER_64_INT = c_ulong
+PVOID64 = c_void_p
+PWCHAR = WSTRING
+LPWCH = WSTRING
+PWCH = WSTRING
+PCWCH = WSTRING
+LPCWCH = WSTRING
+NWPSTR = WSTRING
+PWSTR = WSTRING
+LPUWSTR = WSTRING
+PUWSTR = WSTRING
+PCWSTR = WSTRING
+PCUWSTR = WSTRING
+LPCUWSTR = WSTRING
+PCHAR = STRING
+LPCH = STRING
+PCH = STRING
+LPCCH = STRING
+PCCH = STRING
+NPSTR = STRING
+PCSTR = STRING
+TCHAR = c_char
+PTCHAR = STRING
+TBYTE = c_ubyte
+PTBYTE = POINTER(c_ubyte)
+PTCH = LPSTR
+LPTCH = LPSTR
+PUTSTR = LPSTR
+PTSTR = LPSTR
+LPTSTR = LPSTR
+LPUTSTR = LPSTR
+LPCUTSTR = LPCSTR
+PCUTSTR = LPCSTR
+PCTSTR = LPCSTR
+LPCTSTR = LPCSTR
+PSHORT = POINTER(SHORT)
+PLONG = POINTER(LONG)
+PHANDLE = POINTER(HANDLE)
+FCHAR = BYTE
+FSHORT = WORD
+FLONG = DWORD
+CCHAR = c_char
+PLCID = PDWORD
+class _FLOAT128(Structure):
+    pass
+_FLOAT128._fields_ = [
+    ('LowPart', c_longlong),
+    ('HighPart', c_longlong),
+]
+FLOAT128 = _FLOAT128
+PFLOAT128 = POINTER(FLOAT128)
+LONGLONG = c_longlong
+PLONGLONG = POINTER(LONGLONG)
+PULONGLONG = POINTER(ULONGLONG)
+USN = LONGLONG
+class N14_LARGE_INTEGER3DOLLAR_0E(Structure):
+    pass
+N14_LARGE_INTEGER3DOLLAR_0E._fields_ = [
+    ('LowPart', DWORD),
+    ('HighPart', LONG),
+]
+class N14_LARGE_INTEGER3DOLLAR_1E(Structure):
+    pass
+N14_LARGE_INTEGER3DOLLAR_1E._fields_ = [
+    ('LowPart', DWORD),
+    ('HighPart', LONG),
+]
+PLARGE_INTEGER = POINTER(LARGE_INTEGER)
+class N15_ULARGE_INTEGER3DOLLAR_2E(Structure):
+    pass
+N15_ULARGE_INTEGER3DOLLAR_2E._fields_ = [
+    ('LowPart', DWORD),
+    ('HighPart', DWORD),
+]
+class N15_ULARGE_INTEGER3DOLLAR_3E(Structure):
+    pass
+N15_ULARGE_INTEGER3DOLLAR_3E._fields_ = [
+    ('LowPart', DWORD),
+    ('HighPart', DWORD),
+]
+PULARGE_INTEGER = POINTER(ULARGE_INTEGER)
+class _LUID(Structure):
+    pass
+_LUID._fields_ = [
+    ('LowPart', DWORD),
+    ('HighPart', LONG),
+]
+PLUID = POINTER(_LUID)
+LUID = _LUID
+PDWORDLONG = POINTER(DWORDLONG)
+PBOOLEAN = POINTER(BOOLEAN)
+class _LIST_ENTRY(Structure):
+    pass
+_LIST_ENTRY._fields_ = [
+    ('Flink', POINTER(_LIST_ENTRY)),
+    ('Blink', POINTER(_LIST_ENTRY)),
+]
+PLIST_ENTRY = POINTER(_LIST_ENTRY)
+LIST_ENTRY = _LIST_ENTRY
+PRLIST_ENTRY = POINTER(_LIST_ENTRY)
+class _SINGLE_LIST_ENTRY(Structure):
+    pass
+_SINGLE_LIST_ENTRY._fields_ = [
+    ('Next', POINTER(_SINGLE_LIST_ENTRY)),
+]
+SINGLE_LIST_ENTRY = _SINGLE_LIST_ENTRY
+PSINGLE_LIST_ENTRY = POINTER(_SINGLE_LIST_ENTRY)
+class LIST_ENTRY32(Structure):
+    pass
+LIST_ENTRY32._fields_ = [
+    ('Flink', DWORD),
+    ('Blink', DWORD),
+]
+PLIST_ENTRY32 = POINTER(LIST_ENTRY32)
+class LIST_ENTRY64(Structure):
+    pass
+LIST_ENTRY64._fields_ = [
+    ('Flink', ULONGLONG),
+    ('Blink', ULONGLONG),
+]
+PLIST_ENTRY64 = POINTER(LIST_ENTRY64)
+class _OBJECTID(Structure):
+    pass
+_OBJECTID._fields_ = [
+    ('Lineage', GUID),
+    ('Uniquifier', DWORD),
+]
+OBJECTID = _OBJECTID
+KSPIN_LOCK = ULONG_PTR
+PKSPIN_LOCK = POINTER(KSPIN_LOCK)
+class _TEB(Structure):
+    pass
+_TEB._fields_ = [
+]
+class _FLOATING_SAVE_AREA(Structure):
+    pass
+_FLOATING_SAVE_AREA._fields_ = [
+    ('ControlWord', DWORD),
+    ('StatusWord', DWORD),
+    ('TagWord', DWORD),
+    ('ErrorOffset', DWORD),
+    ('ErrorSelector', DWORD),
+    ('DataOffset', DWORD),
+    ('DataSelector', DWORD),
+    ('RegisterArea', BYTE * 80),
+    ('Cr0NpxState', DWORD),
+]
+FLOATING_SAVE_AREA = _FLOATING_SAVE_AREA
+PFLOATING_SAVE_AREA = POINTER(FLOATING_SAVE_AREA)
+_CONTEXT._fields_ = [
+    ('ContextFlags', DWORD),
+    ('Dr0', DWORD),
+    ('Dr1', DWORD),
+    ('Dr2', DWORD),
+    ('Dr3', DWORD),
+    ('Dr6', DWORD),
+    ('Dr7', DWORD),
+    ('FloatSave', FLOATING_SAVE_AREA),
+    ('SegGs', DWORD),
+    ('SegFs', DWORD),
+    ('SegEs', DWORD),
+    ('SegDs', DWORD),
+    ('Edi', DWORD),
+    ('Esi', DWORD),
+    ('Ebx', DWORD),
+    ('Edx', DWORD),
+    ('Ecx', DWORD),
+    ('Eax', DWORD),
+    ('Ebp', DWORD),
+    ('Eip', DWORD),
+    ('SegCs', DWORD),
+    ('EFlags', DWORD),
+    ('Esp', DWORD),
+    ('SegSs', DWORD),
+    ('ExtendedRegisters', BYTE * 512),
+]
+class N10_LDT_ENTRY3DOLLAR_4E(Union):
+    pass
+class N10_LDT_ENTRY3DOLLAR_43DOLLAR_5E(Structure):
+    pass
+N10_LDT_ENTRY3DOLLAR_43DOLLAR_5E._fields_ = [
+    ('BaseMid', BYTE),
+    ('Flags1', BYTE),
+    ('Flags2', BYTE),
+    ('BaseHi', BYTE),
+]
+class N10_LDT_ENTRY3DOLLAR_43DOLLAR_6E(Structure):
+    pass
+N10_LDT_ENTRY3DOLLAR_43DOLLAR_6E._fields_ = [
+    ('BaseMid', DWORD, 8),
+    ('Type', DWORD, 5),
+    ('Dpl', DWORD, 2),
+    ('Pres', DWORD, 1),
+    ('LimitHi', DWORD, 4),
+    ('Sys', DWORD, 1),
+    ('Reserved_0', DWORD, 1),
+    ('Default_Big', DWORD, 1),
+    ('Granularity', DWORD, 1),
+    ('BaseHi', DWORD, 8),
+]
+N10_LDT_ENTRY3DOLLAR_4E._fields_ = [
+    ('Bytes', N10_LDT_ENTRY3DOLLAR_43DOLLAR_5E),
+    ('Bits', N10_LDT_ENTRY3DOLLAR_43DOLLAR_6E),
+]
+_LDT_ENTRY._fields_ = [
+    ('LimitLow', WORD),
+    ('BaseLow', WORD),
+    ('HighWord', N10_LDT_ENTRY3DOLLAR_4E),
+]
+LDT_ENTRY = _LDT_ENTRY
+class _EXCEPTION_RECORD32(Structure):
+    pass
+_EXCEPTION_RECORD32._fields_ = [
+    ('ExceptionCode', DWORD),
+    ('ExceptionFlags', DWORD),
+    ('ExceptionRecord', DWORD),
+    ('ExceptionAddress', DWORD),
+    ('NumberParameters', DWORD),
+    ('ExceptionInformation', DWORD * 15),
+]
+EXCEPTION_RECORD32 = _EXCEPTION_RECORD32
+PEXCEPTION_RECORD32 = POINTER(_EXCEPTION_RECORD32)
+class _EXCEPTION_RECORD64(Structure):
+    pass
+_EXCEPTION_RECORD64._fields_ = [
+    ('ExceptionCode', DWORD),
+    ('ExceptionFlags', DWORD),
+    ('ExceptionRecord', DWORD64),
+    ('ExceptionAddress', DWORD64),
+    ('NumberParameters', DWORD),
+    ('__unusedAlignment', DWORD),
+    ('ExceptionInformation', DWORD64 * 15),
+]
+PEXCEPTION_RECORD64 = POINTER(_EXCEPTION_RECORD64)
+EXCEPTION_RECORD64 = _EXCEPTION_RECORD64
+_EXCEPTION_POINTERS._fields_ = [
+    ('ExceptionRecord', PEXCEPTION_RECORD),
+    ('ContextRecord', PCONTEXT),
+]
+EXCEPTION_POINTERS = _EXCEPTION_POINTERS
+PACCESS_TOKEN = PVOID
+PSECURITY_DESCRIPTOR = PVOID
+PSID = PVOID
+PACCESS_MASK = POINTER(ACCESS_MASK)
+class _GENERIC_MAPPING(Structure):
+    pass
+_GENERIC_MAPPING._fields_ = [
+    ('GenericRead', ACCESS_MASK),
+    ('GenericWrite', ACCESS_MASK),
+    ('GenericExecute', ACCESS_MASK),
+    ('GenericAll', ACCESS_MASK),
+]
+GENERIC_MAPPING = _GENERIC_MAPPING
+PGENERIC_MAPPING = POINTER(GENERIC_MAPPING)
+class _LUID_AND_ATTRIBUTES(Structure):
+    pass
+_LUID_AND_ATTRIBUTES._fields_ = [
+    ('Luid', LUID),
+    ('Attributes', DWORD),
+]
+LUID_AND_ATTRIBUTES = _LUID_AND_ATTRIBUTES
+PLUID_AND_ATTRIBUTES = POINTER(_LUID_AND_ATTRIBUTES)
+LUID_AND_ATTRIBUTES_ARRAY = LUID_AND_ATTRIBUTES * 1
+PLUID_AND_ATTRIBUTES_ARRAY = POINTER(LUID_AND_ATTRIBUTES_ARRAY)
+class _SID_IDENTIFIER_AUTHORITY(Structure):
+    pass
+_SID_IDENTIFIER_AUTHORITY._fields_ = [
+    ('Value', BYTE * 6),
+]
+SID_IDENTIFIER_AUTHORITY = _SID_IDENTIFIER_AUTHORITY
+PSID_IDENTIFIER_AUTHORITY = POINTER(_SID_IDENTIFIER_AUTHORITY)
+class _SID(Structure):
+    pass
+_SID._fields_ = [
+    ('Revision', BYTE),
+    ('SubAuthorityCount', BYTE),
+    ('IdentifierAuthority', SID_IDENTIFIER_AUTHORITY),
+    ('SubAuthority', DWORD * 1),
+]
+PISID = POINTER(_SID)
+SID = _SID
+
+# values for enumeration '_SID_NAME_USE'
+_SID_NAME_USE = c_int # enum
+SID_NAME_USE = _SID_NAME_USE
+PSID_NAME_USE = POINTER(_SID_NAME_USE)
+class _SID_AND_ATTRIBUTES(Structure):
+    pass
+_SID_AND_ATTRIBUTES._fields_ = [
+    ('Sid', PSID),
+    ('Attributes', DWORD),
+]
+SID_AND_ATTRIBUTES = _SID_AND_ATTRIBUTES
+PSID_AND_ATTRIBUTES = POINTER(_SID_AND_ATTRIBUTES)
+SID_AND_ATTRIBUTES_ARRAY = SID_AND_ATTRIBUTES * 1
+PSID_AND_ATTRIBUTES_ARRAY = POINTER(SID_AND_ATTRIBUTES_ARRAY)
+
+# values for enumeration 'WELL_KNOWN_SID_TYPE'
+WELL_KNOWN_SID_TYPE = c_int # enum
+class _ACL(Structure):
+    pass
+_ACL._fields_ = [
+    ('AclRevision', BYTE),
+    ('Sbz1', BYTE),
+    ('AclSize', WORD),
+    ('AceCount', WORD),
+    ('Sbz2', WORD),
+]
+ACL = _ACL
+PACL = POINTER(ACL)
+class _ACE_HEADER(Structure):
+    pass
+_ACE_HEADER._fields_ = [
+    ('AceType', BYTE),
+    ('AceFlags', BYTE),
+    ('AceSize', WORD),
+]
+ACE_HEADER = _ACE_HEADER
+PACE_HEADER = POINTER(ACE_HEADER)
+class _ACCESS_ALLOWED_ACE(Structure):
+    pass
+_ACCESS_ALLOWED_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('SidStart', DWORD),
+]
+ACCESS_ALLOWED_ACE = _ACCESS_ALLOWED_ACE
+PACCESS_ALLOWED_ACE = POINTER(ACCESS_ALLOWED_ACE)
+class _ACCESS_DENIED_ACE(Structure):
+    pass
+_ACCESS_DENIED_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('SidStart', DWORD),
+]
+ACCESS_DENIED_ACE = _ACCESS_DENIED_ACE
+PACCESS_DENIED_ACE = POINTER(ACCESS_DENIED_ACE)
+class _SYSTEM_AUDIT_ACE(Structure):
+    pass
+_SYSTEM_AUDIT_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('SidStart', DWORD),
+]
+SYSTEM_AUDIT_ACE = _SYSTEM_AUDIT_ACE
+PSYSTEM_AUDIT_ACE = POINTER(SYSTEM_AUDIT_ACE)
+class _SYSTEM_ALARM_ACE(Structure):
+    pass
+_SYSTEM_ALARM_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('SidStart', DWORD),
+]
+SYSTEM_ALARM_ACE = _SYSTEM_ALARM_ACE
+PSYSTEM_ALARM_ACE = POINTER(SYSTEM_ALARM_ACE)
+class _ACCESS_ALLOWED_OBJECT_ACE(Structure):
+    pass
+_ACCESS_ALLOWED_OBJECT_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('Flags', DWORD),
+    ('ObjectType', GUID),
+    ('InheritedObjectType', GUID),
+    ('SidStart', DWORD),
+]
+PACCESS_ALLOWED_OBJECT_ACE = POINTER(_ACCESS_ALLOWED_OBJECT_ACE)
+ACCESS_ALLOWED_OBJECT_ACE = _ACCESS_ALLOWED_OBJECT_ACE
+class _ACCESS_DENIED_OBJECT_ACE(Structure):
+    pass
+_ACCESS_DENIED_OBJECT_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('Flags', DWORD),
+    ('ObjectType', GUID),
+    ('InheritedObjectType', GUID),
+    ('SidStart', DWORD),
+]
+ACCESS_DENIED_OBJECT_ACE = _ACCESS_DENIED_OBJECT_ACE
+PACCESS_DENIED_OBJECT_ACE = POINTER(_ACCESS_DENIED_OBJECT_ACE)
+class _SYSTEM_AUDIT_OBJECT_ACE(Structure):
+    pass
+_SYSTEM_AUDIT_OBJECT_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('Flags', DWORD),
+    ('ObjectType', GUID),
+    ('InheritedObjectType', GUID),
+    ('SidStart', DWORD),
+]
+PSYSTEM_AUDIT_OBJECT_ACE = POINTER(_SYSTEM_AUDIT_OBJECT_ACE)
+SYSTEM_AUDIT_OBJECT_ACE = _SYSTEM_AUDIT_OBJECT_ACE
+class _SYSTEM_ALARM_OBJECT_ACE(Structure):
+    pass
+_SYSTEM_ALARM_OBJECT_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('Flags', DWORD),
+    ('ObjectType', GUID),
+    ('InheritedObjectType', GUID),
+    ('SidStart', DWORD),
+]
+SYSTEM_ALARM_OBJECT_ACE = _SYSTEM_ALARM_OBJECT_ACE
+PSYSTEM_ALARM_OBJECT_ACE = POINTER(_SYSTEM_ALARM_OBJECT_ACE)
+class _ACCESS_ALLOWED_CALLBACK_ACE(Structure):
+    pass
+_ACCESS_ALLOWED_CALLBACK_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('SidStart', DWORD),
+]
+PACCESS_ALLOWED_CALLBACK_ACE = POINTER(_ACCESS_ALLOWED_CALLBACK_ACE)
+ACCESS_ALLOWED_CALLBACK_ACE = _ACCESS_ALLOWED_CALLBACK_ACE
+class _ACCESS_DENIED_CALLBACK_ACE(Structure):
+    pass
+_ACCESS_DENIED_CALLBACK_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('SidStart', DWORD),
+]
+ACCESS_DENIED_CALLBACK_ACE = _ACCESS_DENIED_CALLBACK_ACE
+PACCESS_DENIED_CALLBACK_ACE = POINTER(_ACCESS_DENIED_CALLBACK_ACE)
+class _SYSTEM_AUDIT_CALLBACK_ACE(Structure):
+    pass
+_SYSTEM_AUDIT_CALLBACK_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('SidStart', DWORD),
+]
+SYSTEM_AUDIT_CALLBACK_ACE = _SYSTEM_AUDIT_CALLBACK_ACE
+PSYSTEM_AUDIT_CALLBACK_ACE = POINTER(_SYSTEM_AUDIT_CALLBACK_ACE)
+class _SYSTEM_ALARM_CALLBACK_ACE(Structure):
+    pass
+_SYSTEM_ALARM_CALLBACK_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('SidStart', DWORD),
+]
+SYSTEM_ALARM_CALLBACK_ACE = _SYSTEM_ALARM_CALLBACK_ACE
+PSYSTEM_ALARM_CALLBACK_ACE = POINTER(_SYSTEM_ALARM_CALLBACK_ACE)
+class _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE(Structure):
+    pass
+_ACCESS_ALLOWED_CALLBACK_OBJECT_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('Flags', DWORD),
+    ('ObjectType', GUID),
+    ('InheritedObjectType', GUID),
+    ('SidStart', DWORD),
+]
+PACCESS_ALLOWED_CALLBACK_OBJECT_ACE = POINTER(_ACCESS_ALLOWED_CALLBACK_OBJECT_ACE)
+ACCESS_ALLOWED_CALLBACK_OBJECT_ACE = _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE
+class _ACCESS_DENIED_CALLBACK_OBJECT_ACE(Structure):
+    pass
+_ACCESS_DENIED_CALLBACK_OBJECT_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('Flags', DWORD),
+    ('ObjectType', GUID),
+    ('InheritedObjectType', GUID),
+    ('SidStart', DWORD),
+]
+PACCESS_DENIED_CALLBACK_OBJECT_ACE = POINTER(_ACCESS_DENIED_CALLBACK_OBJECT_ACE)
+ACCESS_DENIED_CALLBACK_OBJECT_ACE = _ACCESS_DENIED_CALLBACK_OBJECT_ACE
+class _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE(Structure):
+    pass
+_SYSTEM_AUDIT_CALLBACK_OBJECT_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('Flags', DWORD),
+    ('ObjectType', GUID),
+    ('InheritedObjectType', GUID),
+    ('SidStart', DWORD),
+]
+SYSTEM_AUDIT_CALLBACK_OBJECT_ACE = _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE
+PSYSTEM_AUDIT_CALLBACK_OBJECT_ACE = POINTER(_SYSTEM_AUDIT_CALLBACK_OBJECT_ACE)
+class _SYSTEM_ALARM_CALLBACK_OBJECT_ACE(Structure):
+    pass
+_SYSTEM_ALARM_CALLBACK_OBJECT_ACE._fields_ = [
+    ('Header', ACE_HEADER),
+    ('Mask', ACCESS_MASK),
+    ('Flags', DWORD),
+    ('ObjectType', GUID),
+    ('InheritedObjectType', GUID),
+    ('SidStart', DWORD),
+]
+PSYSTEM_ALARM_CALLBACK_OBJECT_ACE = POINTER(_SYSTEM_ALARM_CALLBACK_OBJECT_ACE)
+SYSTEM_ALARM_CALLBACK_OBJECT_ACE = _SYSTEM_ALARM_CALLBACK_OBJECT_ACE
+
+# values for enumeration '_ACL_INFORMATION_CLASS'
+_ACL_INFORMATION_CLASS = c_int # enum
+ACL_INFORMATION_CLASS = _ACL_INFORMATION_CLASS
+class _ACL_REVISION_INFORMATION(Structure):
+    pass
+_ACL_REVISION_INFORMATION._fields_ = [
+    ('AclRevision', DWORD),
+]
+ACL_REVISION_INFORMATION = _ACL_REVISION_INFORMATION
+PACL_REVISION_INFORMATION = POINTER(ACL_REVISION_INFORMATION)
+class _ACL_SIZE_INFORMATION(Structure):
+    pass
+_ACL_SIZE_INFORMATION._fields_ = [
+    ('AceCount', DWORD),
+    ('AclBytesInUse', DWORD),
+    ('AclBytesFree', DWORD),
+]
+ACL_SIZE_INFORMATION = _ACL_SIZE_INFORMATION
+PACL_SIZE_INFORMATION = POINTER(ACL_SIZE_INFORMATION)
+SECURITY_DESCRIPTOR_CONTROL = WORD
+PSECURITY_DESCRIPTOR_CONTROL = POINTER(WORD)
+class _SECURITY_DESCRIPTOR_RELATIVE(Structure):
+    pass
+_SECURITY_DESCRIPTOR_RELATIVE._fields_ = [
+    ('Revision', BYTE),
+    ('Sbz1', BYTE),
+    ('Control', SECURITY_DESCRIPTOR_CONTROL),
+    ('Owner', DWORD),
+    ('Group', DWORD),
+    ('Sacl', DWORD),
+    ('Dacl', DWORD),
+]
+PISECURITY_DESCRIPTOR_RELATIVE = POINTER(_SECURITY_DESCRIPTOR_RELATIVE)
+SECURITY_DESCRIPTOR_RELATIVE = _SECURITY_DESCRIPTOR_RELATIVE
+class _SECURITY_DESCRIPTOR(Structure):
+    pass
+_SECURITY_DESCRIPTOR._fields_ = [
+    ('Revision', BYTE),
+    ('Sbz1', BYTE),
+    ('Control', SECURITY_DESCRIPTOR_CONTROL),
+    ('Owner', PSID),
+    ('Group', PSID),
+    ('Sacl', PACL),
+    ('Dacl', PACL),
+]
+SECURITY_DESCRIPTOR = _SECURITY_DESCRIPTOR
+PISECURITY_DESCRIPTOR = POINTER(_SECURITY_DESCRIPTOR)
+class _OBJECT_TYPE_LIST(Structure):
+    pass
+_OBJECT_TYPE_LIST._fields_ = [
+    ('Level', WORD),
+    ('Sbz', WORD),
+    ('ObjectType', POINTER(GUID)),
+]
+OBJECT_TYPE_LIST = _OBJECT_TYPE_LIST
+POBJECT_TYPE_LIST = POINTER(_OBJECT_TYPE_LIST)
+
+# values for enumeration '_AUDIT_EVENT_TYPE'
+_AUDIT_EVENT_TYPE = c_int # enum
+PAUDIT_EVENT_TYPE = POINTER(_AUDIT_EVENT_TYPE)
+AUDIT_EVENT_TYPE = _AUDIT_EVENT_TYPE
+class _PRIVILEGE_SET(Structure):
+    pass
+_PRIVILEGE_SET._fields_ = [
+    ('PrivilegeCount', DWORD),
+    ('Control', DWORD),
+    ('Privilege', LUID_AND_ATTRIBUTES * 1),
+]
+PRIVILEGE_SET = _PRIVILEGE_SET
+PPRIVILEGE_SET = POINTER(_PRIVILEGE_SET)
+
+# values for enumeration '_SECURITY_IMPERSONATION_LEVEL'
+_SECURITY_IMPERSONATION_LEVEL = c_int # enum
+PSECURITY_IMPERSONATION_LEVEL = POINTER(_SECURITY_IMPERSONATION_LEVEL)
+SECURITY_IMPERSONATION_LEVEL = _SECURITY_IMPERSONATION_LEVEL
+
+# values for enumeration '_TOKEN_TYPE'
+_TOKEN_TYPE = c_int # enum
+TOKEN_TYPE = _TOKEN_TYPE
+PTOKEN_TYPE = POINTER(TOKEN_TYPE)
+
+# values for enumeration '_TOKEN_INFORMATION_CLASS'
+_TOKEN_INFORMATION_CLASS = c_int # enum
+TOKEN_INFORMATION_CLASS = _TOKEN_INFORMATION_CLASS
+PTOKEN_INFORMATION_CLASS = POINTER(_TOKEN_INFORMATION_CLASS)
+class _TOKEN_USER(Structure):
+    pass
+_TOKEN_USER._fields_ = [
+    ('User', SID_AND_ATTRIBUTES),
+]
+PTOKEN_USER = POINTER(_TOKEN_USER)
+TOKEN_USER = _TOKEN_USER
+class _TOKEN_GROUPS(Structure):
+    pass
+_TOKEN_GROUPS._fields_ = [
+    ('GroupCount', DWORD),
+    ('Groups', SID_AND_ATTRIBUTES * 1),
+]
+TOKEN_GROUPS = _TOKEN_GROUPS
+PTOKEN_GROUPS = POINTER(_TOKEN_GROUPS)
+class _TOKEN_PRIVILEGES(Structure):
+    pass
+_TOKEN_PRIVILEGES._fields_ = [
+    ('PrivilegeCount', DWORD),
+    ('Privileges', LUID_AND_ATTRIBUTES * 1),
+]
+PTOKEN_PRIVILEGES = POINTER(_TOKEN_PRIVILEGES)
+TOKEN_PRIVILEGES = _TOKEN_PRIVILEGES
+class _TOKEN_OWNER(Structure):
+    pass
+_TOKEN_OWNER._fields_ = [
+    ('Owner', PSID),
+]
+PTOKEN_OWNER = POINTER(_TOKEN_OWNER)
+TOKEN_OWNER = _TOKEN_OWNER
+class _TOKEN_PRIMARY_GROUP(Structure):
+    pass
+_TOKEN_PRIMARY_GROUP._fields_ = [
+    ('PrimaryGroup', PSID),
+]
+PTOKEN_PRIMARY_GROUP = POINTER(_TOKEN_PRIMARY_GROUP)
+TOKEN_PRIMARY_GROUP = _TOKEN_PRIMARY_GROUP
+class _TOKEN_DEFAULT_DACL(Structure):
+    pass
+_TOKEN_DEFAULT_DACL._fields_ = [
+    ('DefaultDacl', PACL),
+]
+PTOKEN_DEFAULT_DACL = POINTER(_TOKEN_DEFAULT_DACL)
+TOKEN_DEFAULT_DACL = _TOKEN_DEFAULT_DACL
+class _TOKEN_GROUPS_AND_PRIVILEGES(Structure):
+    pass
+_TOKEN_GROUPS_AND_PRIVILEGES._fields_ = [
+    ('SidCount', DWORD),
+    ('SidLength', DWORD),
+    ('Sids', PSID_AND_ATTRIBUTES),
+    ('RestrictedSidCount', DWORD),
+    ('RestrictedSidLength', DWORD),
+    ('RestrictedSids', PSID_AND_ATTRIBUTES),
+    ('PrivilegeCount', DWORD),
+    ('PrivilegeLength', DWORD),
+    ('Privileges', PLUID_AND_ATTRIBUTES),
+    ('AuthenticationId', LUID),
+]
+TOKEN_GROUPS_AND_PRIVILEGES = _TOKEN_GROUPS_AND_PRIVILEGES
+PTOKEN_GROUPS_AND_PRIVILEGES = POINTER(_TOKEN_GROUPS_AND_PRIVILEGES)
+class _TOKEN_AUDIT_POLICY_ELEMENT(Structure):
+    pass
+_TOKEN_AUDIT_POLICY_ELEMENT._fields_ = [
+    ('Category', DWORD),
+    ('PolicyMask', DWORD),
+]
+PTOKEN_AUDIT_POLICY_ELEMENT = POINTER(_TOKEN_AUDIT_POLICY_ELEMENT)
+TOKEN_AUDIT_POLICY_ELEMENT = _TOKEN_AUDIT_POLICY_ELEMENT
+class _TOKEN_AUDIT_POLICY(Structure):
+    pass
+_TOKEN_AUDIT_POLICY._fields_ = [
+    ('PolicyCount', DWORD),
+    ('Policy', TOKEN_AUDIT_POLICY_ELEMENT * 1),
+]
+TOKEN_AUDIT_POLICY = _TOKEN_AUDIT_POLICY
+PTOKEN_AUDIT_POLICY = POINTER(_TOKEN_AUDIT_POLICY)
+class _TOKEN_SOURCE(Structure):
+    pass
+_TOKEN_SOURCE._fields_ = [
+    ('SourceName', CHAR * 8),
+    ('SourceIdentifier', LUID),
+]
+TOKEN_SOURCE = _TOKEN_SOURCE
+PTOKEN_SOURCE = POINTER(_TOKEN_SOURCE)
+class _TOKEN_STATISTICS(Structure):
+    pass
+_TOKEN_STATISTICS._fields_ = [
+    ('TokenId', LUID),
+    ('AuthenticationId', LUID),
+    ('ExpirationTime', LARGE_INTEGER),
+    ('TokenType', TOKEN_TYPE),
+    ('ImpersonationLevel', SECURITY_IMPERSONATION_LEVEL),
+    ('DynamicCharged', DWORD),
+    ('DynamicAvailable', DWORD),
+    ('GroupCount', DWORD),
+    ('PrivilegeCount', DWORD),
+    ('ModifiedId', LUID),
+]
+PTOKEN_STATISTICS = POINTER(_TOKEN_STATISTICS)
+TOKEN_STATISTICS = _TOKEN_STATISTICS
+class _TOKEN_CONTROL(Structure):
+    pass
+_TOKEN_CONTROL._fields_ = [
+    ('TokenId', LUID),
+    ('AuthenticationId', LUID),
+    ('ModifiedId', LUID),
+    ('TokenSource', TOKEN_SOURCE),
+]
+PTOKEN_CONTROL = POINTER(_TOKEN_CONTROL)
+TOKEN_CONTROL = _TOKEN_CONTROL
+SECURITY_CONTEXT_TRACKING_MODE = BOOLEAN
+PSECURITY_CONTEXT_TRACKING_MODE = POINTER(BOOLEAN)
+class _SECURITY_QUALITY_OF_SERVICE(Structure):
+    pass
+_SECURITY_QUALITY_OF_SERVICE._fields_ = [
+    ('Length', DWORD),
+    ('ImpersonationLevel', SECURITY_IMPERSONATION_LEVEL),
+    ('ContextTrackingMode', SECURITY_CONTEXT_TRACKING_MODE),
+    ('EffectiveOnly', BOOLEAN),
+]
+SECURITY_QUALITY_OF_SERVICE = _SECURITY_QUALITY_OF_SERVICE
+PSECURITY_QUALITY_OF_SERVICE = POINTER(_SECURITY_QUALITY_OF_SERVICE)
+class _SE_IMPERSONATION_STATE(Structure):
+    pass
+_SE_IMPERSONATION_STATE._fields_ = [
+    ('Token', PACCESS_TOKEN),
+    ('CopyOnOpen', BOOLEAN),
+    ('EffectiveOnly', BOOLEAN),
+    ('Level', SECURITY_IMPERSONATION_LEVEL),
+]
+PSE_IMPERSONATION_STATE = POINTER(_SE_IMPERSONATION_STATE)
+SE_IMPERSONATION_STATE = _SE_IMPERSONATION_STATE
+PSECURITY_INFORMATION = POINTER(DWORD)
+SECURITY_INFORMATION = DWORD
+class _JOB_SET_ARRAY(Structure):
+    pass
+_JOB_SET_ARRAY._fields_ = [
+    ('JobHandle', HANDLE),
+    ('MemberLevel', DWORD),
+    ('Flags', DWORD),
+]
+PJOB_SET_ARRAY = POINTER(_JOB_SET_ARRAY)
+JOB_SET_ARRAY = _JOB_SET_ARRAY
+class _NT_TIB(Structure):
+    pass
+class _EXCEPTION_REGISTRATION_RECORD(Structure):
+    pass
+class N7_NT_TIB3DOLLAR_8E(Union):
+    pass
+N7_NT_TIB3DOLLAR_8E._fields_ = [
+    ('FiberData', PVOID),
+    ('Version', DWORD),
+]
+_NT_TIB._anonymous_ = ['_0']
+_NT_TIB._fields_ = [
+    ('ExceptionList', POINTER(_EXCEPTION_REGISTRATION_RECORD)),
+    ('StackBase', PVOID),
+    ('StackLimit', PVOID),
+    ('SubSystemTib', PVOID),
+    ('_0', N7_NT_TIB3DOLLAR_8E),
+    ('ArbitraryUserPointer', PVOID),
+    ('Self', POINTER(_NT_TIB)),
+]
+_EXCEPTION_REGISTRATION_RECORD._fields_ = [
+]
+NT_TIB = _NT_TIB
+PNT_TIB = POINTER(NT_TIB)
+class _NT_TIB32(Structure):
+    pass
+class N9_NT_TIB323DOLLAR_9E(Union):
+    pass
+N9_NT_TIB323DOLLAR_9E._fields_ = [
+    ('FiberData', DWORD),
+    ('Version', DWORD),
+]
+_NT_TIB32._anonymous_ = ['_0']
+_NT_TIB32._fields_ = [
+    ('ExceptionList', DWORD),
+    ('StackBase', DWORD),
+    ('StackLimit', DWORD),
+    ('SubSystemTib', DWORD),
+    ('_0', N9_NT_TIB323DOLLAR_9E),
+    ('ArbitraryUserPointer', DWORD),
+    ('Self', DWORD),
+]
+NT_TIB32 = _NT_TIB32
+PNT_TIB32 = POINTER(_NT_TIB32)
+class _NT_TIB64(Structure):
+    pass
+class N9_NT_TIB644DOLLAR_10E(Union):
+    pass
+N9_NT_TIB644DOLLAR_10E._fields_ = [
+    ('FiberData', DWORD64),
+    ('Version', DWORD),
+]
+_NT_TIB64._anonymous_ = ['_0']
+_NT_TIB64._fields_ = [
+    ('ExceptionList', DWORD64),
+    ('StackBase', DWORD64),
+    ('StackLimit', DWORD64),
+    ('SubSystemTib', DWORD64),
+    ('_0', N9_NT_TIB644DOLLAR_10E),
+    ('ArbitraryUserPointer', DWORD64),
+    ('Self', DWORD64),
+]
+PNT_TIB64 = POINTER(_NT_TIB64)
+NT_TIB64 = _NT_TIB64
+class _QUOTA_LIMITS(Structure):
+    pass
+_QUOTA_LIMITS._fields_ = [
+    ('PagedPoolLimit', SIZE_T),
+    ('NonPagedPoolLimit', SIZE_T),
+    ('MinimumWorkingSetSize', SIZE_T),
+    ('MaximumWorkingSetSize', SIZE_T),
+    ('PagefileLimit', SIZE_T),
+    ('TimeLimit', LARGE_INTEGER),
+]
+PQUOTA_LIMITS = POINTER(_QUOTA_LIMITS)
+QUOTA_LIMITS = _QUOTA_LIMITS
+class _QUOTA_LIMITS_EX(Structure):
+    pass
+_QUOTA_LIMITS_EX._fields_ = [
+    ('PagedPoolLimit', SIZE_T),
+    ('NonPagedPoolLimit', SIZE_T),
+    ('MinimumWorkingSetSize', SIZE_T),
+    ('MaximumWorkingSetSize', SIZE_T),
+    ('PagefileLimit', SIZE_T),
+    ('TimeLimit', LARGE_INTEGER),
+    ('Reserved1', SIZE_T),
+    ('Reserved2', SIZE_T),
+    ('Reserved3', SIZE_T),
+    ('Reserved4', SIZE_T),
+    ('Flags', DWORD),
+    ('Reserved5', DWORD),
+]
+PQUOTA_LIMITS_EX = POINTER(_QUOTA_LIMITS_EX)
+QUOTA_LIMITS_EX = _QUOTA_LIMITS_EX
+class _IO_COUNTERS(Structure):
+    pass
+_IO_COUNTERS._fields_ = [
+    ('ReadOperationCount', ULONGLONG),
+    ('WriteOperationCount', ULONGLONG),
+    ('OtherOperationCount', ULONGLONG),
+    ('ReadTransferCount', ULONGLONG),
+    ('WriteTransferCount', ULONGLONG),
+    ('OtherTransferCount', ULONGLONG),
+]
+IO_COUNTERS = _IO_COUNTERS
+PIO_COUNTERS = POINTER(IO_COUNTERS)
+class _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION(Structure):
+    pass
+_JOBOBJECT_BASIC_ACCOUNTING_INFORMATION._fields_ = [
+    ('TotalUserTime', LARGE_INTEGER),
+    ('TotalKernelTime', LARGE_INTEGER),
+    ('ThisPeriodTotalUserTime', LARGE_INTEGER),
+    ('ThisPeriodTotalKernelTime', LARGE_INTEGER),
+    ('TotalPageFaultCount', DWORD),
+    ('TotalProcesses', DWORD),
+    ('ActiveProcesses', DWORD),
+    ('TotalTerminatedProcesses', DWORD),
+]
+JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION
+PJOBOBJECT_BASIC_ACCOUNTING_INFORMATION = POINTER(_JOBOBJECT_BASIC_ACCOUNTING_INFORMATION)
+class _JOBOBJECT_BASIC_LIMIT_INFORMATION(Structure):
+    pass
+_JOBOBJECT_BASIC_LIMIT_INFORMATION._fields_ = [
+    ('PerProcessUserTimeLimit', LARGE_INTEGER),
+    ('PerJobUserTimeLimit', LARGE_INTEGER),
+    ('LimitFlags', DWORD),
+    ('MinimumWorkingSetSize', SIZE_T),
+    ('MaximumWorkingSetSize', SIZE_T),
+    ('ActiveProcessLimit', DWORD),
+    ('Affinity', ULONG_PTR),
+    ('PriorityClass', DWORD),
+    ('SchedulingClass', DWORD),
+]
+PJOBOBJECT_BASIC_LIMIT_INFORMATION = POINTER(_JOBOBJECT_BASIC_LIMIT_INFORMATION)
+JOBOBJECT_BASIC_LIMIT_INFORMATION = _JOBOBJECT_BASIC_LIMIT_INFORMATION
+class _JOBOBJECT_EXTENDED_LIMIT_INFORMATION(Structure):
+    pass
+_JOBOBJECT_EXTENDED_LIMIT_INFORMATION._fields_ = [
+    ('BasicLimitInformation', JOBOBJECT_BASIC_LIMIT_INFORMATION),
+    ('IoInfo', IO_COUNTERS),
+    ('ProcessMemoryLimit', SIZE_T),
+    ('JobMemoryLimit', SIZE_T),
+    ('PeakProcessMemoryUsed', SIZE_T),
+    ('PeakJobMemoryUsed', SIZE_T),
+]
+PJOBOBJECT_EXTENDED_LIMIT_INFORMATION = POINTER(_JOBOBJECT_EXTENDED_LIMIT_INFORMATION)
+JOBOBJECT_EXTENDED_LIMIT_INFORMATION = _JOBOBJECT_EXTENDED_LIMIT_INFORMATION
+class _JOBOBJECT_BASIC_PROCESS_ID_LIST(Structure):
+    pass
+_JOBOBJECT_BASIC_PROCESS_ID_LIST._fields_ = [
+    ('NumberOfAssignedProcesses', DWORD),
+    ('NumberOfProcessIdsInList', DWORD),
+    ('ProcessIdList', ULONG_PTR * 1),
+]
+JOBOBJECT_BASIC_PROCESS_ID_LIST = _JOBOBJECT_BASIC_PROCESS_ID_LIST
+PJOBOBJECT_BASIC_PROCESS_ID_LIST = POINTER(_JOBOBJECT_BASIC_PROCESS_ID_LIST)
+class _JOBOBJECT_BASIC_UI_RESTRICTIONS(Structure):
+    pass
+_JOBOBJECT_BASIC_UI_RESTRICTIONS._fields_ = [
+    ('UIRestrictionsClass', DWORD),
+]
+PJOBOBJECT_BASIC_UI_RESTRICTIONS = POINTER(_JOBOBJECT_BASIC_UI_RESTRICTIONS)
+JOBOBJECT_BASIC_UI_RESTRICTIONS = _JOBOBJECT_BASIC_UI_RESTRICTIONS
+class _JOBOBJECT_SECURITY_LIMIT_INFORMATION(Structure):
+    pass
+_JOBOBJECT_SECURITY_LIMIT_INFORMATION._fields_ = [
+    ('SecurityLimitFlags', DWORD),
+    ('JobToken', HANDLE),
+    ('SidsToDisable', PTOKEN_GROUPS),
+    ('PrivilegesToDelete', PTOKEN_PRIVILEGES),
+    ('RestrictedSids', PTOKEN_GROUPS),
+]
+JOBOBJECT_SECURITY_LIMIT_INFORMATION = _JOBOBJECT_SECURITY_LIMIT_INFORMATION
+PJOBOBJECT_SECURITY_LIMIT_INFORMATION = POINTER(_JOBOBJECT_SECURITY_LIMIT_INFORMATION)
+class _JOBOBJECT_END_OF_JOB_TIME_INFORMATION(Structure):
+    pass
+_JOBOBJECT_END_OF_JOB_TIME_INFORMATION._fields_ = [
+    ('EndOfJobTimeAction', DWORD),
+]
+JOBOBJECT_END_OF_JOB_TIME_INFORMATION = _JOBOBJECT_END_OF_JOB_TIME_INFORMATION
+PJOBOBJECT_END_OF_JOB_TIME_INFORMATION = POINTER(_JOBOBJECT_END_OF_JOB_TIME_INFORMATION)
+class _JOBOBJECT_ASSOCIATE_COMPLETION_PORT(Structure):
+    pass
+_JOBOBJECT_ASSOCIATE_COMPLETION_PORT._fields_ = [
+    ('CompletionKey', PVOID),
+    ('CompletionPort', HANDLE),
+]
+PJOBOBJECT_ASSOCIATE_COMPLETION_PORT = POINTER(_JOBOBJECT_ASSOCIATE_COMPLETION_PORT)
+JOBOBJECT_ASSOCIATE_COMPLETION_PORT = _JOBOBJECT_ASSOCIATE_COMPLETION_PORT
+class _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION(Structure):
+    pass
+_JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION._fields_ = [
+    ('BasicInfo', JOBOBJECT_BASIC_ACCOUNTING_INFORMATION),
+    ('IoInfo', IO_COUNTERS),
+]
+PJOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = POINTER(_JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION)
+JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION
+class _JOBOBJECT_JOBSET_INFORMATION(Structure):
+    pass
+_JOBOBJECT_JOBSET_INFORMATION._fields_ = [
+    ('MemberLevel', DWORD),
+]
+JOBOBJECT_JOBSET_INFORMATION = _JOBOBJECT_JOBSET_INFORMATION
+PJOBOBJECT_JOBSET_INFORMATION = POINTER(_JOBOBJECT_JOBSET_INFORMATION)
+
+# values for enumeration '_JOBOBJECTINFOCLASS'
+_JOBOBJECTINFOCLASS = c_int # enum
+JOBOBJECTINFOCLASS = _JOBOBJECTINFOCLASS
+
+# values for enumeration '_LOGICAL_PROCESSOR_RELATIONSHIP'
+_LOGICAL_PROCESSOR_RELATIONSHIP = c_int # enum
+LOGICAL_PROCESSOR_RELATIONSHIP = _LOGICAL_PROCESSOR_RELATIONSHIP
+class _SYSTEM_LOGICAL_PROCESSOR_INFORMATION(Structure):
+    pass
+class N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_11E(Union):
+    pass
+class N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_12E(Structure):
+    pass
+N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_12E._fields_ = [
+    ('Flags', BYTE),
+]
+class N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_13E(Structure):
+    pass
+N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_13E._fields_ = [
+    ('NodeNumber', DWORD),
+]
+N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_11E._fields_ = [
+    ('ProcessorCore', N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_12E),
+    ('NumaNode', N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_13E),
+    ('Reserved', ULONGLONG * 2),
+]
+_SYSTEM_LOGICAL_PROCESSOR_INFORMATION._anonymous_ = ['_0']
+_SYSTEM_LOGICAL_PROCESSOR_INFORMATION._fields_ = [
+    ('ProcessorMask', ULONG_PTR),
+    ('Relationship', LOGICAL_PROCESSOR_RELATIONSHIP),
+    ('_0', N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_11E),
+]
+PSYSTEM_LOGICAL_PROCESSOR_INFORMATION = POINTER(_SYSTEM_LOGICAL_PROCESSOR_INFORMATION)
+SYSTEM_LOGICAL_PROCESSOR_INFORMATION = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION
+class _MEMORY_BASIC_INFORMATION(Structure):
+    pass
+_MEMORY_BASIC_INFORMATION._fields_ = [
+    ('BaseAddress', PVOID),
+    ('AllocationBase', PVOID),
+    ('AllocationProtect', DWORD),
+    ('RegionSize', SIZE_T),
+    ('State', DWORD),
+    ('Protect', DWORD),
+    ('Type', DWORD),
+]
+PMEMORY_BASIC_INFORMATION = POINTER(_MEMORY_BASIC_INFORMATION)
+MEMORY_BASIC_INFORMATION = _MEMORY_BASIC_INFORMATION
+class _MEMORY_BASIC_INFORMATION32(Structure):
+    pass
+_MEMORY_BASIC_INFORMATION32._fields_ = [
+    ('BaseAddress', DWORD),
+    ('AllocationBase', DWORD),
+    ('AllocationProtect', DWORD),
+    ('RegionSize', DWORD),
+    ('State', DWORD),
+    ('Protect', DWORD),
+    ('Type', DWORD),
+]
+MEMORY_BASIC_INFORMATION32 = _MEMORY_BASIC_INFORMATION32
+PMEMORY_BASIC_INFORMATION32 = POINTER(_MEMORY_BASIC_INFORMATION32)
+class _MEMORY_BASIC_INFORMATION64(Structure):
+    pass
+_MEMORY_BASIC_INFORMATION64._fields_ = [
+    ('BaseAddress', ULONGLONG),
+    ('AllocationBase', ULONGLONG),
+    ('AllocationProtect', DWORD),
+    ('__alignment1', DWORD),
+    ('RegionSize', ULONGLONG),
+    ('State', DWORD),
+    ('Protect', DWORD),
+    ('Type', DWORD),
+    ('__alignment2', DWORD),
+]
+MEMORY_BASIC_INFORMATION64 = _MEMORY_BASIC_INFORMATION64
+PMEMORY_BASIC_INFORMATION64 = POINTER(_MEMORY_BASIC_INFORMATION64)
+class _FILE_NOTIFY_INFORMATION(Structure):
+    pass
+_FILE_NOTIFY_INFORMATION._fields_ = [
+    ('NextEntryOffset', DWORD),
+    ('Action', DWORD),
+    ('FileNameLength', DWORD),
+    ('FileName', WCHAR * 1),
+]
+FILE_NOTIFY_INFORMATION = _FILE_NOTIFY_INFORMATION
+PFILE_NOTIFY_INFORMATION = POINTER(_FILE_NOTIFY_INFORMATION)
+class _FILE_SEGMENT_ELEMENT(Union):
+    pass
+_FILE_SEGMENT_ELEMENT._fields_ = [
+    ('Buffer', PVOID64),
+    ('Alignment', ULONGLONG),
+]
+FILE_SEGMENT_ELEMENT = _FILE_SEGMENT_ELEMENT
+PFILE_SEGMENT_ELEMENT = POINTER(_FILE_SEGMENT_ELEMENT)
+class _REPARSE_GUID_DATA_BUFFER(Structure):
+    pass
+class N25_REPARSE_GUID_DATA_BUFFER4DOLLAR_14E(Structure):
+    pass
+N25_REPARSE_GUID_DATA_BUFFER4DOLLAR_14E._fields_ = [
+    ('DataBuffer', BYTE * 1),
+]
+_REPARSE_GUID_DATA_BUFFER._fields_ = [
+    ('ReparseTag', DWORD),
+    ('ReparseDataLength', WORD),
+    ('Reserved', WORD),
+    ('ReparseGuid', GUID),
+    ('GenericReparseBuffer', N25_REPARSE_GUID_DATA_BUFFER4DOLLAR_14E),
+]
+REPARSE_GUID_DATA_BUFFER = _REPARSE_GUID_DATA_BUFFER
+PREPARSE_GUID_DATA_BUFFER = POINTER(_REPARSE_GUID_DATA_BUFFER)
+
+# values for enumeration '_SYSTEM_POWER_STATE'
+_SYSTEM_POWER_STATE = c_int # enum
+SYSTEM_POWER_STATE = _SYSTEM_POWER_STATE
+PSYSTEM_POWER_STATE = POINTER(_SYSTEM_POWER_STATE)
+
+# values for enumeration 'POWER_ACTION'
+POWER_ACTION = c_int # enum
+PPOWER_ACTION = POINTER(POWER_ACTION)
+
+# values for enumeration '_DEVICE_POWER_STATE'
+_DEVICE_POWER_STATE = c_int # enum
+DEVICE_POWER_STATE = _DEVICE_POWER_STATE
+PDEVICE_POWER_STATE = POINTER(_DEVICE_POWER_STATE)
+EXECUTION_STATE = DWORD
+
+# values for enumeration 'LATENCY_TIME'
+LATENCY_TIME = c_int # enum
+class CM_Power_Data_s(Structure):
+    pass
+CM_Power_Data_s._fields_ = [
+    ('PD_Size', DWORD),
+    ('PD_MostRecentPowerState', DEVICE_POWER_STATE),
+    ('PD_Capabilities', DWORD),
+    ('PD_D1Latency', DWORD),
+    ('PD_D2Latency', DWORD),
+    ('PD_D3Latency', DWORD),
+    ('PD_PowerStateMapping', DEVICE_POWER_STATE * 7),
+    ('PD_DeepestSystemWake', SYSTEM_POWER_STATE),
+]
+CM_POWER_DATA = CM_Power_Data_s
+PCM_POWER_DATA = POINTER(CM_Power_Data_s)
+
+# values for enumeration 'POWER_INFORMATION_LEVEL'
+POWER_INFORMATION_LEVEL = c_int # enum
+class BATTERY_REPORTING_SCALE(Structure):
+    pass
+PBATTERY_REPORTING_SCALE = POINTER(BATTERY_REPORTING_SCALE)
+BATTERY_REPORTING_SCALE._fields_ = [
+    ('Granularity', DWORD),
+    ('Capacity', DWORD),
+]
+class POWER_ACTION_POLICY(Structure):
+    pass
+POWER_ACTION_POLICY._fields_ = [
+    ('Action', POWER_ACTION),
+    ('Flags', DWORD),
+    ('EventCode', DWORD),
+]
+PPOWER_ACTION_POLICY = POINTER(POWER_ACTION_POLICY)
+class SYSTEM_POWER_LEVEL(Structure):
+    pass
+SYSTEM_POWER_LEVEL._fields_ = [
+    ('Enable', BOOLEAN),
+    ('Spare', BYTE * 3),
+    ('BatteryLevel', DWORD),
+    ('PowerPolicy', POWER_ACTION_POLICY),
+    ('MinSystemState', SYSTEM_POWER_STATE),
+]
+PSYSTEM_POWER_LEVEL = POINTER(SYSTEM_POWER_LEVEL)
+class _SYSTEM_POWER_POLICY(Structure):
+    pass
+_SYSTEM_POWER_POLICY._fields_ = [
+    ('Revision', DWORD),
+    ('PowerButton', POWER_ACTION_POLICY),
+    ('SleepButton', POWER_ACTION_POLICY),
+    ('LidClose', POWER_ACTION_POLICY),
+    ('LidOpenWake', SYSTEM_POWER_STATE),
+    ('Reserved', DWORD),
+    ('Idle', POWER_ACTION_POLICY),
+    ('IdleTimeout', DWORD),
+    ('IdleSensitivity', BYTE),
+    ('DynamicThrottle', BYTE),
+    ('Spare2', BYTE * 2),
+    ('MinSleep', SYSTEM_POWER_STATE),
+    ('MaxSleep', SYSTEM_POWER_STATE),
+    ('ReducedLatencySleep', SYSTEM_POWER_STATE),
+    ('WinLogonFlags', DWORD),
+    ('Spare3', DWORD),
+    ('DozeS4Timeout', DWORD),
+    ('BroadcastCapacityResolution', DWORD),
+    ('DischargePolicy', SYSTEM_POWER_LEVEL * 4),
+    ('VideoTimeout', DWORD),
+    ('VideoDimDisplay', BOOLEAN),
+    ('VideoReserved', DWORD * 3),
+    ('SpindownTimeout', DWORD),
+    ('OptimizeForPower', BOOLEAN),
+    ('FanThrottleTolerance', BYTE),
+    ('ForcedThrottle', BYTE),
+    ('MinThrottle', BYTE),
+    ('OverThrottled', POWER_ACTION_POLICY),
+]
+SYSTEM_POWER_POLICY = _SYSTEM_POWER_POLICY
+PSYSTEM_POWER_POLICY = POINTER(_SYSTEM_POWER_POLICY)
+class _PROCESSOR_POWER_POLICY_INFO(Structure):
+    pass
+_PROCESSOR_POWER_POLICY_INFO._fields_ = [
+    ('TimeCheck', DWORD),
+    ('DemoteLimit', DWORD),
+    ('PromoteLimit', DWORD),
+    ('DemotePercent', BYTE),
+    ('PromotePercent', BYTE),
+    ('Spare', BYTE * 2),
+    ('AllowDemotion', DWORD, 1),
+    ('AllowPromotion', DWORD, 1),
+    ('Reserved', DWORD, 30),
+]
+PROCESSOR_POWER_POLICY_INFO = _PROCESSOR_POWER_POLICY_INFO
+PPROCESSOR_POWER_POLICY_INFO = POINTER(_PROCESSOR_POWER_POLICY_INFO)
+class _PROCESSOR_POWER_POLICY(Structure):
+    pass
+_PROCESSOR_POWER_POLICY._fields_ = [
+    ('Revision', DWORD),
+    ('DynamicThrottle', BYTE),
+    ('Spare', BYTE * 3),
+    ('DisableCStates', DWORD, 1),
+    ('Reserved', DWORD, 31),
+    ('PolicyCount', DWORD),
+    ('Policy', PROCESSOR_POWER_POLICY_INFO * 3),
+]
+PROCESSOR_POWER_POLICY = _PROCESSOR_POWER_POLICY
+PPROCESSOR_POWER_POLICY = POINTER(_PROCESSOR_POWER_POLICY)
+class _ADMINISTRATOR_POWER_POLICY(Structure):
+    pass
+_ADMINISTRATOR_POWER_POLICY._fields_ = [
+    ('MinSleep', SYSTEM_POWER_STATE),
+    ('MaxSleep', SYSTEM_POWER_STATE),
+    ('MinVideoTimeout', DWORD),
+    ('MaxVideoTimeout', DWORD),
+    ('MinSpindownTimeout', DWORD),
+    ('MaxSpindownTimeout', DWORD),
+]
+ADMINISTRATOR_POWER_POLICY = _ADMINISTRATOR_POWER_POLICY
+PADMINISTRATOR_POWER_POLICY = POINTER(_ADMINISTRATOR_POWER_POLICY)
+class SYSTEM_POWER_CAPABILITIES(Structure):
+    pass
+PSYSTEM_POWER_CAPABILITIES = POINTER(SYSTEM_POWER_CAPABILITIES)
+SYSTEM_POWER_CAPABILITIES._fields_ = [
+    ('PowerButtonPresent', BOOLEAN),
+    ('SleepButtonPresent', BOOLEAN),
+    ('LidPresent', BOOLEAN),
+    ('SystemS1', BOOLEAN),
+    ('SystemS2', BOOLEAN),
+    ('SystemS3', BOOLEAN),
+    ('SystemS4', BOOLEAN),
+    ('SystemS5', BOOLEAN),
+    ('HiberFilePresent', BOOLEAN),
+    ('FullWake', BOOLEAN),
+    ('VideoDimPresent', BOOLEAN),
+    ('ApmPresent', BOOLEAN),
+    ('UpsPresent', BOOLEAN),
+    ('ThermalControl', BOOLEAN),
+    ('ProcessorThrottle', BOOLEAN),
+    ('ProcessorMinThrottle', BYTE),
+    ('ProcessorMaxThrottle', BYTE),
+    ('spare2', BYTE * 4),
+    ('DiskSpinDown', BOOLEAN),
+    ('spare3', BYTE * 8),
+    ('SystemBatteriesPresent', BOOLEAN),
+    ('BatteriesAreShortTerm', BOOLEAN),
+    ('BatteryScale', BATTERY_REPORTING_SCALE * 3),
+    ('AcOnLineWake', SYSTEM_POWER_STATE),
+    ('SoftLidWake', SYSTEM_POWER_STATE),
+    ('RtcWake', SYSTEM_POWER_STATE),
+    ('MinDeviceWakeState', SYSTEM_POWER_STATE),
+    ('DefaultLowLatencyWake', SYSTEM_POWER_STATE),
+]
+class SYSTEM_BATTERY_STATE(Structure):
+    pass
+SYSTEM_BATTERY_STATE._fields_ = [
+    ('AcOnLine', BOOLEAN),
+    ('BatteryPresent', BOOLEAN),
+    ('Charging', BOOLEAN),
+    ('Discharging', BOOLEAN),
+    ('Spare1', BOOLEAN * 4),
+    ('MaxCapacity', DWORD),
+    ('RemainingCapacity', DWORD),
+    ('Rate', DWORD),
+    ('EstimatedTime', DWORD),
+    ('DefaultAlert1', DWORD),
+    ('DefaultAlert2', DWORD),
+]
+PSYSTEM_BATTERY_STATE = POINTER(SYSTEM_BATTERY_STATE)
+class _IMAGE_DOS_HEADER(Structure):
+    pass
+_IMAGE_DOS_HEADER._pack_ = 2
+_IMAGE_DOS_HEADER._fields_ = [
+    ('e_magic', WORD),
+    ('e_cblp', WORD),
+    ('e_cp', WORD),
+    ('e_crlc', WORD),
+    ('e_cparhdr', WORD),
+    ('e_minalloc', WORD),
+    ('e_maxalloc', WORD),
+    ('e_ss', WORD),
+    ('e_sp', WORD),
+    ('e_csum', WORD),
+    ('e_ip', WORD),
+    ('e_cs', WORD),
+    ('e_lfarlc', WORD),
+    ('e_ovno', WORD),
+    ('e_res', WORD * 4),
+    ('e_oemid', WORD),
+    ('e_oeminfo', WORD),
+    ('e_res2', WORD * 10),
+    ('e_lfanew', LONG),
+]
+IMAGE_DOS_HEADER = _IMAGE_DOS_HEADER
+PIMAGE_DOS_HEADER = POINTER(_IMAGE_DOS_HEADER)
+class _IMAGE_OS2_HEADER(Structure):
+    pass
+_IMAGE_OS2_HEADER._pack_ = 2
+_IMAGE_OS2_HEADER._fields_ = [
+    ('ne_magic', WORD),
+    ('ne_ver', CHAR),
+    ('ne_rev', CHAR),
+    ('ne_enttab', WORD),
+    ('ne_cbenttab', WORD),
+    ('ne_crc', LONG),
+    ('ne_flags', WORD),
+    ('ne_autodata', WORD),
+    ('ne_heap', WORD),
+    ('ne_stack', WORD),
+    ('ne_csip', LONG),
+    ('ne_sssp', LONG),
+    ('ne_cseg', WORD),
+    ('ne_cmod', WORD),
+    ('ne_cbnrestab', WORD),
+    ('ne_segtab', WORD),
+    ('ne_rsrctab', WORD),
+    ('ne_restab', WORD),
+    ('ne_modtab', WORD),
+    ('ne_imptab', WORD),
+    ('ne_nrestab', LONG),
+    ('ne_cmovent', WORD),
+    ('ne_align', WORD),
+    ('ne_cres', WORD),
+    ('ne_exetyp', BYTE),
+    ('ne_flagsothers', BYTE),
+    ('ne_pretthunks', WORD),
+    ('ne_psegrefbytes', WORD),
+    ('ne_swaparea', WORD),
+    ('ne_expver', WORD),
+]
+IMAGE_OS2_HEADER = _IMAGE_OS2_HEADER
+PIMAGE_OS2_HEADER = POINTER(_IMAGE_OS2_HEADER)
+class _IMAGE_VXD_HEADER(Structure):
+    pass
+_IMAGE_VXD_HEADER._pack_ = 2
+_IMAGE_VXD_HEADER._fields_ = [
+    ('e32_magic', WORD),
+    ('e32_border', BYTE),
+    ('e32_worder', BYTE),
+    ('e32_level', DWORD),
+    ('e32_cpu', WORD),
+    ('e32_os', WORD),
+    ('e32_ver', DWORD),
+    ('e32_mflags', DWORD),
+    ('e32_mpages', DWORD),
+    ('e32_startobj', DWORD),
+    ('e32_eip', DWORD),
+    ('e32_stackobj', DWORD),
+    ('e32_esp', DWORD),
+    ('e32_pagesize', DWORD),
+    ('e32_lastpagesize', DWORD),
+    ('e32_fixupsize', DWORD),
+    ('e32_fixupsum', DWORD),
+    ('e32_ldrsize', DWORD),
+    ('e32_ldrsum', DWORD),
+    ('e32_objtab', DWORD),
+    ('e32_objcnt', DWORD),
+    ('e32_objmap', DWORD),
+    ('e32_itermap', DWORD),
+    ('e32_rsrctab', DWORD),
+    ('e32_rsrccnt', DWORD),
+    ('e32_restab', DWORD),
+    ('e32_enttab', DWORD),
+    ('e32_dirtab', DWORD),
+    ('e32_dircnt', DWORD),
+    ('e32_fpagetab', DWORD),
+    ('e32_frectab', DWORD),
+    ('e32_impmod', DWORD),
+    ('e32_impmodcnt', DWORD),
+    ('e32_impproc', DWORD),
+    ('e32_pagesum', DWORD),
+    ('e32_datapage', DWORD),
+    ('e32_preload', DWORD),
+    ('e32_nrestab', DWORD),
+    ('e32_cbnrestab', DWORD),
+    ('e32_nressum', DWORD),
+    ('e32_autodata', DWORD),
+    ('e32_debuginfo', DWORD),
+    ('e32_debuglen', DWORD),
+    ('e32_instpreload', DWORD),
+    ('e32_instdemand', DWORD),
+    ('e32_heapsize', DWORD),
+    ('e32_res3', BYTE * 12),
+    ('e32_winresoff', DWORD),
+    ('e32_winreslen', DWORD),
+    ('e32_devid', WORD),
+    ('e32_ddkver', WORD),
+]
+PIMAGE_VXD_HEADER = POINTER(_IMAGE_VXD_HEADER)
+IMAGE_VXD_HEADER = _IMAGE_VXD_HEADER
+class _IMAGE_FILE_HEADER(Structure):
+    pass
+_IMAGE_FILE_HEADER._fields_ = [
+    ('Machine', WORD),
+    ('NumberOfSections', WORD),
+    ('TimeDateStamp', DWORD),
+    ('PointerToSymbolTable', DWORD),
+    ('NumberOfSymbols', DWORD),
+    ('SizeOfOptionalHeader', WORD),
+    ('Characteristics', WORD),
+]
+PIMAGE_FILE_HEADER = POINTER(_IMAGE_FILE_HEADER)
+IMAGE_FILE_HEADER = _IMAGE_FILE_HEADER
+class _IMAGE_DATA_DIRECTORY(Structure):
+    pass
+_IMAGE_DATA_DIRECTORY._fields_ = [
+    ('VirtualAddress', DWORD),
+    ('Size', DWORD),
+]
+PIMAGE_DATA_DIRECTORY = POINTER(_IMAGE_DATA_DIRECTORY)
+IMAGE_DATA_DIRECTORY = _IMAGE_DATA_DIRECTORY
+class _IMAGE_OPTIONAL_HEADER(Structure):
+    pass
+_IMAGE_OPTIONAL_HEADER._fields_ = [
+    ('Magic', WORD),
+    ('MajorLinkerVersion', BYTE),
+    ('MinorLinkerVersion', BYTE),
+    ('SizeOfCode', DWORD),
+    ('SizeOfInitializedData', DWORD),
+    ('SizeOfUninitializedData', DWORD),
+    ('AddressOfEntryPoint', DWORD),
+    ('BaseOfCode', DWORD),
+    ('BaseOfData', DWORD),
+    ('ImageBase', DWORD),
+    ('SectionAlignment', DWORD),
+    ('FileAlignment', DWORD),
+    ('MajorOperatingSystemVersion', WORD),
+    ('MinorOperatingSystemVersion', WORD),
+    ('MajorImageVersion', WORD),
+    ('MinorImageVersion', WORD),
+    ('MajorSubsystemVersion', WORD),
+    ('MinorSubsystemVersion', WORD),
+    ('Win32VersionValue', DWORD),
+    ('SizeOfImage', DWORD),
+    ('SizeOfHeaders', DWORD),
+    ('CheckSum', DWORD),
+    ('Subsystem', WORD),
+    ('DllCharacteristics', WORD),
+    ('SizeOfStackReserve', DWORD),
+    ('SizeOfStackCommit', DWORD),
+    ('SizeOfHeapReserve', DWORD),
+    ('SizeOfHeapCommit', DWORD),
+    ('LoaderFlags', DWORD),
+    ('NumberOfRvaAndSizes', DWORD),
+    ('DataDirectory', IMAGE_DATA_DIRECTORY * 16),
+]
+PIMAGE_OPTIONAL_HEADER32 = POINTER(_IMAGE_OPTIONAL_HEADER)
+IMAGE_OPTIONAL_HEADER32 = _IMAGE_OPTIONAL_HEADER
+class _IMAGE_ROM_OPTIONAL_HEADER(Structure):
+    pass
+_IMAGE_ROM_OPTIONAL_HEADER._fields_ = [
+    ('Magic', WORD),
+    ('MajorLinkerVersion', BYTE),
+    ('MinorLinkerVersion', BYTE),
+    ('SizeOfCode', DWORD),
+    ('SizeOfInitializedData', DWORD),
+    ('SizeOfUninitializedData', DWORD),
+    ('AddressOfEntryPoint', DWORD),
+    ('BaseOfCode', DWORD),
+    ('BaseOfData', DWORD),
+    ('BaseOfBss', DWORD),
+    ('GprMask', DWORD),
+    ('CprMask', DWORD * 4),
+    ('GpValue', DWORD),
+]
+PIMAGE_ROM_OPTIONAL_HEADER = POINTER(_IMAGE_ROM_OPTIONAL_HEADER)
+IMAGE_ROM_OPTIONAL_HEADER = _IMAGE_ROM_OPTIONAL_HEADER
+class _IMAGE_OPTIONAL_HEADER64(Structure):
+    pass
+_IMAGE_OPTIONAL_HEADER64._pack_ = 4
+_IMAGE_OPTIONAL_HEADER64._fields_ = [
+    ('Magic', WORD),
+    ('MajorLinkerVersion', BYTE),
+    ('MinorLinkerVersion', BYTE),
+    ('SizeOfCode', DWORD),
+    ('SizeOfInitializedData', DWORD),
+    ('SizeOfUninitializedData', DWORD),
+    ('AddressOfEntryPoint', DWORD),
+    ('BaseOfCode', DWORD),
+    ('ImageBase', ULONGLONG),
+    ('SectionAlignment', DWORD),
+    ('FileAlignment', DWORD),
+    ('MajorOperatingSystemVersion', WORD),
+    ('MinorOperatingSystemVersion', WORD),
+    ('MajorImageVersion', WORD),
+    ('MinorImageVersion', WORD),
+    ('MajorSubsystemVersion', WORD),
+    ('MinorSubsystemVersion', WORD),
+    ('Win32VersionValue', DWORD),
+    ('SizeOfImage', DWORD),
+    ('SizeOfHeaders', DWORD),
+    ('CheckSum', DWORD),
+    ('Subsystem', WORD),
+    ('DllCharacteristics', WORD),
+    ('SizeOfStackReserve', ULONGLONG),
+    ('SizeOfStackCommit', ULONGLONG),
+    ('SizeOfHeapReserve', ULONGLONG),
+    ('SizeOfHeapCommit', ULONGLONG),
+    ('LoaderFlags', DWORD),
+    ('NumberOfRvaAndSizes', DWORD),
+    ('DataDirectory', IMAGE_DATA_DIRECTORY * 16),
+]
+PIMAGE_OPTIONAL_HEADER64 = POINTER(_IMAGE_OPTIONAL_HEADER64)
+IMAGE_OPTIONAL_HEADER64 = _IMAGE_OPTIONAL_HEADER64
+IMAGE_OPTIONAL_HEADER = IMAGE_OPTIONAL_HEADER32
+PIMAGE_OPTIONAL_HEADER = PIMAGE_OPTIONAL_HEADER32
+class _IMAGE_NT_HEADERS64(Structure):
+    pass
+_IMAGE_NT_HEADERS64._fields_ = [
+    ('Signature', DWORD),
+    ('FileHeader', IMAGE_FILE_HEADER),
+    ('OptionalHeader', IMAGE_OPTIONAL_HEADER64),
+]
+IMAGE_NT_HEADERS64 = _IMAGE_NT_HEADERS64
+PIMAGE_NT_HEADERS64 = POINTER(_IMAGE_NT_HEADERS64)
+class _IMAGE_NT_HEADERS(Structure):
+    pass
+_IMAGE_NT_HEADERS._fields_ = [
+    ('Signature', DWORD),
+    ('FileHeader', IMAGE_FILE_HEADER),
+    ('OptionalHeader', IMAGE_OPTIONAL_HEADER32),
+]
+IMAGE_NT_HEADERS32 = _IMAGE_NT_HEADERS
+PIMAGE_NT_HEADERS32 = POINTER(_IMAGE_NT_HEADERS)
+class _IMAGE_ROM_HEADERS(Structure):
+    pass
+_IMAGE_ROM_HEADERS._fields_ = [
+    ('FileHeader', IMAGE_FILE_HEADER),
+    ('OptionalHeader', IMAGE_ROM_OPTIONAL_HEADER),
+]
+IMAGE_ROM_HEADERS = _IMAGE_ROM_HEADERS
+PIMAGE_ROM_HEADERS = POINTER(_IMAGE_ROM_HEADERS)
+IMAGE_NT_HEADERS = IMAGE_NT_HEADERS32
+PIMAGE_NT_HEADERS = PIMAGE_NT_HEADERS32
+class ANON_OBJECT_HEADER(Structure):
+    pass
+ANON_OBJECT_HEADER._fields_ = [
+    ('Sig1', WORD),
+    ('Sig2', WORD),
+    ('Version', WORD),
+    ('Machine', WORD),
+    ('TimeDateStamp', DWORD),
+    ('ClassID', CLSID),
+    ('SizeOfData', DWORD),
+]
+class _IMAGE_SECTION_HEADER(Structure):
+    pass
+class N21_IMAGE_SECTION_HEADER4DOLLAR_23E(Union):
+    pass
+N21_IMAGE_SECTION_HEADER4DOLLAR_23E._fields_ = [
+    ('PhysicalAddress', DWORD),
+    ('VirtualSize', DWORD),
+]
+_IMAGE_SECTION_HEADER._fields_ = [
+    ('Name', BYTE * 8),
+    ('Misc', N21_IMAGE_SECTION_HEADER4DOLLAR_23E),
+    ('VirtualAddress', DWORD),
+    ('SizeOfRawData', DWORD),
+    ('PointerToRawData', DWORD),
+    ('PointerToRelocations', DWORD),
+    ('PointerToLinenumbers', DWORD),
+    ('NumberOfRelocations', WORD),
+    ('NumberOfLinenumbers', WORD),
+    ('Characteristics', DWORD),
+]
+PIMAGE_SECTION_HEADER = POINTER(_IMAGE_SECTION_HEADER)
+IMAGE_SECTION_HEADER = _IMAGE_SECTION_HEADER
+class _IMAGE_SYMBOL(Structure):
+    pass
+class N13_IMAGE_SYMBOL4DOLLAR_24E(Union):
+    pass
+class N13_IMAGE_SYMBOL4DOLLAR_244DOLLAR_25E(Structure):
+    pass
+N13_IMAGE_SYMBOL4DOLLAR_244DOLLAR_25E._pack_ = 2
+N13_IMAGE_SYMBOL4DOLLAR_244DOLLAR_25E._fields_ = [
+    ('Short', DWORD),
+    ('Long', DWORD),
+]
+N13_IMAGE_SYMBOL4DOLLAR_24E._pack_ = 2
+N13_IMAGE_SYMBOL4DOLLAR_24E._fields_ = [
+    ('ShortName', BYTE * 8),
+    ('Name', N13_IMAGE_SYMBOL4DOLLAR_244DOLLAR_25E),
+    ('LongName', DWORD * 2),
+]
+_IMAGE_SYMBOL._pack_ = 2
+_IMAGE_SYMBOL._fields_ = [
+    ('N', N13_IMAGE_SYMBOL4DOLLAR_24E),
+    ('Value', DWORD),
+    ('SectionNumber', SHORT),
+    ('Type', WORD),
+    ('StorageClass', BYTE),
+    ('NumberOfAuxSymbols', BYTE),
+]
+IMAGE_SYMBOL = _IMAGE_SYMBOL
+PIMAGE_SYMBOL = POINTER(IMAGE_SYMBOL)
+class _IMAGE_AUX_SYMBOL(Union):
+    pass
+class N17_IMAGE_AUX_SYMBOL4DOLLAR_26E(Structure):
+    pass
+class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_27E(Union):
+    pass
+class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_274DOLLAR_28E(Structure):
+    pass
+N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_274DOLLAR_28E._fields_ = [
+    ('Linenumber', WORD),
+    ('Size', WORD),
+]
+N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_27E._pack_ = 2
+N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_27E._fields_ = [
+    ('LnSz', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_274DOLLAR_28E),
+    ('TotalSize', DWORD),
+]
+class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_29E(Union):
+    pass
+class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_30E(Structure):
+    pass
+N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_30E._pack_ = 2
+N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_30E._fields_ = [
+    ('PointerToLinenumber', DWORD),
+    ('PointerToNextFunction', DWORD),
+]
+class N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_31E(Structure):
+    pass
+N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_31E._fields_ = [
+    ('Dimension', WORD * 4),
+]
+N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_29E._fields_ = [
+    ('Function', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_30E),
+    ('Array', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_31E),
+]
+N17_IMAGE_AUX_SYMBOL4DOLLAR_26E._pack_ = 2
+N17_IMAGE_AUX_SYMBOL4DOLLAR_26E._fields_ = [
+    ('TagIndex', DWORD),
+    ('Misc', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_27E),
+    ('FcnAry', N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_29E),
+    ('TvIndex', WORD),
+]
+class N17_IMAGE_AUX_SYMBOL4DOLLAR_32E(Structure):
+    pass
+N17_IMAGE_AUX_SYMBOL4DOLLAR_32E._fields_ = [
+    ('Name', BYTE * 18),
+]
+class N17_IMAGE_AUX_SYMBOL4DOLLAR_33E(Structure):
+    pass
+N17_IMAGE_AUX_SYMBOL4DOLLAR_33E._pack_ = 2
+N17_IMAGE_AUX_SYMBOL4DOLLAR_33E._fields_ = [
+    ('Length', DWORD),
+    ('NumberOfRelocations', WORD),
+    ('NumberOfLinenumbers', WORD),
+    ('CheckSum', DWORD),
+    ('Number', SHORT),
+    ('Selection', BYTE),
+]
+_IMAGE_AUX_SYMBOL._fields_ = [
+    ('Sym', N17_IMAGE_AUX_SYMBOL4DOLLAR_26E),
+    ('File', N17_IMAGE_AUX_SYMBOL4DOLLAR_32E),
+    ('Section', N17_IMAGE_AUX_SYMBOL4DOLLAR_33E),
+]
+IMAGE_AUX_SYMBOL = _IMAGE_AUX_SYMBOL
+PIMAGE_AUX_SYMBOL = POINTER(IMAGE_AUX_SYMBOL)
+
+# values for enumeration 'IMAGE_AUX_SYMBOL_TYPE'
+IMAGE_AUX_SYMBOL_TYPE = c_int # enum
+class IMAGE_AUX_SYMBOL_TOKEN_DEF(Structure):
+    pass
+IMAGE_AUX_SYMBOL_TOKEN_DEF._pack_ = 2
+IMAGE_AUX_SYMBOL_TOKEN_DEF._fields_ = [
+    ('bAuxType', BYTE),
+    ('bReserved', BYTE),
+    ('SymbolTableIndex', DWORD),
+    ('rgbReserved', BYTE * 12),
+]
+PIMAGE_AUX_SYMBOL_TOKEN_DEF = POINTER(IMAGE_AUX_SYMBOL_TOKEN_DEF)
+class _IMAGE_RELOCATION(Structure):
+    pass
+class N17_IMAGE_RELOCATION4DOLLAR_34E(Union):
+    pass
+N17_IMAGE_RELOCATION4DOLLAR_34E._pack_ = 2
+N17_IMAGE_RELOCATION4DOLLAR_34E._fields_ = [
+    ('VirtualAddress', DWORD),
+    ('RelocCount', DWORD),
+]
+_IMAGE_RELOCATION._pack_ = 2
+_IMAGE_RELOCATION._anonymous_ = ['_0']
+_IMAGE_RELOCATION._fields_ = [
+    ('_0', N17_IMAGE_RELOCATION4DOLLAR_34E),
+    ('SymbolTableIndex', DWORD),
+    ('Type', WORD),
+]
+IMAGE_RELOCATION = _IMAGE_RELOCATION
+PIMAGE_RELOCATION = POINTER(IMAGE_RELOCATION)
+class _IMAGE_LINENUMBER(Structure):
+    pass
+class N17_IMAGE_LINENUMBER4DOLLAR_35E(Union):
+    pass
+N17_IMAGE_LINENUMBER4DOLLAR_35E._pack_ = 2
+N17_IMAGE_LINENUMBER4DOLLAR_35E._fields_ = [
+    ('SymbolTableIndex', DWORD),
+    ('VirtualAddress', DWORD),
+]
+_IMAGE_LINENUMBER._fields_ = [
+    ('Type', N17_IMAGE_LINENUMBER4DOLLAR_35E),
+    ('Linenumber', WORD),
+]
+IMAGE_LINENUMBER = _IMAGE_LINENUMBER
+PIMAGE_LINENUMBER = POINTER(IMAGE_LINENUMBER)
+class _IMAGE_BASE_RELOCATION(Structure):
+    pass
+_IMAGE_BASE_RELOCATION._fields_ = [
+    ('VirtualAddress', DWORD),
+    ('SizeOfBlock', DWORD),
+]
+IMAGE_BASE_RELOCATION = _IMAGE_BASE_RELOCATION
+PIMAGE_BASE_RELOCATION = POINTER(IMAGE_BASE_RELOCATION)
+class _IMAGE_ARCHIVE_MEMBER_HEADER(Structure):
+    pass
+_IMAGE_ARCHIVE_MEMBER_HEADER._fields_ = [
+    ('Name', BYTE * 16),
+    ('Date', BYTE * 12),
+    ('UserID', BYTE * 6),
+    ('GroupID', BYTE * 6),
+    ('Mode', BYTE * 8),
+    ('Size', BYTE * 10),
+    ('EndHeader', BYTE * 2),
+]
+PIMAGE_ARCHIVE_MEMBER_HEADER = POINTER(_IMAGE_ARCHIVE_MEMBER_HEADER)
+IMAGE_ARCHIVE_MEMBER_HEADER = _IMAGE_ARCHIVE_MEMBER_HEADER
+class _IMAGE_EXPORT_DIRECTORY(Structure):
+    pass
+_IMAGE_EXPORT_DIRECTORY._fields_ = [
+    ('Characteristics', DWORD),
+    ('TimeDateStamp', DWORD),
+    ('MajorVersion', WORD),
+    ('MinorVersion', WORD),
+    ('Name', DWORD),
+    ('Base', DWORD),
+    ('NumberOfFunctions', DWORD),
+    ('NumberOfNames', DWORD),
+    ('AddressOfFunctions', DWORD),
+    ('AddressOfNames', DWORD),
+    ('AddressOfNameOrdinals', DWORD),
+]
+PIMAGE_EXPORT_DIRECTORY = POINTER(_IMAGE_EXPORT_DIRECTORY)
+IMAGE_EXPORT_DIRECTORY = _IMAGE_EXPORT_DIRECTORY
+class _IMAGE_IMPORT_BY_NAME(Structure):
+    pass
+_IMAGE_IMPORT_BY_NAME._fields_ = [
+    ('Hint', WORD),
+    ('Name', BYTE * 1),
+]
+IMAGE_IMPORT_BY_NAME = _IMAGE_IMPORT_BY_NAME
+PIMAGE_IMPORT_BY_NAME = POINTER(_IMAGE_IMPORT_BY_NAME)
+class _IMAGE_THUNK_DATA64(Structure):
+    pass
+class N19_IMAGE_THUNK_DATA644DOLLAR_36E(Union):
+    pass
+N19_IMAGE_THUNK_DATA644DOLLAR_36E._fields_ = [
+    ('ForwarderString', ULONGLONG),
+    ('Function', ULONGLONG),
+    ('Ordinal', ULONGLONG),
+    ('AddressOfData', ULONGLONG),
+]
+_IMAGE_THUNK_DATA64._fields_ = [
+    ('u1', N19_IMAGE_THUNK_DATA644DOLLAR_36E),
+]
+IMAGE_THUNK_DATA64 = _IMAGE_THUNK_DATA64
+PIMAGE_THUNK_DATA64 = POINTER(IMAGE_THUNK_DATA64)
+class _IMAGE_THUNK_DATA32(Structure):
+    pass
+class N19_IMAGE_THUNK_DATA324DOLLAR_37E(Union):
+    pass
+N19_IMAGE_THUNK_DATA324DOLLAR_37E._fields_ = [
+    ('ForwarderString', DWORD),
+    ('Function', DWORD),
+    ('Ordinal', DWORD),
+    ('AddressOfData', DWORD),
+]
+_IMAGE_THUNK_DATA32._fields_ = [
+    ('u1', N19_IMAGE_THUNK_DATA324DOLLAR_37E),
+]
+IMAGE_THUNK_DATA32 = _IMAGE_THUNK_DATA32
+PIMAGE_THUNK_DATA32 = POINTER(IMAGE_THUNK_DATA32)
+PIMAGE_TLS_CALLBACK = WINFUNCTYPE(None, c_void_p, c_ulong, c_void_p)
+class _IMAGE_TLS_DIRECTORY64(Structure):
+    pass
+_IMAGE_TLS_DIRECTORY64._pack_ = 4
+_IMAGE_TLS_DIRECTORY64._fields_ = [
+    ('StartAddressOfRawData', ULONGLONG),
+    ('EndAddressOfRawData', ULONGLONG),
+    ('AddressOfIndex', ULONGLONG),
+    ('AddressOfCallBacks', ULONGLONG),
+    ('SizeOfZeroFill', DWORD),
+    ('Characteristics', DWORD),
+]
+IMAGE_TLS_DIRECTORY64 = _IMAGE_TLS_DIRECTORY64
+PIMAGE_TLS_DIRECTORY64 = POINTER(IMAGE_TLS_DIRECTORY64)
+class _IMAGE_TLS_DIRECTORY32(Structure):
+    pass
+_IMAGE_TLS_DIRECTORY32._fields_ = [
+    ('StartAddressOfRawData', DWORD),
+    ('EndAddressOfRawData', DWORD),
+    ('AddressOfIndex', DWORD),
+    ('AddressOfCallBacks', DWORD),
+    ('SizeOfZeroFill', DWORD),
+    ('Characteristics', DWORD),
+]
+IMAGE_TLS_DIRECTORY32 = _IMAGE_TLS_DIRECTORY32
+PIMAGE_TLS_DIRECTORY32 = POINTER(IMAGE_TLS_DIRECTORY32)
+IMAGE_THUNK_DATA = IMAGE_THUNK_DATA32
+PIMAGE_THUNK_DATA = PIMAGE_THUNK_DATA32
+IMAGE_TLS_DIRECTORY = IMAGE_TLS_DIRECTORY32
+PIMAGE_TLS_DIRECTORY = PIMAGE_TLS_DIRECTORY32
+class _IMAGE_IMPORT_DESCRIPTOR(Structure):
+    pass
+class N24_IMAGE_IMPORT_DESCRIPTOR4DOLLAR_38E(Union):
+    pass
+N24_IMAGE_IMPORT_DESCRIPTOR4DOLLAR_38E._fields_ = [
+    ('Characteristics', DWORD),
+    ('OriginalFirstThunk', DWORD),
+]
+_IMAGE_IMPORT_DESCRIPTOR._anonymous_ = ['_0']
+_IMAGE_IMPORT_DESCRIPTOR._fields_ = [
+    ('_0', N24_IMAGE_IMPORT_DESCRIPTOR4DOLLAR_38E),
+    ('TimeDateStamp', DWORD),
+    ('ForwarderChain', DWORD),
+    ('Name', DWORD),
+    ('FirstThunk', DWORD),
+]
+IMAGE_IMPORT_DESCRIPTOR = _IMAGE_IMPORT_DESCRIPTOR
+PIMAGE_IMPORT_DESCRIPTOR = POINTER(IMAGE_IMPORT_DESCRIPTOR)
+class _IMAGE_BOUND_IMPORT_DESCRIPTOR(Structure):
+    pass
+_IMAGE_BOUND_IMPORT_DESCRIPTOR._fields_ = [
+    ('TimeDateStamp', DWORD),
+    ('OffsetModuleName', WORD),
+    ('NumberOfModuleForwarderRefs', WORD),
+]
+IMAGE_BOUND_IMPORT_DESCRIPTOR = _IMAGE_BOUND_IMPORT_DESCRIPTOR
+PIMAGE_BOUND_IMPORT_DESCRIPTOR = POINTER(_IMAGE_BOUND_IMPORT_DESCRIPTOR)
+class _IMAGE_BOUND_FORWARDER_REF(Structure):
+    pass
+_IMAGE_BOUND_FORWARDER_REF._fields_ = [
+    ('TimeDateStamp', DWORD),
+    ('OffsetModuleName', WORD),
+    ('Reserved', WORD),
+]
+IMAGE_BOUND_FORWARDER_REF = _IMAGE_BOUND_FORWARDER_REF
+PIMAGE_BOUND_FORWARDER_REF = POINTER(_IMAGE_BOUND_FORWARDER_REF)
+class _IMAGE_RESOURCE_DIRECTORY(Structure):
+    pass
+_IMAGE_RESOURCE_DIRECTORY._fields_ = [
+    ('Characteristics', DWORD),
+    ('TimeDateStamp', DWORD),
+    ('MajorVersion', WORD),
+    ('MinorVersion', WORD),
+    ('NumberOfNamedEntries', WORD),
+    ('NumberOfIdEntries', WORD),
+]
+PIMAGE_RESOURCE_DIRECTORY = POINTER(_IMAGE_RESOURCE_DIRECTORY)
+IMAGE_RESOURCE_DIRECTORY = _IMAGE_RESOURCE_DIRECTORY
+class _IMAGE_RESOURCE_DIRECTORY_ENTRY(Structure):
+    pass
+class N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E(Union):
+    pass
+class N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_394DOLLAR_40E(Structure):
+    pass
+N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_394DOLLAR_40E._fields_ = [
+    ('NameOffset', DWORD, 31),
+    ('NameIsString', DWORD, 1),
+]
+N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E._anonymous_ = ['_0']
+N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E._fields_ = [
+    ('_0', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_394DOLLAR_40E),
+    ('Name', DWORD),
+    ('Id', WORD),
+]
+class N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E(Union):
+    pass
+class N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_414DOLLAR_42E(Structure):
+    pass
+N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_414DOLLAR_42E._fields_ = [
+    ('OffsetToDirectory', DWORD, 31),
+    ('DataIsDirectory', DWORD, 1),
+]
+N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E._anonymous_ = ['_0']
+N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E._fields_ = [
+    ('OffsetToData', DWORD),
+    ('_0', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_414DOLLAR_42E),
+]
+_IMAGE_RESOURCE_DIRECTORY_ENTRY._anonymous_ = ['_0', '_1']
+_IMAGE_RESOURCE_DIRECTORY_ENTRY._fields_ = [
+    ('_0', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E),
+    ('_1', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E),
+]
+PIMAGE_RESOURCE_DIRECTORY_ENTRY = POINTER(_IMAGE_RESOURCE_DIRECTORY_ENTRY)
+IMAGE_RESOURCE_DIRECTORY_ENTRY = _IMAGE_RESOURCE_DIRECTORY_ENTRY
+class _IMAGE_RESOURCE_DIRECTORY_STRING(Structure):
+    pass
+_IMAGE_RESOURCE_DIRECTORY_STRING._fields_ = [
+    ('Length', WORD),
+    ('NameString', CHAR * 1),
+]
+PIMAGE_RESOURCE_DIRECTORY_STRING = POINTER(_IMAGE_RESOURCE_DIRECTORY_STRING)
+IMAGE_RESOURCE_DIRECTORY_STRING = _IMAGE_RESOURCE_DIRECTORY_STRING
+class _IMAGE_RESOURCE_DIR_STRING_U(Structure):
+    pass
+_IMAGE_RESOURCE_DIR_STRING_U._fields_ = [
+    ('Length', WORD),
+    ('NameString', WCHAR * 1),
+]
+PIMAGE_RESOURCE_DIR_STRING_U = POINTER(_IMAGE_RESOURCE_DIR_STRING_U)
+IMAGE_RESOURCE_DIR_STRING_U = _IMAGE_RESOURCE_DIR_STRING_U
+class _IMAGE_RESOURCE_DATA_ENTRY(Structure):
+    pass
+_IMAGE_RESOURCE_DATA_ENTRY._fields_ = [
+    ('OffsetToData', DWORD),
+    ('Size', DWORD),
+    ('CodePage', DWORD),
+    ('Reserved', DWORD),
+]
+PIMAGE_RESOURCE_DATA_ENTRY = POINTER(_IMAGE_RESOURCE_DATA_ENTRY)
+IMAGE_RESOURCE_DATA_ENTRY = _IMAGE_RESOURCE_DATA_ENTRY
+class IMAGE_LOAD_CONFIG_DIRECTORY32(Structure):
+    pass
+IMAGE_LOAD_CONFIG_DIRECTORY32._fields_ = [
+    ('Size', DWORD),
+    ('TimeDateStamp', DWORD),
+    ('MajorVersion', WORD),
+    ('MinorVersion', WORD),
+    ('GlobalFlagsClear', DWORD),
+    ('GlobalFlagsSet', DWORD),
+    ('CriticalSectionDefaultTimeout', DWORD),
+    ('DeCommitFreeBlockThreshold', DWORD),
+    ('DeCommitTotalFreeThreshold', DWORD),
+    ('LockPrefixTable', DWORD),
+    ('MaximumAllocationSize', DWORD),
+    ('VirtualMemoryThreshold', DWORD),
+    ('ProcessHeapFlags', DWORD),
+    ('ProcessAffinityMask', DWORD),
+    ('CSDVersion', WORD),
+    ('Reserved1', WORD),
+    ('EditList', DWORD),
+    ('SecurityCookie', DWORD),
+    ('SEHandlerTable', DWORD),
+    ('SEHandlerCount', DWORD),
+]
+PIMAGE_LOAD_CONFIG_DIRECTORY32 = POINTER(IMAGE_LOAD_CONFIG_DIRECTORY32)
+class IMAGE_LOAD_CONFIG_DIRECTORY64(Structure):
+    pass
+PIMAGE_LOAD_CONFIG_DIRECTORY64 = POINTER(IMAGE_LOAD_CONFIG_DIRECTORY64)
+IMAGE_LOAD_CONFIG_DIRECTORY64._pack_ = 4
+IMAGE_LOAD_CONFIG_DIRECTORY64._fields_ = [
+    ('Size', DWORD),
+    ('TimeDateStamp', DWORD),
+    ('MajorVersion', WORD),
+    ('MinorVersion', WORD),
+    ('GlobalFlagsClear', DWORD),
+    ('GlobalFlagsSet', DWORD),
+    ('CriticalSectionDefaultTimeout', DWORD),
+    ('DeCommitFreeBlockThreshold', ULONGLONG),
+    ('DeCommitTotalFreeThreshold', ULONGLONG),
+    ('LockPrefixTable', ULONGLONG),
+    ('MaximumAllocationSize', ULONGLONG),
+    ('VirtualMemoryThreshold', ULONGLONG),
+    ('ProcessAffinityMask', ULONGLONG),
+    ('ProcessHeapFlags', DWORD),
+    ('CSDVersion', WORD),
+    ('Reserved1', WORD),
+    ('EditList', ULONGLONG),
+    ('SecurityCookie', ULONGLONG),
+    ('SEHandlerTable', ULONGLONG),
+    ('SEHandlerCount', ULONGLONG),
+]
+IMAGE_LOAD_CONFIG_DIRECTORY = IMAGE_LOAD_CONFIG_DIRECTORY32
+PIMAGE_LOAD_CONFIG_DIRECTORY = PIMAGE_LOAD_CONFIG_DIRECTORY32
+class _IMAGE_CE_RUNTIME_FUNCTION_ENTRY(Structure):
+    pass
+_IMAGE_CE_RUNTIME_FUNCTION_ENTRY._fields_ = [
+    ('FuncStart', DWORD),
+    ('PrologLen', DWORD, 8),
+    ('FuncLen', DWORD, 22),
+    ('ThirtyTwoBit', DWORD, 1),
+    ('ExceptionFlag', DWORD, 1),
+]
+PIMAGE_CE_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_CE_RUNTIME_FUNCTION_ENTRY)
+IMAGE_CE_RUNTIME_FUNCTION_ENTRY = _IMAGE_CE_RUNTIME_FUNCTION_ENTRY
+class _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY(Structure):
+    pass
+_IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY._pack_ = 4
+_IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY._fields_ = [
+    ('BeginAddress', ULONGLONG),
+    ('EndAddress', ULONGLONG),
+    ('ExceptionHandler', ULONGLONG),
+    ('HandlerData', ULONGLONG),
+    ('PrologEndAddress', ULONGLONG),
+]
+PIMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY)
+IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY
+class _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY(Structure):
+    pass
+_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY._fields_ = [
+    ('BeginAddress', DWORD),
+    ('EndAddress', DWORD),
+    ('ExceptionHandler', DWORD),
+    ('HandlerData', DWORD),
+    ('PrologEndAddress', DWORD),
+]
+IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY
+PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY)
+class _IMAGE_RUNTIME_FUNCTION_ENTRY(Structure):
+    pass
+_IMAGE_RUNTIME_FUNCTION_ENTRY._fields_ = [
+    ('BeginAddress', DWORD),
+    ('EndAddress', DWORD),
+    ('UnwindInfoAddress', DWORD),
+]
+_PIMAGE_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_RUNTIME_FUNCTION_ENTRY)
+IMAGE_IA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY
+PIMAGE_IA64_RUNTIME_FUNCTION_ENTRY = _PIMAGE_RUNTIME_FUNCTION_ENTRY
+IMAGE_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY
+PIMAGE_RUNTIME_FUNCTION_ENTRY = _PIMAGE_RUNTIME_FUNCTION_ENTRY
+class _IMAGE_DEBUG_DIRECTORY(Structure):
+    pass
+_IMAGE_DEBUG_DIRECTORY._fields_ = [
+    ('Characteristics', DWORD),
+    ('TimeDateStamp', DWORD),
+    ('MajorVersion', WORD),
+    ('MinorVersion', WORD),
+    ('Type', DWORD),
+    ('SizeOfData', DWORD),
+    ('AddressOfRawData', DWORD),
+    ('PointerToRawData', DWORD),
+]
+IMAGE_DEBUG_DIRECTORY = _IMAGE_DEBUG_DIRECTORY
+PIMAGE_DEBUG_DIRECTORY = POINTER(_IMAGE_DEBUG_DIRECTORY)
+class _IMAGE_COFF_SYMBOLS_HEADER(Structure):
+    pass
+_IMAGE_COFF_SYMBOLS_HEADER._fields_ = [
+    ('NumberOfSymbols', DWORD),
+    ('LvaToFirstSymbol', DWORD),
+    ('NumberOfLinenumbers', DWORD),
+    ('LvaToFirstLinenumber', DWORD),
+    ('RvaToFirstByteOfCode', DWORD),
+    ('RvaToLastByteOfCode', DWORD),
+    ('RvaToFirstByteOfData', DWORD),
+    ('RvaToLastByteOfData', DWORD),
+]
+PIMAGE_COFF_SYMBOLS_HEADER = POINTER(_IMAGE_COFF_SYMBOLS_HEADER)
+IMAGE_COFF_SYMBOLS_HEADER = _IMAGE_COFF_SYMBOLS_HEADER
+class _FPO_DATA(Structure):
+    pass
+_FPO_DATA._fields_ = [
+    ('ulOffStart', DWORD),
+    ('cbProcSize', DWORD),
+    ('cdwLocals', DWORD),
+    ('cdwParams', WORD),
+    ('cbProlog', WORD, 8),
+    ('cbRegs', WORD, 3),
+    ('fHasSEH', WORD, 1),
+    ('fUseBP', WORD, 1),
+    ('reserved', WORD, 1),
+    ('cbFrame', WORD, 2),
+]
+PFPO_DATA = POINTER(_FPO_DATA)
+FPO_DATA = _FPO_DATA
+class _IMAGE_DEBUG_MISC(Structure):
+    pass
+_IMAGE_DEBUG_MISC._fields_ = [
+    ('DataType', DWORD),
+    ('Length', DWORD),
+    ('Unicode', BOOLEAN),
+    ('Reserved', BYTE * 3),
+    ('Data', BYTE * 1),
+]
+PIMAGE_DEBUG_MISC = POINTER(_IMAGE_DEBUG_MISC)
+IMAGE_DEBUG_MISC = _IMAGE_DEBUG_MISC
+class _IMAGE_FUNCTION_ENTRY(Structure):
+    pass
+_IMAGE_FUNCTION_ENTRY._fields_ = [
+    ('StartingAddress', DWORD),
+    ('EndingAddress', DWORD),
+    ('EndOfPrologue', DWORD),
+]
+PIMAGE_FUNCTION_ENTRY = POINTER(_IMAGE_FUNCTION_ENTRY)
+IMAGE_FUNCTION_ENTRY = _IMAGE_FUNCTION_ENTRY
+class _IMAGE_FUNCTION_ENTRY64(Structure):
+    pass
+class N23_IMAGE_FUNCTION_ENTRY644DOLLAR_45E(Union):
+    pass
+N23_IMAGE_FUNCTION_ENTRY644DOLLAR_45E._pack_ = 4
+N23_IMAGE_FUNCTION_ENTRY644DOLLAR_45E._fields_ = [
+    ('EndOfPrologue', ULONGLONG),
+    ('UnwindInfoAddress', ULONGLONG),
+]
+_IMAGE_FUNCTION_ENTRY64._pack_ = 4
+_IMAGE_FUNCTION_ENTRY64._anonymous_ = ['_0']
+_IMAGE_FUNCTION_ENTRY64._fields_ = [
+    ('StartingAddress', ULONGLONG),
+    ('EndingAddress', ULONGLONG),
+    ('_0', N23_IMAGE_FUNCTION_ENTRY644DOLLAR_45E),
+]
+PIMAGE_FUNCTION_ENTRY64 = POINTER(_IMAGE_FUNCTION_ENTRY64)
+IMAGE_FUNCTION_ENTRY64 = _IMAGE_FUNCTION_ENTRY64
+class _IMAGE_SEPARATE_DEBUG_HEADER(Structure):
+    pass
+_IMAGE_SEPARATE_DEBUG_HEADER._fields_ = [
+    ('Signature', WORD),
+    ('Flags', WORD),
+    ('Machine', WORD),
+    ('Characteristics', WORD),
+    ('TimeDateStamp', DWORD),
+    ('CheckSum', DWORD),
+    ('ImageBase', DWORD),
+    ('SizeOfImage', DWORD),
+    ('NumberOfSections', DWORD),
+    ('ExportedNamesSize', DWORD),
+    ('DebugDirectorySize', DWORD),
+    ('SectionAlignment', DWORD),
+    ('Reserved', DWORD * 2),
+]
+PIMAGE_SEPARATE_DEBUG_HEADER = POINTER(_IMAGE_SEPARATE_DEBUG_HEADER)
+IMAGE_SEPARATE_DEBUG_HEADER = _IMAGE_SEPARATE_DEBUG_HEADER
+class _NON_PAGED_DEBUG_INFO(Structure):
+    pass
+_NON_PAGED_DEBUG_INFO._pack_ = 4
+_NON_PAGED_DEBUG_INFO._fields_ = [
+    ('Signature', WORD),
+    ('Flags', WORD),
+    ('Size', DWORD),
+    ('Machine', WORD),
+    ('Characteristics', WORD),
+    ('TimeDateStamp', DWORD),
+    ('CheckSum', DWORD),
+    ('SizeOfImage', DWORD),
+    ('ImageBase', ULONGLONG),
+]
+NON_PAGED_DEBUG_INFO = _NON_PAGED_DEBUG_INFO
+PNON_PAGED_DEBUG_INFO = POINTER(_NON_PAGED_DEBUG_INFO)
+class _ImageArchitectureHeader(Structure):
+    pass
+_ImageArchitectureHeader._fields_ = [
+    ('AmaskValue', c_uint, 1),
+    ('', c_int, 7),
+    ('AmaskShift', c_uint, 8),
+    ('', c_int, 16),
+    ('FirstEntryRVA', DWORD),
+]
+IMAGE_ARCHITECTURE_HEADER = _ImageArchitectureHeader
+PIMAGE_ARCHITECTURE_HEADER = POINTER(_ImageArchitectureHeader)
+class _ImageArchitectureEntry(Structure):
+    pass
+_ImageArchitectureEntry._fields_ = [
+    ('FixupInstRVA', DWORD),
+    ('NewInst', DWORD),
+]
+PIMAGE_ARCHITECTURE_ENTRY = POINTER(_ImageArchitectureEntry)
+IMAGE_ARCHITECTURE_ENTRY = _ImageArchitectureEntry
+class IMPORT_OBJECT_HEADER(Structure):
+    pass
+class N20IMPORT_OBJECT_HEADER4DOLLAR_46E(Union):
+    pass
+N20IMPORT_OBJECT_HEADER4DOLLAR_46E._fields_ = [
+    ('Ordinal', WORD),
+    ('Hint', WORD),
+]
+IMPORT_OBJECT_HEADER._anonymous_ = ['_0']
+IMPORT_OBJECT_HEADER._fields_ = [
+    ('Sig1', WORD),
+    ('Sig2', WORD),
+    ('Version', WORD),
+    ('Machine', WORD),
+    ('TimeDateStamp', DWORD),
+    ('SizeOfData', DWORD),
+    ('_0', N20IMPORT_OBJECT_HEADER4DOLLAR_46E),
+    ('Type', WORD, 2),
+    ('NameType', WORD, 3),
+    ('Reserved', WORD, 11),
+]
+
+# values for enumeration 'IMPORT_OBJECT_TYPE'
+IMPORT_OBJECT_TYPE = c_int # enum
+
+# values for enumeration 'IMPORT_OBJECT_NAME_TYPE'
+IMPORT_OBJECT_NAME_TYPE = c_int # enum
+
+# values for enumeration 'ReplacesCorHdrNumericDefines'
+ReplacesCorHdrNumericDefines = c_int # enum
+class IMAGE_COR20_HEADER(Structure):
+    pass
+IMAGE_COR20_HEADER._fields_ = [
+    ('cb', DWORD),
+    ('MajorRuntimeVersion', WORD),
+    ('MinorRuntimeVersion', WORD),
+    ('MetaData', IMAGE_DATA_DIRECTORY),
+    ('Flags', DWORD),
+    ('EntryPointToken', DWORD),
+    ('Resources', IMAGE_DATA_DIRECTORY),
+    ('StrongNameSignature', IMAGE_DATA_DIRECTORY),
+    ('CodeManagerTable', IMAGE_DATA_DIRECTORY),
+    ('VTableFixups', IMAGE_DATA_DIRECTORY),
+    ('ExportAddressTableJumps', IMAGE_DATA_DIRECTORY),
+    ('ManagedNativeHeader', IMAGE_DATA_DIRECTORY),
+]
+PIMAGE_COR20_HEADER = POINTER(IMAGE_COR20_HEADER)
+class _SLIST_HEADER(Union):
+    pass
+class N13_SLIST_HEADER4DOLLAR_47E(Structure):
+    pass
+N13_SLIST_HEADER4DOLLAR_47E._fields_ = [
+    ('Next', SINGLE_LIST_ENTRY),
+    ('Depth', WORD),
+    ('Sequence', WORD),
+]
+_SLIST_HEADER._anonymous_ = ['_0']
+_SLIST_HEADER._fields_ = [
+    ('Alignment', ULONGLONG),
+    ('_0', N13_SLIST_HEADER4DOLLAR_47E),
+]
+PSLIST_HEADER = POINTER(_SLIST_HEADER)
+SLIST_HEADER = _SLIST_HEADER
+class _MESSAGE_RESOURCE_ENTRY(Structure):
+    pass
+_MESSAGE_RESOURCE_ENTRY._fields_ = [
+    ('Length', WORD),
+    ('Flags', WORD),
+    ('Text', BYTE * 1),
+]
+MESSAGE_RESOURCE_ENTRY = _MESSAGE_RESOURCE_ENTRY
+PMESSAGE_RESOURCE_ENTRY = POINTER(_MESSAGE_RESOURCE_ENTRY)
+class _MESSAGE_RESOURCE_BLOCK(Structure):
+    pass
+_MESSAGE_RESOURCE_BLOCK._fields_ = [
+    ('LowId', DWORD),
+    ('HighId', DWORD),
+    ('OffsetToEntries', DWORD),
+]
+PMESSAGE_RESOURCE_BLOCK = POINTER(_MESSAGE_RESOURCE_BLOCK)
+MESSAGE_RESOURCE_BLOCK = _MESSAGE_RESOURCE_BLOCK
+class _MESSAGE_RESOURCE_DATA(Structure):
+    pass
+_MESSAGE_RESOURCE_DATA._fields_ = [
+    ('NumberOfBlocks', DWORD),
+    ('Blocks', MESSAGE_RESOURCE_BLOCK * 1),
+]
+PMESSAGE_RESOURCE_DATA = POINTER(_MESSAGE_RESOURCE_DATA)
+MESSAGE_RESOURCE_DATA = _MESSAGE_RESOURCE_DATA
+class _OSVERSIONINFOA(Structure):
+    pass
+_OSVERSIONINFOA._fields_ = [
+    ('dwOSVersionInfoSize', DWORD),
+    ('dwMajorVersion', DWORD),
+    ('dwMinorVersion', DWORD),
+    ('dwBuildNumber', DWORD),
+    ('dwPlatformId', DWORD),
+    ('szCSDVersion', CHAR * 128),
+]
+LPOSVERSIONINFOA = POINTER(_OSVERSIONINFOA)
+POSVERSIONINFOA = POINTER(_OSVERSIONINFOA)
+OSVERSIONINFOA = _OSVERSIONINFOA
+class _OSVERSIONINFOW(Structure):
+    pass
+_OSVERSIONINFOW._fields_ = [
+    ('dwOSVersionInfoSize', DWORD),
+    ('dwMajorVersion', DWORD),
+    ('dwMinorVersion', DWORD),
+    ('dwBuildNumber', DWORD),
+    ('dwPlatformId', DWORD),
+    ('szCSDVersion', WCHAR * 128),
+]
+PRTL_OSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
+LPOSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
+POSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
+RTL_OSVERSIONINFOW = _OSVERSIONINFOW
+OSVERSIONINFOW = _OSVERSIONINFOW
+OSVERSIONINFO = OSVERSIONINFOA
+POSVERSIONINFO = POSVERSIONINFOA
+LPOSVERSIONINFO = LPOSVERSIONINFOA
+class _OSVERSIONINFOEXA(Structure):
+    pass
+_OSVERSIONINFOEXA._fields_ = [
+    ('dwOSVersionInfoSize', DWORD),
+    ('dwMajorVersion', DWORD),
+    ('dwMinorVersion', DWORD),
+    ('dwBuildNumber', DWORD),
+    ('dwPlatformId', DWORD),
+    ('szCSDVersion', CHAR * 128),
+    ('wServicePackMajor', WORD),
+    ('wServicePackMinor', WORD),
+    ('wSuiteMask', WORD),
+    ('wProductType', BYTE),
+    ('wReserved', BYTE),
+]
+POSVERSIONINFOEXA = POINTER(_OSVERSIONINFOEXA)
+OSVERSIONINFOEXA = _OSVERSIONINFOEXA
+LPOSVERSIONINFOEXA = POINTER(_OSVERSIONINFOEXA)
+class _OSVERSIONINFOEXW(Structure):
+    pass
+_OSVERSIONINFOEXW._fields_ = [
+    ('dwOSVersionInfoSize', DWORD),
+    ('dwMajorVersion', DWORD),
+    ('dwMinorVersion', DWORD),
+    ('dwBuildNumber', DWORD),
+    ('dwPlatformId', DWORD),
+    ('szCSDVersion', WCHAR * 128),
+    ('wServicePackMajor', WORD),
+    ('wServicePackMinor', WORD),
+    ('wSuiteMask', WORD),
+    ('wProductType', BYTE),
+    ('wReserved', BYTE),
+]
+LPOSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
+PRTL_OSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
+RTL_OSVERSIONINFOEXW = _OSVERSIONINFOEXW
+POSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
+OSVERSIONINFOEXW = _OSVERSIONINFOEXW
+OSVERSIONINFOEX = OSVERSIONINFOEXA
+POSVERSIONINFOEX = POSVERSIONINFOEXA
+LPOSVERSIONINFOEX = LPOSVERSIONINFOEXA
+_RTL_CRITICAL_SECTION_DEBUG._fields_ = [
+    ('Type', WORD),
+    ('CreatorBackTraceIndex', WORD),
+    ('CriticalSection', POINTER(_RTL_CRITICAL_SECTION)),
+    ('ProcessLocksList', LIST_ENTRY),
+    ('EntryCount', DWORD),
+    ('ContentionCount', DWORD),
+    ('Spare', DWORD * 2),
+]
+PRTL_RESOURCE_DEBUG = POINTER(_RTL_CRITICAL_SECTION_DEBUG)
+RTL_RESOURCE_DEBUG = _RTL_CRITICAL_SECTION_DEBUG
+_RTL_CRITICAL_SECTION._fields_ = [
+    ('DebugInfo', PRTL_CRITICAL_SECTION_DEBUG),
+    ('LockCount', LONG),
+    ('RecursionCount', LONG),
+    ('OwningThread', HANDLE),
+    ('LockSemaphore', HANDLE),
+    ('SpinCount', ULONG_PTR),
+]
+RTL_VERIFIER_DLL_LOAD_CALLBACK = WINFUNCTYPE(None, WSTRING, c_void_p, c_ulong, c_void_p)
+RTL_VERIFIER_DLL_UNLOAD_CALLBACK = WINFUNCTYPE(None, WSTRING, c_void_p, c_ulong, c_void_p)
+class _RTL_VERIFIER_THUNK_DESCRIPTOR(Structure):
+    pass
+_RTL_VERIFIER_THUNK_DESCRIPTOR._fields_ = [
+    ('ThunkName', PCHAR),
+    ('ThunkOldAddress', PVOID),
+    ('ThunkNewAddress', PVOID),
+]
+PRTL_VERIFIER_THUNK_DESCRIPTOR = POINTER(_RTL_VERIFIER_THUNK_DESCRIPTOR)
+RTL_VERIFIER_THUNK_DESCRIPTOR = _RTL_VERIFIER_THUNK_DESCRIPTOR
+class _RTL_VERIFIER_DLL_DESCRIPTOR(Structure):
+    pass
+_RTL_VERIFIER_DLL_DESCRIPTOR._fields_ = [
+    ('DllName', PWCHAR),
+    ('DllFlags', DWORD),
+    ('DllAddress', PVOID),
+    ('DllThunks', PRTL_VERIFIER_THUNK_DESCRIPTOR),
+]
+RTL_VERIFIER_DLL_DESCRIPTOR = _RTL_VERIFIER_DLL_DESCRIPTOR
+PRTL_VERIFIER_DLL_DESCRIPTOR = POINTER(_RTL_VERIFIER_DLL_DESCRIPTOR)
+class _RTL_VERIFIER_PROVIDER_DESCRIPTOR(Structure):
+    pass
+_RTL_VERIFIER_PROVIDER_DESCRIPTOR._fields_ = [
+    ('Length', DWORD),
+    ('ProviderDlls', PRTL_VERIFIER_DLL_DESCRIPTOR),
+    ('ProviderDllLoadCallback', RTL_VERIFIER_DLL_LOAD_CALLBACK),
+    ('ProviderDllUnloadCallback', RTL_VERIFIER_DLL_UNLOAD_CALLBACK),
+    ('VerifierImage', PWSTR),
+    ('VerifierFlags', DWORD),
+    ('VerifierDebug', DWORD),
+    ('RtlpGetStackTraceAddress', PVOID),
+    ('RtlpDebugPageHeapCreate', PVOID),
+    ('RtlpDebugPageHeapDestroy', PVOID),
+]
+RTL_VERIFIER_PROVIDER_DESCRIPTOR = _RTL_VERIFIER_PROVIDER_DESCRIPTOR
+PRTL_VERIFIER_PROVIDER_DESCRIPTOR = POINTER(_RTL_VERIFIER_PROVIDER_DESCRIPTOR)
+PVECTORED_EXCEPTION_HANDLER = WINFUNCTYPE(LONG, POINTER(_EXCEPTION_POINTERS))
+
+# values for enumeration '_HEAP_INFORMATION_CLASS'
+_HEAP_INFORMATION_CLASS = c_int # enum
+HEAP_INFORMATION_CLASS = _HEAP_INFORMATION_CLASS
+WAITORTIMERCALLBACKFUNC = WINFUNCTYPE(None, c_void_p, c_ubyte)
+WORKERCALLBACKFUNC = WINFUNCTYPE(None, c_void_p)
+APC_CALLBACK_FUNCTION = WINFUNCTYPE(None, c_ulong, c_void_p, c_void_p)
+
+# values for enumeration '_ACTIVATION_CONTEXT_INFO_CLASS'
+_ACTIVATION_CONTEXT_INFO_CLASS = c_int # enum
+ACTIVATION_CONTEXT_INFO_CLASS = _ACTIVATION_CONTEXT_INFO_CLASS
+class _ACTIVATION_CONTEXT_QUERY_INDEX(Structure):
+    pass
+_ACTIVATION_CONTEXT_QUERY_INDEX._fields_ = [
+    ('ulAssemblyIndex', DWORD),
+    ('ulFileIndexInAssembly', DWORD),
+]
+ACTIVATION_CONTEXT_QUERY_INDEX = _ACTIVATION_CONTEXT_QUERY_INDEX
+PACTIVATION_CONTEXT_QUERY_INDEX = POINTER(_ACTIVATION_CONTEXT_QUERY_INDEX)
+PCACTIVATION_CONTEXT_QUERY_INDEX = POINTER(_ACTIVATION_CONTEXT_QUERY_INDEX)
+class _ASSEMBLY_FILE_DETAILED_INFORMATION(Structure):
+    pass
+_ASSEMBLY_FILE_DETAILED_INFORMATION._fields_ = [
+    ('ulFlags', DWORD),
+    ('ulFilenameLength', DWORD),
+    ('ulPathLength', DWORD),
+    ('lpFileName', PCWSTR),
+    ('lpFilePath', PCWSTR),
+]
+PASSEMBLY_FILE_DETAILED_INFORMATION = POINTER(_ASSEMBLY_FILE_DETAILED_INFORMATION)
+ASSEMBLY_FILE_DETAILED_INFORMATION = _ASSEMBLY_FILE_DETAILED_INFORMATION
+PCASSEMBLY_FILE_DETAILED_INFORMATION = POINTER(ASSEMBLY_FILE_DETAILED_INFORMATION)
+class _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION(Structure):
+    pass
+_ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION._fields_ = [
+    ('ulFlags', DWORD),
+    ('ulEncodedAssemblyIdentityLength', DWORD),
+    ('ulManifestPathType', DWORD),
+    ('ulManifestPathLength', DWORD),
+    ('liManifestLastWriteTime', LARGE_INTEGER),
+    ('ulPolicyPathType', DWORD),
+    ('ulPolicyPathLength', DWORD),
+    ('liPolicyLastWriteTime', LARGE_INTEGER),
+    ('ulMetadataSatelliteRosterIndex', DWORD),
+    ('ulManifestVersionMajor', DWORD),
+    ('ulManifestVersionMinor', DWORD),
+    ('ulPolicyVersionMajor', DWORD),
+    ('ulPolicyVersionMinor', DWORD),
+    ('ulAssemblyDirectoryNameLength', DWORD),
+    ('lpAssemblyEncodedAssemblyIdentity', PCWSTR),
+    ('lpAssemblyManifestPath', PCWSTR),
+    ('lpAssemblyPolicyPath', PCWSTR),
+    ('lpAssemblyDirectoryName', PCWSTR),
+    ('ulFileCount', DWORD),
+]
+ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION
+PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION)
+PCACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION)
+class _ACTIVATION_CONTEXT_DETAILED_INFORMATION(Structure):
+    pass
+_ACTIVATION_CONTEXT_DETAILED_INFORMATION._fields_ = [
+    ('dwFlags', DWORD),
+    ('ulFormatVersion', DWORD),
+    ('ulAssemblyCount', DWORD),
+    ('ulRootManifestPathType', DWORD),
+    ('ulRootManifestPathChars', DWORD),
+    ('ulRootConfigurationPathType', DWORD),
+    ('ulRootConfigurationPathChars', DWORD),
+    ('ulAppDirPathType', DWORD),
+    ('ulAppDirPathChars', DWORD),
+    ('lpRootManifestPath', PCWSTR),
+    ('lpRootConfigurationPath', PCWSTR),
+    ('lpAppDirPath', PCWSTR),
+]
+PACTIVATION_CONTEXT_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_DETAILED_INFORMATION)
+ACTIVATION_CONTEXT_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_DETAILED_INFORMATION
+PCACTIVATION_CONTEXT_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_DETAILED_INFORMATION)
+class _EVENTLOGRECORD(Structure):
+    pass
+_EVENTLOGRECORD._fields_ = [
+    ('Length', DWORD),
+    ('Reserved', DWORD),
+    ('RecordNumber', DWORD),
+    ('TimeGenerated', DWORD),
+    ('TimeWritten', DWORD),
+    ('EventID', DWORD),
+    ('EventType', WORD),
+    ('NumStrings', WORD),
+    ('EventCategory', WORD),
+    ('ReservedFlags', WORD),
+    ('ClosingRecordNumber', DWORD),
+    ('StringOffset', DWORD),
+    ('UserSidLength', DWORD),
+    ('UserSidOffset', DWORD),
+    ('DataLength', DWORD),
+    ('DataOffset', DWORD),
+]
+EVENTLOGRECORD = _EVENTLOGRECORD
+PEVENTLOGRECORD = POINTER(_EVENTLOGRECORD)
+class _EVENTSFORLOGFILE(Structure):
+    pass
+_EVENTSFORLOGFILE._fields_ = [
+    ('ulSize', DWORD),
+    ('szLogicalLogFile', WCHAR * 256),
+    ('ulNumRecords', DWORD),
+    ('pEventLogRecords', EVENTLOGRECORD * 0),
+]
+EVENTSFORLOGFILE = _EVENTSFORLOGFILE
+PEVENTSFORLOGFILE = POINTER(_EVENTSFORLOGFILE)
+class _PACKEDEVENTINFO(Structure):
+    pass
+_PACKEDEVENTINFO._fields_ = [
+    ('ulSize', DWORD),
+    ('ulNumEventsForLogFile', DWORD),
+    ('ulOffsets', DWORD * 0),
+]
+PACKEDEVENTINFO = _PACKEDEVENTINFO
+PPACKEDEVENTINFO = POINTER(_PACKEDEVENTINFO)
+
+# values for enumeration '_CM_SERVICE_NODE_TYPE'
+_CM_SERVICE_NODE_TYPE = c_int # enum
+SERVICE_NODE_TYPE = _CM_SERVICE_NODE_TYPE
+
+# values for enumeration '_CM_SERVICE_LOAD_TYPE'
+_CM_SERVICE_LOAD_TYPE = c_int # enum
+SERVICE_LOAD_TYPE = _CM_SERVICE_LOAD_TYPE
+
+# values for enumeration '_CM_ERROR_CONTROL_TYPE'
+_CM_ERROR_CONTROL_TYPE = c_int # enum
+SERVICE_ERROR_TYPE = _CM_ERROR_CONTROL_TYPE
+class _TAPE_ERASE(Structure):
+    pass
+_TAPE_ERASE._fields_ = [
+    ('Type', DWORD),
+    ('Immediate', BOOLEAN),
+]
+TAPE_ERASE = _TAPE_ERASE
+PTAPE_ERASE = POINTER(_TAPE_ERASE)
+class _TAPE_PREPARE(Structure):
+    pass
+_TAPE_PREPARE._fields_ = [
+    ('Operation', DWORD),
+    ('Immediate', BOOLEAN),
+]
+TAPE_PREPARE = _TAPE_PREPARE
+PTAPE_PREPARE = POINTER(_TAPE_PREPARE)
+class _TAPE_WRITE_MARKS(Structure):
+    pass
+_TAPE_WRITE_MARKS._fields_ = [
+    ('Type', DWORD),
+    ('Count', DWORD),
+    ('Immediate', BOOLEAN),
+]
+TAPE_WRITE_MARKS = _TAPE_WRITE_MARKS
+PTAPE_WRITE_MARKS = POINTER(_TAPE_WRITE_MARKS)
+class _TAPE_GET_POSITION(Structure):
+    pass
+_TAPE_GET_POSITION._fields_ = [
+    ('Type', DWORD),
+    ('Partition', DWORD),
+    ('Offset', LARGE_INTEGER),
+]
+TAPE_GET_POSITION = _TAPE_GET_POSITION
+PTAPE_GET_POSITION = POINTER(_TAPE_GET_POSITION)
+class _TAPE_SET_POSITION(Structure):
+    pass
+_TAPE_SET_POSITION._fields_ = [
+    ('Method', DWORD),
+    ('Partition', DWORD),
+    ('Offset', LARGE_INTEGER),
+    ('Immediate', BOOLEAN),
+]
+TAPE_SET_POSITION = _TAPE_SET_POSITION
+PTAPE_SET_POSITION = POINTER(_TAPE_SET_POSITION)
+class _TAPE_GET_DRIVE_PARAMETERS(Structure):
+    pass
+_TAPE_GET_DRIVE_PARAMETERS._fields_ = [
+    ('ECC', BOOLEAN),
+    ('Compression', BOOLEAN),
+    ('DataPadding', BOOLEAN),
+    ('ReportSetmarks', BOOLEAN),
+    ('DefaultBlockSize', DWORD),
+    ('MaximumBlockSize', DWORD),
+    ('MinimumBlockSize', DWORD),
+    ('MaximumPartitionCount', DWORD),
+    ('FeaturesLow', DWORD),
+    ('FeaturesHigh', DWORD),
+    ('EOTWarningZoneSize', DWORD),
+]
+PTAPE_GET_DRIVE_PARAMETERS = POINTER(_TAPE_GET_DRIVE_PARAMETERS)
+TAPE_GET_DRIVE_PARAMETERS = _TAPE_GET_DRIVE_PARAMETERS
+class _TAPE_SET_DRIVE_PARAMETERS(Structure):
+    pass
+_TAPE_SET_DRIVE_PARAMETERS._fields_ = [
+    ('ECC', BOOLEAN),
+    ('Compression', BOOLEAN),
+    ('DataPadding', BOOLEAN),
+    ('ReportSetmarks', BOOLEAN),
+    ('EOTWarningZoneSize', DWORD),
+]
+PTAPE_SET_DRIVE_PARAMETERS = POINTER(_TAPE_SET_DRIVE_PARAMETERS)
+TAPE_SET_DRIVE_PARAMETERS = _TAPE_SET_DRIVE_PARAMETERS
+class _TAPE_GET_MEDIA_PARAMETERS(Structure):
+    pass
+_TAPE_GET_MEDIA_PARAMETERS._fields_ = [
+    ('Capacity', LARGE_INTEGER),
+    ('Remaining', LARGE_INTEGER),
+    ('BlockSize', DWORD),
+    ('PartitionCount', DWORD),
+    ('WriteProtected', BOOLEAN),
+]
+TAPE_GET_MEDIA_PARAMETERS = _TAPE_GET_MEDIA_PARAMETERS
+PTAPE_GET_MEDIA_PARAMETERS = POINTER(_TAPE_GET_MEDIA_PARAMETERS)
+class _TAPE_SET_MEDIA_PARAMETERS(Structure):
+    pass
+_TAPE_SET_MEDIA_PARAMETERS._fields_ = [
+    ('BlockSize', DWORD),
+]
+TAPE_SET_MEDIA_PARAMETERS = _TAPE_SET_MEDIA_PARAMETERS
+PTAPE_SET_MEDIA_PARAMETERS = POINTER(_TAPE_SET_MEDIA_PARAMETERS)
+class _TAPE_CREATE_PARTITION(Structure):
+    pass
+_TAPE_CREATE_PARTITION._fields_ = [
+    ('Method', DWORD),
+    ('Count', DWORD),
+    ('Size', DWORD),
+]
+TAPE_CREATE_PARTITION = _TAPE_CREATE_PARTITION
+PTAPE_CREATE_PARTITION = POINTER(_TAPE_CREATE_PARTITION)
+class _TAPE_WMI_OPERATIONS(Structure):
+    pass
+_TAPE_WMI_OPERATIONS._fields_ = [
+    ('Method', DWORD),
+    ('DataBufferSize', DWORD),
+    ('DataBuffer', PVOID),
+]
+PTAPE_WMI_OPERATIONS = POINTER(_TAPE_WMI_OPERATIONS)
+TAPE_WMI_OPERATIONS = _TAPE_WMI_OPERATIONS
+
+# values for enumeration '_TAPE_DRIVE_PROBLEM_TYPE'
+_TAPE_DRIVE_PROBLEM_TYPE = c_int # enum
+TAPE_DRIVE_PROBLEM_TYPE = _TAPE_DRIVE_PROBLEM_TYPE
 __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'tagENUMLOGFONTEXW', 'LPMENUTEMPLATEW', 'NPLOGBRUSH32',
            'DLGPROC', 'tagIMEMENUITEMINFOW',
@@ -9791,23 +9790,22 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PSYSTEM_POWER_CAPABILITIES', 'VerifySystemPolicyDc',
            'PTIMEVAL', 'RGNDATAHEADER', 'tagHANDLETABLE',
            'LPWSAOVERLAPPED_COMPLETION_ROUTINE', 'COM_REFRESH',
-           '_WSAServiceClassInfoW', 'mysql_fetch_field',
-           '_IMAGE_TLS_DIRECTORY32', 'mysql_stmt_store_result',
-           'AclSizeInformation', 'HARDWAREHOOKSTRUCT',
-           '_IMAGE_SEPARATE_DEBUG_HEADER', 'IMAGE_FILE_HEADER',
-           'ADMINISTRATOR_POWER_POLICY', 'LPDRAWTEXTPARAMS',
-           'EMRSETBKMODE', 'SOUNDSENTRY',
+           '_WSAServiceClassInfoW', '_IMAGE_TLS_DIRECTORY32',
+           'mysql_stmt_store_result', 'AclSizeInformation',
+           'HARDWAREHOOKSTRUCT', 'enum_mysql_stmt_state',
+           'IMAGE_FILE_HEADER', 'ADMINISTRATOR_POWER_POLICY',
+           'LPDRAWTEXTPARAMS', 'EMRSETBKMODE', 'SOUNDSENTRY',
            'COR_VTABLE_CALL_MOST_DERIVED', 'tagICONMETRICSA',
            'LOGICAL_PROCESSOR_RELATIONSHIP', 'PPOWER_ACTION_POLICY',
            'mysql_stmt_row_seek', '_ACL_INFORMATION_CLASS',
-           'WinBuiltinBackupOperatorsSid', 'POBJECT_TYPE_LIST',
-           '_SLIST_HEADER', 'tagACCESSTIMEOUT', 'LONG64',
-           'ENUM_SERVICE_STATUSA', 'PIMAGE_OPTIONAL_HEADER32',
-           'MONITORENUMPROC', 'LPVIDEOPARAMETERS',
-           'WinInteractiveSid', 'PowerDeviceMaximum',
-           'ENUM_SERVICE_STATUSW', 'EXTLOGFONTA',
+           'COM_STMT_EXECUTE', 'POBJECT_TYPE_LIST', '_SLIST_HEADER',
+           'tagACCESSTIMEOUT', 'LONG64', 'ENUM_SERVICE_STATUSA',
+           'PIMAGE_OPTIONAL_HEADER32', 'MONITORENUMPROC',
+           'LPVIDEOPARAMETERS', 'WinInteractiveSid',
+           'PowerDeviceMaximum', 'ENUM_SERVICE_STATUSW',
+           'EXTLOGFONTA',
            'AssemblyDetailedInformationInActivationContext', '_ABC',
-           'PEMRCREATECOLORSPACEW', 'SID', 'PTOKEN_CONTROL',
+           'PEMRCREATECOLORSPACEW', 'SID', 'st_dynamic_array',
            'HCOLORSPACE__', '_HEAP_INFORMATION_CLASS',
            'enum_cursor_type', 'KILL_CONNECTION',
            'N12_devicemodeW4DOLLAR_65E', 'EXTLOGFONTW',
@@ -9830,12 +9828,12 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'tagEMRFILLRGN', 'PTITLEBARINFO', 'PCANDIDATELIST',
            'LPEXIT_THREAD_DEBUG_INFO', 'PEMRSETBKCOLOR', 'PULONG64',
            'PHANDLETABLE', 'ACTIVATION_CONTEXT_DETAILED_INFORMATION',
-           'PowerSystemShutdown', '_PSFEATURE_OUTPUT',
+           'PowerSystemShutdown', '_PSFEATURE_OUTPUT', 'PHANDLE',
            'BITMAPCOREINFO', 'COM_FIELD_LIST',
            'SC_STATUS_PROCESS_INFO', 'mysql_stmt_bind_param',
            'mysql_get_ssl_cipher', 'REGSAM',
            '_MESSAGE_RESOURCE_ENTRY', 'mysql_option',
-           'EMRSETVIEWPORTEXTEX', 'MYSQL_TYPE_LONGLONG',
+           'EMRSETVIEWPORTEXTEX', 'MYSQL_OPT_USE_REMOTE_CONNECTION',
            'MODEMSETTINGS', 'CPINFO', 'EMRCLOSEFIGURE',
            '_IMAGE_RESOURCE_DIR_STRING_U', 'TRIVERTEX',
            'CURSOR_TYPE_NO_CURSOR', 'CM_Power_Data_s', 'USED_MEM',
@@ -9859,7 +9857,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'ANON_OBJECT_HEADER', 'EMRSETWINDOWORGEX', 'st_mysql',
            '_WSACOMPLETION', 'tagEMROFFSETCLIPRGN',
            '_RTL_VERIFIER_THUNK_DESCRIPTOR', 'LPWSAPROTOCOL_INFOA',
-           'enum_mysql_stmt_state', 'off_t',
+           '_IMAGE_SEPARATE_DEBUG_HEADER', 'off_t',
            'IMAGE_CE_RUNTIME_FUNCTION_ENTRY', 'PEMRPOLYLINE',
            'SYSTEM_BATTERY_STATE', 'MFENUMPROC',
            'LPWSAPROTOCOL_INFOW', 'PLIST_ENTRY32', '_TOKEN_CONTROL',
@@ -9884,19 +9882,19 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_29E',
            'PJOB_SET_ARRAY', 'COMIMAGE_FLAGS_IL_LIBRARY',
            'st_mysql_data', 'FindExInfoMaxInfoLevel', 'LPAFPROTOCOLS',
-           '_TAPE_GET_POSITION', 'MYSQL_TIME', 'COM_STMT_EXECUTE',
-           'PEMROFFSETCLIPRGN', 'PNEWTEXTMETRICA',
-           'NONCLIENTMETRICSA', 'EMRSETICMPROFILEW',
-           'PWSANSCLASSINFOW', 'POWER_ACTION_POLICY',
-           'PNEWTEXTMETRICW', 'u_char', '_WSABUF', 'SC_ACTION_REBOOT',
-           'PWSANSCLASSINFOA', 'EMRSETICMPROFILEA',
-           'NONCLIENTMETRICSW', '_SYSTEM_ALARM_OBJECT_ACE',
-           'NEWTEXTMETRICEX', 'PSINJECTDATA', 'FOCUS_EVENT_RECORD',
-           'LPDISCDLGSTRUCTA', 'WinAccountGuestSid',
-           'tagMENUITEMINFOW', 'IMAGE_NT_HEADERS64',
-           'LPDISCDLGSTRUCTW', 'LPCOMMTIMEOUTS', 'LONG_PTR',
-           'EMRABORTPATH', 'enum_field_types', 'TCHAR',
-           'PFILE_NOTIFY_INFORMATION', 'WinRemoteLogonIdSid',
+           '_TAPE_GET_POSITION', 'MYSQL_TIME',
+           'WinBuiltinBackupOperatorsSid', 'PEMROFFSETCLIPRGN',
+           'PNEWTEXTMETRICA', 'NONCLIENTMETRICSA',
+           'EMRSETICMPROFILEW', 'PWSANSCLASSINFOW',
+           'POWER_ACTION_POLICY', 'PNEWTEXTMETRICW', 'u_char',
+           '_WSABUF', 'SC_ACTION_REBOOT', 'PWSANSCLASSINFOA',
+           'EMRSETICMPROFILEA', 'NONCLIENTMETRICSW',
+           '_SYSTEM_ALARM_OBJECT_ACE', 'NEWTEXTMETRICEX',
+           'PSINJECTDATA', 'FOCUS_EVENT_RECORD', 'LPDISCDLGSTRUCTA',
+           'WinAccountGuestSid', 'tagMENUITEMINFOW',
+           'IMAGE_NT_HEADERS64', 'LPDISCDLGSTRUCTW', 'LPCOMMTIMEOUTS',
+           'LONG_PTR', 'EMRABORTPATH', 'enum_field_types', 'TCHAR',
+           'mysql_autocommit', 'WinRemoteLogonIdSid',
            'PEMRSTROKEANDFILLPATH', 'PEMRSELECTCOLORSPACE',
            'MDICREATESTRUCT', 'PHALF_PTR',
            'VerifyProcessorPowerPolicyAc', 'NPEXTLOGPEN',
@@ -9933,7 +9931,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'AssemblyDetailedInformationInActivationContxt',
            'PWNDCLASSEX', 'N14_WSACOMPLETION4DOLLAR_794DOLLAR_81E',
            'NAMEENUMPROCW', 'OBJECTID', 'tagEMRCREATEMONOBRUSH',
-           'SID_AND_ATTRIBUTES', '_ACL', 'PLONGLONG',
+           'SID_AND_ATTRIBUTES', '_ACL', 'mysql_stat',
            'N21_IMAGE_SECTION_HEADER4DOLLAR_23E',
            'tagEMRSTRETCHDIBITS', '_GRADIENT_TRIANGLE', '_fsize_t',
            'LPCREATESTRUCTW', '_ABCFLOAT', '_LUID_AND_ATTRIBUTES',
@@ -9949,9 +9947,9 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'tagSTYLESTRUCT', '_SECURITY_DESCRIPTOR_RELATIVE',
            'PVALUEW', 'tagENHMETAHEADER',
            'HeapCompatibilityInformation',
-           'PIMAGE_RESOURCE_DIRECTORY_STRING',
-           'PJOBOBJECT_JOBSET_INFORMATION', 'PEVENTMSG',
-           'SCROLLBARINFO', 'PRTL_VERIFIER_DLL_DESCRIPTOR', 'PINT16',
+           'PIMAGE_RESOURCE_DIRECTORY_STRING', 'st_mysql_field',
+           'PEVENTMSG', 'SCROLLBARINFO',
+           'PRTL_VERIFIER_DLL_DESCRIPTOR', 'PINT16',
            'TIMEFMT_ENUMPROCW', 'PVALUEA', 'tagCBTACTIVATESTRUCT',
            'PCUTSTR', 'JOBOBJECT_BASIC_ACCOUNTING_INFORMATION',
            'mysql_set_server_option', 'HFONT__', 'POLYTEXT',
@@ -9965,18 +9963,18 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            '_SERVICE_DESCRIPTIONW', 'mysql_stmt_reset',
            'LPWSAPROTOCOL_INFO', '_SID_AND_ATTRIBUTES', 'dev_t',
            'LPPROGRESS_ROUTINE', 'PINPUT_RECORD', 'NT_TIB64',
-           'WinBuiltinPerfLoggingUsersSid', 'mysql_rpl_query_type',
-           'LPSOCKET_ADDRESS', 'LPGLYPHMETRICS', 'EMRRECTANGLE',
-           'HBITMAP__', '_SERVICE_FAILURE_ACTIONSW', 'PNT_TIB64',
+           'WinBuiltinPerfLoggingUsersSid', 'LPSOCKET_ADDRESS',
+           'LPGLYPHMETRICS', 'EMRRECTANGLE', 'HBITMAP__',
+           '_SERVICE_FAILURE_ACTIONSW', 'PNT_TIB64',
            'EMRREALIZEPALETTE', 'TokenImpersonationLevel',
            '_TOKEN_GROUPS_AND_PRIVILEGES', 'COM_STMT_RESET',
            'IMAGE_VXD_HEADER', 'mysql_list_tables', 'DCB',
-           '_SECURITY_IMPERSONATION_LEVEL',
-           'WinAccountPolicyAdminsSid',
+           '_SECURITY_IMPERSONATION_LEVEL', 'TapeDriveWriteError',
            'ASSEMBLY_FILE_DETAILED_INFORMATION', 'LPDLGTEMPLATE',
            'WNDENUMPROC', 'LPEXCEPTION_POINTERS',
-           'PTOKEN_AUDIT_POLICY_ELEMENT', 'IMAGE_OPTIONAL_HEADER',
-           '_cpinfo', 'PROPENUMPROCA', 'PEMRPAINTRGN', 'PSIZEL',
+           'PTOKEN_AUDIT_POLICY_ELEMENT',
+           '_JOBOBJECT_BASIC_PROCESS_ID_LIST', '_cpinfo',
+           'PROPENUMPROCA', 'PEMRPAINTRGN', 'PSIZEL',
            'PSECURITY_ATTRIBUTES', 'MEMORY_BASIC_INFORMATION64',
            'BITMAPINFO', 'LPENUM_SERVICE_STATUS', 'PEMRSETLAYOUT',
            'tagPIXELFORMATDESCRIPTOR', 'RTL_VERIFIER_DLL_DESCRIPTOR',
@@ -10002,9 +10000,9 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'SystemReserveHiberFile', 'LPREMOTE_NAME_INFO',
            'PEMRPOLYPOLYGON', 'IMAGE_FUNCTION_ENTRY64',
            'WinDialupSid', 'NETCONNECTINFOSTRUCT',
-           'mysql_get_proto_info', 'PSZ', 'tagMULTIKEYHELPW',
-           'REPARSE_GUID_DATA_BUFFER', 'PEMRENDPATH',
-           'PSYSTEM_AUDIT_CALLBACK_ACE',
+           'mysql_get_proto_info', 'PJOBOBJECT_JOBSET_INFORMATION',
+           'PSZ', 'tagMULTIKEYHELPW', 'REPARSE_GUID_DATA_BUFFER',
+           'PEMRENDPATH', 'PSYSTEM_AUDIT_CALLBACK_ACE',
            'STMT_ATTR_UPDATE_MAX_LENGTH', 'LPLOGPALETTE', 'EMRCHORD',
            'LATENCY_TIME', 'N14_WSACOMPLETION4DOLLAR_794DOLLAR_80E',
            'COM_PING', 'mysql_disable_rpl_parse', '__time64_t',
@@ -10015,18 +10013,18 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            '_IMAGE_LINENUMBER', 'PDRAWITEMSTRUCT',
            'AclRevisionInformation', '_SERVICE_STATUS',
            'tagEMRROUNDRECT', 'LPTHREAD_START_ROUTINE',
-           'LOGCOLORSPACEW', 'CURRENCYFMTW', 'myodbc_remove_escape',
-           'MYSQL_FIELD_OFFSET', 'tagEMRSTRETCHBLT',
-           'mysql_enable_reads_from_master', 'tagEMRPOLYDRAW16',
-           'LOGCOLORSPACEA', 'PCONSOLE_CURSOR_INFO',
-           'LPQUERY_SERVICE_CONFIGW', 'PIMAGE_NT_HEADERS64',
-           'LPSERVICE_DESCRIPTIONW', 'IMAGE_EXPORT_DIRECTORY',
-           'PTOKEN_STATISTICS',
+           'LOGCOLORSPACEW', 'CURRENCYFMTW', 'MYSQL_FIELD_OFFSET',
+           'tagEMRSTRETCHBLT', 'mysql_enable_reads_from_master',
+           'tagEMRPOLYDRAW16', 'LOGCOLORSPACEA',
+           'PCONSOLE_CURSOR_INFO', 'LPQUERY_SERVICE_CONFIGW',
+           'PIMAGE_NT_HEADERS64', 'LPSERVICE_DESCRIPTIONW',
+           'IMAGE_EXPORT_DIRECTORY', 'PTOKEN_STATISTICS',
            'JOBOBJECT_END_OF_JOB_TIME_INFORMATION', 'LPMENUITEMINFO',
            'CRITICAL_SECTION', 'tagMOUSEMOVEPOINT', 'LPUTSTR',
            'VS_FIXEDFILEINFO', 'JobObjectBasicProcessIdList',
            'TOKEN_USER', '_SYSTEM_ALARM_ACE', 'CriticalError',
-           'mysql_query', 'WinBuiltinIncomingForestTrustBuildersSid',
+           'PTOKEN_PRIMARY_GROUP',
+           'WinBuiltinIncomingForestTrustBuildersSid',
            'SidTypeWellKnownGroup', 'IMAGE_RELOCATION',
            'PGLYPHMETRICSFLOAT', 'EMRSETICMMODE', 'EMRSETTEXTCOLOR',
            'IMAGE_AUX_SYMBOL_TYPE', '_PIMAGE_RUNTIME_FUNCTION_ENTRY',
@@ -10041,22 +10039,22 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PADMINISTRATOR_POWER_POLICY', 'MEMORY_BASIC_INFORMATION',
            'LPWSACOMPLETION', 'MYSQL_PROTOCOL_MEMORY', 'PPOLYTEXT',
            '_MOUSE_EVENT_RECORD', '_IMAGE_DEBUG_MISC',
-           'mysql_stmt_free_result', 'PowerSystemWorking',
-           'KSPIN_LOCK', 'tagLOGCOLORSPACEA',
+           'PowerSystemWorking', 'KSPIN_LOCK', 'tagLOGCOLORSPACEA',
            'SYSTEM_AUDIT_OBJECT_ACE', 'LANGUAGEGROUP_ENUMPROCA',
            'WNDPROC', 'LPCOMMPROP', 'IMAGE_COR_MIH_EHRVA',
            'LPDROPSTRUCT', 'LPCVOID', 'PEMRSETROP2', 'AutoLoad',
-           '_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY', 'PEMRINVERTRGN',
-           'LPWSANSCLASSINFO', 'RTL_VERIFIER_PROVIDER_DESCRIPTOR',
-           'IgnoreError', 'PLOGBRUSH32',
-           'PRTL_VERIFIER_PROVIDER_DESCRIPTOR', 'tagVS_FIXEDFILEINFO',
-           '_STARTUPINFOA', 'ENUMLOGFONT', '_STARTUPINFOW',
+           '_IMAGE_SYMBOL', '_IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY',
+           'PEMRINVERTRGN', 'LPWSANSCLASSINFO',
+           'RTL_VERIFIER_PROVIDER_DESCRIPTOR', 'IgnoreError',
+           'PLOGBRUSH32', 'PRTL_VERIFIER_PROVIDER_DESCRIPTOR',
+           'tagVS_FIXEDFILEINFO', '_STARTUPINFOA', 'ENUMLOGFONT',
+           'TAPE_SET_DRIVE_PARAMETERS', '_STARTUPINFOW',
            'mysql_stmt_prepare', 'HTASK__', 'LPTRIVERTEX',
            'tagHARDWAREHOOKSTRUCT', '_IMAGE_BOUND_IMPORT_DESCRIPTOR',
            'WinAccountKrbtgtSid', 'TokenPrimary', 'tagEXTLOGFONTW',
            '_DOCINFOA', 'LPLOGCOLORSPACEW', 'POSVERSIONINFOEX',
            '_TAPE_PREPARE', 'LPLOGCOLORSPACEA', '_DOCINFOW',
-           'PINT_PTR', 'tagEXTLOGFONTA', 'LPWGLSWAP', 'mysql_info',
+           'PINT_PTR', 'tagEXTLOGFONTA', 'LPWGLSWAP',
            'tagEMRSETPIXELV', 'TOKEN_GROUPS', 'HFILE', 'HELPPOLY',
            'LPOVERLAPPED', 'SystemPowerPolicyCurrent', 'SPHANDLE',
            'PWNDCLASSA', 'RNRSERVICE_DEREGISTER', 'tagCOMBOBOXINFO',
@@ -10068,14 +10066,13 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'LPCGUID', 'NSP_NOTIFY_APC', '_KEY_EVENT_RECORD',
            'tagTITLEBARINFO', 'PACCESS_ALLOWED_OBJECT_ACE',
            'mysql_insert_id', 'tagEMRGLSBOUNDEDRECORD', '_TOKEN_USER',
-           'LPCMENUITEMINFOA', 'PHELPWININFO',
+           'LPCMENUITEMINFOA', 'PHELPWININFO', 'PCH',
            'WinBuiltinNetworkConfigurationOperatorsSid',
-           'CREATESTRUCTA', 'mysql_set_local_infile_handler',
-           'LPIMEMENUITEMINFO', 'LPCONDITIONPROC',
+           'CREATESTRUCTA', 'LPIMEMENUITEMINFO', 'LPCONDITIONPROC',
            'SYSTEM_ALARM_OBJECT_ACE', 'PEMRPOLYLINE16',
            'LPCMENUITEMINFOW', '_IMAGE_ROM_HEADERS', '_wfinddata_t',
            'XFORM', 'MAT2', 'LOGPALETTE', 'PXFORM',
-           'MYSQL_OPT_USE_REMOTE_CONNECTION',
+           'MYSQL_TYPE_LONGLONG',
            'N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_31E',
            'PIMAGE_NT_HEADERS32', 'PPOINT',
            'tagEMRCREATEDIBPATTERNBRUSHPT', 'HMENU__', 'EMRFILLPATH',
@@ -10102,8 +10099,8 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PTAPE_CREATE_PARTITION', 'AdapterType',
            '_RASTERIZER_STATUS', 'LPNETINFOSTRUCT', 'tagEMR',
            'PLOGFONT', 'JOBOBJECT_BASIC_PROCESS_ID_LIST', 'PSIZE',
-           'ENUMLOGFONTEXA', '_OBJECT_TYPE_LIST', 'mysql_close',
-           'PDISPLAY_DEVICE', 'SidTypeInvalid', 'PFNPROCESSPOLICIESW',
+           'ENUMLOGFONTEXA', '_OBJECT_TYPE_LIST', 'PDISPLAY_DEVICE',
+           'SidTypeInvalid', 'PFNPROCESSPOLICIESW',
            'SYSTEM_LOGICAL_PROCESSOR_INFORMATION', 'ENHMETAHEADER',
            'PFNPROCESSPOLICIESA', 'LPCSADDR_INFO',
            '_TOKEN_PRIVILEGES', '_LOGICAL_PROCESSOR_RELATIONSHIP',
@@ -10114,7 +10111,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'USHORT', 'mysql_stmt_row_tell',
            '_QUERY_SERVICE_LOCK_STATUSA', 'MYSQL_TYPE_MEDIUM_BLOB',
            'HW_PROFILE_INFOW', 'POSVERSIONINFOW', 'LRESULT',
-           'PowerActionShutdownOff', 'ENUM_SERVICE_STATUS',
+           'COR_DELETED_NAME_LENGTH', 'ENUM_SERVICE_STATUS',
            'tagDELETEITEMSTRUCT', '_numberfmtW', 'NEARPROC',
            'N12_devicemodeA4DOLLAR_584DOLLAR_59E', 'POFSTRUCT',
            'LPUNIVERSAL_NAME_INFO', 'PDWORD64', 'HALF_PTR', 'my_bool',
@@ -10134,9 +10131,8 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'MYSQL_ROWS', 'LPGUITHREADINFO', 'LPHIGHCONTRAST',
            'LPNEWTEXTMETRICA', 'PEMRCHORD',
            'PJOBOBJECT_ASSOCIATE_COMPLETION_PORT', 'CPINFOEX',
-           'LPFIBER_START_ROUTINE', 'EMRENDPATH',
-           'MYSQL_STMT_PREPARE_DONE', 'HWINEVENTHOOK__',
-           'PDISPLAY_DEVICEA', 'LPDISPLAY_DEVICEW',
+           'LPFIBER_START_ROUTINE', 'EMRENDPATH', 'COM_STATISTICS',
+           'HWINEVENTHOOK__', 'PDISPLAY_DEVICEA', 'LPDISPLAY_DEVICEW',
            'N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_27E',
            'PREPARSE_GUID_DATA_BUFFER', 'PMOUSEMOVEPOINT',
            '_IMAGE_BASE_RELOCATION', 'PowerActionSleep',
@@ -10146,22 +10142,22 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'COMIMAGE_FLAGS_ILONLY', 'COR_VERSION_MAJOR',
            'MYSQL_SHARED_MEMORY_BASE_NAME', 'PIMAGE_OPTIONAL_HEADER',
            'TapeDriveCleanDriveNow', 'LANGGROUPLOCALE_ENUMPROCW',
-           'PINT32', 'mysql_fetch_lengths', 'LPPIXELFORMATDESCRIPTOR',
-           'LPRGBQUAD', '_SYSTEMTIME',
+           'PINT32', 'PLARGE_INTEGER', 'mysql_fetch_lengths',
+           'LPPIXELFORMATDESCRIPTOR', 'LPRGBQUAD', '_SYSTEMTIME',
            'N13_IMAGE_SYMBOL4DOLLAR_244DOLLAR_25E',
            'LPWSANAMESPACE_INFOW',
            'WinBuiltinPreWindows2000CompatibleAccessSid',
            'LPWSANAMESPACE_INFOA', '_SERVICE_TABLE_ENTRYW', 'PSTR',
            'LPMSG', '_IMAGE_OS2_HEADER',
-           'MYSQL_REPORT_DATA_TRUNCATION', 'mysql_get_client_info',
-           'PANOSE', 'LPMSGBOXPARAMS', 'PTOKEN_GROUPS', 'NPABCFLOAT',
-           'MINMAXINFO', 'KBDLLHOOKSTRUCT', 'tagTTPOLYCURVE',
-           'TOKEN_AUDIT_POLICY', 'MYSQL_TYPE_GEOMETRY',
-           'PEMRPOLYBEZIER16', 'HOSTENT', 'mysql_row_tell', 'PTSTR',
+           'MYSQL_REPORT_DATA_TRUNCATION', 'PANOSE', 'LPMSGBOXPARAMS',
+           'PTOKEN_GROUPS', 'NPABCFLOAT', 'MINMAXINFO',
+           'KBDLLHOOKSTRUCT', 'tagTTPOLYCURVE', 'TOKEN_AUDIT_POLICY',
+           'MYSQL_TYPE_GEOMETRY', 'PEMRPOLYBEZIER16', 'HOSTENT',
+           'mysql_row_tell', 'PTSTR',
            'MYSQL_OPT_SSL_VERIFY_SERVER_CERT', 'EXCEPTION_RECORD64',
            'LPHANDLE',
-           '_JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION', 'PCH',
-           'LPMSGBOXPARAMSA',
+           '_JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION',
+           'mysql_stmt_affected_rows', 'LPMSGBOXPARAMSA',
            'ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION',
            'PIMAGE_THUNK_DATA', 'TEXTMETRICA',
            'SystemPowerStateHandler', 'tagEMRSETICMPROFILE',
@@ -10190,8 +10186,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'SecurityIdentification', 'PVIDEOPARAMETERS',
            'POWER_INFORMATION_LEVEL', '_PROCESSOR_POWER_POLICY_INFO',
            'HW_PROFILE_INFO', 'SidTypeComputer', 'LPCONNECTDLGSTRUCT',
-           'JobObjectExtendedLimitInformation',
-           'mysql_stmt_bind_result', '_PROCESS_HEAP_ENTRY',
+           'JobObjectExtendedLimitInformation', '_PROCESS_HEAP_ENTRY',
            'tagMDINEXTMENU', 'LPQUERY_SERVICE_LOCK_STATUS',
            '_ImageArchitectureEntry',
            'N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_294DOLLAR_30E',
@@ -10211,8 +10206,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'tagMOUSEKEYS', 'GLOBALHANDLE', 'SSIZE_T',
            'TokenSandBoxInert', 'LPCMENUINFO', 'LPINT',
            '_SECURITY_DESCRIPTOR', 'JOBOBJECTINFOCLASS',
-           '_OVERLAPPED', 'mysql_get_host_info',
-           'CONSOLE_SCREEN_BUFFER_INFO',
+           '_OVERLAPPED', 'CONSOLE_SCREEN_BUFFER_INFO',
            'VerifyProcessorPowerPolicyDc', 'HMONITOR__',
            'IMAGE_TLS_DIRECTORY', 'mysql_thread_id', 'LOGCOLORSPACE',
            'TOKEN_DEFAULT_DACL', 'EMRDRAWESCAPE', 'SENDASYNCPROC',
@@ -10228,15 +10222,16 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'WSAVERSION', 'PDWORD_PTR', 'netent', 'LPDISPLAY_DEVICE',
            'EMRSETLAYOUT', 'PEMRSETVIEWPORTEXTEX', '_FPO_DATA',
            'IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY',
-           'RTL_CRITICAL_SECTION', 'EMRALPHABLEND', 'PEXTLOGFONT',
-           'LPCOMSTAT', 'LPBITMAPV5HEADER', 'ACL', 'PBITMAPINFO',
-           'DWORDLONG', 'NONCLIENTMETRICS',
-           'PIMAGE_BOUND_IMPORT_DESCRIPTOR', 'LPWIN32_STREAM_ID',
-           'IMAGE_TLS_DIRECTORY64', 'PMOUSEHOOKSTRUCT', 'sigset_t',
-           'tagGCP_RESULTSW', 'WSACOMPLETION',
-           'QUERY_SERVICE_LOCK_STATUSA', 'CURRENCYFMTA', 'tagLOGPEN',
-           'HRSRC__', 'ULONG32', 'tagGCP_RESULTSA', 'PTCHAR',
-           'SERVICETYPE', '_ACCESS_ALLOWED_OBJECT_ACE', 'STICKYKEYS',
+           'N17_IMAGE_AUX_SYMBOL4DOLLAR_33E', 'RTL_CRITICAL_SECTION',
+           'EMRALPHABLEND', 'PEXTLOGFONT', 'LPCOMSTAT',
+           'LPBITMAPV5HEADER', 'ACL', 'PBITMAPINFO', 'DWORDLONG',
+           'NONCLIENTMETRICS', 'PIMAGE_BOUND_IMPORT_DESCRIPTOR',
+           'LPWIN32_STREAM_ID', 'IMAGE_TLS_DIRECTORY64',
+           'PMOUSEHOOKSTRUCT', 'sigset_t', 'tagGCP_RESULTSW',
+           'WSACOMPLETION', 'QUERY_SERVICE_LOCK_STATUSA',
+           'CURRENCYFMTA', 'tagLOGPEN', 'HRSRC__', 'ULONG32',
+           'tagGCP_RESULTSA', 'PTCHAR', 'SERVICETYPE',
+           '_ACCESS_ALLOWED_OBJECT_ACE', 'STICKYKEYS',
            '_WSANSClassInfoW', 'COMMPROP', 'TAPE_DRIVE_PROBLEM_TYPE',
            '_WSANSClassInfoA', 'EMRSETCOLORADJUSTMENT',
            '_currencyfmtA', '_TAPE_SET_DRIVE_PARAMETERS',
@@ -10268,22 +10263,21 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'MYSQL_SET_CHARSET_DIR', 'DESKTOPENUMPROC',
            'TRACKMOUSEEVENT', 'COPYDATASTRUCT',
            'EMRINTERSECTCLIPRECT', 'PEMREXCLUDECLIPRECT', 'PNT_TIB',
-           '_JOBOBJECT_BASIC_PROCESS_ID_LIST', 'LPMSGBOXPARAMSW',
-           'QUERYHANDLER', '_NT_TIB64', 'MYSQL_TYPE_NEWDECIMAL',
-           'LPDOCINFO', 'PSFEATURE_CUSTPAPER', 'CWPRETSTRUCT',
+           'mysql_rpl_query_type', 'LPMSGBOXPARAMSW', 'QUERYHANDLER',
+           '_NT_TIB64', 'MYSQL_TYPE_NEWDECIMAL', 'LPDOCINFO',
+           'PSFEATURE_CUSTPAPER', 'CWPRETSTRUCT',
            'WinCreatorGroupServerSid', 'LIST',
            'PEMRCREATEBRUSHINDIRECT', '_ino_t',
            '_IMAGE_FUNCTION_ENTRY', 'HCURSOR', 'IMPORT_OBJECT_DATA',
-           '_ACCESS_ALLOWED_CALLBACK_OBJECT_ACE', 'PKEY_EVENT_RECORD',
+           'mysql_set_local_infile_handler', 'PKEY_EVENT_RECORD',
            'LPSOCKET_ADDRESS_LIST', 'PLIST_ENTRY', 'KERNINGPAIR',
            'TAPE_SET_MEDIA_PARAMETERS', 'COM_DEBUG', 'LONG32',
            'PEMRCOLORCORRECTPALETTE', 'IMPORT_OBJECT_CONST',
            'LPSERVICE_DESCRIPTIONA', 'LPGCP_RESULTS',
            'SYSTEM_POWER_POLICY', 'PEMRFILLRGN', 'MONITORINFOEX',
-           'LPNLSVERSIONINFO', 'LPCANDIDATEFORM',
-           'N17_IMAGE_AUX_SYMBOL4DOLLAR_33E', 'LPENHMETARECORD',
-           'MYSQL_TYPE_LONG', 'INT8', 'PKSPIN_LOCK',
-           'EMRSETWINDOWEXTEX', 'ENUMLOGFONTEXW',
+           'LPNLSVERSIONINFO', 'LPCANDIDATEFORM', 'mysql_info',
+           'LPENHMETARECORD', 'MYSQL_TYPE_LONG', 'INT8',
+           'PKSPIN_LOCK', 'EMRSETWINDOWEXTEX', 'ENUMLOGFONTEXW',
            '_FINDEX_INFO_LEVELS', 'ACCESS_ALLOWED_CALLBACK_ACE',
            'PIMEMENUITEMINFOW', 'TokenSessionId',
            'LPHARDWAREHOOKSTRUCT', 'HEAP_INFORMATION_CLASS',
@@ -10314,9 +10308,8 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'LPCURRENCYFMT', 'IMAGE_LOAD_CONFIG_DIRECTORY64',
            'LPMINIMIZEDMETRICS', 'PEMRSETCOLORADJUSTMENT', 'PLOGPEN',
            'FindExSearchLimitToDirectories', 'SERVICE_STATUS',
-           '_ACTIVATION_CONTEXT_QUERY_INDEX',
-           'MYSQL_OPTION_MULTI_STATEMENTS_ON', 'GEO_LATITUDE',
-           'SE_IMPERSONATION_STATE', '_cpinfoexA',
+           'mysql_error', 'MYSQL_OPTION_MULTI_STATEMENTS_ON',
+           'GEO_LATITUDE', 'SE_IMPERSONATION_STATE', '_cpinfoexA',
            'N14_LARGE_INTEGER3DOLLAR_0E', 'PIMAGE_IMPORT_DESCRIPTOR',
            'PSFEATURE_OUTPUT', 'PQUOTA_LIMITS',
            'ProcessorStateHandler', 'SystemPowerStateNotifyHandler',
@@ -10350,11 +10343,11 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION',
            'DEBUG_EVENT', 'LPWSASERVICECLASSINFOA',
            'PEMRSETWORLDTRANSFORM', 'UINT_PTR', 'tagEMRALPHABLEND',
-           'PJOBOBJECT_SECURITY_LIMIT_INFORMATION',
-           'mysql_enable_rpl_parse', 'CALID', 'VALENT',
-           '_NETCONNECTINFOSTRUCT', '_TAPE_ERASE', 'EMRFLATTENPATH',
-           'LPPROTOENT', 'HSTR__', 'N10_LDT_ENTRY3DOLLAR_43DOLLAR_5E',
-           'MYSQL_RPL_SLAVE', 'EMRSCALEWINDOWEXTEX', 'PUHALF_PTR',
+           'mysql_fetch_field', 'mysql_enable_rpl_parse', 'CALID',
+           'VALENT', '_NETCONNECTINFOSTRUCT', '_TAPE_ERASE',
+           'EMRFLATTENPATH', 'LPPROTOENT', 'HSTR__',
+           'N10_LDT_ENTRY3DOLLAR_43DOLLAR_5E', 'MYSQL_RPL_SLAVE',
+           'EMRSCALEWINDOWEXTEX', 'PUHALF_PTR',
            'AuditEventDirectoryServiceAccess',
            '_BY_HANDLE_FILE_INFORMATION', 'IMPORT_OBJECT_HEADER',
            'tagSERIALKEYSW', 'TokenGroupsAndPrivileges', 'PCTSTR',
@@ -10378,35 +10371,35 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PIMAGE_RELOCATION', 'COMBOBOXINFO', 'PICONMETRICSW',
            'PICONINFO', 'IMAGE_LOAD_CONFIG_DIRECTORY',
            'WinBuiltinPowerUsersSid', 'PFLOWSPEC', 'CSADDR_INFO',
-           'ACL_SIZE_INFORMATION', 'tagNONCLIENTMETRICSA',
+           'mysql_stmt_bind_result', 'tagNONCLIENTMETRICSA',
            'mysql_init', 'PICONMETRICSA', 'HIGHCONTRASTW',
            'LPQOS_SHAPING_RATE', '_LOAD_DLL_DEBUG_INFO',
            'tagEMREXTCREATEFONTINDIRECTW', 'PIXELFORMATDESCRIPTOR',
-           'tagEMRFILLPATH', 'st_mysql_field', 'provider_info',
-           'SecurityDelegation', 'st_mysql_time', 'MYSQL_METHODS',
-           'IMAGE_DEBUG_DIRECTORY', 'NPOUTLINETEXTMETRIC',
-           '_SC_ENUM_TYPE', 'EMRCREATEBRUSHINDIRECT',
-           'EMREXTTEXTOUTW', 'IMAGE_COR20_HEADER', 'COM_PROCESS_INFO',
+           'tagEMRFILLPATH', 'provider_info', 'SecurityDelegation',
+           'st_mysql_time', 'MYSQL_METHODS', 'IMAGE_DEBUG_DIRECTORY',
+           'NPOUTLINETEXTMETRIC', '_SC_ENUM_TYPE',
+           'EMRCREATEBRUSHINDIRECT', 'EMREXTTEXTOUTW',
+           'IMAGE_COR20_HEADER', 'COM_PROCESS_INFO',
            'FLOATING_SAVE_AREA', 'IN_ADDR', 'PSID_NAME_USE',
            'LPCANDIDATELIST', '_TOKEN_INFORMATION_CLASS',
            'IMAGE_NT_HEADERS', 'RTL_RESOURCE_DEBUG',
-           '_nlsversioninfo', 'HDC__', 'PACCESS_DENIED_ACE',
-           'PBLENDFUNCTION', 'LPEXIT_PROCESS_DEBUG_INFO',
-           '_JOB_SET_ARRAY', '_IMAGE_EXPORT_DIRECTORY', 'ICONINFO',
-           'IMAGE_SYMBOL', 'PEMRSETVIEWPORTORGEX', '_PRIVILEGE_SET',
-           'PRGNDATA', 'IMAGE_LINENUMBER', 'LPSTYLESTRUCT',
-           'LPMSLLHOOKSTRUCT', 'PCWSTR', 'PowerSystemHibernate',
-           '_IMAGE_SECTION_HEADER', 'mysql_stmt_field_count',
-           'DESKTOPENUMPROCA', '_ACCESS_DENIED_CALLBACK_ACE',
-           'tagEMRTEXT', 'PEXCEPTION_RECORD', 'tagEMRGDICOMMENT',
-           'WinWorldSid', 'N24_IMAGE_IMPORT_DESCRIPTOR4DOLLAR_38E',
-           'NPLOGFONTW', 'LPMEMORYSTATUS', 'mysql_ping',
-           'SC_ENUM_TYPE', 'SC_LOCK', 'PEMRPOLYLINETO',
-           'DESKTOPENUMPROCW', 'PIMAGE_ARCHITECTURE_ENTRY',
-           'rand_struct', 'NPLOGFONTA', 'DisableLoad',
-           'mysql_num_fields', 'mysql_more_results',
-           'tagCREATESTRUCTA', 'ABCFLOAT', 'EMRPOLYPOLYGON',
-           'PVALENT', 'PIMAGE_ROM_HEADERS', 'st_mysql_res',
+           '_ACTIVATION_CONTEXT_QUERY_INDEX', '_nlsversioninfo',
+           'HDC__', 'PACCESS_DENIED_ACE', 'PBLENDFUNCTION',
+           'LPEXIT_PROCESS_DEBUG_INFO', 'mysql_get_host_info',
+           '_IMAGE_EXPORT_DIRECTORY', 'ICONINFO', 'IMAGE_SYMBOL',
+           'PEMRSETVIEWPORTORGEX', '_PRIVILEGE_SET', 'PRGNDATA',
+           'IMAGE_LINENUMBER', 'LPSTYLESTRUCT', 'LPMSLLHOOKSTRUCT',
+           'PCWSTR', 'PowerSystemHibernate', '_IMAGE_SECTION_HEADER',
+           'mysql_stmt_field_count', 'DESKTOPENUMPROCA',
+           '_ACCESS_DENIED_CALLBACK_ACE', 'tagEMRTEXT',
+           'PEXCEPTION_RECORD', 'tagEMRGDICOMMENT', 'WinWorldSid',
+           'N24_IMAGE_IMPORT_DESCRIPTOR4DOLLAR_38E', 'NPLOGFONTW',
+           'LPMEMORYSTATUS', 'mysql_ping', 'SC_ENUM_TYPE', 'SC_LOCK',
+           'PEMRPOLYLINETO', 'DESKTOPENUMPROCW',
+           'PIMAGE_ARCHITECTURE_ENTRY', 'rand_struct', 'NPLOGFONTA',
+           'DisableLoad', 'mysql_num_fields', 'tagCREATESTRUCTA',
+           'ABCFLOAT', 'EMRPOLYPOLYGON', 'PVALENT',
+           'PIMAGE_ROM_HEADERS', 'st_mysql_res',
            '_EVENTLOG_FULL_INFORMATION', 'tagBITMAPCOREINFO', 'TBYTE',
            'TOKEN_PRIMARY_GROUP', 'mysql_sqlstate', 'POINTFX',
            'PEMRDRAWESCAPE', 'UCHAR', 'SidTypeUnknown', 'LPGUID',
@@ -10417,14 +10410,15 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'UNLOAD_DLL_DEBUG_INFO', 'LPNETRESOURCE',
            'TAPE_GET_MEDIA_PARAMETERS', 'PRECT',
            'tagEMRMODIFYWORLDTRANSFORM', 'LPCREATESTRUCT',
-           'MYSQL_INIT_COMMAND', '_WSAEcomparator',
+           'NATIVE_TYPE_MAX_CB', '_WSAEcomparator',
            'PHANDLER_ROUTINE', 'PAUDIT_EVENT_TYPE',
            'PEMRPOLYPOLYGON16', 'PEVENTSFORLOGFILE',
            'PACL_REVISION_INFORMATION', 'ProcessorPowerPolicyDc',
            '_IMAGE_THUNK_DATA64', 'DEVMODEA', 'PEMRLINETO',
            'PWIN32_FIND_DATA', 'NPPOLYTEXTA', 'LPWSAQUERYSETA',
            'N12_devicemodeA4DOLLAR_58E', '_WSANAMESPACE_INFOA',
-           'MOUSE_EVENT_RECORD', 'LPBYTE', 'HENHMETAFILE__',
+           'MOUSE_EVENT_RECORD', 'LPBYTE',
+           '_IMAGE_COFF_SYMBOLS_HEADER', 'HENHMETAFILE__',
            '_MEMORY_BASIC_INFORMATION', 'LPWSAQUERYSETW',
            'NPPOLYTEXTW', 'PIMAGE_FILE_HEADER', 'WinLocalSid',
            'LOCALESIGNATURE', 'PEMRSELECTOBJECT',
@@ -10442,18 +10436,19 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PNT_TIB32', 'JobObjectBasicAccountingInformation',
            'FILE_NOTIFY_INFORMATION', 'EXCEPTION_RECORD32',
            'MENUITEMINFO', 'TapeDriveUnsupportedMedia',
-           'mysql_autocommit', 'LPENUM_SERVICE_STATUSA',
-           'LPENUMLOGFONT', 'WGLSWAP', 'PSYSTEM_BATTERY_STATE',
-           '_SYSTEM_POWER_POLICY', 'PDIBSECTION', 'GOBJENUMPROC',
-           'LPENHMETAHEADER', 'LPWSANAMESPACE_INFO',
-           'MYSQL_STATUS_GET_RESULT', 'MSLLHOOKSTRUCT', 'PUINT16',
-           'LPSHELLHOOKINFO', 'N12_SYSTEM_INFO4DOLLAR_50E',
+           'LPENUM_SERVICE_STATUSA', 'LPENUMLOGFONT', 'WGLSWAP',
+           'PSYSTEM_BATTERY_STATE', '_SYSTEM_POWER_POLICY',
+           'PDIBSECTION', 'GOBJENUMPROC', 'LPENHMETAHEADER',
+           'LPWSANAMESPACE_INFO', 'MYSQL_STATUS_GET_RESULT',
+           'MSLLHOOKSTRUCT', 'PUINT16', 'LPSHELLHOOKINFO',
+           'N12_SYSTEM_INFO4DOLLAR_50E',
            'N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_394DOLLAR_40E',
-           'FD_SET', 'LPQOS_OBJECT_HDR', 'PHANDLE', 'ENUMLOGFONTEX',
-           'PUSEROBJECTFLAGS', 'EMRPOLYPOLYLINE16', 'CALTYPE',
-           '_wfinddatai64_t', 'PMINMAXINFO', 'LPOSVERSIONINFOW',
-           'WSANSCLASSINFO', '_MODEMSETTINGS', 'PGENERIC_MAPPING',
-           'LPLAYERPLANEDESCRIPTOR', '_TAPE_GET_MEDIA_PARAMETERS',
+           'FD_SET', 'LPQOS_OBJECT_HDR', 'mysql_select_db',
+           'ENUMLOGFONTEX', 'PUSEROBJECTFLAGS', 'EMRPOLYPOLYLINE16',
+           'CALTYPE', '_wfinddatai64_t', 'PMINMAXINFO',
+           'LPOSVERSIONINFOW', 'WSANSCLASSINFO', '_MODEMSETTINGS',
+           'PGENERIC_MAPPING', 'LPLAYERPLANEDESCRIPTOR',
+           '_TAPE_GET_MEDIA_PARAMETERS',
            'N15_ULARGE_INTEGER3DOLLAR_2E', 'LPSTYLEBUF', 'WinNullSid',
            'HOOKPROC', 'SOCKADDR', 'ULONGLONG', 'st_used_mem',
            '_flowspec', 'FONTENUMPROCA', 'PELARRAY',
@@ -10471,11 +10466,12 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_13E',
            'LPFILTERKEYS', 'DWORD_PTR', 'tagMSLLHOOKSTRUCT',
            'PMEMORY_BASIC_INFORMATION64', 'tagTPMPARAMS',
-           'MULTIKEYHELP', 'COM_STATISTICS', 'LPEXCEPTION_DEBUG_INFO',
-           'WinAccountDomainGuestsSid', '_SID', 'SC_HANDLE__',
-           '_CONNECTDLGSTRUCTA', 'SYSTEM_INFO', 'GRADIENT_TRIANGLE',
-           'LPCOLORADJUSTMENT', '_TOKEN_SOURCE', 'LPCURSORSHAPE',
-           '_ADMINISTRATOR_POWER_POLICY', '_CONNECTDLGSTRUCTW',
+           'MULTIKEYHELP', 'MYSQL_STMT_PREPARE_DONE',
+           'LPEXCEPTION_DEBUG_INFO', 'WinAccountDomainGuestsSid',
+           '_SID', 'SC_HANDLE__', '_CONNECTDLGSTRUCTA', 'SYSTEM_INFO',
+           'GRADIENT_TRIANGLE', 'LPCOLORADJUSTMENT', '_TOKEN_SOURCE',
+           'LPCURSORSHAPE', '_ADMINISTRATOR_POWER_POLICY',
+           '_CONNECTDLGSTRUCTW',
            '_JOBOBJECT_BASIC_ACCOUNTING_INFORMATION', 'PICONMETRICS',
            '_ACCESS_DENIED_ACE', 'NormalError', 'HIGHCONTRASTA',
            'EMRSTRETCHDIBITS', 'IMAGE_FUNCTION_ENTRY',
@@ -10490,22 +10486,23 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PVECTORED_EXCEPTION_HANDLER', 'LPCIEXYZTRIPLE',
            'STRING_RESULT', 'PFPO_DATA', 'GEO_RFC1766',
            'RecognizerType', 'EMRPOLYBEZIERTO', 'LPFXPT2DOT30',
-           'IMAGE_COR_EATJ_THUNK_SIZE', 'MYSQL_SET_CHARSET_NAME',
-           'LPCURSORINFO', 'PTOKEN_GROUPS_AND_PRIVILEGES',
-           'PACE_HEADER', 'WSANAMESPACE_INFO', 'WSANAMESPACE_INFOW',
+           'IMAGE_COR_EATJ_THUNK_SIZE',
+           'COMIMAGE_FLAGS_STRONGNAMESIGNED', 'LPCURSORINFO',
+           'PTOKEN_GROUPS_AND_PRIVILEGES', 'PACE_HEADER',
+           'WSANAMESPACE_INFO', 'WSANAMESPACE_INFOW',
            'N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E',
-           'TokenStatistics', 'HELPWININFOW', 'WSANAMESPACE_INFOA',
-           'LPGCP_RESULTSW', 'CONNECTDLGSTRUCT', 'MDINEXTMENU',
-           'HELPWININFOA', 'IMAGE_THUNK_DATA', 'EMRSETBKCOLOR',
-           'LPWNDCLASS', 'LPTEXTMETRICW', 'PEMRCREATECOLORSPACE',
-           'PSCROLLBARINFO', 'PIMAGE_SEPARATE_DEBUG_HEADER',
-           'LPTEXTMETRICA', 'PSID_AND_ATTRIBUTES_ARRAY',
-           'LPCRITICAL_SECTION_DEBUG', 'LPCHARSETINFO',
-           'SERVICE_TABLE_ENTRY', 'LIST_ENTRY', 'tagEMREXTTEXTOUTA',
-           '_WIN32_FILE_ATTRIBUTE_DATA', 'PIMAGE_DEBUG_MISC',
-           'PTOKEN_PRIMARY_GROUP', 'PEMRABORTPATH', 'PAFPROTOCOLS',
-           'ACTIVATION_CONTEXT_INFO_CLASS',
-           '_IMAGE_COFF_SYMBOLS_HEADER', 'LPSERIALKEYS', 'LPTSTR',
+           'TokenStatistics', '_JOB_SET_ARRAY', 'HELPWININFOW',
+           'WSANAMESPACE_INFOA', 'LPGCP_RESULTSW', 'CONNECTDLGSTRUCT',
+           'MDINEXTMENU', 'HELPWININFOA', 'PTOKEN_CONTROL',
+           'IMAGE_THUNK_DATA', 'EMRSETBKCOLOR', 'LPWNDCLASS',
+           'LPTEXTMETRICW', 'PEMRCREATECOLORSPACE', 'PSCROLLBARINFO',
+           'PIMAGE_SEPARATE_DEBUG_HEADER', 'LPTEXTMETRICA',
+           'PSID_AND_ATTRIBUTES_ARRAY', 'LPCRITICAL_SECTION_DEBUG',
+           'LPCHARSETINFO', 'SERVICE_TABLE_ENTRY', 'LIST_ENTRY',
+           'tagEMREXTTEXTOUTA', '_WIN32_FILE_ATTRIBUTE_DATA',
+           'PIMAGE_DEBUG_MISC', 'mysql_query', 'PEMRABORTPATH',
+           'PAFPROTOCOLS', 'ACTIVATION_CONTEXT_INFO_CLASS',
+           'PIMAGE_ARCHIVE_MEMBER_HEADER', 'LPSERIALKEYS', 'LPTSTR',
            'PIMAGE_THUNK_DATA32', '_ACCESS_ALLOWED_CALLBACK_ACE',
            'LPTIMEVAL', '_BLENDFUNCTION', 'MYSQL_TYPE_INT24',
            'tagRECONVERTSTRING', 'PIMAGE_VXD_HEADER', 'NPCHARSETINFO',
@@ -10518,10 +10515,10 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'MENUINFO', 'WINDOWINFO', 'PWSACOMPLETION',
            'PSYSTEM_ALARM_ACE', 'PMETARECORD', 'LPNEWTEXTMETRICW',
            'PowerDeviceD0', 'PowerDeviceD1', 'PowerDeviceD2',
-           'PowerDeviceD3', 'mysql_error',
-           'LANGGROUPLOCALE_ENUMPROCA', 'EMRPOLYBEZIER',
-           'PMDINEXTMENU', 'tagBITMAP', 'tagBITMAPINFOHEADER',
-           'PCWPSTRUCT', 'LPFXPT16DOT16', 'OUTLINETEXTMETRIC',
+           'PowerDeviceD3', 'LANGGROUPLOCALE_ENUMPROCA',
+           'EMRPOLYBEZIER', 'PMDINEXTMENU', 'tagBITMAP',
+           'tagBITMAPINFOHEADER', 'PCWPSTRUCT', 'LPFXPT16DOT16',
+           'OUTLINETEXTMETRIC',
            'PSYSTEM_LOGICAL_PROCESSOR_INFORMATION', 'PEMREOF',
            'tagMSGBOXPARAMSA', 'LPBITMAPCOREINFO',
            '_JOBOBJECT_END_OF_JOB_TIME_INFORMATION',
@@ -10554,19 +10551,19 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            '_WINDOW_BUFFER_SIZE_RECORD',
            'N13_IMAGE_SYMBOL4DOLLAR_24E', '_WSAQuerySetW',
            'PEMREXTCREATEFONTINDIRECTW', 'FARPROC',
-           'EMRSETMAPPERFLAGS', 'st_dynamic_array', 'PTAPE_PREPARE',
-           '_SOCKET_ADDRESS', 'PUTSTR', 'PSTYLEBUFW',
-           'LPBITMAPV4HEADER', 'LPKERNINGPAIR', 'PBITMAPV5HEADER',
-           'COMPOSITIONFORM', 'DWORD64', 'LPCREATE_THREAD_DEBUG_INFO',
-           'PSTYLEBUFA', '_JOBOBJECT_ASSOCIATE_COMPLETION_PORT',
-           'ULONG_PTR', 'mysql_rpl_probe', 'SYSTEM_ALARM_ACE',
-           'mysql_rpl_type', 'GEOID', 'PSINGLE_LIST_ENTRY',
-           'PEMRPOLYBEZIER', 'UINT16', 'PABC',
-           'ExceptionNestedException', '_EXCEPTION_DISPOSITION',
-           'MaxJobObjectInfoClass', 'mysql_stmt_error', 'PWINDOWINFO',
-           'PEMRINTERSECTCLIPRECT', 'GRADIENT_RECT',
-           'tagICONMETRICSW', 'N14_WSACOMPLETION4DOLLAR_79E',
-           'LPPOINT', 'LPGLYPHMETRICSFLOAT', 'PEMRCREATEPALETTE',
+           'EMRSETMAPPERFLAGS', 'PTAPE_PREPARE', '_SOCKET_ADDRESS',
+           'PUTSTR', 'PSTYLEBUFW', 'LPBITMAPV4HEADER',
+           'LPKERNINGPAIR', 'PBITMAPV5HEADER', 'COMPOSITIONFORM',
+           'DWORD64', 'LPCREATE_THREAD_DEBUG_INFO', 'PSTYLEBUFA',
+           '_JOBOBJECT_ASSOCIATE_COMPLETION_PORT', 'ULONG_PTR',
+           'mysql_rpl_probe', 'SYSTEM_ALARM_ACE', 'mysql_rpl_type',
+           'GEOID', 'PSINGLE_LIST_ENTRY', 'PEMRPOLYBEZIER', 'UINT16',
+           'PABC', 'ExceptionNestedException',
+           '_EXCEPTION_DISPOSITION', 'MaxJobObjectInfoClass',
+           'mysql_stmt_error', 'PWINDOWINFO', 'PEMRINTERSECTCLIPRECT',
+           'GRADIENT_RECT', 'tagICONMETRICSW',
+           'N14_WSACOMPLETION4DOLLAR_79E', 'LPPOINT', 'PLONG',
+           'LPGLYPHMETRICSFLOAT', 'PEMRCREATEPALETTE',
            'DATEFMT_ENUMPROCEXW', 'LPSERVICE_MAIN_FUNCTIONW',
            'PTAPE_WRITE_MARKS', 'IMEMENUITEMINFOA', 'LPVOID',
            'PIMAGE_TLS_DIRECTORY', 'N15_ULARGE_INTEGER3DOLLAR_3E',
@@ -10580,19 +10577,20 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'LPPAINTSTRUCT', 'SC_STATUS_TYPE',
            'tagEMRSETWORLDTRANSFORM', 'PROPENUMPROCEX',
            'EMRSETMETARGN', 'METAHEADER', 'list_walk_action',
+           'ACL_SIZE_INFORMATION',
            'N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E',
-           'PFNGETPROFILEPATHW', 'mysql_character_set_name',
-           'PEMREXTTEXTOUTW', 'mysql_eof', 'LPTPMPARAMS',
-           'PFNGETPROFILEPATHA', 'TokenOwner', 'LOAD_DLL_DEBUG_INFO',
-           'PEMREXTTEXTOUTA', 'IMAGE_ROM_HEADERS', 'LPSTYLEBUFW',
-           'PEXTLOGFONTW', 'mysql_enum_shutdown_level',
-           'mysql_refresh', 'IMAGE_RESOURCE_DATA_ENTRY',
-           '_WIN32_STREAM_ID', 'HINSTANCE__', 'PEXTLOGFONTA',
-           'PPELARRAY', 'MYSQL_TYPE_VAR_STRING', 'mysql_thread_end',
-           'LPEXTLOGPEN', 'LPANIMATIONINFO',
-           'COMIMAGE_FLAGS_TRACKDEBUGDATA', 'EMREXTSELECTCLIPRGN',
-           'servent', 'WinAccountSchemaAdminsSid',
-           'PEMRSETDIBITSTODEVICE', 'TOGGLEKEYS', 'tagMSGBOXPARAMSW',
+           'PFNGETPROFILEPATHW', 'GENERIC_MAPPING', 'PEMREXTTEXTOUTW',
+           'mysql_eof', 'LPTPMPARAMS', 'PFNGETPROFILEPATHA',
+           'TokenOwner', 'LOAD_DLL_DEBUG_INFO', 'PEMREXTTEXTOUTA',
+           'IMAGE_ROM_HEADERS', 'LPSTYLEBUFW', 'PEXTLOGFONTW',
+           'mysql_enum_shutdown_level', 'mysql_refresh',
+           'IMAGE_RESOURCE_DATA_ENTRY', '_WIN32_STREAM_ID',
+           'HINSTANCE__', 'PEXTLOGFONTA', 'PPELARRAY',
+           'MYSQL_TYPE_VAR_STRING', 'mysql_thread_end', 'LPEXTLOGPEN',
+           'LPANIMATIONINFO', 'COMIMAGE_FLAGS_TRACKDEBUGDATA',
+           'EMREXTSELECTCLIPRGN', 'servent',
+           'WinAccountSchemaAdminsSid', 'PEMRSETDIBITSTODEVICE',
+           'TOGGLEKEYS', 'tagMSGBOXPARAMSW',
            '_ACTIVATION_CONTEXT_INFO_CLASS', 'NAMEENUMPROCA',
            'EVENTLOGRECORD', 'WINDOW_BUFFER_SIZE_RECORD', 'LONGLONG',
            'N12_SYSTEM_INFO4DOLLAR_504DOLLAR_51E',
@@ -10600,13 +10598,14 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'MYSQL_TIMESTAMP_NONE', 'TIMEVAL', 'mysql_change_user',
            'PFLOATING_SAVE_AREA', 'tagEMRPIXELFORMAT',
            'IMPORT_OBJECT_TYPE', 'MYSQL_TIMESTAMP_ERROR',
-           'mysql_get_server_info', 'PIMAGE_BOUND_FORWARDER_REF',
+           'mysql_get_server_info', 'ACCESS_DENIED_ACE',
            'PSYSTEM_ALARM_CALLBACK_OBJECT_ACE', 'WSANSCLASSINFOW',
-           'PIMAGE_DATA_DIRECTORY', '_OBJECTID', 'tagGUITHREADINFO',
-           'PWCH', 'WinBuiltinUsersSid', 'WinAccountDomainAdminsSid',
-           'WSANSCLASSINFOA', 'WSAQUERYSET', 'MYSQL_TYPE_SET',
-           'PDWORD32', 'tagPOINTFX', 'TokenSource',
-           '_ENUM_SERVICE_STATUS_PROCESSA',
+           'PIMAGE_DATA_DIRECTORY',
+           'PJOBOBJECT_BASIC_LIMIT_INFORMATION', '_OBJECTID',
+           'tagGUITHREADINFO', 'PWCH', 'WinBuiltinUsersSid',
+           'WinAccountDomainAdminsSid', 'WSANSCLASSINFOA',
+           'WSAQUERYSET', 'NSP_NOTIFY_HWND', 'PDWORD32', 'tagPOINTFX',
+           'ProcessorStateHandler2', '_ENUM_SERVICE_STATUS_PROCESSA',
            'RTL_CRITICAL_SECTION_DEBUG', 'FLASHWINFO', 'PDWORDLONG',
            '_GLYPHMETRICSFLOAT', 'tagEMRNAMEDESCAPE',
            '_ENUM_SERVICE_STATUS_PROCESSW', 'EXCEPTION_DISPOSITION',
@@ -10616,8 +10615,8 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'LPQUERY_SERVICE_CONFIG', 'EMRANGLEARC', 'CREATESTRUCT',
            'GEO_LONGITUDE', 'SECURITY_QUALITY_OF_SERVICE', 'LOGPEN',
            'MINIMIZEDMETRICS', 'PVALENTW', 'UNIVERSAL_NAME_INFOW',
-           'LUID', 'LPMENUBARINFO', 'ProcessorStateHandler2',
-           'LPLONG', 'tagRGBTRIPLE', 'LPBOOL', 'MENUTEMPLATEW',
+           'LUID', 'LPMENUBARINFO', 'TokenSource', 'LPLONG',
+           'tagRGBTRIPLE', 'LPBOOL', 'MENUTEMPLATEW',
            'EMRTRANSPARENTBLT', 'tagEMREXCLUDECLIPRECT',
            'NEWTEXTMETRICW', 'INT32', 'LPMONITORINFO',
            'tagNEWTEXTMETRICEXA', 'ENUMRESNAMEPROCA', 'SYSGEOCLASS',
@@ -10634,7 +10633,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'MYSQL_TYPE_BIT', 'NPCWPRETSTRUCT',
            'SYSTEM_AUDIT_CALLBACK_ACE', 'tagMOUSEHOOKSTRUCT',
            'CURRENCYFMT', 'list_add', 'PWSTR', 'PCRITICAL_SECTION',
-           'mysql_stat', 'ACCESS_ALLOWED_ACE', 'NPABC',
+           'PLONGLONG', 'ACCESS_ALLOWED_ACE', 'NPABC',
            'SYSTEM_POWER_STATUS', 'LPBITMAPINFOHEADER',
            '_TAPE_GET_DRIVE_PARAMETERS', 'EMRCREATEDIBPATTERNBRUSHPT',
            'NPLOGPALETTE', 'PTOKEN_USER', 'PCCH', 'LPSTARTUPINFOW',
@@ -10643,15 +10642,14 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            '_IMAGE_RESOURCE_DIRECTORY_STRING',
            'PIMAGE_TLS_DIRECTORY32', 'PLINGER', 'mysql_stmt_errno',
            'MENUITEMTEMPLATE', 'tagEMRSELECTCLIPPATH',
-           'PIMAGE_ARCHIVE_MEMBER_HEADER',
-           'N17_IMAGE_RELOCATION4DOLLAR_34E', 'LPMETAFILEPICT',
-           'PIMAGE_CE_RUNTIME_FUNCTION_ENTRY', '_CONSOLE_CURSOR_INFO',
-           'PIMAGE_COFF_SYMBOLS_HEADER', '_EXIT_THREAD_DEBUG_INFO',
-           'KEY_EVENT_RECORD', 'LPGCP_RESULTSA', 'COM_QUERY',
-           'tagCOPYDATASTRUCT', 'tagNONCLIENTMETRICSW',
-           'CLIENTCREATESTRUCT', 'PIMAGE_COR20_HEADER',
-           'MYSQL_READ_DEFAULT_FILE', 'EMRSELECTCLIPPATH',
-           'MYSQL_OPT_READ_TIMEOUT', 'mysql_row_seek',
+           'mysql_thread_init', 'N17_IMAGE_RELOCATION4DOLLAR_34E',
+           'LPMETAFILEPICT', 'PIMAGE_CE_RUNTIME_FUNCTION_ENTRY',
+           '_CONSOLE_CURSOR_INFO', 'PIMAGE_COFF_SYMBOLS_HEADER',
+           '_EXIT_THREAD_DEBUG_INFO', 'KEY_EVENT_RECORD',
+           'LPGCP_RESULTSA', 'COM_QUERY', 'tagCOPYDATASTRUCT',
+           'tagNONCLIENTMETRICSW', 'CLIENTCREATESTRUCT',
+           'PIMAGE_COR20_HEADER', 'MYSQL_READ_DEFAULT_FILE',
+           'EMRSELECTCLIPPATH', 'MYSQL_OPT_READ_TIMEOUT',
            'tagCURSORINFO', 'MYSQL_BIND', 'WinThisOrganizationSid',
            '_WSAPROTOCOLCHAIN',
            'JobObjectBasicAndIoAccountingInformation',
@@ -10679,9 +10677,9 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'LPHELPWININFO', 'NT_TIB', 'PPOWER_ACTION',
            'PIMAGE_FUNCTION_ENTRY64',
            'PIMAGE_IA64_RUNTIME_FUNCTION_ENTRY', 'PSYSTEMTIME',
-           'NPPOINT', 'mysql_set_local_infile_default', 'LDT_ENTRY',
-           'LPUINT', 'QUOTA_LIMITS', '_IMAGE_TLS_DIRECTORY64',
-           '_NETRESOURCEW', 'EMREXTTEXTOUTA', 'tagIMECHARPOSITION',
+           'NPPOINT', 'LDT_ENTRY', 'LPUINT', 'QUOTA_LIMITS',
+           '_IMAGE_TLS_DIRECTORY64', '_NETRESOURCEW',
+           'EMREXTTEXTOUTA', 'tagIMECHARPOSITION',
            'PMENUITEMTEMPLATEHEADER', 'PFE_IMPORT_FUNC', 'PVOID64',
            'PPROCESS_HEAP_ENTRY', 'LPCONNECTDLGSTRUCTW', 'PVALENTA',
            'LPDLGTEMPLATEW', 'PMSG', 'IMAGE_BASE_RELOCATION',
@@ -10699,8 +10697,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'WinOtherOrganizationSid', '_UNIVERSAL_NAME_INFOW',
            'LPBITMAPFILEHEADER', 'PEMRPOLYGON',
            'PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY', 'LPCOMMCONFIG',
-           'u_long', 'DATEFMT_ENUMPROCEXA',
-           'TAPE_SET_DRIVE_PARAMETERS',
+           'u_long', 'DATEFMT_ENUMPROCEXA', 'st_udf_args',
            'N37_SYSTEM_LOGICAL_PROCESSOR_INFORMATION4DOLLAR_114DOLLAR_12E',
            '_OFSTRUCT', 'LPSOCKADDR',
            'JOBOBJECT_BASIC_UI_RESTRICTIONS', 'COM_STMT_CLOSE',
@@ -10733,20 +10730,21 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'tagEMRANGLEARC', 'REGISTERWORD', 'MYSQL_MANAGER',
            'NLS_FUNCTION', 'LPMAT2', 'tagCANDIDATELIST',
            'st_mysql_rows', 'EMRSETROP2', 'tagMULTIKEYHELPA',
-           'PLARGE_INTEGER', 'tagEMRFRAMERGN',
-           'TapeDriveHardwareError', 'LPWSASERVICECLASSINFO',
-           '_INPUT_RECORD', 'PFLOAT128', 'tagEMRLINETO',
-           'ProcessorPowerPolicyAc', 'LPMENUITEMINFOW', 'KILL_QUERY',
-           'IMAGE_BOUND_FORWARDER_REF', 'PHKEY', 'PWSAESETSERVICEOP',
+           'mysql_close', 'tagEMRFRAMERGN', 'TapeDriveHardwareError',
+           'LPWSASERVICECLASSINFO', '_INPUT_RECORD', 'PFLOAT128',
+           'tagEMRLINETO', 'ProcessorPowerPolicyAc',
+           'LPMENUITEMINFOW', 'KILL_QUERY',
+           'IMAGE_BOUND_FORWARDER_REF', 'PHKEY',
+           'PIMAGE_BOUND_FORWARDER_REF', 'PWSAESETSERVICEOP',
            'SERVICE_NODE_TYPE', 'N10_LDT_ENTRY3DOLLAR_43DOLLAR_6E',
            'MYSQL_TYPE_SHORT', 'SidTypeAlias', 'USEROBJECTFLAGS',
            'tagEMRCREATEPEN', 'NPREGISTERWORDA', 'tagEMRBITBLT',
-           '_PSINJECTDATA', 'MYSQL_TYPE_ENUM',
+           '_PSINJECTDATA', 'LPOSVERSIONINFOA', 'MYSQL_TYPE_ENUM',
            'LPBY_HANDLE_FILE_INFORMATION', 'tagWNDCLASSA',
            '_IMAGE_DOS_HEADER', 'LPSOUNDSENTRYA', 'PINT8',
            'DISPLAY_DEVICE', 'WinSChannelAuthenticationSid',
            '_complex', 'PowerActionHibernate', 'CCHAR', 'LPHELPINFO',
-           'COR_DELETED_NAME_LENGTH', '_MESSAGE_RESOURCE_BLOCK',
+           'PowerActionShutdownOff', 'myodbc_remove_escape',
            'tagNEWTEXTMETRICA', 'PWGLSWAP', 'LPSOUNDSENTRYW',
            'PEMRPOLYPOLYLINE16', 'EXIT_PROCESS_DEBUG_INFO',
            'TapeDriveReadWriteError', 'EMRSETTEXTALIGN',
@@ -10776,7 +10774,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'tagTOGGLEKEYS', 'PSLIST_HEADER',
            'TOKEN_AUDIT_POLICY_ELEMENT', 'DECIMAL_RESULT',
            'WSAPROTOCOL_INFO', 'mysql_list_dbs',
-           'st_mysql_parameters', 'IMAGE_RESOURCE_DIRECTORY_ENTRY',
+           'IMAGE_DATA_DIRECTORY', 'IMAGE_RESOURCE_DIRECTORY_ENTRY',
            'LPBITMAPCOREHEADER', 'HWINEVENTHOOK', 'COM_PROCESS_KILL',
            'LPSERIALKEYSA', 'EMRARCTO', 'PACCESS_MASK', 'u_int',
            'COM_CHANGE_USER', 'PTOKEN_OWNER', 'PPSFEATURE_OUTPUT',
@@ -10805,7 +10803,8 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'mysql_send_query', 'EMRNAMEDESCAPE', 'tagSOUNDSENTRYW',
            'NPRECT', '_FOCUS_EVENT_RECORD', 'BLENDFUNCTION',
            'TITLEBARINFO', 'PLDT_ENTRY', 'PBITMAPV4HEADER',
-           'tagEMRPOLYPOLYLINE', 'tagENHMETARECORD', 'PPVALUEA',
+           'tagEMRPOLYPOLYLINE', 'tagENHMETARECORD',
+           'PJOBOBJECT_SECURITY_LIMIT_INFORMATION', 'PPVALUEA',
            'DRAWITEMSTRUCT', 'RTL_VERIFIER_DLL_LOAD_CALLBACK',
            'TAPE_PREPARE', 'LPCRITICAL_SECTION',
            'ExceptionContinueSearch',
@@ -10824,9 +10823,10 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'SECURITY_DESCRIPTOR', 'EXTLOGFONT', 'tagMDICREATESTRUCTA',
            'SystemPowerPolicyAc', 'tagMDICREATESTRUCTW', 'PEMRARC',
            'tagMONITORINFO', '_IMAGE_OPTIONAL_HEADER',
-           'CONNECTDLGSTRUCTA', 'ACCESS_DENIED_ACE', 'LPCDLGTEMPLATE',
-           'NSP_NOTIFY_HWND', 'mysql_get_character_set_info',
-           'tagWINDOWPOS', 'LPDLGITEMTEMPLATEA', 'CONNECTDLGSTRUCTW',
+           'CONNECTDLGSTRUCTA', 'mysql_stmt_free_result',
+           'LPCDLGTEMPLATE', 'MYSQL_TYPE_SET',
+           'mysql_get_character_set_info', 'tagWINDOWPOS',
+           'LPDLGITEMTEMPLATEA', 'CONNECTDLGSTRUCTW',
            'tagMINIMIZEDMETRICS', 'LPDLGITEMTEMPLATEW', '_NT_TIB32',
            '_SC_ACTION', 'tagTEXTMETRICW', 'NPPOLYTEXT',
            'PMESSAGE_RESOURCE_ENTRY', 'tagDIBSECTION',
@@ -10835,7 +10835,8 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'COM_TABLE_DUMP', 'MYSQL_TYPE_DATE',
            'EMRSETWORLDTRANSFORM', 'PIMAGE_TLS_CALLBACK',
            'PCONSOLE_SCREEN_BUFFER_INFO', 'TAPE_CREATE_PARTITION',
-           'LPHELPWININFOW', 'SC_ACTION_NONE', 'mysql_thread_init',
+           'LPHELPWININFOW', '_RTL_VERIFIER_PROVIDER_DESCRIPTOR',
+           'SC_ACTION_NONE', 'PFILE_NOTIFY_INFORMATION',
            'EMRPOLYDRAW16', 'PSYSTEM_POWER_POLICY', 'LPPOINTS',
            'LPHELPWININFOA', 'JobObjectBasicLimitInformation',
            'EMRSTROKEANDFILLPATH', 'IMECHARPOSITION', 'LOGFONTW',
@@ -10846,7 +10847,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'N11_OVERLAPPED4DOLLAR_484DOLLAR_49E', 'HIMC',
            'MYSQL_TYPE_BLOB', 'NPREGISTERWORDW', 'PEMREXTCREATEPEN',
            'IMAGE_BOUND_IMPORT_DESCRIPTOR', '_SERVICE_STATUS_PROCESS',
-           'TPMPARAMS', 'TapeDriveWriteError', '_MAT2',
+           'TPMPARAMS', 'WinAccountPolicyAdminsSid', '_MAT2',
            'POSVERSIONINFOEXA', '_CREATE_THREAD_DEBUG_INFO',
            '_IMAGE_ROM_OPTIONAL_HEADER', 'LPICONMETRICSW', 'LPTCH',
            'APC_CALLBACK_FUNCTION', 'MYSQL_ROW_OFFSET',
@@ -10862,12 +10863,12 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PMINIMIZEDMETRICS', 'EMRCREATEMONOBRUSH',
            'PBATTERY_REPORTING_SCALE', 'LPTTPOLYGONHEADER',
            'PSECURITY_QUALITY_OF_SERVICE', 'NETINFOSTRUCT',
-           'GLYPHMETRICSFLOAT', 'PEMRREALIZEPALETTE',
-           'mysql_read_query_result', 'AUDIT_EVENT_TYPE',
-           'LPOSVERSIONINFOEX', 'LPHOSTENT', 'LPDOCINFOA',
-           'SidTypeUser', 'PIMAGE_OS2_HEADER', 'rf_SetTimer',
-           'ACCESS_ALLOWED_CALLBACK_OBJECT_ACE', '_LDT_ENTRY',
-           'st_udf_args', 'tagHELPINFO', 'LPDOCINFOW',
+           'IMAGE_OPTIONAL_HEADER', 'GLYPHMETRICSFLOAT',
+           'PEMRREALIZEPALETTE', 'mysql_read_query_result',
+           'AUDIT_EVENT_TYPE', 'LPOSVERSIONINFOEX', 'LPHOSTENT',
+           'LPDOCINFOA', 'SidTypeUser', 'PIMAGE_OS2_HEADER',
+           'rf_SetTimer', 'ACCESS_ALLOWED_CALLBACK_OBJECT_ACE',
+           '_LDT_ENTRY', 'tagHELPINFO', 'LPDOCINFOW',
            'mysql_fetch_row', 'PEMRANGLEARC', 'PFLASHWINFO',
            '_TAPE_SET_MEDIA_PARAMETERS', 'PBOOLEAN', 'TokenType',
            'tagHIGHCONTRASTW', 'tagFILTERKEYS', 'CBT_CREATEWND',
@@ -10875,7 +10876,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            '_RTL_CRITICAL_SECTION', 'SERVICE_LOAD_TYPE',
            'tagHIGHCONTRASTA', 'longlong', 'ABC', '_QOS_SD_MODE',
            'tagREGISTERWORDA', 'POUTLINETEXTMETRIC',
-           'NATIVE_TYPE_MAX_CB', 'ENUMRESTYPEPROCA', 'PSOCKADDR',
+           'MYSQL_INIT_COMMAND', 'ENUMRESTYPEPROCA', 'PSOCKADDR',
            'tagMENUBARINFO', 'PSYSTEM_AUDIT_CALLBACK_OBJECT_ACE',
            'LPIN_ADDR', 'st_mem_root', 'EMRLINETO',
            'ENUMRESTYPEPROCW', 'tagREGISTERWORDW', 'tagSCROLLINFO',
@@ -10884,13 +10885,12 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'LPOSVERSIONINFO',
            'FileInformationInAssemblyOfAssemblyInActivationContext',
            'PTAPE_WMI_OPERATIONS', 'RTL_OSVERSIONINFOEXW',
-           'PMEMORY_BASIC_INFORMATION', 'LPPOLYTEXT',
-           'sockaddr_storage', 'POUTLINETEXTMETRICA', 'PROPENUMPROCW',
-           'tagWNDCLASSEXA', 'PFOCUS_EVENT_RECORD',
-           'POUTLINETEXTMETRICW', 'QUOTA_LIMITS_EX',
-           'LPSERVICE_FAILURE_ACTIONSW', 'EMRSETPALETTEENTRIES',
-           'LPWINDOWPOS', 'GEOTYPE', 'LPCRECT',
-           'IMAGE_RUNTIME_FUNCTION_ENTRY', 'LPWSAQUERYSET',
+           'mysql_free_result', 'LPPOLYTEXT', 'sockaddr_storage',
+           'POUTLINETEXTMETRICA', 'PROPENUMPROCW', 'tagWNDCLASSEXA',
+           'PFOCUS_EVENT_RECORD', 'POUTLINETEXTMETRICW',
+           'QUOTA_LIMITS_EX', 'LPSERVICE_FAILURE_ACTIONSW',
+           'EMRSETPALETTEENTRIES', 'LPWINDOWPOS', 'GEOTYPE',
+           'LPCRECT', 'IMAGE_RUNTIME_FUNCTION_ENTRY', 'LPWSAQUERYSET',
            '_heapinfo', 'STYLEBUFA', 'DELETEITEMSTRUCT',
            'WinBuiltinPerfMonitoringUsersSid', 'EXCEPTION_DEBUG_INFO',
            'LPMENUINFO', 'MYSQL_TYPE_DOUBLE', 'mysql_fetch_fields',
@@ -10909,7 +10909,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PENHMETAHEADER', 'N12_devicemodeW4DOLLAR_624DOLLAR_64E',
            '_TRIVERTEX', 'WSAPROTOCOLCHAIN', 'NETRESOURCEW',
            'PACL_SIZE_INFORMATION', 'GetFileExInfoStandard',
-           'FONTENUMPROC', 'tagEMRGRADIENTFILL', '_IMAGE_SYMBOL',
+           'FONTENUMPROC', 'tagEMRGRADIENTFILL', 'mysql_row_seek',
            'LPRECONVERTSTRING', 'tagDRAWTEXTPARAMS', 'CONTEXT',
            'PIO_COUNTERS', 'PTOKEN_SOURCE', 'COM_TIME',
            'WSAPROTOCOL_INFOA', 'mysql_stmt_param_count', 'ulonglong',
@@ -10944,8 +10944,8 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'GEO_TIMEZONES', '_DISCDLGSTRUCTW', 'OSVERSIONINFOEX',
            'ICONMETRICSW', 'DIBSECTION', 'COMPARE_STRING',
            '_NETINFOSTRUCT', 'LPQOS_SD_MODE', 'PEMRSETICMPROFILE',
-           'mysql_stmt_affected_rows', 'LPWNDCLASSEX', 'HIMCC',
-           'EDITWORDBREAKPROC', 'ReplacesCorHdrNumericDefines',
+           'LPWNDCLASSEX', 'HIMCC', 'EDITWORDBREAKPROC',
+           'ReplacesCorHdrNumericDefines',
            'SHUTDOWN_WAIT_ALL_BUFFERS', 'PRECTL', 'NPSTR',
            'LPSERVENT', 'DRAWPATRECT', 'FindExInfoStandard',
            'PowerActionNone', 'IMAGE_DOS_HEADER', 'LOGBRUSH32',
@@ -10967,7 +10967,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            '_WSACOMPLETIONTYPE', 'LPDLGITEMTEMPLATE',
            'EMRPOLYLINETO16', 'FLOAT', 'LPMENUITEMINFOA',
            'TOKEN_TYPE', 'LPACCESSTIMEOUT', 'PWORD',
-           'mysql_free_result', 'PEMRBEGINPATH',
+           'PMEMORY_BASIC_INFORMATION', 'PEMRBEGINPATH',
            'LPUNLOAD_DLL_DEBUG_INFO', 'PMESSAGE_RESOURCE_DATA',
            'LPEXTLOGFONT', 'LPENUMLOGFONTEX', 'mysql_list_fields',
            'MEM_ROOT', 'GEO_OFFICIALLANGUAGES', 'WinNtAuthoritySid',
@@ -11003,14 +11003,14 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'SHUTDOWN_DEFAULT', 'ushort', 'PEMRSCALEVIEWPORTEXTEX',
            'PQUOTA_LIMITS_EX', 'tagEMRSETCOLORSPACE',
            'tagEMRPOLYDRAW', 'OUTLINETEXTMETRICW',
-           'TapeDriveScsiConnectionError', 'PWSAQUERYSET',
+           'ActivationContextBasicInformation', 'PWSAQUERYSET',
            'tagPANOSE', 'OUTLINETEXTMETRICA', 'PDROPSTRUCT',
            'SHUTDOWN_WAIT_TRANSACTIONS', 'mysql_set_character_set',
            'WinBuiltinAdministratorsSid', 'PUWSTR', 'EMRARC',
            'POINTFLOAT', 'TokenPrivileges', 'LPWSAVERSION',
            'tagCIEXYZ', 'IMAGE_RESOURCE_DIR_STRING_U', 'MYSQL_DATA',
-           'EMRFORMAT', 'tagCOLORADJUSTMENT', 'PLONG', 'PBITMAP',
-           'MYSQL_TIMESTAMP_TIME', 'LPCPINFOEX',
+           'EMRFORMAT', 'tagCOLORADJUSTMENT', 'mysql_more_results',
+           'PBITMAP', 'MYSQL_TIMESTAMP_TIME', 'LPCPINFOEX',
            'PIMAGE_LOAD_CONFIG_DIRECTORY32', 'PACKEDEVENTINFO',
            '_TOKEN_TYPE', 'TAPE_WRITE_MARKS', '_GENERIC_MAPPING',
            'PPVALUE', 'DRAWSTATEPROC', 'NPWNDCLASS', 'LPICONMETRICS',
@@ -11022,11 +11022,11 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'IMPORT_OBJECT_ORDINAL', 'PGRADIENT_TRIANGLE', 'UINT64',
            'POLYTEXTA', 'PSECURITY_DESCRIPTOR_CONTROL',
            'LPMDICREATESTRUCTA', 'EMREOF', 'EMRSETCOLORSPACE',
-           'COMIMAGE_FLAGS_STRONGNAMESIGNED', 'LPDWORD', 'POLYTEXTW',
+           'MYSQL_SET_CHARSET_NAME', 'LPDWORD', 'POLYTEXTW',
            'PDELETEITEMSTRUCT', 'MYSQL_OPT_GUESS_CONNECTION',
            'WinRestrictedCodeSid', 'LPMULTIKEYHELP',
-           'LPMDICREATESTRUCTW', 'mysql_select_db', 'PTCH',
-           'MESSAGE_RESOURCE_DATA',
+           'LPMDICREATESTRUCTW', 'mysql_set_local_infile_default',
+           'PTCH', 'MESSAGE_RESOURCE_DATA',
            'N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_414DOLLAR_42E',
            'LPFNDEVMODE', 'SidTypeDeletedAccount', 'ACE_HEADER',
            'LPFMTID', 'MYSQL_READ_DEFAULT_GROUP',
@@ -11036,7 +11036,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'COR_VTABLE_32BIT', 'mysql_errno', 'PEMREXTESCAPE',
            'MYSQL_PROTOCOL_PIPE', 'tagEMRGLSRECORD',
            'EMRSETARCDIRECTION', 'NPNEWTEXTMETRICW', 'list_delete',
-           'st_mysql_manager', 'GENERIC_MAPPING', 'NET',
+           'st_mysql_manager', 'mysql_character_set_name', 'NET',
            'PLOCALESIGNATURE', 'NPNEWTEXTMETRICA', 'COLOR16',
            '_IMAGE_THUNK_DATA32',
            'PACCESS_DENIED_CALLBACK_OBJECT_ACE', 'SYSTEM_POWER_STATE',
@@ -11063,13 +11063,13 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'SERVICE_FAILURE_ACTIONSA', 'PEXTLOGPEN', 'SOUNDSENTRYW',
            'LPABCFLOAT', 'SERVICE_FAILURE_ACTIONSW', 'WSABUF',
            'tagSTYLEBUFA', 'EMRPOLYTEXTOUTW',
-           'COM_STMT_SEND_LONG_DATA', 'PCONTEXT', 'LPOSVERSIONINFOA',
-           'LPWNDCLASSEXA', 'PREGISTERWORD',
+           'COM_STMT_SEND_LONG_DATA', 'PCONTEXT',
+           'mysql_get_client_info', 'LPWNDCLASSEXA', 'PREGISTERWORD',
            '_EXIT_PROCESS_DEBUG_INFO', 'SLIST_HEADER',
-           'LPWNDCLASSEXW', '_RTL_VERIFIER_PROVIDER_DESCRIPTOR',
-           'LPDEVMODE', 'FILE_SEGMENT_ELEMENT', 'COR_VTABLE_64BIT',
+           'LPWNDCLASSEXW', '_MESSAGE_RESOURCE_BLOCK', 'LPDEVMODE',
+           'FILE_SEGMENT_ELEMENT', 'COR_VTABLE_64BIT',
            'mysql_ssl_set', 'PCHAR', 'value_entA',
-           'IMAGE_DATA_DIRECTORY', 'BITMAP',
+           'st_mysql_parameters', 'BITMAP',
            'N13_SLIST_HEADER4DOLLAR_47E', 'TTPOLYGONHEADER',
            'PPOLYTEXTW', 'LPPROCESS_INFORMATION',
            'tagEMRCREATEBRUSHINDIRECT', 'tagEMRSETVIEWPORTORGEX',
@@ -11078,8 +11078,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'PACTIVATION_CONTEXT_QUERY_INDEX', 'PPOLYTEXTA',
            'PTHREAD_START_ROUTINE', 'SOUNDSENTRYA',
            'tagDEBUGHOOKINFO', 'PBOOL', 'PWNDCLASSEXW', 'SYSGEOTYPE',
-           'POSVERSIONINFO', 'tagCBT_CREATEWNDA',
-           'mysql_stmt_result_metadata', 'WinAnonymousSid',
+           'POSVERSIONINFO', 'tagCBT_CREATEWNDA', 'WinAnonymousSid',
            'PWNDCLASSEXA', 'PEMRSTROKEPATH', 'INT64',
            'TapeDriveTimetoClean', 'PDLGITEMTEMPLATE',
            'LPMONITORINFOEX', 'UILANGUAGE_ENUMPROCA',
@@ -11110,11 +11109,12 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'mysql_escape_string', 'CALINFO_ENUMPROCEXW', 'NPSTYLEBUF',
            'tagEMRSETMAPPERFLAGS', 'WINEVENTPROC',
            'LPUNIVERSAL_NAME_INFOW', 'AdministratorPowerPolicy',
-           'HACCEL__', 'ActivationContextBasicInformation',
+           'HACCEL__', 'TapeDriveScsiConnectionError',
            '_CM_ERROR_CONTROL_TYPE', 'LPCBT_CREATEWNDW', 'sockaddr',
            'OSVERSIONINFOEXW', 'LPQUERY_SERVICE_CONFIGA',
            'tagEMRSETVIEWPORTEXTEX', 'HUMPD__',
-           'LPSERVICE_TABLE_ENTRYA', 'DemandLoad',
+           'LPSERVICE_TABLE_ENTRYA',
+           '_ACCESS_ALLOWED_CALLBACK_OBJECT_ACE', 'DemandLoad',
            'LPQUERY_SERVICE_LOCK_STATUSW', 'OSVERSIONINFOEXA',
            'LPFD_SET', 'LPCBT_CREATEWNDA',
            'LPQUERY_SERVICE_LOCK_STATUSA', 'N7in_addr4DOLLAR_75E',
@@ -11129,10 +11129,10 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            '_JOBOBJECT_EXTENDED_LIMIT_INFORMATION',
            'mysql_stmt_close', 'DEVMODE',
            'IMAGE_RESOURCE_DIRECTORY_STRING', 'GCP_RESULTS',
-           'PJOBOBJECT_BASIC_LIMIT_INFORMATION',
-           'mysql_stmt_sqlstate', 'EMRSETVIEWPORTORGEX', 'UDF_ARGS',
-           'tagEMRPOLYLINE', 'LPTITLEBARINFO', 'LPSTYLEBUFA',
-           'SC_ACTION', 'LPNUMBERFMTW', 'tagMONITORINFOEXW',
-           'WinSelfSid', 'ENUMRESLANGPROCW', 'PLOGFONTA',
-           'NSP_NOTIFY_PORT', 'NPBITMAP', 'tagMONITORINFOEXA',
-           'PFLOAT', 'ENUMRESLANGPROCA', 'PLOGFONTW', 'LPALTTABINFO']
+           'mysql_stmt_result_metadata', 'mysql_stmt_sqlstate',
+           'EMRSETVIEWPORTORGEX', 'UDF_ARGS', 'tagEMRPOLYLINE',
+           'LPTITLEBARINFO', 'LPSTYLEBUFA', 'SC_ACTION',
+           'LPNUMBERFMTW', 'tagMONITORINFOEXW', 'WinSelfSid',
+           'ENUMRESLANGPROCW', 'PLOGFONTA', 'NSP_NOTIFY_PORT',
+           'NPBITMAP', 'tagMONITORINFOEXA', 'PFLOAT',
+           'ENUMRESLANGPROCA', 'PLOGFONTW', 'LPALTTABINFO']
