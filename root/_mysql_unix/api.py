@@ -5,127 +5,127 @@ _libraries = {}
 _libraries['libmysqlclient.so'] = CDLL('libmysqlclient.so')
 
 
-MYSQL_STMT_FETCH_DONE = 4
+STMT_ATTR_PREFETCH_ROWS = 2
+CURSOR_TYPE_NO_CURSOR = 0
+MYSQL_STATUS_READY = 0
+COM_PROCESS_KILL = 12
+COM_STMT_RESET = 26
+MYSQL_TYPE_STRING = 254
+MYSQL_PROTOCOL_MEMORY = 4
+COM_PROCESS_INFO = 10
+DECIMAL_RESULT = 4
+COM_STMT_CLOSE = 25
+CURSOR_TYPE_READ_ONLY = 1
+COM_SET_OPTION = 27
+MYSQL_TYPE_VARCHAR = 15
+MYSQL_RPL_SLAVE = 1
+MYSQL_OPT_PROTOCOL = 9
+COM_CONNECT = 11
+STMT_ATTR_UPDATE_MAX_LENGTH = 0
+MYSQL_SET_CLIENT_IP = 17
+CURSOR_TYPE_FOR_UPDATE = 2
+MYSQL_TYPE_BIT = 16
+MYSQL_SHARED_MEMORY_BASE_NAME = 10
+MYSQL_TYPE_DECIMAL = 0
+MYSQL_OPTION_MULTI_STATEMENTS_OFF = 1
+CURSOR_TYPE_SCROLLABLE = 4
+MYSQL_STATUS_GET_RESULT = 1
+SHUTDOWN_WAIT_TRANSACTIONS = 2
+COM_END = 29
+MYSQL_TYPE_NEWDECIMAL = 246
+STMT_ATTR_CURSOR_TYPE = 1
+MYSQL_OPT_READ_TIMEOUT = 11
+COM_DEBUG = 13
+MYSQL_TYPE_TINY = 1
+MYSQL_OPT_USE_REMOTE_CONNECTION = 14
+MYSQL_STATUS_USE_RESULT = 2
+MYSQL_TYPE_ENUM = 247
+MYSQL_OPT_LOCAL_INFILE = 8
+MYSQL_OPT_WRITE_TIMEOUT = 12
+MYSQL_TYPE_SHORT = 2
+MYSQL_RPL_MASTER = 0
+MYSQL_TYPE_SET = 248
 COM_TIME = 15
 MYSQL_TYPE_LONG = 3
+MYSQL_OPT_SSL_VERIFY_SERVER_CERT = 21
+MYSQL_TYPE_TINY_BLOB = 249
+KILL_QUERY = 254
+SHUTDOWN_DEFAULT = 0
+COM_DELAYED_INSERT = 16
+MYSQL_TYPE_FLOAT = 4
 COM_SLEEP = 0
-MYSQL_TIMESTAMP_DATETIME = 1
-MYSQL_TYPE_BIT = 16
-MYSQL_OPTION_MULTI_STATEMENTS_OFF = 1
+MYSQL_TIMESTAMP_NONE = -2
+ROW_RESULT = 3
+MYSQL_STMT_INIT_DONE = 1
 MYSQL_RPL_ADMIN = 2
-COM_PROCESS_INFO = 10
-MYSQL_STATUS_USE_RESULT = 2
-MYSQL_TYPE_BLOB = 252
+MYSQL_TYPE_MEDIUM_BLOB = 250
+MYSQL_OPT_USE_EMBEDDED_CONNECTION = 15
 COM_CHANGE_USER = 17
 MYSQL_TYPE_DOUBLE = 5
-COM_INIT_DB = 2
-MYSQL_TIMESTAMP_NONE = -2
-COM_TABLE_DUMP = 19
-COM_REFRESH = 7
-MYSQL_TYPE_TINY_BLOB = 249
-MYSQL_TYPE_TIMESTAMP = 7
+COM_QUIT = 1
+MYSQL_TIMESTAMP_ERROR = -1
+MYSQL_STMT_PREPARE_DONE = 2
+SHUTDOWN_WAIT_UPDATES = 8
+MYSQL_TYPE_LONG_BLOB = 251
+MYSQL_OPT_GUESS_CONNECTION = 16
 MYSQL_OPT_CONNECT_TIMEOUT = 0
 COM_BINLOG_DUMP = 18
 MYSQL_TYPE_NULL = 6
-MYSQL_PROTOCOL_DEFAULT = 0
-COM_DROP_DB = 6
-COM_QUERY = 3
-COM_DELAYED_INSERT = 16
-MYSQL_OPT_COMPRESS = 1
-MYSQL_TYPE_NEWDECIMAL = 246
-MYSQL_PROTOCOL_TCP = 1
-MYSQL_TYPE_FLOAT = 4
-COM_FIELD_LIST = 4
-MYSQL_STMT_INIT_DONE = 1
-COM_CONNECT_OUT = 20
-MYSQL_PROTOCOL_SOCKET = 2
-MYSQL_REPORT_DATA_TRUNCATION = 19
-MYSQL_SET_CHARSET_NAME = 7
-STMT_ATTR_PREFETCH_ROWS = 2
-COM_QUIT = 1
-MYSQL_TYPE_NEWDATE = 14
-MYSQL_STMT_PREPARE_DONE = 2
-MYSQL_INIT_COMMAND = 3
-COM_REGISTER_SLAVE = 21
-MYSQL_TYPE_INT24 = 9
-MYSQL_PROTOCOL_PIPE = 3
-MYSQL_OPT_LOCAL_INFILE = 8
-MYSQL_READ_DEFAULT_FILE = 4
-MYSQL_STATUS_GET_RESULT = 1
-COM_END = 29
+COM_INIT_DB = 2
+MYSQL_TIMESTAMP_DATE = 0
 MYSQL_STMT_EXECUTE_DONE = 3
+MYSQL_TIMESTAMP_TIME = 2
+MYSQL_TYPE_BLOB = 252
+MYSQL_INIT_COMMAND = 3
+MYSQL_OPT_COMPRESS = 1
+COM_TABLE_DUMP = 19
+MYSQL_TYPE_TIMESTAMP = 7
+COM_QUERY = 3
+MYSQL_TIMESTAMP_DATETIME = 1
+MYSQL_STMT_FETCH_DONE = 4
+COM_PING = 14
 MYSQL_TYPE_VAR_STRING = 253
-MYSQL_TYPE_GEOMETRY = 255
+MYSQL_SECURE_AUTH = 18
+MYSQL_OPT_NAMED_PIPE = 2
+COM_CONNECT_OUT = 20
+MYSQL_TYPE_LONGLONG = 8
+COM_FIELD_LIST = 4
+MYSQL_REPORT_DATA_TRUNCATION = 19
+SHUTDOWN_WAIT_CRITICAL_BUFFERS = 17
+MYSQL_TYPE_INT24 = 9
+COM_CREATE_DB = 5
+COM_REGISTER_SLAVE = 21
+MYSQL_OPT_RECONNECT = 20
 COM_STMT_PREPARE = 22
 MYSQL_TYPE_DATE = 10
-MYSQL_PROTOCOL_MEMORY = 4
-MYSQL_OPT_PROTOCOL = 9
-MYSQL_READ_DEFAULT_GROUP = 5
-COM_SET_OPTION = 27
-MYSQL_OPT_NAMED_PIPE = 2
-MYSQL_TIMESTAMP_ERROR = -1
-MYSQL_RPL_MASTER = 0
-MYSQL_TYPE_MEDIUM_BLOB = 250
-MYSQL_TYPE_LONGLONG = 8
-COM_STMT_RESET = 26
-MYSQL_TIMESTAMP_TIME = 2
+MYSQL_PROTOCOL_DEFAULT = 0
+MYSQL_READ_DEFAULT_FILE = 4
+COM_DROP_DB = 6
+STRING_RESULT = 0
+SHUTDOWN_WAIT_ALL_BUFFERS = 16
+MYSQL_TYPE_GEOMETRY = 255
+COM_STATISTICS = 9
+KILL_CONNECTION = 255
 COM_STMT_EXECUTE = 23
 MYSQL_TYPE_TIME = 11
-MYSQL_SHARED_MEMORY_BASE_NAME = 10
-MYSQL_OPT_RECONNECT = 20
-MYSQL_SET_CHARSET_DIR = 6
-MYSQL_TYPE_DATETIME = 12
-COM_SHUTDOWN = 8
-COM_STMT_SEND_LONG_DATA = 24
-COM_CREATE_DB = 5
-SHUTDOWN_DEFAULT = 0
-STRING_RESULT = 0
-CURSOR_TYPE_NO_CURSOR = 0
-COM_STMT_CLOSE = 25
-MYSQL_TYPE_YEAR = 13
-MYSQL_OPT_WRITE_TIMEOUT = 12
-STMT_ATTR_UPDATE_MAX_LENGTH = 0
-REAL_RESULT = 1
-MYSQL_STATUS_READY = 0
-INT_RESULT = 2
-SHUTDOWN_WAIT_TRANSACTIONS = 2
-MYSQL_OPT_USE_RESULT = 13
-MYSQL_TYPE_STRING = 254
-CURSOR_TYPE_FOR_UPDATE = 2
-SHUTDOWN_WAIT_CONNECTIONS = 1
-MYSQL_TYPE_VARCHAR = 15
-SHUTDOWN_WAIT_UPDATES = 8
-MYSQL_OPT_USE_REMOTE_CONNECTION = 14
-COM_CONNECT = 11
-ROW_RESULT = 3
-STMT_ATTR_CURSOR_TYPE = 1
-COM_STATISTICS = 9
-CURSOR_TYPE_SCROLLABLE = 4
-MYSQL_TYPE_LONG_BLOB = 251
-COM_STMT_FETCH = 28
-SHUTDOWN_WAIT_ALL_BUFFERS = 16
-MYSQL_OPT_USE_EMBEDDED_CONNECTION = 15
-MYSQL_OPT_SSL_VERIFY_SERVER_CERT = 21
-COM_PROCESS_KILL = 12
-MYSQL_TYPE_DECIMAL = 0
-MYSQL_OPT_READ_TIMEOUT = 11
-DECIMAL_RESULT = 4
+MYSQL_PROTOCOL_TCP = 1
+MYSQL_READ_DEFAULT_GROUP = 5
 MYSQL_OPTION_MULTI_STATEMENTS_ON = 0
-SHUTDOWN_WAIT_CRITICAL_BUFFERS = 17
-MYSQL_OPT_GUESS_CONNECTION = 16
-MYSQL_TYPE_TINY = 1
-MYSQL_SECURE_AUTH = 18
-COM_DEBUG = 13
-MYSQL_TYPE_ENUM = 247
-KILL_QUERY = 254
-MYSQL_SET_CLIENT_IP = 17
-COM_PING = 14
-MYSQL_TYPE_SHORT = 2
-MYSQL_TIMESTAMP_DATE = 0
-MYSQL_RPL_SLAVE = 1
-CURSOR_TYPE_READ_ONLY = 1
-MYSQL_TYPE_SET = 248
-KILL_CONNECTION = 255
+REAL_RESULT = 1
+SHUTDOWN_WAIT_CONNECTIONS = 1
+COM_REFRESH = 7
+COM_STMT_SEND_LONG_DATA = 24
+MYSQL_TYPE_DATETIME = 12
+MYSQL_PROTOCOL_SOCKET = 2
+MYSQL_SET_CHARSET_DIR = 6
+COM_SHUTDOWN = 8
+MYSQL_OPT_USE_RESULT = 13
+INT_RESULT = 2
+COM_STMT_FETCH = 28
+MYSQL_TYPE_YEAR = 13
+MYSQL_PROTOCOL_PIPE = 3
+MYSQL_SET_CHARSET_NAME = 7
+MYSQL_TYPE_NEWDATE = 14
 pthread_t = c_ulong
 class pthread_attr_t(Union):
     pass
@@ -396,9 +396,9 @@ MYSQL_ROWS = st_mysql_rows
 MYSQL_ROW_OFFSET = POINTER(MYSQL_ROWS)
 class embedded_query_result(Structure):
     pass
-EMBEDDED_QUERY_RESULT = embedded_query_result
 embedded_query_result._fields_ = [
 ]
+EMBEDDED_QUERY_RESULT = embedded_query_result
 class st_mysql_data(Structure):
     pass
 st_mysql_data._fields_ = [
@@ -1336,7 +1336,7 @@ __all__ = ['MYSQL_TYPE_FLOAT', '__int16_t', 'MYSQL_STMT_PREPARE_DONE',
            'MYSQL_OPT_SSL_VERIFY_SERVER_CERT',
            'mysql_get_character_set_info', 'mysql_stmt_affected_rows',
            'KILL_CONNECTION', 'st_udf_args', 'MYSQL_OPT_PROTOCOL',
-           'MYSQL_OPT_USE_EMBEDDED_CONNECTION', '__clockid_t', 'id_t',
+           'mysql_enum_shutdown_level', '__clockid_t', 'id_t',
            'COM_TABLE_DUMP', 'MYSQL_TYPE_DATE', 'MYSQL_TYPE_TINY',
            'mysql_stmt_init', 'mysql_reads_from_master_enabled',
            'mysql_master_send_query', 'mysql_kill',
@@ -1345,10 +1345,11 @@ __all__ = ['MYSQL_TYPE_FLOAT', '__int16_t', 'MYSQL_STMT_PREPARE_DONE',
            'mysql_stmt_bind_param', 'MYSQL_TYPE_BLOB',
            'MYSQL_TYPE_INT24', '__mode_t', 'COM_STMT_PREPARE',
            'st_mysql_options', 'mysql_option', '__off_t',
-           'enum_stmt_attr_type', 'CURSOR_TYPE_NO_CURSOR', 'u_quad_t',
-           'net_real_write', 'fsfilcnt64_t', 'COM_INIT_DB',
-           'MYSQL_ROW_OFFSET', 'mysql_num_rows', 'UDF_INIT',
-           'sql_protocol_typelib', 'MYSQL_STMT_EXECUTE_DONE',
+           'pthread_rwlock_t', 'enum_stmt_attr_type',
+           'CURSOR_TYPE_NO_CURSOR', 'u_quad_t', 'net_real_write',
+           'fsfilcnt64_t', 'COM_INIT_DB', 'MYSQL_ROW_OFFSET',
+           'mysql_num_rows', 'UDF_INIT', 'sql_protocol_typelib',
+           'COM_TIME', 'MYSQL_STMT_EXECUTE_DONE',
            'MYSQL_TIMESTAMP_DATE', '__int8_t', '__fsblkcnt64_t',
            'off_t', 'mysql_unix_port', 'pthread_barrierattr_t',
            'enum_mysql_timestamp_type', 'mysql_read_query_result',
@@ -1357,12 +1358,11 @@ __all__ = ['MYSQL_TYPE_FLOAT', '__int16_t', 'MYSQL_STMT_PREPARE_DONE',
            'st_mysql', 'make_password_from_salt',
            'enum_mysql_set_option', 'st_typelib', 'COM_DROP_DB',
            '__fsblkcnt_t', 'mysql_fetch_row', 'copy_typelib',
-           'st_mysql_methods', 'mysql_enum_shutdown_level',
-           'MYSQL_TYPE_LONG_BLOB', 'loff_t', 'u_short', 'key_t',
-           'mysql_real_query', 'MYSQL_TYPE_STRING',
-           'pthread_rwlockattr_t', '__swblk_t', 'list_free',
-           'mysql_slave_send_query', 'MYSQL_TIME', '__u_int',
-           'ssize_t', '__clock_t', '__fsfilcnt_t',
+           'st_mysql_methods', 'MYSQL_TYPE_LONG_BLOB', 'loff_t',
+           'u_short', 'key_t', 'mysql_real_query',
+           'MYSQL_TYPE_STRING', 'pthread_rwlockattr_t', '__swblk_t',
+           'list_free', 'mysql_slave_send_query', 'MYSQL_TIME',
+           '__u_int', 'ssize_t', '__clock_t', '__fsfilcnt_t',
            'mysql_free_result', 'MEM_ROOT', 'MYSQL_MANAGER',
            'make_type', 'mysql_get_parameters', 'pthread_mutexattr_t',
            'mysql_affected_rows', 'character_set', 'my_net_read',
@@ -1377,18 +1377,18 @@ __all__ = ['MYSQL_TYPE_FLOAT', '__int16_t', 'MYSQL_STMT_PREPARE_DONE',
            'SHUTDOWN_WAIT_UPDATES', '__int32_t', 'MYSQL_TYPE_NULL',
            'off64_t', 'net_end', 'fsblkcnt64_t', '__fd_mask',
            'mysql_autocommit', 'MYSQL_TIMESTAMP_ERROR', 'clock_t',
-           'COM_TIME', '__useconds_t', 'MYSQL_TYPE_TIME',
+           'list_walk_action', '__useconds_t', 'MYSQL_TYPE_TIME',
            'MYSQL_RPL_ADMIN', 'mysql_eof', 'COM_CONNECT',
            'EMBEDDED_QUERY_RESULT', 'load_defaults',
            'MYSQL_OPTION_MULTI_STATEMENTS_OFF',
            'CURSOR_TYPE_FOR_UPDATE', 'pthread_barrier_t',
-           'enum_cursor_type', 'u_int32_t', 'pthread_rwlock_t',
-           'mysql_refresh', '__pthread_internal_list',
-           'MYSQL_TYPE_DECIMAL', 'enum_server_command',
-           'MYSQL_TIMESTAMP_DATETIME', 'mysql_thread_end',
-           'mysql_master_query', 'Vio', '__pthread_list_t',
-           'pthread_attr_t', 'uint', '__rlim64_t', 'ino_t',
-           'st_udf_init', 'MYSQL_STATUS_READY',
+           'enum_cursor_type', 'u_int32_t',
+           'MYSQL_OPT_USE_EMBEDDED_CONNECTION', 'mysql_refresh',
+           '__pthread_internal_list', 'MYSQL_TYPE_DECIMAL',
+           'enum_server_command', 'MYSQL_TIMESTAMP_DATETIME',
+           'mysql_thread_end', 'mysql_master_query', 'Vio',
+           '__pthread_list_t', 'pthread_attr_t', 'uint', '__rlim64_t',
+           'ino_t', 'st_udf_init', 'MYSQL_STATUS_READY',
            'MYSQL_PROTOCOL_DEFAULT', 'mysql_next_result',
            'MYSQL_TIMESTAMP_NONE', 'mysql_change_user', '__blksize_t',
            'pthread_spinlock_t', 'MYSQL_OPT_RECONNECT',
@@ -1397,18 +1397,17 @@ __all__ = ['MYSQL_TYPE_FLOAT', '__int16_t', 'MYSQL_STMT_PREPARE_DONE',
            'MYSQL_TYPE_TIMESTAMP', 'MYSQL_TYPE_SET', 'list_cons',
            '__uint8_t', '__u_char', '__sig_atomic_t', '__blkcnt64_t',
            'get_salt_from_password', 'COM_BINLOG_DUMP',
-           'mysql_rpl_query_type', 'mysql_stmt_attr_set',
-           'mysql_data_seek', 'mysql_stmt_execute',
-           'MYSQL_TYPE_NEWDECIMAL', 'list_walk', 'quad_t', 'LIST',
-           'mysql_debug', 'SHUTDOWN_WAIT_ALL_BUFFERS', 'MYSQL',
-           'Item_result', 'mysql_set_local_infile_handler',
-           'pthread_cond_t', 'pselect', 'COM_DEBUG', 'ROW_RESULT',
-           '__rlim_t', 'SHUTDOWN_WAIT_CONNECTIONS', 'nlink_t',
-           'timeval', 'MYSQL_TYPE_LONG',
-           'make_scrambled_password_323', 'mysql_set_master',
-           'my_net_local_init', 'ulong', 'int8_t', 'MYSQL_ROWS',
-           'my_init', 'MYSQL_TYPE_BIT', 'REAL_RESULT', 'list_add',
-           'mysql_stat', 'fsblkcnt_t', '__quad_t',
+           'mysql_rpl_query_type', 'mysql_data_seek',
+           'mysql_stmt_execute', 'MYSQL_TYPE_NEWDECIMAL', 'list_walk',
+           'quad_t', 'LIST', 'mysql_debug',
+           'SHUTDOWN_WAIT_ALL_BUFFERS', 'MYSQL', 'Item_result',
+           'mysql_set_local_infile_handler', 'pthread_cond_t',
+           'pselect', 'COM_DEBUG', 'ROW_RESULT', '__rlim_t',
+           'SHUTDOWN_WAIT_CONNECTIONS', 'nlink_t', 'timeval',
+           'MYSQL_TYPE_LONG', 'make_scrambled_password_323',
+           'mysql_set_master', 'my_net_local_init', 'ulong', 'int8_t',
+           'MYSQL_ROWS', 'my_init', 'MYSQL_TYPE_BIT', 'REAL_RESULT',
+           'list_add', 'mysql_stat', 'fsblkcnt_t', '__quad_t',
            'MYSQL_SET_CHARSET_DIR', '__key_t', 'mysql_port', 'dev_t',
            '__uid_t', '__uint16_t', '__pthread_mutex_s',
            'my_net_write', 'mysql_list_fields', 'MYSQL_TYPE_DOUBLE',
@@ -1481,7 +1480,7 @@ __all__ = ['MYSQL_TYPE_FLOAT', '__int16_t', 'MYSQL_STMT_PREPARE_DONE',
            'st_mem_root', 'mysql_protocol_type', 'mysql_thread_id',
            'MYSQL_RES', 'mysql_get_server_version', 'get_type',
            'COM_END', 'mysql_row_seek', 'NET',
-           'mysql_stmt_param_count', '__gid_t', 'MYSQL_PROTOCOL_TCP',
+           'mysql_stmt_param_count', '__gid_t', 'mysql_stmt_attr_set',
            'MYSQL_OPT_WRITE_TIMEOUT', 'mysql_real_connect',
            'COM_SLEEP', 'my_socket', '__daddr_t', 'DECIMAL_RESULT',
            '__caddr_t', 'mysql_list_dbs', 'COM_PROCESS_KILL', 'u_int',
@@ -1493,12 +1492,12 @@ __all__ = ['MYSQL_TYPE_FLOAT', '__int16_t', 'MYSQL_STMT_PREPARE_DONE',
            'MYSQL_TIMESTAMP_TIME', 'my_bool', 'mysql_fetch_field',
            'net_realloc', 'mysql_set_local_infile_default', 'int64_t',
            'mysql_fetch_field_direct', 'modify_defaults_file',
-           'MYSQL_PARAMETERS', 'list_walk_action', 'mysql_stmt_reset',
-           '__u_quad_t', '__u_short', 'st_mysql_bind',
-           'mysql_field_tell', 'fsid_t', 'MYSQL_SECURE_AUTH',
-           '__pid_t', 'mysql_num_fields', 'mysql_stmt_close',
-           'st_used_mem', 'INT_RESULT', 'mysql_stmt_result_metadata',
-           'mysql_stmt_sqlstate', 'UDF_ARGS', 'useconds_t',
-           'MY_CHARSET_INFO', 'mysql_send_query', 'my_net_init',
-           'mysql_manager_close', 'MYSQL_STMT', '__socklen_t',
-           'mysql_options']
+           'MYSQL_PARAMETERS', 'MYSQL_PROTOCOL_TCP',
+           'mysql_stmt_reset', '__u_quad_t', '__u_short',
+           'st_mysql_bind', 'mysql_field_tell', 'fsid_t',
+           'MYSQL_SECURE_AUTH', '__pid_t', 'mysql_num_fields',
+           'mysql_stmt_close', 'st_used_mem', 'INT_RESULT',
+           'mysql_stmt_result_metadata', 'mysql_stmt_sqlstate',
+           'UDF_ARGS', 'useconds_t', 'MY_CHARSET_INFO',
+           'mysql_send_query', 'my_net_init', 'mysql_manager_close',
+           'MYSQL_STMT', '__socklen_t', 'mysql_options']

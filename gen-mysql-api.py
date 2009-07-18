@@ -88,7 +88,7 @@ class LibGenerator(object):
 		open(os.path.join(self.libroot, '__init__.py')).close()
 
 	def fix_my_bool(self, api_file):
-		return api_file.replace('my_bool = c_int8\n', 'my_bool = c_char\n')
+		return api_file.replace('my_bool = c_char\n', 'my_bool = c_int8\n')
 
 	def patch_mysql_api(self):
 		"""
