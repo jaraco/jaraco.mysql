@@ -112,7 +112,7 @@ class WindowsLibGenerator(LibGenerator):
 
 	def run(self):
 		os.environ['PATH'] += ';%s\lib\opt' % get_mysql_root()
-		super(Win32LibGenerator, self).run()
+		super(WindowsLibGenerator, self).run()
 
 class UnixLibGenerator(LibGenerator):
 	platform = 'unix'
