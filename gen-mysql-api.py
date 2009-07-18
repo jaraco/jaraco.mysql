@@ -20,6 +20,7 @@ http://starship.python.net/crew/theller/ctypes/old/codegen.html
 import sys
 import os
 import subprocess
+import copy
 from ctypeslib import h2xml, xml2py
 
 setup_root = os.path.dirname(__file__)
@@ -62,20 +63,32 @@ class LibGenerator(object):
 		xml2py_common = ['xml2py.py']
 		xml2py_cmds = map(self.patch_cmd, self.xml2py_cmds)
 		cmds = merge_args(xml2py_common, xml2py_cmds)
+		if not os.path.exists(self.libroot):
+			os.makedirs(self.libroot)
 		map(self.xml2py_cmd, cmds)
 		
 		patch_mysql_api()
 
 	def patch_cmd(self, cmd):
-		patch_part = lambda part: part % self.__dict__
+		class ObjectDict(object):
+			def __init__(self, object):
+				self.object = object
+			def __getitem__(self, name):
+				return getattr(self.object, name)
+
+		patch_part = lambda part: part % ObjectDict(self)
 		return map(patch_part, cmd)
+
+	@property
+	def libroot(self):
+		return 'root/_mysql_' + self.platform
 
 class WindowsLibGenerator(LibGenerator):
 	platform = 'windows'
 	libname='libmysql.dll'
 	mysql_include = os.path.join(get_mysql_root(), 'include')
 	# need WIN32_LEAN_AND_MEAN to exclude most windows stuff
-	h2xml_cmds = LibGenerator.h2xml_cmds
+	h2xml_cmds = copy.deepcopy(LibGenerator.h2xml_cmds)
 	h2xml_cmds[0][:0] = '-D WIN32_LEAN_AND_MEAN config-win.h'.split()
 
 	def run(self):
