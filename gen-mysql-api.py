@@ -39,11 +39,11 @@ class LibGenerator(object):
 		'-c mysqld_error.h -o mysqld_error.xml'.split(),
 	]
 	xml2py_cmds = [
-		'mysql.xml -l %(libname)s -o root/_mysql_api.py'.split(),
+		'mysql.xml -l %(libname)s -o %(libroot)s/api.py'.split(),
 		# Use -s MYSQL to get the MYSQL structure and ancestral structures
-		'errmsg.xml -o root/_mysql_errmsg.py'.split(),
-		'mysql_version.xml -o root/_mysql_version.py'.split(),
-		'mysqld_error.xml -o root/_mysql_errors.py'.split(),
+		'errmsg.xml -o %(libroot)s/errmsg.py'.split(),
+		'mysql_version.xml -o %(libroot)s/version.py'.split(),
+		'mysqld_error.xml -o %(libroot)s/errors.py'.split(),
 		]
 	
 	def h2xml_cmd(self, args):
@@ -60,15 +60,18 @@ class LibGenerator(object):
 		
 		print('Generating Python libs')
 		xml2py_common = ['xml2py.py']
-		xml2py_cmds = self.xml2py_cmds
-		xml2py_cmds[0] = xml2py_cmds[0] % self.__dict__
-		cmds = merge_args(xml2py_common, self.xml2py_cmds)
+		xml2py_cmds = map(self.patch_cmd, self.xml2py_cmds)
+		cmds = merge_args(xml2py_common, xml2py_cmds)
 		map(self.xml2py_cmd, cmds)
 		
 		patch_mysql_api()
 
-class Win32LibGenerator(LibGenerator):
-	platform = 'win32'
+	def patch_cmd(self, cmd):
+		patch_part = lambda part: part % self.__dict__
+		return map(patch_part, cmd)
+
+class WindowsLibGenerator(LibGenerator):
+	platform = 'windows'
 	libname='libmysql.dll'
 	mysql_include = os.path.join(get_mysql_root(), 'include')
 	# need WIN32_LEAN_AND_MEAN to exclude most windows stuff
