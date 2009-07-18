@@ -87,394 +87,394 @@ from ctypes.wintypes import ULARGE_INTEGER
 from ctypes.wintypes import BOOLEAN
 
 
-WinBuiltinUsersSid = 27
-KILL_QUERY = 254
-SC_ACTION_RUN_COMMAND = 3
-VerifyProcessorPowerPolicyAc = 20
-MYSQL_STMT_EXECUTE_DONE = 3
-CURSOR_TYPE_FOR_UPDATE = 2
-MYSQL_OPT_COMPRESS = 1
-COMIMAGE_FLAGS_ILONLY = 1
-SidTypeWellKnownGroup = 5
-JobObjectBasicAndIoAccountingInformation = 8
-WinTerminalServerSid = 19
-GEO_LATITUDE = 2
-IMPORT_OBJECT_ORDINAL = 0
+MYSQL_TYPE_NEWDATE = 14
 COMP_EQUAL = 0
-SHUTDOWN_WAIT_TRANSACTIONS = 2
-AuditEventObjectAccess = 0
-NormalError = 1
-ProcessorStateHandler = 7
-MaxActivationContextInfoClass = 5
-COM_PROCESS_KILL = 12
-MYSQL_OPT_RECONNECT = 20
-WinBuiltinRemoteDesktopUsersSid = 36
-VerifySystemPolicyDc = 3
-IMAGE_COR_EATJ_THUNK_SIZE = 32
-MYSQL_PROTOCOL_PIPE = 3
-MYSQL_OPT_NAMED_PIPE = 2
-PowerDeviceMaximum = 5
-MYSQL_TIMESTAMP_TIME = 2
-PowerDeviceD0 = 1
-COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = 255
-GEO_RFC1766 = 6
-WinBuiltinAccountOperatorsSid = 30
-PowerDeviceD1 = 2
-PowerDeviceD2 = 3
-PowerDeviceD3 = 4
-WinAccountAdministratorSid = 38
-WinOtherOrganizationSid = 55
-SC_ACTION_RESTART = 1
-LT_DONT_CARE = 0
-COM_STATISTICS = 9
-COM_STMT_FETCH = 28
-MYSQL_INIT_COMMAND = 3
-NSP_NOTIFY_IMMEDIATELY = 0
-WinNTLMAuthenticationSid = 51
-SC_ENUM_PROCESS_INFO = 0
-WinCreatorOwnerServerSid = 5
-JobObjectAssociateCompletionPortInformation = 7
-GEO_LONGITUDE = 3
-SHUTDOWN_WAIT_ALL_BUFFERS = 16
-WinAccountPolicyAdminsSid = 49
-ProcessorPowerPolicyDc = 19
-MYSQL_TYPE_LONG_BLOB = 251
-FileInformationInAssemblyOfAssemblyInActivationContext = 4
-FindExSearchMaxSearchOp = 3
-RelationProcessorCore = 0
-MYSQL_PROTOCOL_SOCKET = 2
-WinNetworkSid = 9
-NATIVE_TYPE_MAX_CB = 1
-WinRestrictedCodeSid = 18
-GEO_ISO2 = 4
-WinAccountGuestSid = 39
-AclSizeInformation = 2
-DECIMAL_RESULT = 4
-WinBuiltinPowerUsersSid = 29
-PowerSystemHibernate = 5
-IMPORT_OBJECT_DATA = 1
-ExceptionContinueExecution = 0
-COM_TABLE_DUMP = 19
-PowerDeviceUnspecified = 0
-TapeDriveHardwareError = 7
-MYSQL_READ_DEFAULT_GROUP = 5
-DriverType = 1
-JobObjectEndOfJobTimeInformation = 6
-TapeDriveWriteWarning = 4
-TapeDriveReadWarning = 3
-GEO_ISO3 = 5
-TokenType = 8
-MYSQL_TYPE_TIME = 11
-SHUTDOWN_WAIT_CRITICAL_BUFFERS = 17
-WinBuiltinNetworkConfigurationOperatorsSid = 37
-IMAGE_COR_MIH_METHODRVA = 1
-SystemBatteryState = 5
-FindExSearchLimitToDevices = 2
-MYSQL_PROTOCOL_TCP = 1
-JobObjectJobSetInformation = 10
-AuditEventDirectoryServiceAccess = 1
-MYSQL_TYPE_BIT = 16
-FindExInfoMaxInfoLevel = 1
-ROW_RESULT = 3
-AdministratorPowerPolicy = 9
-HeapCompatibilityInformation = 0
-WinAccountEnterpriseAdminsSid = 48
-FindExInfoStandard = 0
-STMT_ATTR_PREFETCH_ROWS = 2
-COM_SLEEP = 0
-COR_DELETED_NAME_LENGTH = 8
-FindExSearchLimitToDirectories = 1
-GEO_LCID = 7
-SecurityIdentification = 1
-STMT_ATTR_UPDATE_MAX_LENGTH = 0
-ActivationContextDetailedInformation = 2
-COM_CONNECT_OUT = 20
-WinCreatorOwnerSid = 3
-WinBuiltinGuestsSid = 28
-TapeDriveCleanDriveNow = 11
-MYSQL_OPT_USE_RESULT = 13
-FileSystemType = 2
-NSP_NOTIFY_HWND = 1
-COR_VERSION_MINOR = 0
-GEO_TIMEZONES = 10
-TokenDefaultDacl = 6
-MYSQL_TYPE_YEAR = 13
-GEO_FRIENDLYNAME = 8
-IMPORT_OBJECT_CODE = 0
-WinAccountSchemaAdminsSid = 47
-SystemPowerStateNotifyHandler = 17
-WinRemoteLogonIdSid = 20
-FindExSearchNameMatch = 0
-WinLocalSid = 2
-JobObjectBasicUIRestrictions = 4
-PowerActionShutdownReset = 5
-MYSQL_TYPE_NEWDECIMAL = 246
-MYSQL_TIMESTAMP_DATETIME = 1
-WinSelfSid = 16
-GEOCLASS_NATION = 16
-MYSQL_TYPE_FLOAT = 4
-REAL_RESULT = 1
-Win32ServiceShareProcess = 32
-LT_LOWEST_LATENCY = 1
-WinBuiltinPerfLoggingUsersSid = 58
-COM_END = 30
-MYSQL_OPT_WRITE_TIMEOUT = 12
-MYSQL_OPT_USE_REMOTE_CONNECTION = 14
-MYSQL_OPT_GUESS_CONNECTION = 16
-AdapterType = 4
-COR_VERSION_MAJOR = 2
-GEO_OFFICIALLANGUAGES = 11
-MYSQL_OPT_SSL_VERIFY_SERVER_CERT = 21
-IgnoreError = 0
-CURSOR_TYPE_NO_CURSOR = 0
-COM_STMT_CLOSE = 25
-SidTypeDeletedAccount = 6
-MYSQL_OPT_LOCAL_INFILE = 8
-RNRSERVICE_REGISTER = 0
-COM_STMT_EXECUTE = 23
-COM_QUERY = 3
-PowerActionNone = 0
-NSP_NOTIFY_EVENT = 2
-WinWorldSid = 1
-JobObjectBasicProcessIdList = 3
-COMPARE_STRING = 1
-TokenPrimaryGroup = 5
-MAX_PACKAGE_NAME = 1024
-SC_ACTION_NONE = 0
-SHUTDOWN_WAIT_UPDATES = 8
-COM_DELAYED_INSERT = 16
-MYSQL_TYPE_LONG = 3
-TokenImpersonation = 2
-VerifySystemPolicyAc = 2
-WinAccountCertAdminsSid = 46
-SystemExecutionState = 16
-COM_CHANGE_USER = 17
-COR_VTABLE_32BIT = 1
-SidTypeUnknown = 8
-SidTypeInvalid = 7
-MYSQL_OPT_PROTOCOL = 9
-COR_VERSION_MAJOR_V2 = 2
-WinEnterpriseControllersSid = 15
-CURSOR_TYPE_READ_ONLY = 1
-WinAccountDomainAdminsSid = 41
-WinBuiltinPerfMonitoringUsersSid = 57
-COM_INIT_DB = 2
-MYSQL_TYPE_DATETIME = 12
-JobObjectBasicLimitInformation = 2
-TokenOwner = 4
-WinBuiltinAdministratorsSid = 26
-MYSQL_TYPE_DECIMAL = 0
-SystemPowerPolicyDc = 1
-COM_STMT_RESET = 26
-MYSQL_STATUS_USE_RESULT = 2
-KILL_CONNECTION = 255
-COM_STMT_PREPARE = 22
-SecurityImpersonation = 2
-DisableLoad = 4
-SC_STATUS_PROCESS_INFO = 0
-WinThisOrganizationSid = 54
-NSP_NOTIFY_PORT = 3
-MYSQL_TYPE_TINY = 1
-SC_ACTION_REBOOT = 2
-COM_STMT_SEND_LONG_DATA = 24
-SidTypeComputer = 9
-MYSQL_OPT_READ_TIMEOUT = 11
-COM_DROP_DB = 6
-MYSQL_OPTION_MULTI_STATEMENTS_ON = 0
-WinBuiltinIncomingForestTrustBuildersSid = 56
-COM_REFRESH = 7
-MYSQL_TIMESTAMP_DATE = 0
-AutoLoad = 2
-MYSQL_TYPE_SHORT = 2
-WinAccountRasAndIasServersSid = 50
-SHUTDOWN_DEFAULT = 0
-WinCreatorGroupServerSid = 6
-WinBuiltinReplicatorSid = 34
-COM_REGISTER_SLAVE = 21
-SevereError = 2
-PowerSystemSleeping3 = 4
-WinBuiltinSystemOperatorsSid = 31
-DemandLoad = 3
-TapeDriveSnappedTape = 13
-TokenSource = 7
-TokenGroups = 2
-TokenAuditPolicy = 16
-TapeDriveWriteError = 6
-BootLoad = 0
-PowerSystemSleeping1 = 2
-WinBuiltinDomainSid = 25
-WinAccountComputersSid = 44
-LastWakeTime = 14
-MYSQL_TYPE_ENUM = 247
-MYSQL_TYPE_VAR_STRING = 253
-STMT_ATTR_CURSOR_TYPE = 1
-WinLocalServiceSid = 23
-COM_BINLOG_DUMP = 18
 COM_SHUTDOWN = 8
-WinLocalSystemSid = 22
-TokenStatistics = 10
-MYSQL_STATUS_GET_RESULT = 1
-ExceptionNestedException = 2
-NSP_NOTIFY_APC = 4
-COMIMAGE_FLAGS_STRONGNAMESIGNED = 8
-WinAnonymousSid = 13
-WinAuthenticatedUserSid = 17
-IMPORT_OBJECT_NAME_UNDECORATE = 3
-AclRevisionInformation = 1
-MaxTokenInfoClass = 17
-WinProxySid = 14
-ActivationContextBasicInformation = 1
-RecognizerType = 8
+SC_STATUS_PROCESS_INFO = 0
+KILL_QUERY = 254
+IMPORT_OBJECT_CONST = 2
+LT_LOWEST_LATENCY = 1
+DECIMAL_RESULT = 4
+ProcessorPowerPolicyCurrent = 22
+COM_QUERY = 3
+STMT_ATTR_UPDATE_MAX_LENGTH = 0
+MYSQL_OPT_RECONNECT = 20
+GEO_ISO2 = 4
+AuditEventDirectoryServiceAccess = 1
+MYSQL_INIT_COMMAND = 3
+PowerDeviceUnspecified = 0
+PowerDeviceD3 = 4
+PowerSystemWorking = 1
+WinDigestAuthenticationSid = 52
+IMAGE_COR_MIH_BASICBLOCK = 8
+FileSystemType = 2
+KILL_CONNECTION = 255
+CURSOR_TYPE_FOR_UPDATE = 2
+WinWorldSid = 1
+TokenPrimaryGroup = 5
+COM_TABLE_DUMP = 19
+GEO_ISO3 = 5
+TapeDriveWriteError = 6
+MYSQL_STMT_INIT_DONE = 1
+NSP_NOTIFY_HWND = 1
+WinCreatorGroupServerSid = 6
+SidTypeDeletedAccount = 6
 COM_QUIT = 1
-TokenSessionReference = 14
-COM_PROCESS_INFO = 10
-MYSQL_RPL_ADMIN = 2
-WinInteractiveSid = 11
-TokenRestrictedSids = 11
-JobObjectExtendedLimitInformation = 9
-COM_CREATE_DB = 5
-WinNetworkServiceSid = 24
-RelationNumaNode = 1
+COM_SLEEP = 0
+IMPORT_OBJECT_DATA = 1
+WinEnterpriseControllersSid = 15
+PowerSystemSleeping2 = 3
+SystemReserveHiberFile = 10
+ROW_RESULT = 3
+MYSQL_OPT_SSL_VERIFY_SERVER_CERT = 21
+GEO_RFC1766 = 6
+WinAccountKrbtgtSid = 40
+IMAGE_COR_MIH_EHRVA = 2
+TokenDefaultDacl = 6
+COM_BINLOG_DUMP = 18
+TokenOwner = 4
+COM_PING = 14
+VerifyProcessorPowerPolicyDc = 21
+ExceptionCollidedUnwind = 3
 TapeDriveReadError = 5
-COM_FIELD_LIST = 4
-WinCreatorGroupSid = 4
-WinAccountControllersSid = 45
-SHUTDOWN_WAIT_CONNECTIONS = 1
+WinNTLMAuthenticationSid = 51
+PowerActionNone = 0
+COM_STMT_RESET = 26
+FindExSearchLimitToDevices = 2
+FileInformationInAssemblyOfAssemblyInActivationContext = 4
+MYSQL_TIMESTAMP_DATE = 0
+MaxTokenInfoClass = 17
+INT_RESULT = 2
+GEO_LCID = 7
+NormalError = 1
+TapeDriveScsiConnectionError = 9
+SecurityImpersonation = 2
+SC_ACTION_RUN_COMMAND = 3
+MYSQL_TYPE_TIME = 11
+WinBuiltinGuestsSid = 28
+SidTypeInvalid = 7
+PowerActionShutdownOff = 6
+IMAGE_COR_MIH_METHODRVA = 1
+COM_CONNECT = 11
+MYSQL_OPT_LOCAL_INFILE = 8
+AdapterType = 4
+WinProxySid = 14
 TokenPrivileges = 3
-MYSQL_REPORT_DATA_TRUNCATION = 19
-COMIMAGE_FLAGS_IL_LIBRARY = 4
-COR_VTABLE_CALL_MOST_DERIVED = 16
+SystemPowerPolicyCurrent = 8
+MYSQL_TYPE_GEOMETRY = 255
+FindExSearchMaxSearchOp = 3
+SHUTDOWN_WAIT_ALL_BUFFERS = 16
+MYSQL_OPT_READ_TIMEOUT = 11
+NSP_NOTIFY_EVENT = 2
+JobObjectBasicAndIoAccountingInformation = 8
+COM_INIT_DB = 2
+CURSOR_TYPE_READ_ONLY = 1
+COM_STMT_CLOSE = 25
+FindExSearchLimitToDirectories = 1
+WinBuiltinDomainSid = 25
+WinNullSid = 0
+VerifyProcessorPowerPolicyAc = 20
+SHUTDOWN_WAIT_UPDATES = 8
+COM_CONNECT_OUT = 20
+MYSQL_TIMESTAMP_TIME = 2
+SecurityIdentification = 1
+MYSQL_OPTION_MULTI_STATEMENTS_ON = 0
+SC_ACTION_REBOOT = 2
+COMP_NOTLESS = 1
+ProcessorStateHandler = 7
+TokenAuditPolicy = 16
+CURSOR_TYPE_NO_CURSOR = 0
+AclRevisionInformation = 1
+NATIVE_TYPE_MAX_CB = 1
+COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = 255
+MYSQL_STATUS_READY = 0
+PowerDeviceD1 = 2
+DisableLoad = 4
+GEO_FRIENDLYNAME = 8
+COR_DELETED_NAME_LENGTH = 8
+STMT_ATTR_CURSOR_TYPE = 1
+GEOCLASS_NATION = 16
+TapeDriveReadWarning = 3
+MYSQL_SET_CHARSET_DIR = 6
+MYSQL_TYPE_LONG_BLOB = 251
+GEO_NATION = 1
+TapeDriveProblemNone = 0
+GEO_LONGITUDE = 3
+WinAccountAdministratorSid = 38
+TokenImpersonation = 2
+MYSQL_TIMESTAMP_DATETIME = 1
+WinAccountGuestSid = 39
+MYSQL_TYPE_VARCHAR = 15
+MYSQL_TYPE_TINY = 1
+MYSQL_TYPE_LONGLONG = 8
+MYSQL_STATUS_USE_RESULT = 2
+ActivationContextDetailedInformation = 2
+COM_STMT_PREPARE = 22
+SC_ACTION_RESTART = 1
+SystemPowerStateHandler = 6
+WinNetworkServiceSid = 24
+ProcessorPowerPolicyDc = 19
+GEO_TIMEZONES = 10
+MYSQL_SET_CHARSET_NAME = 7
+JobObjectBasicAccountingInformation = 1
+REAL_RESULT = 1
+WinAccountPolicyAdminsSid = 49
+COM_CHANGE_USER = 17
+Win32ServiceShareProcess = 32
 PowerSystemUnspecified = 0
 TokenSandBoxInert = 15
-TapeDriveScsiConnectionError = 9
-IMPORT_OBJECT_NAME_NO_PREFIX = 2
-WinBuiltinPreWindows2000CompatibleAccessSid = 35
-COM_CONNECT = 11
-WinAccountDomainGuestsSid = 43
-MYSQL_TYPE_TINY_BLOB = 249
-ProcessorStateHandler2 = 13
-COM_TIME = 15
-PowerSystemMaximum = 7
-GetFileExMaxInfoLevel = 1
-MYSQL_RPL_SLAVE = 1
-JobObjectSecurityLimitInformation = 5
-MYSQL_TYPE_STRING = 254
-MYSQL_TYPE_SET = 248
-WinServiceSid = 12
-MYSQL_TYPE_BLOB = 252
-MYSQL_TYPE_NEWDATE = 14
-SecurityDelegation = 3
-STRING_RESULT = 0
-SecurityAnonymous = 0
-AssemblyDetailedInformationInActivationContext = 3
-ExceptionCollidedUnwind = 3
-COMIMAGE_FLAGS_32BITREQUIRED = 2
-PowerActionShutdownOff = 6
-COR_VTABLE_FROM_UNMANAGED = 4
-PowerSystemSleeping2 = 3
-MAX_CLASS_NAME = 1024
-IMPORT_OBJECT_NAME = 1
-MYSQL_TYPE_DATE = 10
-WinAccountKrbtgtSid = 40
-MYSQL_OPTION_MULTI_STATEMENTS_OFF = 1
-MYSQL_TYPE_MEDIUM_BLOB = 250
-COR_VTABLE_64BIT = 2
-PowerSystemShutdown = 6
-MYSQL_TYPE_INT24 = 9
-SidTypeDomain = 3
-INT_RESULT = 2
-WinNullSid = 0
-COR_VTABLEGAP_NAME_LENGTH = 8
-TokenPrimary = 1
-PowerActionWarmEject = 7
-Win32ServiceOwnProcess = 16
-COMIMAGE_FLAGS_TRACKDEBUGDATA = 65536
-WinAccountDomainUsersSid = 42
-WinSChannelAuthenticationSid = 53
-PowerActionShutdown = 4
-SidTypeUser = 1
-JobObjectBasicAccountingInformation = 1
-MYSQL_TYPE_VARCHAR = 15
-IMPORT_OBJECT_CONST = 2
-SystemPowerPolicyAc = 0
-PowerActionSleep = 2
-ExceptionContinueSearch = 1
-SidTypeGroup = 2
-SystemPowerLoggingEntry = 24
-SystemPowerStateLogging = 23
-PowerSystemWorking = 1
-CriticalError = 3
-TokenGroupsAndPrivileges = 13
-TapeDriveReadWriteError = 2
-TapeDriveUnsupportedMedia = 8
-WinBuiltinBackupOperatorsSid = 33
-MYSQL_SHARED_MEMORY_BASE_NAME = 10
-CURSOR_TYPE_SCROLLABLE = 4
-ProcessorInformation = 11
-MYSQL_SET_CLIENT_IP = 17
-TapeDriveTimetoClean = 10
-WinBatchSid = 10
-ProcessorPowerPolicyAc = 18
-TokenImpersonationLevel = 9
-SystemPowerInformation = 12
-GEO_NATION = 1
-GetFileExInfoStandard = 0
-SystemReserveHiberFile = 10
-IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = 1
-WinDigestAuthenticationSid = 52
-ProcessorPowerPolicyCurrent = 22
-COM_DEBUG = 13
-SidTypeAlias = 4
-SystemPowerCapabilities = 4
-MYSQL_TIMESTAMP_NONE = -2
-MaxJobObjectInfoClass = 11
-IMAGE_COR_MIH_BASICBLOCK = 8
-MYSQL_SECURE_AUTH = 18
-WinLogonIdsSid = 21
 GEO_OFFICIALNAME = 9
-TapeDriveReadWriteWarning = 1
-MYSQL_TYPE_DOUBLE = 5
-MYSQL_OPT_USE_EMBEDDED_CONNECTION = 15
-MYSQL_TIMESTAMP_ERROR = -1
-LastSleepTime = 15
-SystemLoad = 1
-TapeDriveMediaLifeExpired = 12
-PowerActionHibernate = 3
-SystemPowerStateHandler = 6
-MYSQL_STMT_PREPARE_DONE = 2
-TokenUser = 1
-TokenSessionId = 12
-WinBuiltinPrintOperatorsSid = 32
-FileInformationInAssemblyOfAssemblyInActivationContxt = 4
-MYSQL_SET_CHARSET_NAME = 7
-WinDialupSid = 8
-IMAGE_COR_MIH_EHRVA = 2
-GEOCLASS_REGION = 14
-MYSQL_TYPE_TIMESTAMP = 7
-AssemblyDetailedInformationInActivationContxt = 3
-MYSQL_STATUS_READY = 0
-MYSQL_PROTOCOL_MEMORY = 4
-VerifyProcessorPowerPolicyDc = 21
-COM_SET_OPTION = 27
-RNRSERVICE_DELETE = 2
-MYSQL_TYPE_GEOMETRY = 255
-MYSQL_PROTOCOL_DEFAULT = 0
-MYSQL_STMT_INIT_DONE = 1
-COM_DAEMON = 29
-COMP_NOTLESS = 1
-TapeDriveProblemNone = 0
+TapeDriveReadWriteError = 2
+Win32ServiceOwnProcess = 16
 MYSQL_RPL_MASTER = 0
 MYSQL_STMT_FETCH_DONE = 4
-MYSQL_OPT_CONNECT_TIMEOUT = 0
-WinNtAuthoritySid = 7
-MYSQL_SET_CHARSET_DIR = 6
-MYSQL_TYPE_LONGLONG = 8
-SystemPowerPolicyCurrent = 8
-MYSQL_TYPE_NULL = 6
-COM_PING = 14
+SidTypeComputer = 9
+MYSQL_PROTOCOL_MEMORY = 4
+COM_DROP_DB = 6
+WinServiceSid = 12
+SystemBatteryState = 5
+HeapCompatibilityInformation = 0
+IgnoreError = 0
+MYSQL_TYPE_SET = 248
+WinBuiltinNetworkConfigurationOperatorsSid = 37
+GetFileExMaxInfoLevel = 1
+MYSQL_TYPE_INT24 = 9
+AdministratorPowerPolicy = 9
+WinLocalServiceSid = 23
+TapeDriveReadWriteWarning = 1
+MYSQL_OPT_PROTOCOL = 9
+WinDialupSid = 8
+MaxJobObjectInfoClass = 11
+MYSQL_STMT_EXECUTE_DONE = 3
+WinAccountEnterpriseAdminsSid = 48
+MYSQL_PROTOCOL_PIPE = 3
+PowerActionWarmEject = 7
+AclSizeInformation = 2
+TokenSessionReference = 14
+TokenPrimary = 1
+NSP_NOTIFY_PORT = 3
+NSP_NOTIFY_IMMEDIATELY = 0
+SidTypeGroup = 2
+MYSQL_TIMESTAMP_ERROR = -1
+COM_REGISTER_SLAVE = 21
+COMIMAGE_FLAGS_ILONLY = 1
+WinRestrictedCodeSid = 18
+IMPORT_OBJECT_CODE = 0
+RNRSERVICE_DELETE = 2
+FindExInfoMaxInfoLevel = 1
+RecognizerType = 8
+SystemPowerCapabilities = 4
+WinAccountRasAndIasServersSid = 50
+GEO_OFFICIALLANGUAGES = 11
+WinAccountSchemaAdminsSid = 47
+WinBuiltinRemoteDesktopUsersSid = 36
+WinAccountControllersSid = 45
+COR_VERSION_MINOR = 0
+COM_SET_OPTION = 27
+DriverType = 1
+WinAccountDomainAdminsSid = 41
+JobObjectBasicProcessIdList = 3
 RNRSERVICE_DEREGISTER = 1
-MYSQL_READ_DEFAULT_FILE = 4
+AuditEventObjectAccess = 0
+WinBuiltinSystemOperatorsSid = 31
+WinBuiltinPowerUsersSid = 29
+WinBuiltinUsersSid = 27
+AssemblyDetailedInformationInActivationContext = 3
+COR_VERSION_MAJOR = 2
+MYSQL_TYPE_TIMESTAMP = 7
+MYSQL_PROTOCOL_TCP = 1
+IMPORT_OBJECT_ORDINAL = 0
+WinBuiltinPerfLoggingUsersSid = 58
+COM_FIELD_LIST = 4
+PowerActionShutdownReset = 5
+WinBatchSid = 10
+SidTypeWellKnownGroup = 5
+CURSOR_TYPE_SCROLLABLE = 4
+MYSQL_OPTION_MULTI_STATEMENTS_OFF = 1
+MYSQL_SET_CLIENT_IP = 17
+WinBuiltinPreWindows2000CompatibleAccessSid = 35
+COM_END = 30
+COR_VTABLE_32BIT = 1
+MYSQL_TYPE_LONG = 3
+MYSQL_STATUS_GET_RESULT = 1
+MAX_PACKAGE_NAME = 1024
+MYSQL_TYPE_DOUBLE = 5
+SC_ENUM_PROCESS_INFO = 0
+FindExSearchNameMatch = 0
+GEOCLASS_REGION = 14
+COM_DELAYED_INSERT = 16
+VerifySystemPolicyAc = 2
+WinLogonIdsSid = 21
+SevereError = 2
+STRING_RESULT = 0
+SystemExecutionState = 16
+MYSQL_SHARED_MEMORY_BASE_NAME = 10
+MYSQL_TYPE_MEDIUM_BLOB = 250
+MYSQL_TYPE_DECIMAL = 0
+WinAccountCertAdminsSid = 46
+MYSQL_TYPE_DATE = 10
+SecurityAnonymous = 0
+COR_VERSION_MAJOR_V2 = 2
+MYSQL_TYPE_FLOAT = 4
+COM_STATISTICS = 9
+SHUTDOWN_WAIT_CRITICAL_BUFFERS = 17
+JobObjectExtendedLimitInformation = 9
+TokenUser = 1
+JobObjectJobSetInformation = 10
+SidTypeUnknown = 8
+TokenSessionId = 12
+JobObjectBasicUIRestrictions = 4
+ExceptionContinueExecution = 0
+MYSQL_OPT_GUESS_CONNECTION = 16
+TapeDriveSnappedTape = 13
+RelationNumaNode = 1
+MYSQL_TYPE_YEAR = 13
+COR_VTABLEGAP_NAME_LENGTH = 8
+MYSQL_TYPE_DATETIME = 12
+WinBuiltinPerfMonitoringUsersSid = 57
+PowerActionShutdown = 4
+MYSQL_TYPE_TINY_BLOB = 249
+SystemPowerPolicyDc = 1
+BootLoad = 0
+SystemLoad = 1
+RelationProcessorCore = 0
+JobObjectAssociateCompletionPortInformation = 7
+WinBuiltinReplicatorSid = 34
+MYSQL_TYPE_NEWDECIMAL = 246
+AutoLoad = 2
+MYSQL_OPT_WRITE_TIMEOUT = 12
+MYSQL_TYPE_ENUM = 247
+SidTypeUser = 1
+MAX_CLASS_NAME = 1024
+ActivationContextBasicInformation = 1
+COM_CREATE_DB = 5
+WinRemoteLogonIdSid = 20
+COM_DEBUG = 13
+COMPARE_STRING = 1
+LastSleepTime = 15
+MYSQL_OPT_USE_REMOTE_CONNECTION = 14
+MYSQL_OPT_USE_RESULT = 13
+ProcessorPowerPolicyAc = 18
+PowerActionHibernate = 3
+MYSQL_TYPE_BLOB = 252
+WinNtAuthoritySid = 7
+LastWakeTime = 14
+TokenRestrictedSids = 11
+WinAnonymousSid = 13
+WinInteractiveSid = 11
+TapeDriveMediaLifeExpired = 12
+JobObjectEndOfJobTimeInformation = 6
+TokenType = 8
+WinBuiltinIncomingForestTrustBuildersSid = 56
+SHUTDOWN_DEFAULT = 0
+VerifySystemPolicyDc = 3
+WinLocalSid = 2
+TokenGroups = 2
+MYSQL_SECURE_AUTH = 18
+MYSQL_TYPE_VAR_STRING = 253
+COM_REFRESH = 7
+WinBuiltinBackupOperatorsSid = 33
+PowerDeviceD0 = 1
+DemandLoad = 3
+IMAGE_COR_EATJ_THUNK_SIZE = 32
+SHUTDOWN_WAIT_CONNECTIONS = 1
+COM_STMT_EXECUTE = 23
+IMPORT_OBJECT_NAME_UNDECORATE = 3
+WinTerminalServerSid = 19
+TapeDriveHardwareError = 7
+TapeDriveWriteWarning = 4
+WinAccountComputersSid = 44
+COMIMAGE_FLAGS_STRONGNAMESIGNED = 8
+NSP_NOTIFY_APC = 4
+MaxActivationContextInfoClass = 5
+TapeDriveCleanDriveNow = 11
+JobObjectSecurityLimitInformation = 5
+ExceptionNestedException = 2
+ExceptionContinueSearch = 1
+PowerSystemHibernate = 5
+WinOtherOrganizationSid = 55
+COM_PROCESS_INFO = 10
+SHUTDOWN_WAIT_TRANSACTIONS = 2
 PowerActionReserved = 1
+IMPORT_OBJECT_NAME_NO_PREFIX = 2
+COM_STMT_SEND_LONG_DATA = 24
+WinCreatorOwnerServerSid = 5
+FindExInfoStandard = 0
+TokenImpersonationLevel = 9
+CriticalError = 3
+WinBuiltinPrintOperatorsSid = 32
+MYSQL_TIMESTAMP_NONE = -2
+COMIMAGE_FLAGS_IL_LIBRARY = 4
+SidTypeDomain = 3
+COR_VTABLE_CALL_MOST_DERIVED = 16
+COM_PROCESS_KILL = 12
+MYSQL_PROTOCOL_SOCKET = 2
+COMIMAGE_FLAGS_TRACKDEBUGDATA = 65536
+WinNetworkSid = 9
+WinLocalSystemSid = 22
+ProcessorStateHandler2 = 13
+MYSQL_READ_DEFAULT_GROUP = 5
+RNRSERVICE_REGISTER = 0
+WinAccountDomainGuestsSid = 43
+PowerDeviceMaximum = 5
+PowerActionSleep = 2
+MYSQL_TYPE_NULL = 6
+IMPORT_OBJECT_NAME = 1
+PowerSystemMaximum = 7
+PowerSystemShutdown = 6
+SystemPowerLoggingEntry = 24
+COM_STMT_FETCH = 28
+PowerSystemSleeping3 = 4
+TapeDriveTimetoClean = 10
+SecurityDelegation = 3
+PowerSystemSleeping1 = 2
+COMIMAGE_FLAGS_32BITREQUIRED = 2
+MYSQL_PROTOCOL_DEFAULT = 0
+WinThisOrganizationSid = 54
+COR_VTABLE_FROM_UNMANAGED = 4
+COM_DAEMON = 29
+WinCreatorGroupSid = 4
+MYSQL_STMT_PREPARE_DONE = 2
+TokenSource = 7
+COM_TIME = 15
+MYSQL_READ_DEFAULT_FILE = 4
+SidTypeAlias = 4
+SystemPowerStateNotifyHandler = 17
+WinAuthenticatedUserSid = 17
+SystemPowerInformation = 12
+SC_ACTION_NONE = 0
+GEO_LATITUDE = 2
+MYSQL_OPT_CONNECT_TIMEOUT = 0
+WinBuiltinAccountOperatorsSid = 30
+WinAccountDomainUsersSid = 42
+MYSQL_RPL_ADMIN = 2
+MYSQL_OPT_NAMED_PIPE = 2
+COR_VTABLE_64BIT = 2
+MYSQL_TYPE_SHORT = 2
+GetFileExInfoStandard = 0
+WinCreatorOwnerSid = 3
+FileInformationInAssemblyOfAssemblyInActivationContxt = 4
+SystemPowerStateLogging = 23
+TapeDriveUnsupportedMedia = 8
+MYSQL_OPT_COMPRESS = 1
+JobObjectBasicLimitInformation = 2
+PowerDeviceD2 = 3
+MYSQL_TYPE_BIT = 16
+MYSQL_OPT_USE_EMBEDDED_CONNECTION = 15
+WinSChannelAuthenticationSid = 53
+SystemPowerPolicyAc = 0
+AssemblyDetailedInformationInActivationContxt = 3
+MYSQL_RPL_SLAVE = 1
+WinBuiltinAdministratorsSid = 26
+WinSelfSid = 16
+TokenStatistics = 10
+ProcessorInformation = 11
+MYSQL_TYPE_STRING = 254
+LT_DONT_CARE = 0
+MYSQL_REPORT_DATA_TRUNCATION = 19
+STMT_ATTR_PREFETCH_ROWS = 2
+IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = 1
+TokenGroupsAndPrivileges = 13
 wint_t = c_ushort
 wctype_t = c_ushort
 
@@ -614,23 +614,23 @@ _VIDEOPARAMETERS._fields_ = [
     ('bCP_APSTriggerBits', ULONG),
     ('bOEMCopyProtection', UCHAR * 256),
 ]
+PVIDEOPARAMETERS = POINTER(_VIDEOPARAMETERS)
 VIDEOPARAMETERS = _VIDEOPARAMETERS
 LPVIDEOPARAMETERS = POINTER(_VIDEOPARAMETERS)
-PVIDEOPARAMETERS = POINTER(_VIDEOPARAMETERS)
-PINT8 = POINTER(c_byte)
 INT8 = c_byte
-INT16 = c_short
+PINT8 = POINTER(c_byte)
 PINT16 = POINTER(c_short)
-PINT32 = POINTER(c_int)
+INT16 = c_short
 INT32 = c_int
-INT64 = c_longlong
+PINT32 = POINTER(c_int)
 PINT64 = POINTER(c_longlong)
-PUINT8 = POINTER(c_ubyte)
+INT64 = c_longlong
 UINT8 = c_ubyte
-UINT16 = c_ushort
+PUINT8 = POINTER(c_ubyte)
 PUINT16 = POINTER(c_ushort)
-PUINT32 = POINTER(c_uint)
+UINT16 = c_ushort
 UINT32 = c_uint
+PUINT32 = POINTER(c_uint)
 PUINT64 = POINTER(c_ulonglong)
 UINT64 = c_ulonglong
 PLONG32 = POINTER(c_int)
@@ -641,30 +641,30 @@ PDWORD32 = POINTER(c_uint)
 DWORD32 = c_uint
 PINT_PTR = POINTER(c_int)
 INT_PTR = c_int
-UINT_PTR = c_uint
 PUINT_PTR = POINTER(c_uint)
-PLONG_PTR = POINTER(c_long)
+UINT_PTR = c_uint
 LONG_PTR = c_long
-ULONG_PTR = c_ulong
+PLONG_PTR = POINTER(c_long)
 PULONG_PTR = POINTER(c_ulong)
+ULONG_PTR = c_ulong
 PUHALF_PTR = POINTER(c_ushort)
 UHALF_PTR = c_ushort
-HALF_PTR = c_short
 PHALF_PTR = POINTER(c_short)
+HALF_PTR = c_short
 SHANDLE_PTR = c_long
 HANDLE_PTR = c_ulong
-SIZE_T = ULONG_PTR
 PSIZE_T = POINTER(ULONG_PTR)
+SIZE_T = ULONG_PTR
 SSIZE_T = LONG_PTR
 PSSIZE_T = POINTER(LONG_PTR)
 DWORD_PTR = ULONG_PTR
 PDWORD_PTR = POINTER(ULONG_PTR)
 LONG64 = c_longlong
 PLONG64 = POINTER(c_longlong)
-ULONG64 = c_ulonglong
 PULONG64 = POINTER(c_ulonglong)
-PDWORD64 = POINTER(c_ulonglong)
+ULONG64 = c_ulonglong
 DWORD64 = c_ulonglong
+PDWORD64 = POINTER(c_ulonglong)
 KAFFINITY = ULONG_PTR
 PKAFFINITY = POINTER(KAFFINITY)
 LPGUID = POINTER(GUID)
@@ -696,10 +696,10 @@ tagCOMPOSITIONFORM._fields_ = [
     ('ptCurrentPos', POINT),
     ('rcArea', RECT),
 ]
+PCOMPOSITIONFORM = POINTER(tagCOMPOSITIONFORM)
 COMPOSITIONFORM = tagCOMPOSITIONFORM
 LPCOMPOSITIONFORM = POINTER(tagCOMPOSITIONFORM)
 NPCOMPOSITIONFORM = POINTER(tagCOMPOSITIONFORM)
-PCOMPOSITIONFORM = POINTER(tagCOMPOSITIONFORM)
 class tagCANDIDATEFORM(Structure):
     pass
 tagCANDIDATEFORM._fields_ = [
@@ -708,10 +708,10 @@ tagCANDIDATEFORM._fields_ = [
     ('ptCurrentPos', POINT),
     ('rcArea', RECT),
 ]
-LPCANDIDATEFORM = POINTER(tagCANDIDATEFORM)
-CANDIDATEFORM = tagCANDIDATEFORM
 PCANDIDATEFORM = POINTER(tagCANDIDATEFORM)
+LPCANDIDATEFORM = POINTER(tagCANDIDATEFORM)
 NPCANDIDATEFORM = POINTER(tagCANDIDATEFORM)
+CANDIDATEFORM = tagCANDIDATEFORM
 class tagCANDIDATELIST(Structure):
     pass
 tagCANDIDATELIST._fields_ = [
@@ -723,10 +723,10 @@ tagCANDIDATELIST._fields_ = [
     ('dwPageSize', DWORD),
     ('dwOffset', DWORD * 1),
 ]
-LPCANDIDATELIST = POINTER(tagCANDIDATELIST)
-NPCANDIDATELIST = POINTER(tagCANDIDATELIST)
 CANDIDATELIST = tagCANDIDATELIST
+LPCANDIDATELIST = POINTER(tagCANDIDATELIST)
 PCANDIDATELIST = POINTER(tagCANDIDATELIST)
+NPCANDIDATELIST = POINTER(tagCANDIDATELIST)
 class tagREGISTERWORDA(Structure):
     pass
 CHAR = c_char
@@ -734,20 +734,20 @@ tagREGISTERWORDA._fields_ = [
     ('lpReading', LPSTR),
     ('lpWord', LPSTR),
 ]
-REGISTERWORDA = tagREGISTERWORDA
-LPREGISTERWORDA = POINTER(tagREGISTERWORDA)
-PREGISTERWORDA = POINTER(tagREGISTERWORDA)
 NPREGISTERWORDA = POINTER(tagREGISTERWORDA)
+PREGISTERWORDA = POINTER(tagREGISTERWORDA)
+LPREGISTERWORDA = POINTER(tagREGISTERWORDA)
+REGISTERWORDA = tagREGISTERWORDA
 class tagREGISTERWORDW(Structure):
     pass
 tagREGISTERWORDW._fields_ = [
     ('lpReading', LPWSTR),
     ('lpWord', LPWSTR),
 ]
-NPREGISTERWORDW = POINTER(tagREGISTERWORDW)
-REGISTERWORDW = tagREGISTERWORDW
 LPREGISTERWORDW = POINTER(tagREGISTERWORDW)
+NPREGISTERWORDW = POINTER(tagREGISTERWORDW)
 PREGISTERWORDW = POINTER(tagREGISTERWORDW)
+REGISTERWORDW = tagREGISTERWORDW
 REGISTERWORD = REGISTERWORDA
 PREGISTERWORD = PREGISTERWORDA
 NPREGISTERWORD = NPREGISTERWORDA
@@ -764,20 +764,20 @@ tagRECONVERTSTRING._fields_ = [
     ('dwTargetStrLen', DWORD),
     ('dwTargetStrOffset', DWORD),
 ]
-RECONVERTSTRING = tagRECONVERTSTRING
 NPRECONVERTSTRING = POINTER(tagRECONVERTSTRING)
-LPRECONVERTSTRING = POINTER(tagRECONVERTSTRING)
 PRECONVERTSTRING = POINTER(tagRECONVERTSTRING)
+LPRECONVERTSTRING = POINTER(tagRECONVERTSTRING)
+RECONVERTSTRING = tagRECONVERTSTRING
 class tagSTYLEBUFA(Structure):
     pass
 tagSTYLEBUFA._fields_ = [
     ('dwStyle', DWORD),
     ('szDescription', CHAR * 32),
 ]
-PSTYLEBUFA = POINTER(tagSTYLEBUFA)
 STYLEBUFA = tagSTYLEBUFA
-NPSTYLEBUFA = POINTER(tagSTYLEBUFA)
 LPSTYLEBUFA = POINTER(tagSTYLEBUFA)
+NPSTYLEBUFA = POINTER(tagSTYLEBUFA)
+PSTYLEBUFA = POINTER(tagSTYLEBUFA)
 class tagSTYLEBUFW(Structure):
     pass
 tagSTYLEBUFW._fields_ = [
@@ -785,8 +785,8 @@ tagSTYLEBUFW._fields_ = [
     ('szDescription', WCHAR * 32),
 ]
 STYLEBUFW = tagSTYLEBUFW
-NPSTYLEBUFW = POINTER(tagSTYLEBUFW)
 LPSTYLEBUFW = POINTER(tagSTYLEBUFW)
+NPSTYLEBUFW = POINTER(tagSTYLEBUFW)
 PSTYLEBUFW = POINTER(tagSTYLEBUFW)
 STYLEBUF = STYLEBUFA
 PSTYLEBUF = PSTYLEBUFA
@@ -807,8 +807,8 @@ tagIMEMENUITEMINFOA._fields_ = [
     ('szString', CHAR * 80),
     ('hbmpItem', HBITMAP),
 ]
-LPIMEMENUITEMINFOA = POINTER(tagIMEMENUITEMINFOA)
 NPIMEMENUITEMINFOA = POINTER(tagIMEMENUITEMINFOA)
+LPIMEMENUITEMINFOA = POINTER(tagIMEMENUITEMINFOA)
 IMEMENUITEMINFOA = tagIMEMENUITEMINFOA
 PIMEMENUITEMINFOA = POINTER(tagIMEMENUITEMINFOA)
 class tagIMEMENUITEMINFOW(Structure):
@@ -824,10 +824,10 @@ tagIMEMENUITEMINFOW._fields_ = [
     ('szString', WCHAR * 80),
     ('hbmpItem', HBITMAP),
 ]
-NPIMEMENUITEMINFOW = POINTER(tagIMEMENUITEMINFOW)
-IMEMENUITEMINFOW = tagIMEMENUITEMINFOW
 PIMEMENUITEMINFOW = POINTER(tagIMEMENUITEMINFOW)
+NPIMEMENUITEMINFOW = POINTER(tagIMEMENUITEMINFOW)
 LPIMEMENUITEMINFOW = POINTER(tagIMEMENUITEMINFOW)
+IMEMENUITEMINFOW = tagIMEMENUITEMINFOW
 IMEMENUITEMINFO = IMEMENUITEMINFOA
 PIMEMENUITEMINFO = PIMEMENUITEMINFOA
 NPIMEMENUITEMINFO = NPIMEMENUITEMINFOA
@@ -841,10 +841,10 @@ tagIMECHARPOSITION._fields_ = [
     ('cLineHeight', UINT),
     ('rcDocument', RECT),
 ]
+IMECHARPOSITION = tagIMECHARPOSITION
 LPIMECHARPOSITION = POINTER(tagIMECHARPOSITION)
 NPIMECHARPOSITION = POINTER(tagIMECHARPOSITION)
 PIMECHARPOSITION = POINTER(tagIMECHARPOSITION)
-IMECHARPOSITION = tagIMECHARPOSITION
 IMCENUMPROC = WINFUNCTYPE(BOOL, POINTER(HIMC__), c_long)
 REGISTERWORDENUMPROCA = WINFUNCTYPE(c_int, STRING, c_ulong, STRING, c_void_p)
 REGISTERWORDENUMPROCW = WINFUNCTYPE(c_int, WSTRING, c_ulong, WSTRING, c_void_p)
@@ -891,9 +891,9 @@ _MODEMSETTINGS._fields_ = [
     ('dwNegotiatedDCERate', DWORD),
     ('abVariablePortion', BYTE * 1),
 ]
-MODEMSETTINGS = _MODEMSETTINGS
-LPMODEMSETTINGS = POINTER(_MODEMSETTINGS)
 PMODEMSETTINGS = POINTER(_MODEMSETTINGS)
+LPMODEMSETTINGS = POINTER(_MODEMSETTINGS)
+MODEMSETTINGS = _MODEMSETTINGS
 SERVICETYPE = ULONG
 class _flowspec(Structure):
     pass
@@ -908,8 +908,8 @@ _flowspec._fields_ = [
     ('MinimumPolicedSize', ULONG),
 ]
 PFLOWSPEC = POINTER(_flowspec)
-FLOWSPEC = _flowspec
 LPFLOWSPEC = POINTER(_flowspec)
+FLOWSPEC = _flowspec
 class QOS_OBJECT_HDR(Structure):
     pass
 LPQOS_OBJECT_HDR = POINTER(QOS_OBJECT_HDR)
@@ -923,16 +923,16 @@ _QOS_SD_MODE._fields_ = [
     ('ObjectHdr', QOS_OBJECT_HDR),
     ('ShapeDiscardMode', ULONG),
 ]
-LPQOS_SD_MODE = POINTER(_QOS_SD_MODE)
 QOS_SD_MODE = _QOS_SD_MODE
+LPQOS_SD_MODE = POINTER(_QOS_SD_MODE)
 class _QOS_SHAPING_RATE(Structure):
     pass
 _QOS_SHAPING_RATE._fields_ = [
     ('ObjectHdr', QOS_OBJECT_HDR),
     ('ShapingRate', ULONG),
 ]
-LPQOS_SHAPING_RATE = POINTER(_QOS_SHAPING_RATE)
 QOS_SHAPING_RATE = _QOS_SHAPING_RATE
+LPQOS_SHAPING_RATE = POINTER(_QOS_SHAPING_RATE)
 class _OVERLAPPED(Structure):
     pass
 class N11_OVERLAPPED4DOLLAR_48E(Union):
@@ -966,9 +966,9 @@ _SECURITY_ATTRIBUTES._fields_ = [
     ('lpSecurityDescriptor', LPVOID),
     ('bInheritHandle', BOOL),
 ]
+PSECURITY_ATTRIBUTES = POINTER(_SECURITY_ATTRIBUTES)
 SECURITY_ATTRIBUTES = _SECURITY_ATTRIBUTES
 LPSECURITY_ATTRIBUTES = POINTER(_SECURITY_ATTRIBUTES)
-PSECURITY_ATTRIBUTES = POINTER(_SECURITY_ATTRIBUTES)
 class _PROCESS_INFORMATION(Structure):
     pass
 _PROCESS_INFORMATION._fields_ = [
@@ -992,9 +992,9 @@ _SYSTEMTIME._fields_ = [
     ('wSecond', WORD),
     ('wMilliseconds', WORD),
 ]
-SYSTEMTIME = _SYSTEMTIME
 LPSYSTEMTIME = POINTER(_SYSTEMTIME)
 PSYSTEMTIME = POINTER(_SYSTEMTIME)
+SYSTEMTIME = _SYSTEMTIME
 PTHREAD_START_ROUTINE = WINFUNCTYPE(DWORD, c_void_p)
 LPTHREAD_START_ROUTINE = PTHREAD_START_ROUTINE
 PFIBER_START_ROUTINE = WINFUNCTYPE(None, c_void_p)
@@ -1158,8 +1158,8 @@ _MEMORYSTATUS._fields_ = [
     ('dwTotalVirtual', SIZE_T),
     ('dwAvailVirtual', SIZE_T),
 ]
-LPMEMORYSTATUS = POINTER(_MEMORYSTATUS)
 MEMORYSTATUS = _MEMORYSTATUS
+LPMEMORYSTATUS = POINTER(_MEMORYSTATUS)
 class _EXCEPTION_DEBUG_INFO(Structure):
     pass
 class _EXCEPTION_RECORD(Structure):
@@ -1216,8 +1216,8 @@ class _EXIT_PROCESS_DEBUG_INFO(Structure):
 _EXIT_PROCESS_DEBUG_INFO._fields_ = [
     ('dwExitCode', DWORD),
 ]
-EXIT_PROCESS_DEBUG_INFO = _EXIT_PROCESS_DEBUG_INFO
 LPEXIT_PROCESS_DEBUG_INFO = POINTER(_EXIT_PROCESS_DEBUG_INFO)
+EXIT_PROCESS_DEBUG_INFO = _EXIT_PROCESS_DEBUG_INFO
 class _LOAD_DLL_DEBUG_INFO(Structure):
     pass
 _LOAD_DLL_DEBUG_INFO._fields_ = [
@@ -1228,15 +1228,15 @@ _LOAD_DLL_DEBUG_INFO._fields_ = [
     ('lpImageName', LPVOID),
     ('fUnicode', WORD),
 ]
-LPLOAD_DLL_DEBUG_INFO = POINTER(_LOAD_DLL_DEBUG_INFO)
 LOAD_DLL_DEBUG_INFO = _LOAD_DLL_DEBUG_INFO
+LPLOAD_DLL_DEBUG_INFO = POINTER(_LOAD_DLL_DEBUG_INFO)
 class _UNLOAD_DLL_DEBUG_INFO(Structure):
     pass
 _UNLOAD_DLL_DEBUG_INFO._fields_ = [
     ('lpBaseOfDll', LPVOID),
 ]
-UNLOAD_DLL_DEBUG_INFO = _UNLOAD_DLL_DEBUG_INFO
 LPUNLOAD_DLL_DEBUG_INFO = POINTER(_UNLOAD_DLL_DEBUG_INFO)
+UNLOAD_DLL_DEBUG_INFO = _UNLOAD_DLL_DEBUG_INFO
 class _OUTPUT_DEBUG_STRING_INFO(Structure):
     pass
 _OUTPUT_DEBUG_STRING_INFO._fields_ = [
@@ -1349,9 +1349,9 @@ _PROCESS_HEAP_ENTRY._fields_ = [
     ('wFlags', WORD),
     ('_0', N19_PROCESS_HEAP_ENTRY4DOLLAR_53E),
 ]
-PPROCESS_HEAP_ENTRY = POINTER(_PROCESS_HEAP_ENTRY)
-LPPROCESS_HEAP_ENTRY = POINTER(_PROCESS_HEAP_ENTRY)
 PROCESS_HEAP_ENTRY = _PROCESS_HEAP_ENTRY
+LPPROCESS_HEAP_ENTRY = POINTER(_PROCESS_HEAP_ENTRY)
+PPROCESS_HEAP_ENTRY = POINTER(_PROCESS_HEAP_ENTRY)
 PTOP_LEVEL_EXCEPTION_FILTER = WINFUNCTYPE(LONG, POINTER(_EXCEPTION_POINTERS))
 LPTOP_LEVEL_EXCEPTION_FILTER = PTOP_LEVEL_EXCEPTION_FILTER
 PAPCFUNC = WINFUNCTYPE(None, c_ulong)
@@ -1383,9 +1383,9 @@ _TIME_ZONE_INFORMATION._fields_ = [
     ('DaylightDate', SYSTEMTIME),
     ('DaylightBias', LONG),
 ]
+TIME_ZONE_INFORMATION = _TIME_ZONE_INFORMATION
 LPTIME_ZONE_INFORMATION = POINTER(_TIME_ZONE_INFORMATION)
 PTIME_ZONE_INFORMATION = POINTER(_TIME_ZONE_INFORMATION)
-TIME_ZONE_INFORMATION = _TIME_ZONE_INFORMATION
 PFE_EXPORT_FUNC = WINFUNCTYPE(DWORD, POINTER(BYTE), c_void_p, c_ulong)
 PFE_IMPORT_FUNC = WINFUNCTYPE(DWORD, POINTER(BYTE), c_void_p, POINTER(ULONG))
 PFLS_CALLBACK_FUNCTION = WINFUNCTYPE(None, c_void_p)
@@ -1424,8 +1424,8 @@ _STARTUPINFOA._fields_ = [
     ('hStdOutput', HANDLE),
     ('hStdError', HANDLE),
 ]
-LPSTARTUPINFOA = POINTER(_STARTUPINFOA)
 STARTUPINFOA = _STARTUPINFOA
+LPSTARTUPINFOA = POINTER(_STARTUPINFOA)
 class _STARTUPINFOW(Structure):
     pass
 _STARTUPINFOW._fields_ = [
@@ -1526,8 +1526,8 @@ class _EVENTLOG_FULL_INFORMATION(Structure):
 _EVENTLOG_FULL_INFORMATION._fields_ = [
     ('dwFull', DWORD),
 ]
-LPEVENTLOG_FULL_INFORMATION = POINTER(_EVENTLOG_FULL_INFORMATION)
 EVENTLOG_FULL_INFORMATION = _EVENTLOG_FULL_INFORMATION
+LPEVENTLOG_FULL_INFORMATION = POINTER(_EVENTLOG_FULL_INFORMATION)
 class tagHW_PROFILE_INFOA(Structure):
     pass
 tagHW_PROFILE_INFOA._fields_ = [
@@ -1544,8 +1544,8 @@ tagHW_PROFILE_INFOW._fields_ = [
     ('szHwProfileGuid', WCHAR * 39),
     ('szHwProfileName', WCHAR * 80),
 ]
-LPHW_PROFILE_INFOW = POINTER(tagHW_PROFILE_INFOW)
 HW_PROFILE_INFOW = tagHW_PROFILE_INFOW
+LPHW_PROFILE_INFOW = POINTER(tagHW_PROFILE_INFOW)
 HW_PROFILE_INFO = HW_PROFILE_INFOA
 LPHW_PROFILE_INFO = LPHW_PROFILE_INFOA
 class _SYSTEM_POWER_STATUS(Structure):
@@ -1558,8 +1558,8 @@ _SYSTEM_POWER_STATUS._fields_ = [
     ('BatteryLifeTime', DWORD),
     ('BatteryFullLifeTime', DWORD),
 ]
-LPSYSTEM_POWER_STATUS = POINTER(_SYSTEM_POWER_STATUS)
 SYSTEM_POWER_STATUS = _SYSTEM_POWER_STATUS
+LPSYSTEM_POWER_STATUS = POINTER(_SYSTEM_POWER_STATUS)
 COORD = _COORD
 PCOORD = POINTER(_COORD)
 PSMALL_RECT = POINTER(_SMALL_RECT)
@@ -1579,8 +1579,8 @@ _KEY_EVENT_RECORD._fields_ = [
     ('uChar', N17_KEY_EVENT_RECORD4DOLLAR_72E),
     ('dwControlKeyState', DWORD),
 ]
-PKEY_EVENT_RECORD = POINTER(_KEY_EVENT_RECORD)
 KEY_EVENT_RECORD = _KEY_EVENT_RECORD
+PKEY_EVENT_RECORD = POINTER(_KEY_EVENT_RECORD)
 class _MOUSE_EVENT_RECORD(Structure):
     pass
 _MOUSE_EVENT_RECORD._fields_ = [
@@ -1589,29 +1589,29 @@ _MOUSE_EVENT_RECORD._fields_ = [
     ('dwControlKeyState', DWORD),
     ('dwEventFlags', DWORD),
 ]
-MOUSE_EVENT_RECORD = _MOUSE_EVENT_RECORD
 PMOUSE_EVENT_RECORD = POINTER(_MOUSE_EVENT_RECORD)
+MOUSE_EVENT_RECORD = _MOUSE_EVENT_RECORD
 class _WINDOW_BUFFER_SIZE_RECORD(Structure):
     pass
 _WINDOW_BUFFER_SIZE_RECORD._fields_ = [
     ('dwSize', COORD),
 ]
-PWINDOW_BUFFER_SIZE_RECORD = POINTER(_WINDOW_BUFFER_SIZE_RECORD)
 WINDOW_BUFFER_SIZE_RECORD = _WINDOW_BUFFER_SIZE_RECORD
+PWINDOW_BUFFER_SIZE_RECORD = POINTER(_WINDOW_BUFFER_SIZE_RECORD)
 class _MENU_EVENT_RECORD(Structure):
     pass
 _MENU_EVENT_RECORD._fields_ = [
     ('dwCommandId', UINT),
 ]
-PMENU_EVENT_RECORD = POINTER(_MENU_EVENT_RECORD)
 MENU_EVENT_RECORD = _MENU_EVENT_RECORD
+PMENU_EVENT_RECORD = POINTER(_MENU_EVENT_RECORD)
 class _FOCUS_EVENT_RECORD(Structure):
     pass
 _FOCUS_EVENT_RECORD._fields_ = [
     ('bSetFocus', BOOL),
 ]
-PFOCUS_EVENT_RECORD = POINTER(_FOCUS_EVENT_RECORD)
 FOCUS_EVENT_RECORD = _FOCUS_EVENT_RECORD
+PFOCUS_EVENT_RECORD = POINTER(_FOCUS_EVENT_RECORD)
 class _INPUT_RECORD(Structure):
     pass
 class N13_INPUT_RECORD4DOLLAR_73E(Union):
@@ -1627,8 +1627,8 @@ _INPUT_RECORD._fields_ = [
     ('EventType', WORD),
     ('Event', N13_INPUT_RECORD4DOLLAR_73E),
 ]
-PINPUT_RECORD = POINTER(_INPUT_RECORD)
 INPUT_RECORD = _INPUT_RECORD
+PINPUT_RECORD = POINTER(_INPUT_RECORD)
 class _CHAR_INFO(Structure):
     pass
 class N10_CHAR_INFO4DOLLAR_74E(Union):
@@ -1652,16 +1652,16 @@ _CONSOLE_SCREEN_BUFFER_INFO._fields_ = [
     ('srWindow', SMALL_RECT),
     ('dwMaximumWindowSize', COORD),
 ]
-PCONSOLE_SCREEN_BUFFER_INFO = POINTER(_CONSOLE_SCREEN_BUFFER_INFO)
 CONSOLE_SCREEN_BUFFER_INFO = _CONSOLE_SCREEN_BUFFER_INFO
+PCONSOLE_SCREEN_BUFFER_INFO = POINTER(_CONSOLE_SCREEN_BUFFER_INFO)
 class _CONSOLE_CURSOR_INFO(Structure):
     pass
 _CONSOLE_CURSOR_INFO._fields_ = [
     ('dwSize', DWORD),
     ('bVisible', BOOL),
 ]
-PCONSOLE_CURSOR_INFO = POINTER(_CONSOLE_CURSOR_INFO)
 CONSOLE_CURSOR_INFO = _CONSOLE_CURSOR_INFO
+PCONSOLE_CURSOR_INFO = POINTER(_CONSOLE_CURSOR_INFO)
 class _CONSOLE_FONT_INFO(Structure):
     pass
 _CONSOLE_FONT_INFO._fields_ = [
@@ -1740,10 +1740,10 @@ HDC__._fields_ = [
 ]
 class HGLRC__(Structure):
     pass
+HGLRC = POINTER(HGLRC__)
 HGLRC__._fields_ = [
     ('unused', c_int),
 ]
-HGLRC = POINTER(HGLRC__)
 class HDESK__(Structure):
     pass
 HDESK__._fields_ = [
@@ -1824,32 +1824,32 @@ HMONITOR__._fields_ = [
 ]
 class HWINEVENTHOOK__(Structure):
     pass
-HWINEVENTHOOK = POINTER(HWINEVENTHOOK__)
 HWINEVENTHOOK__._fields_ = [
     ('unused', c_int),
 ]
+HWINEVENTHOOK = POINTER(HWINEVENTHOOK__)
 class HUMPD__(Structure):
     pass
+HUMPD = POINTER(HUMPD__)
 HUMPD__._fields_ = [
     ('unused', c_int),
 ]
-HUMPD = POINTER(HUMPD__)
 HFILE = c_int
 HCURSOR = HICON
 LPCOLORREF = POINTER(DWORD)
+NPRECT = POINTER(tagRECT)
 PRECT = POINTER(tagRECT)
 LPRECT = POINTER(tagRECT)
-NPRECT = POINTER(tagRECT)
 LPCRECT = POINTER(RECT)
-LPRECTL = POINTER(_RECTL)
 PRECTL = POINTER(_RECTL)
+LPRECTL = POINTER(_RECTL)
 LPCRECTL = POINTER(RECTL)
-LPPOINT = POINTER(tagPOINT)
 NPPOINT = POINTER(tagPOINT)
 PPOINT = POINTER(tagPOINT)
+LPPOINT = POINTER(tagPOINT)
 PPOINTL = POINTER(_POINTL)
-LPSIZE = POINTER(tagSIZE)
 PSIZE = POINTER(tagSIZE)
+LPSIZE = POINTER(tagSIZE)
 LPSIZEL = POINTER(SIZE)
 PSIZEL = POINTER(SIZE)
 class tagPOINTS(Structure):
@@ -1859,8 +1859,8 @@ tagPOINTS._fields_ = [
     ('x', SHORT),
     ('y', SHORT),
 ]
-LPPOINTS = POINTER(tagPOINTS)
 POINTS = tagPOINTS
+LPPOINTS = POINTER(tagPOINTS)
 PPOINTS = POINTER(tagPOINTS)
 LPFILETIME = POINTER(_FILETIME)
 PFILETIME = POINTER(_FILETIME)
@@ -1889,8 +1889,8 @@ _PSFEATURE_OUTPUT._fields_ = [
     ('bPageIndependent', BOOL),
     ('bSetPageDevice', BOOL),
 ]
-PSFEATURE_OUTPUT = _PSFEATURE_OUTPUT
 PPSFEATURE_OUTPUT = POINTER(_PSFEATURE_OUTPUT)
+PSFEATURE_OUTPUT = _PSFEATURE_OUTPUT
 class _PSFEATURE_CUSTPAPER(Structure):
     pass
 _PSFEATURE_CUSTPAPER._fields_ = [
@@ -1900,8 +1900,8 @@ _PSFEATURE_CUSTPAPER._fields_ = [
     ('lWidthOffset', LONG),
     ('lHeightOffset', LONG),
 ]
-PSFEATURE_CUSTPAPER = _PSFEATURE_CUSTPAPER
 PPSFEATURE_CUSTPAPER = POINTER(_PSFEATURE_CUSTPAPER)
+PSFEATURE_CUSTPAPER = _PSFEATURE_CUSTPAPER
 class tagXFORM(Structure):
     pass
 tagXFORM._fields_ = [
@@ -1912,9 +1912,9 @@ tagXFORM._fields_ = [
     ('eDx', FLOAT),
     ('eDy', FLOAT),
 ]
-XFORM = tagXFORM
 LPXFORM = POINTER(tagXFORM)
 PXFORM = POINTER(tagXFORM)
+XFORM = tagXFORM
 class tagBITMAP(Structure):
     pass
 tagBITMAP._fields_ = [
@@ -1927,9 +1927,9 @@ tagBITMAP._fields_ = [
     ('bmBits', LPVOID),
 ]
 LPBITMAP = POINTER(tagBITMAP)
-NPBITMAP = POINTER(tagBITMAP)
-BITMAP = tagBITMAP
 PBITMAP = POINTER(tagBITMAP)
+BITMAP = tagBITMAP
+NPBITMAP = POINTER(tagBITMAP)
 class tagRGBTRIPLE(Structure):
     pass
 tagRGBTRIPLE._fields_ = [
@@ -1950,8 +1950,8 @@ RGBQUAD = tagRGBQUAD
 LPRGBQUAD = POINTER(RGBQUAD)
 LCSCSTYPE = LONG
 LCSGAMUTMATCH = LONG
-LPFXPT16DOT16 = POINTER(c_long)
 FXPT16DOT16 = c_long
+LPFXPT16DOT16 = POINTER(c_long)
 LPFXPT2DOT30 = POINTER(c_long)
 FXPT2DOT30 = c_long
 class tagCIEXYZ(Structure):
@@ -1986,8 +1986,8 @@ tagLOGCOLORSPACEA._fields_ = [
     ('lcsGammaBlue', DWORD),
     ('lcsFilename', CHAR * 260),
 ]
-LPLOGCOLORSPACEA = POINTER(tagLOGCOLORSPACEA)
 LOGCOLORSPACEA = tagLOGCOLORSPACEA
+LPLOGCOLORSPACEA = POINTER(tagLOGCOLORSPACEA)
 class tagLOGCOLORSPACEW(Structure):
     pass
 tagLOGCOLORSPACEW._fields_ = [
@@ -2002,8 +2002,8 @@ tagLOGCOLORSPACEW._fields_ = [
     ('lcsGammaBlue', DWORD),
     ('lcsFilename', WCHAR * 260),
 ]
-LOGCOLORSPACEW = tagLOGCOLORSPACEW
 LPLOGCOLORSPACEW = POINTER(tagLOGCOLORSPACEW)
+LOGCOLORSPACEW = tagLOGCOLORSPACEW
 LOGCOLORSPACE = LOGCOLORSPACEA
 LPLOGCOLORSPACE = LPLOGCOLORSPACEA
 class tagBITMAPCOREHEADER(Structure):
@@ -2015,9 +2015,9 @@ tagBITMAPCOREHEADER._fields_ = [
     ('bcPlanes', WORD),
     ('bcBitCount', WORD),
 ]
-PBITMAPCOREHEADER = POINTER(tagBITMAPCOREHEADER)
 BITMAPCOREHEADER = tagBITMAPCOREHEADER
 LPBITMAPCOREHEADER = POINTER(tagBITMAPCOREHEADER)
+PBITMAPCOREHEADER = POINTER(tagBITMAPCOREHEADER)
 class tagBITMAPINFOHEADER(Structure):
     pass
 tagBITMAPINFOHEADER._fields_ = [
@@ -2034,8 +2034,8 @@ tagBITMAPINFOHEADER._fields_ = [
     ('biClrImportant', DWORD),
 ]
 PBITMAPINFOHEADER = POINTER(tagBITMAPINFOHEADER)
-LPBITMAPINFOHEADER = POINTER(tagBITMAPINFOHEADER)
 BITMAPINFOHEADER = tagBITMAPINFOHEADER
+LPBITMAPINFOHEADER = POINTER(tagBITMAPINFOHEADER)
 class BITMAPV4HEADER(Structure):
     pass
 BITMAPV4HEADER._fields_ = [
@@ -2098,8 +2098,8 @@ tagBITMAPINFO._fields_ = [
     ('bmiHeader', BITMAPINFOHEADER),
     ('bmiColors', RGBQUAD * 1),
 ]
-LPBITMAPINFO = POINTER(tagBITMAPINFO)
 PBITMAPINFO = POINTER(tagBITMAPINFO)
+LPBITMAPINFO = POINTER(tagBITMAPINFO)
 BITMAPINFO = tagBITMAPINFO
 class tagBITMAPCOREINFO(Structure):
     pass
@@ -2121,8 +2121,8 @@ tagBITMAPFILEHEADER._fields_ = [
     ('bfOffBits', DWORD),
 ]
 LPBITMAPFILEHEADER = POINTER(tagBITMAPFILEHEADER)
-PBITMAPFILEHEADER = POINTER(tagBITMAPFILEHEADER)
 BITMAPFILEHEADER = tagBITMAPFILEHEADER
+PBITMAPFILEHEADER = POINTER(tagBITMAPFILEHEADER)
 class tagFONTSIGNATURE(Structure):
     pass
 tagFONTSIGNATURE._fields_ = [
@@ -2139,10 +2139,10 @@ tagCHARSETINFO._fields_ = [
     ('ciACP', UINT),
     ('fs', FONTSIGNATURE),
 ]
-CHARSETINFO = tagCHARSETINFO
-LPCHARSETINFO = POINTER(tagCHARSETINFO)
 PCHARSETINFO = POINTER(tagCHARSETINFO)
 NPCHARSETINFO = POINTER(tagCHARSETINFO)
+LPCHARSETINFO = POINTER(tagCHARSETINFO)
+CHARSETINFO = tagCHARSETINFO
 class tagLOCALESIGNATURE(Structure):
     pass
 tagLOCALESIGNATURE._fields_ = [
@@ -2151,8 +2151,8 @@ tagLOCALESIGNATURE._fields_ = [
     ('lsCsbSupported', DWORD * 2),
 ]
 PLOCALESIGNATURE = POINTER(tagLOCALESIGNATURE)
-LOCALESIGNATURE = tagLOCALESIGNATURE
 LPLOCALESIGNATURE = POINTER(tagLOCALESIGNATURE)
+LOCALESIGNATURE = tagLOCALESIGNATURE
 class tagHANDLETABLE(Structure):
     pass
 tagHANDLETABLE._fields_ = [
@@ -2203,9 +2203,9 @@ tagENHMETARECORD._fields_ = [
     ('nSize', DWORD),
     ('dParm', DWORD * 1),
 ]
+LPENHMETARECORD = POINTER(tagENHMETARECORD)
 PENHMETARECORD = POINTER(tagENHMETARECORD)
 ENHMETARECORD = tagENHMETARECORD
-LPENHMETARECORD = POINTER(tagENHMETARECORD)
 class tagENHMETAHEADER(Structure):
     pass
 tagENHMETAHEADER._fields_ = [
@@ -2229,9 +2229,9 @@ tagENHMETAHEADER._fields_ = [
     ('bOpenGL', DWORD),
     ('szlMicrometers', SIZEL),
 ]
+PENHMETAHEADER = POINTER(tagENHMETAHEADER)
 ENHMETAHEADER = tagENHMETAHEADER
 LPENHMETAHEADER = POINTER(tagENHMETAHEADER)
-PENHMETAHEADER = POINTER(tagENHMETAHEADER)
 BCHAR = BYTE
 class tagTEXTMETRICA(Structure):
     pass
@@ -2257,9 +2257,9 @@ tagTEXTMETRICA._fields_ = [
     ('tmPitchAndFamily', BYTE),
     ('tmCharSet', BYTE),
 ]
-LPTEXTMETRICA = POINTER(tagTEXTMETRICA)
-NPTEXTMETRICA = POINTER(tagTEXTMETRICA)
 PTEXTMETRICA = POINTER(tagTEXTMETRICA)
+NPTEXTMETRICA = POINTER(tagTEXTMETRICA)
+LPTEXTMETRICA = POINTER(tagTEXTMETRICA)
 TEXTMETRICA = tagTEXTMETRICA
 class tagTEXTMETRICW(Structure):
     pass
@@ -2321,8 +2321,8 @@ tagNEWTEXTMETRICA._fields_ = [
     ('ntmCellHeight', UINT),
     ('ntmAvgWidth', UINT),
 ]
-NPNEWTEXTMETRICA = POINTER(tagNEWTEXTMETRICA)
 PNEWTEXTMETRICA = POINTER(tagNEWTEXTMETRICA)
+NPNEWTEXTMETRICA = POINTER(tagNEWTEXTMETRICA)
 NEWTEXTMETRICA = tagNEWTEXTMETRICA
 LPNEWTEXTMETRICA = POINTER(tagNEWTEXTMETRICA)
 class tagNEWTEXTMETRICW(Structure):
@@ -2385,9 +2385,9 @@ tagPELARRAY._fields_ = [
     ('paYExt', LONG),
     ('paRGBs', BYTE),
 ]
-PPELARRAY = POINTER(tagPELARRAY)
-PELARRAY = tagPELARRAY
 LPPELARRAY = POINTER(tagPELARRAY)
+PELARRAY = tagPELARRAY
+PPELARRAY = POINTER(tagPELARRAY)
 NPPELARRAY = POINTER(tagPELARRAY)
 class tagLOGBRUSH(Structure):
     pass
@@ -2397,8 +2397,8 @@ tagLOGBRUSH._fields_ = [
     ('lbHatch', ULONG_PTR),
 ]
 LOGBRUSH = tagLOGBRUSH
-NPLOGBRUSH = POINTER(tagLOGBRUSH)
 LPLOGBRUSH = POINTER(tagLOGBRUSH)
+NPLOGBRUSH = POINTER(tagLOGBRUSH)
 PLOGBRUSH = POINTER(tagLOGBRUSH)
 class tagLOGBRUSH32(Structure):
     pass
@@ -2407,10 +2407,10 @@ tagLOGBRUSH32._fields_ = [
     ('lbColor', COLORREF),
     ('lbHatch', ULONG),
 ]
+PLOGBRUSH32 = POINTER(tagLOGBRUSH32)
 LOGBRUSH32 = tagLOGBRUSH32
 LPLOGBRUSH32 = POINTER(tagLOGBRUSH32)
 NPLOGBRUSH32 = POINTER(tagLOGBRUSH32)
-PLOGBRUSH32 = POINTER(tagLOGBRUSH32)
 PATTERN = LOGBRUSH
 PPATTERN = POINTER(PATTERN)
 NPPATTERN = POINTER(PATTERN)
@@ -2422,10 +2422,10 @@ tagLOGPEN._fields_ = [
     ('lopnWidth', POINT),
     ('lopnColor', COLORREF),
 ]
+PLOGPEN = POINTER(tagLOGPEN)
 NPLOGPEN = POINTER(tagLOGPEN)
 LPLOGPEN = POINTER(tagLOGPEN)
 LOGPEN = tagLOGPEN
-PLOGPEN = POINTER(tagLOGPEN)
 class tagEXTLOGPEN(Structure):
     pass
 tagEXTLOGPEN._fields_ = [
@@ -2438,9 +2438,9 @@ tagEXTLOGPEN._fields_ = [
     ('elpStyleEntry', DWORD * 1),
 ]
 LPEXTLOGPEN = POINTER(tagEXTLOGPEN)
+PEXTLOGPEN = POINTER(tagEXTLOGPEN)
 NPEXTLOGPEN = POINTER(tagEXTLOGPEN)
 EXTLOGPEN = tagEXTLOGPEN
-PEXTLOGPEN = POINTER(tagEXTLOGPEN)
 class tagPALETTEENTRY(Structure):
     pass
 tagPALETTEENTRY._fields_ = [
@@ -2450,8 +2450,8 @@ tagPALETTEENTRY._fields_ = [
     ('peFlags', BYTE),
 ]
 PALETTEENTRY = tagPALETTEENTRY
-LPPALETTEENTRY = POINTER(tagPALETTEENTRY)
 PPALETTEENTRY = POINTER(tagPALETTEENTRY)
+LPPALETTEENTRY = POINTER(tagPALETTEENTRY)
 class tagLOGPALETTE(Structure):
     pass
 tagLOGPALETTE._fields_ = [
@@ -2460,9 +2460,9 @@ tagLOGPALETTE._fields_ = [
     ('palPalEntry', PALETTEENTRY * 1),
 ]
 LOGPALETTE = tagLOGPALETTE
-NPLOGPALETTE = POINTER(tagLOGPALETTE)
 LPLOGPALETTE = POINTER(tagLOGPALETTE)
 PLOGPALETTE = POINTER(tagLOGPALETTE)
+NPLOGPALETTE = POINTER(tagLOGPALETTE)
 class tagLOGFONTA(Structure):
     pass
 tagLOGFONTA._fields_ = [
@@ -2481,10 +2481,10 @@ tagLOGFONTA._fields_ = [
     ('lfPitchAndFamily', BYTE),
     ('lfFaceName', CHAR * 32),
 ]
-LPLOGFONTA = POINTER(tagLOGFONTA)
-NPLOGFONTA = POINTER(tagLOGFONTA)
 PLOGFONTA = POINTER(tagLOGFONTA)
 LOGFONTA = tagLOGFONTA
+NPLOGFONTA = POINTER(tagLOGFONTA)
+LPLOGFONTA = POINTER(tagLOGFONTA)
 class tagLOGFONTW(Structure):
     pass
 tagLOGFONTW._fields_ = [
@@ -2503,10 +2503,10 @@ tagLOGFONTW._fields_ = [
     ('lfPitchAndFamily', BYTE),
     ('lfFaceName', WCHAR * 32),
 ]
-PLOGFONTW = POINTER(tagLOGFONTW)
-NPLOGFONTW = POINTER(tagLOGFONTW)
 LOGFONTW = tagLOGFONTW
 LPLOGFONTW = POINTER(tagLOGFONTW)
+NPLOGFONTW = POINTER(tagLOGFONTW)
+PLOGFONTW = POINTER(tagLOGFONTW)
 LOGFONT = LOGFONTA
 PLOGFONT = PLOGFONTA
 NPLOGFONT = NPLOGFONTA
@@ -2527,8 +2527,8 @@ tagENUMLOGFONTW._fields_ = [
     ('elfFullName', WCHAR * 64),
     ('elfStyle', WCHAR * 32),
 ]
-LPENUMLOGFONTW = POINTER(tagENUMLOGFONTW)
 ENUMLOGFONTW = tagENUMLOGFONTW
+LPENUMLOGFONTW = POINTER(tagENUMLOGFONTW)
 ENUMLOGFONT = ENUMLOGFONTA
 LPENUMLOGFONT = LPENUMLOGFONTA
 class tagENUMLOGFONTEXA(Structure):
@@ -2539,8 +2539,8 @@ tagENUMLOGFONTEXA._fields_ = [
     ('elfStyle', BYTE * 32),
     ('elfScript', BYTE * 32),
 ]
-LPENUMLOGFONTEXA = POINTER(tagENUMLOGFONTEXA)
 ENUMLOGFONTEXA = tagENUMLOGFONTEXA
+LPENUMLOGFONTEXA = POINTER(tagENUMLOGFONTEXA)
 class tagENUMLOGFONTEXW(Structure):
     pass
 tagENUMLOGFONTEXW._fields_ = [
@@ -2583,10 +2583,10 @@ tagEXTLOGFONTA._fields_ = [
     ('elfCulture', DWORD),
     ('elfPanose', PANOSE),
 ]
-PEXTLOGFONTA = POINTER(tagEXTLOGFONTA)
 NPEXTLOGFONTA = POINTER(tagEXTLOGFONTA)
-EXTLOGFONTA = tagEXTLOGFONTA
 LPEXTLOGFONTA = POINTER(tagEXTLOGFONTA)
+PEXTLOGFONTA = POINTER(tagEXTLOGFONTA)
+EXTLOGFONTA = tagEXTLOGFONTA
 class tagEXTLOGFONTW(Structure):
     pass
 tagEXTLOGFONTW._fields_ = [
@@ -2601,10 +2601,10 @@ tagEXTLOGFONTW._fields_ = [
     ('elfCulture', DWORD),
     ('elfPanose', PANOSE),
 ]
-PEXTLOGFONTW = POINTER(tagEXTLOGFONTW)
 EXTLOGFONTW = tagEXTLOGFONTW
-LPEXTLOGFONTW = POINTER(tagEXTLOGFONTW)
 NPEXTLOGFONTW = POINTER(tagEXTLOGFONTW)
+PEXTLOGFONTW = POINTER(tagEXTLOGFONTW)
+LPEXTLOGFONTW = POINTER(tagEXTLOGFONTW)
 EXTLOGFONT = EXTLOGFONTA
 PEXTLOGFONT = PEXTLOGFONTA
 NPEXTLOGFONT = NPEXTLOGFONTA
@@ -2673,10 +2673,10 @@ _devicemodeA._fields_ = [
     ('dmPanningWidth', DWORD),
     ('dmPanningHeight', DWORD),
 ]
-LPDEVMODEA = POINTER(_devicemodeA)
 NPDEVMODEA = POINTER(_devicemodeA)
 PDEVMODEA = POINTER(_devicemodeA)
 DEVMODEA = _devicemodeA
+LPDEVMODEA = POINTER(_devicemodeA)
 class _devicemodeW(Structure):
     pass
 class N12_devicemodeW4DOLLAR_62E(Union):
@@ -2741,10 +2741,10 @@ _devicemodeW._fields_ = [
     ('dmPanningWidth', DWORD),
     ('dmPanningHeight', DWORD),
 ]
-NPDEVMODEW = POINTER(_devicemodeW)
-PDEVMODEW = POINTER(_devicemodeW)
 DEVMODEW = _devicemodeW
+NPDEVMODEW = POINTER(_devicemodeW)
 LPDEVMODEW = POINTER(_devicemodeW)
+PDEVMODEW = POINTER(_devicemodeW)
 DEVMODE = DEVMODEA
 PDEVMODE = PDEVMODEA
 NPDEVMODE = NPDEVMODEA
@@ -2759,9 +2759,9 @@ _DISPLAY_DEVICEA._fields_ = [
     ('DeviceID', CHAR * 128),
     ('DeviceKey', CHAR * 128),
 ]
-PDISPLAY_DEVICEA = POINTER(_DISPLAY_DEVICEA)
 DISPLAY_DEVICEA = _DISPLAY_DEVICEA
 LPDISPLAY_DEVICEA = POINTER(_DISPLAY_DEVICEA)
+PDISPLAY_DEVICEA = POINTER(_DISPLAY_DEVICEA)
 class _DISPLAY_DEVICEW(Structure):
     pass
 _DISPLAY_DEVICEW._fields_ = [
@@ -2772,9 +2772,9 @@ _DISPLAY_DEVICEW._fields_ = [
     ('DeviceID', WCHAR * 128),
     ('DeviceKey', WCHAR * 128),
 ]
-LPDISPLAY_DEVICEW = POINTER(_DISPLAY_DEVICEW)
 PDISPLAY_DEVICEW = POINTER(_DISPLAY_DEVICEW)
 DISPLAY_DEVICEW = _DISPLAY_DEVICEW
+LPDISPLAY_DEVICEW = POINTER(_DISPLAY_DEVICEW)
 DISPLAY_DEVICE = DISPLAY_DEVICEA
 PDISPLAY_DEVICE = PDISPLAY_DEVICEA
 LPDISPLAY_DEVICE = LPDISPLAY_DEVICEA
@@ -2787,17 +2787,17 @@ _RGNDATAHEADER._fields_ = [
     ('nRgnSize', DWORD),
     ('rcBound', RECT),
 ]
-RGNDATAHEADER = _RGNDATAHEADER
 PRGNDATAHEADER = POINTER(_RGNDATAHEADER)
+RGNDATAHEADER = _RGNDATAHEADER
 class _RGNDATA(Structure):
     pass
 _RGNDATA._fields_ = [
     ('rdh', RGNDATAHEADER),
     ('Buffer', c_char * 1),
 ]
+PRGNDATA = POINTER(_RGNDATA)
 LPRGNDATA = POINTER(_RGNDATA)
 NPRGNDATA = POINTER(_RGNDATA)
-PRGNDATA = POINTER(_RGNDATA)
 RGNDATA = _RGNDATA
 class _ABC(Structure):
     pass
@@ -2817,10 +2817,10 @@ _ABCFLOAT._fields_ = [
     ('abcfB', FLOAT),
     ('abcfC', FLOAT),
 ]
-NPABCFLOAT = POINTER(_ABCFLOAT)
-ABCFLOAT = _ABCFLOAT
 LPABCFLOAT = POINTER(_ABCFLOAT)
 PABCFLOAT = POINTER(_ABCFLOAT)
+NPABCFLOAT = POINTER(_ABCFLOAT)
+ABCFLOAT = _ABCFLOAT
 class _OUTLINETEXTMETRICA(Structure):
     pass
 PSTR = STRING
@@ -2859,9 +2859,9 @@ _OUTLINETEXTMETRICA._fields_ = [
     ('otmpFullName', PSTR),
 ]
 NPOUTLINETEXTMETRICA = POINTER(_OUTLINETEXTMETRICA)
-LPOUTLINETEXTMETRICA = POINTER(_OUTLINETEXTMETRICA)
 POUTLINETEXTMETRICA = POINTER(_OUTLINETEXTMETRICA)
 OUTLINETEXTMETRICA = _OUTLINETEXTMETRICA
+LPOUTLINETEXTMETRICA = POINTER(_OUTLINETEXTMETRICA)
 class _OUTLINETEXTMETRICW(Structure):
     pass
 _OUTLINETEXTMETRICW._fields_ = [
@@ -2898,10 +2898,10 @@ _OUTLINETEXTMETRICW._fields_ = [
     ('otmpStyleName', PSTR),
     ('otmpFullName', PSTR),
 ]
+NPOUTLINETEXTMETRICW = POINTER(_OUTLINETEXTMETRICW)
 OUTLINETEXTMETRICW = _OUTLINETEXTMETRICW
 POUTLINETEXTMETRICW = POINTER(_OUTLINETEXTMETRICW)
 LPOUTLINETEXTMETRICW = POINTER(_OUTLINETEXTMETRICW)
-NPOUTLINETEXTMETRICW = POINTER(_OUTLINETEXTMETRICW)
 OUTLINETEXTMETRIC = OUTLINETEXTMETRICA
 POUTLINETEXTMETRIC = POUTLINETEXTMETRICA
 NPOUTLINETEXTMETRIC = NPOUTLINETEXTMETRICA
@@ -2918,9 +2918,9 @@ tagPOLYTEXTA._fields_ = [
     ('pdx', POINTER(c_int)),
 ]
 POLYTEXTA = tagPOLYTEXTA
-NPPOLYTEXTA = POINTER(tagPOLYTEXTA)
-PPOLYTEXTA = POINTER(tagPOLYTEXTA)
 LPPOLYTEXTA = POINTER(tagPOLYTEXTA)
+PPOLYTEXTA = POINTER(tagPOLYTEXTA)
+NPPOLYTEXTA = POINTER(tagPOLYTEXTA)
 class tagPOLYTEXTW(Structure):
     pass
 tagPOLYTEXTW._fields_ = [
@@ -2932,10 +2932,10 @@ tagPOLYTEXTW._fields_ = [
     ('rcl', RECT),
     ('pdx', POINTER(c_int)),
 ]
-LPPOLYTEXTW = POINTER(tagPOLYTEXTW)
 NPPOLYTEXTW = POINTER(tagPOLYTEXTW)
-PPOLYTEXTW = POINTER(tagPOLYTEXTW)
+LPPOLYTEXTW = POINTER(tagPOLYTEXTW)
 POLYTEXTW = tagPOLYTEXTW
+PPOLYTEXTW = POINTER(tagPOLYTEXTW)
 POLYTEXT = POLYTEXTA
 PPOLYTEXT = PPOLYTEXTA
 NPPOLYTEXT = NPPOLYTEXTA
@@ -2955,8 +2955,8 @@ _MAT2._fields_ = [
     ('eM21', FIXED),
     ('eM22', FIXED),
 ]
-MAT2 = _MAT2
 LPMAT2 = POINTER(_MAT2)
+MAT2 = _MAT2
 class _GLYPHMETRICS(Structure):
     pass
 _GLYPHMETRICS._fields_ = [
@@ -2974,8 +2974,8 @@ tagPOINTFX._fields_ = [
     ('x', FIXED),
     ('y', FIXED),
 ]
-LPPOINTFX = POINTER(tagPOINTFX)
 POINTFX = tagPOINTFX
+LPPOINTFX = POINTER(tagPOINTFX)
 class tagTTPOLYCURVE(Structure):
     pass
 tagTTPOLYCURVE._fields_ = [
@@ -2983,8 +2983,8 @@ tagTTPOLYCURVE._fields_ = [
     ('cpfx', WORD),
     ('apfx', POINTFX * 1),
 ]
-TTPOLYCURVE = tagTTPOLYCURVE
 LPTTPOLYCURVE = POINTER(tagTTPOLYCURVE)
+TTPOLYCURVE = tagTTPOLYCURVE
 class tagTTPOLYGONHEADER(Structure):
     pass
 tagTTPOLYGONHEADER._fields_ = [
@@ -2992,8 +2992,8 @@ tagTTPOLYGONHEADER._fields_ = [
     ('dwType', DWORD),
     ('pfxStart', POINTFX),
 ]
-LPTTPOLYGONHEADER = POINTER(tagTTPOLYGONHEADER)
 TTPOLYGONHEADER = tagTTPOLYGONHEADER
+LPTTPOLYGONHEADER = POINTER(tagTTPOLYGONHEADER)
 class tagGCP_RESULTSA(Structure):
     pass
 tagGCP_RESULTSA._fields_ = [
@@ -3022,8 +3022,8 @@ tagGCP_RESULTSW._fields_ = [
     ('nGlyphs', UINT),
     ('nMaxFit', c_int),
 ]
-LPGCP_RESULTSW = POINTER(tagGCP_RESULTSW)
 GCP_RESULTSW = tagGCP_RESULTSW
+LPGCP_RESULTSW = POINTER(tagGCP_RESULTSW)
 GCP_RESULTS = GCP_RESULTSA
 LPGCP_RESULTS = LPGCP_RESULTSA
 class _RASTERIZER_STATUS(Structure):
@@ -3065,9 +3065,9 @@ tagPIXELFORMATDESCRIPTOR._fields_ = [
     ('dwVisibleMask', DWORD),
     ('dwDamageMask', DWORD),
 ]
+PPIXELFORMATDESCRIPTOR = POINTER(tagPIXELFORMATDESCRIPTOR)
 PIXELFORMATDESCRIPTOR = tagPIXELFORMATDESCRIPTOR
 LPPIXELFORMATDESCRIPTOR = POINTER(tagPIXELFORMATDESCRIPTOR)
-PPIXELFORMATDESCRIPTOR = POINTER(tagPIXELFORMATDESCRIPTOR)
 OLDFONTENUMPROCA = WINFUNCTYPE(c_int, POINTER(LOGFONTA), POINTER(TEXTMETRICA), c_ulong, c_long)
 OLDFONTENUMPROCW = WINFUNCTYPE(c_int, POINTER(LOGFONTW), POINTER(TEXTMETRICW), c_ulong, c_long)
 FONTENUMPROCA = OLDFONTENUMPROCA
@@ -3088,9 +3088,9 @@ _TRIVERTEX._fields_ = [
     ('Blue', COLOR16),
     ('Alpha', COLOR16),
 ]
-LPTRIVERTEX = POINTER(_TRIVERTEX)
-TRIVERTEX = _TRIVERTEX
 PTRIVERTEX = POINTER(_TRIVERTEX)
+TRIVERTEX = _TRIVERTEX
+LPTRIVERTEX = POINTER(_TRIVERTEX)
 class _GRADIENT_TRIANGLE(Structure):
     pass
 _GRADIENT_TRIANGLE._fields_ = [
@@ -3098,18 +3098,18 @@ _GRADIENT_TRIANGLE._fields_ = [
     ('Vertex2', ULONG),
     ('Vertex3', ULONG),
 ]
+LPGRADIENT_TRIANGLE = POINTER(_GRADIENT_TRIANGLE)
 GRADIENT_TRIANGLE = _GRADIENT_TRIANGLE
 PGRADIENT_TRIANGLE = POINTER(_GRADIENT_TRIANGLE)
-LPGRADIENT_TRIANGLE = POINTER(_GRADIENT_TRIANGLE)
 class _GRADIENT_RECT(Structure):
     pass
 _GRADIENT_RECT._fields_ = [
     ('UpperLeft', ULONG),
     ('LowerRight', ULONG),
 ]
+PGRADIENT_RECT = POINTER(_GRADIENT_RECT)
 GRADIENT_RECT = _GRADIENT_RECT
 LPGRADIENT_RECT = POINTER(_GRADIENT_RECT)
-PGRADIENT_RECT = POINTER(_GRADIENT_RECT)
 class _BLENDFUNCTION(Structure):
     pass
 _BLENDFUNCTION._fields_ = [
@@ -3118,8 +3118,8 @@ _BLENDFUNCTION._fields_ = [
     ('SourceConstantAlpha', BYTE),
     ('AlphaFormat', BYTE),
 ]
-PBLENDFUNCTION = POINTER(_BLENDFUNCTION)
 BLENDFUNCTION = _BLENDFUNCTION
+PBLENDFUNCTION = POINTER(_BLENDFUNCTION)
 MFENUMPROC = WINFUNCTYPE(c_int, POINTER(HDC__), POINTER(HANDLETABLE), POINTER(METARECORD), c_int, c_long)
 ENHMFENUMPROC = WINFUNCTYPE(c_int, POINTER(HDC__), POINTER(HANDLETABLE), POINTER(ENHMETARECORD), c_int, c_long)
 class tagDIBSECTION(Structure):
@@ -3131,9 +3131,9 @@ tagDIBSECTION._fields_ = [
     ('dshSection', HANDLE),
     ('dsOffset', DWORD),
 ]
-LPDIBSECTION = POINTER(tagDIBSECTION)
 DIBSECTION = tagDIBSECTION
 PDIBSECTION = POINTER(tagDIBSECTION)
+LPDIBSECTION = POINTER(tagDIBSECTION)
 class tagCOLORADJUSTMENT(Structure):
     pass
 tagCOLORADJUSTMENT._fields_ = [
@@ -3151,8 +3151,8 @@ tagCOLORADJUSTMENT._fields_ = [
     ('caRedGreenTint', SHORT),
 ]
 PCOLORADJUSTMENT = POINTER(tagCOLORADJUSTMENT)
-COLORADJUSTMENT = tagCOLORADJUSTMENT
 LPCOLORADJUSTMENT = POINTER(tagCOLORADJUSTMENT)
+COLORADJUSTMENT = tagCOLORADJUSTMENT
 ABORTPROC = WINFUNCTYPE(BOOL, POINTER(HDC__), c_int)
 class _DOCINFOA(Structure):
     pass
@@ -3163,8 +3163,8 @@ _DOCINFOA._fields_ = [
     ('lpszDatatype', LPCSTR),
     ('fwType', DWORD),
 ]
-DOCINFOA = _DOCINFOA
 LPDOCINFOA = POINTER(_DOCINFOA)
+DOCINFOA = _DOCINFOA
 class _DOCINFOW(Structure):
     pass
 _DOCINFOW._fields_ = [
@@ -3207,31 +3207,31 @@ tagEMRTEXT._fields_ = [
     ('rcl', RECTL),
     ('offDx', DWORD),
 ]
-PEMRTEXT = POINTER(tagEMRTEXT)
 EMRTEXT = tagEMRTEXT
+PEMRTEXT = POINTER(tagEMRTEXT)
 class tagABORTPATH(Structure):
     pass
 tagABORTPATH._fields_ = [
     ('emr', EMR),
 ]
-PEMRABORTPATH = POINTER(tagABORTPATH)
 EMRABORTPATH = tagABORTPATH
+PEMRABORTPATH = POINTER(tagABORTPATH)
 PEMRBEGINPATH = POINTER(tagABORTPATH)
 EMRBEGINPATH = tagABORTPATH
-EMRENDPATH = tagABORTPATH
 PEMRENDPATH = POINTER(tagABORTPATH)
-PEMRCLOSEFIGURE = POINTER(tagABORTPATH)
+EMRENDPATH = tagABORTPATH
 EMRCLOSEFIGURE = tagABORTPATH
-EMRFLATTENPATH = tagABORTPATH
+PEMRCLOSEFIGURE = POINTER(tagABORTPATH)
 PEMRFLATTENPATH = POINTER(tagABORTPATH)
+EMRFLATTENPATH = tagABORTPATH
 PEMRWIDENPATH = POINTER(tagABORTPATH)
 EMRWIDENPATH = tagABORTPATH
 PEMRSETMETARGN = POINTER(tagABORTPATH)
 EMRSETMETARGN = tagABORTPATH
-EMRSAVEDC = tagABORTPATH
 PEMRSAVEDC = POINTER(tagABORTPATH)
-EMRREALIZEPALETTE = tagABORTPATH
+EMRSAVEDC = tagABORTPATH
 PEMRREALIZEPALETTE = POINTER(tagABORTPATH)
+EMRREALIZEPALETTE = tagABORTPATH
 class tagEMRSELECTCLIPPATH(Structure):
     pass
 tagEMRSELECTCLIPPATH._fields_ = [
@@ -3240,22 +3240,22 @@ tagEMRSELECTCLIPPATH._fields_ = [
 ]
 PEMRSELECTCLIPPATH = POINTER(tagEMRSELECTCLIPPATH)
 EMRSELECTCLIPPATH = tagEMRSELECTCLIPPATH
-EMRSETBKMODE = tagEMRSELECTCLIPPATH
 PEMRSETBKMODE = POINTER(tagEMRSELECTCLIPPATH)
+EMRSETBKMODE = tagEMRSELECTCLIPPATH
 PEMRSETMAPMODE = POINTER(tagEMRSELECTCLIPPATH)
 EMRSETMAPMODE = tagEMRSELECTCLIPPATH
-EMRSETLAYOUT = tagEMRSELECTCLIPPATH
 PEMRSETLAYOUT = POINTER(tagEMRSELECTCLIPPATH)
-PEMRSETPOLYFILLMODE = POINTER(tagEMRSELECTCLIPPATH)
+EMRSETLAYOUT = tagEMRSELECTCLIPPATH
 EMRSETPOLYFILLMODE = tagEMRSELECTCLIPPATH
+PEMRSETPOLYFILLMODE = POINTER(tagEMRSELECTCLIPPATH)
 PEMRSETROP2 = POINTER(tagEMRSELECTCLIPPATH)
 EMRSETROP2 = tagEMRSELECTCLIPPATH
-EMRSETSTRETCHBLTMODE = tagEMRSELECTCLIPPATH
 PEMRSETSTRETCHBLTMODE = POINTER(tagEMRSELECTCLIPPATH)
-EMRSETICMMODE = tagEMRSELECTCLIPPATH
+EMRSETSTRETCHBLTMODE = tagEMRSELECTCLIPPATH
 PEMRSETICMMODE = POINTER(tagEMRSELECTCLIPPATH)
-EMRSETTEXTALIGN = tagEMRSELECTCLIPPATH
+EMRSETICMMODE = tagEMRSELECTCLIPPATH
 PEMRSETTEXTALIGN = POINTER(tagEMRSELECTCLIPPATH)
+EMRSETTEXTALIGN = tagEMRSELECTCLIPPATH
 class tagEMRSETMITERLIMIT(Structure):
     pass
 tagEMRSETMITERLIMIT._fields_ = [
@@ -3278,16 +3278,16 @@ tagEMRSETARCDIRECTION._fields_ = [
     ('emr', EMR),
     ('iArcDirection', DWORD),
 ]
-PEMRSETARCDIRECTION = POINTER(tagEMRSETARCDIRECTION)
 EMRSETARCDIRECTION = tagEMRSETARCDIRECTION
+PEMRSETARCDIRECTION = POINTER(tagEMRSETARCDIRECTION)
 class tagEMRSETMAPPERFLAGS(Structure):
     pass
 tagEMRSETMAPPERFLAGS._fields_ = [
     ('emr', EMR),
     ('dwFlags', DWORD),
 ]
-PEMRSETMAPPERFLAGS = POINTER(tagEMRSETMAPPERFLAGS)
 EMRSETMAPPERFLAGS = tagEMRSETMAPPERFLAGS
+PEMRSETMAPPERFLAGS = POINTER(tagEMRSETMAPPERFLAGS)
 class tagEMRSETTEXTCOLOR(Structure):
     pass
 tagEMRSETTEXTCOLOR._fields_ = [
@@ -3296,8 +3296,8 @@ tagEMRSETTEXTCOLOR._fields_ = [
 ]
 PEMRSETBKCOLOR = POINTER(tagEMRSETTEXTCOLOR)
 EMRSETBKCOLOR = tagEMRSETTEXTCOLOR
-EMRSETTEXTCOLOR = tagEMRSETTEXTCOLOR
 PEMRSETTEXTCOLOR = POINTER(tagEMRSETTEXTCOLOR)
+EMRSETTEXTCOLOR = tagEMRSETTEXTCOLOR
 class tagEMRSELECTOBJECT(Structure):
     pass
 tagEMRSELECTOBJECT._fields_ = [
@@ -3306,8 +3306,8 @@ tagEMRSELECTOBJECT._fields_ = [
 ]
 PEMRSELECTOBJECT = POINTER(tagEMRSELECTOBJECT)
 EMRSELECTOBJECT = tagEMRSELECTOBJECT
-EMRDELETEOBJECT = tagEMRSELECTOBJECT
 PEMRDELETEOBJECT = POINTER(tagEMRSELECTOBJECT)
+EMRDELETEOBJECT = tagEMRSELECTOBJECT
 class tagEMRSELECTPALETTE(Structure):
     pass
 tagEMRSELECTPALETTE._fields_ = [
@@ -3369,8 +3369,8 @@ tagEMRLINETO._fields_ = [
     ('emr', EMR),
     ('ptl', POINTL),
 ]
-EMRLINETO = tagEMRLINETO
 PEMRLINETO = POINTER(tagEMRLINETO)
+EMRLINETO = tagEMRLINETO
 EMRMOVETOEX = tagEMRLINETO
 PEMRMOVETOEX = POINTER(tagEMRLINETO)
 class tagEMROFFSETCLIPRGN(Structure):
@@ -3379,16 +3379,16 @@ tagEMROFFSETCLIPRGN._fields_ = [
     ('emr', EMR),
     ('ptlOffset', POINTL),
 ]
-PEMROFFSETCLIPRGN = POINTER(tagEMROFFSETCLIPRGN)
 EMROFFSETCLIPRGN = tagEMROFFSETCLIPRGN
+PEMROFFSETCLIPRGN = POINTER(tagEMROFFSETCLIPRGN)
 class tagEMRFILLPATH(Structure):
     pass
 tagEMRFILLPATH._fields_ = [
     ('emr', EMR),
     ('rclBounds', RECTL),
 ]
-EMRFILLPATH = tagEMRFILLPATH
 PEMRFILLPATH = POINTER(tagEMRFILLPATH)
+EMRFILLPATH = tagEMRFILLPATH
 EMRSTROKEANDFILLPATH = tagEMRFILLPATH
 PEMRSTROKEANDFILLPATH = POINTER(tagEMRFILLPATH)
 PEMRSTROKEPATH = POINTER(tagEMRFILLPATH)
@@ -3399,10 +3399,10 @@ tagEMREXCLUDECLIPRECT._fields_ = [
     ('emr', EMR),
     ('rclClip', RECTL),
 ]
-EMREXCLUDECLIPRECT = tagEMREXCLUDECLIPRECT
 PEMREXCLUDECLIPRECT = POINTER(tagEMREXCLUDECLIPRECT)
-EMRINTERSECTCLIPRECT = tagEMREXCLUDECLIPRECT
+EMREXCLUDECLIPRECT = tagEMREXCLUDECLIPRECT
 PEMRINTERSECTCLIPRECT = POINTER(tagEMREXCLUDECLIPRECT)
+EMRINTERSECTCLIPRECT = tagEMREXCLUDECLIPRECT
 class tagEMRSETVIEWPORTORGEX(Structure):
     pass
 tagEMRSETVIEWPORTORGEX._fields_ = [
@@ -3423,8 +3423,8 @@ tagEMRSETVIEWPORTEXTEX._fields_ = [
 ]
 PEMRSETVIEWPORTEXTEX = POINTER(tagEMRSETVIEWPORTEXTEX)
 EMRSETVIEWPORTEXTEX = tagEMRSETVIEWPORTEXTEX
-PEMRSETWINDOWEXTEX = POINTER(tagEMRSETVIEWPORTEXTEX)
 EMRSETWINDOWEXTEX = tagEMRSETVIEWPORTEXTEX
+PEMRSETWINDOWEXTEX = POINTER(tagEMRSETVIEWPORTEXTEX)
 class tagEMRSCALEVIEWPORTEXTEX(Structure):
     pass
 tagEMRSCALEVIEWPORTEXTEX._fields_ = [
@@ -3434,8 +3434,8 @@ tagEMRSCALEVIEWPORTEXTEX._fields_ = [
     ('yNum', LONG),
     ('yDenom', LONG),
 ]
-EMRSCALEVIEWPORTEXTEX = tagEMRSCALEVIEWPORTEXTEX
 PEMRSCALEVIEWPORTEXTEX = POINTER(tagEMRSCALEVIEWPORTEXTEX)
+EMRSCALEVIEWPORTEXTEX = tagEMRSCALEVIEWPORTEXTEX
 PEMRSCALEWINDOWEXTEX = POINTER(tagEMRSCALEVIEWPORTEXTEX)
 EMRSCALEWINDOWEXTEX = tagEMRSCALEVIEWPORTEXTEX
 class tagEMRSETWORLDTRANSFORM(Structure):
@@ -3444,8 +3444,8 @@ tagEMRSETWORLDTRANSFORM._fields_ = [
     ('emr', EMR),
     ('xform', XFORM),
 ]
-PEMRSETWORLDTRANSFORM = POINTER(tagEMRSETWORLDTRANSFORM)
 EMRSETWORLDTRANSFORM = tagEMRSETWORLDTRANSFORM
+PEMRSETWORLDTRANSFORM = POINTER(tagEMRSETWORLDTRANSFORM)
 class tagEMRMODIFYWORLDTRANSFORM(Structure):
     pass
 tagEMRMODIFYWORLDTRANSFORM._fields_ = [
@@ -3480,8 +3480,8 @@ tagEMRELLIPSE._fields_ = [
     ('emr', EMR),
     ('rclBox', RECTL),
 ]
-EMRELLIPSE = tagEMRELLIPSE
 PEMRELLIPSE = POINTER(tagEMRELLIPSE)
+EMRELLIPSE = tagEMRELLIPSE
 PEMRRECTANGLE = POINTER(tagEMRELLIPSE)
 EMRRECTANGLE = tagEMRELLIPSE
 class tagEMRROUNDRECT(Structure):
@@ -3501,10 +3501,10 @@ tagEMRARC._fields_ = [
     ('ptlStart', POINTL),
     ('ptlEnd', POINTL),
 ]
-PEMRARC = POINTER(tagEMRARC)
 EMRARC = tagEMRARC
-EMRARCTO = tagEMRARC
+PEMRARC = POINTER(tagEMRARC)
 PEMRARCTO = POINTER(tagEMRARC)
+EMRARCTO = tagEMRARC
 EMRCHORD = tagEMRARC
 PEMRCHORD = POINTER(tagEMRARC)
 PEMRPIE = POINTER(tagEMRARC)
@@ -3528,16 +3528,16 @@ tagEMRPOLYLINE._fields_ = [
     ('cptl', DWORD),
     ('aptl', POINTL * 1),
 ]
-EMRPOLYLINE = tagEMRPOLYLINE
 PEMRPOLYLINE = POINTER(tagEMRPOLYLINE)
+EMRPOLYLINE = tagEMRPOLYLINE
 PEMRPOLYBEZIER = POINTER(tagEMRPOLYLINE)
 EMRPOLYBEZIER = tagEMRPOLYLINE
 PEMRPOLYGON = POINTER(tagEMRPOLYLINE)
 EMRPOLYGON = tagEMRPOLYLINE
-PEMRPOLYBEZIERTO = POINTER(tagEMRPOLYLINE)
 EMRPOLYBEZIERTO = tagEMRPOLYLINE
-EMRPOLYLINETO = tagEMRPOLYLINE
+PEMRPOLYBEZIERTO = POINTER(tagEMRPOLYLINE)
 PEMRPOLYLINETO = POINTER(tagEMRPOLYLINE)
+EMRPOLYLINETO = tagEMRPOLYLINE
 class tagEMRPOLYLINE16(Structure):
     pass
 tagEMRPOLYLINE16._fields_ = [
@@ -3548,8 +3548,8 @@ tagEMRPOLYLINE16._fields_ = [
 ]
 EMRPOLYLINE16 = tagEMRPOLYLINE16
 PEMRPOLYLINE16 = POINTER(tagEMRPOLYLINE16)
-PEMRPOLYBEZIER16 = POINTER(tagEMRPOLYLINE16)
 EMRPOLYBEZIER16 = tagEMRPOLYLINE16
+PEMRPOLYBEZIER16 = POINTER(tagEMRPOLYLINE16)
 EMRPOLYGON16 = tagEMRPOLYLINE16
 PEMRPOLYGON16 = POINTER(tagEMRPOLYLINE16)
 EMRPOLYBEZIERTO16 = tagEMRPOLYLINE16
@@ -3576,8 +3576,8 @@ tagEMRPOLYDRAW16._fields_ = [
     ('apts', POINTS * 1),
     ('abTypes', BYTE * 1),
 ]
-PEMRPOLYDRAW16 = POINTER(tagEMRPOLYDRAW16)
 EMRPOLYDRAW16 = tagEMRPOLYDRAW16
+PEMRPOLYDRAW16 = POINTER(tagEMRPOLYDRAW16)
 class tagEMRPOLYPOLYLINE(Structure):
     pass
 tagEMRPOLYPOLYLINE._fields_ = [
@@ -3588,8 +3588,8 @@ tagEMRPOLYPOLYLINE._fields_ = [
     ('aPolyCounts', DWORD * 1),
     ('aptl', POINTL * 1),
 ]
-EMRPOLYPOLYLINE = tagEMRPOLYPOLYLINE
 PEMRPOLYPOLYLINE = POINTER(tagEMRPOLYPOLYLINE)
+EMRPOLYPOLYLINE = tagEMRPOLYPOLYLINE
 PEMRPOLYPOLYGON = POINTER(tagEMRPOLYPOLYLINE)
 EMRPOLYPOLYGON = tagEMRPOLYPOLYLINE
 class tagEMRPOLYPOLYLINE16(Structure):
@@ -3604,8 +3604,8 @@ tagEMRPOLYPOLYLINE16._fields_ = [
 ]
 PEMRPOLYPOLYLINE16 = POINTER(tagEMRPOLYPOLYLINE16)
 EMRPOLYPOLYLINE16 = tagEMRPOLYPOLYLINE16
-PEMRPOLYPOLYGON16 = POINTER(tagEMRPOLYPOLYLINE16)
 EMRPOLYPOLYGON16 = tagEMRPOLYPOLYLINE16
+PEMRPOLYPOLYGON16 = POINTER(tagEMRPOLYPOLYLINE16)
 class tagEMRINVERTRGN(Structure):
     pass
 tagEMRINVERTRGN._fields_ = [
@@ -3649,8 +3649,8 @@ tagEMREXTSELECTCLIPRGN._fields_ = [
     ('iMode', DWORD),
     ('RgnData', BYTE * 1),
 ]
-PEMREXTSELECTCLIPRGN = POINTER(tagEMREXTSELECTCLIPRGN)
 EMREXTSELECTCLIPRGN = tagEMREXTSELECTCLIPRGN
+PEMREXTSELECTCLIPRGN = POINTER(tagEMREXTSELECTCLIPRGN)
 class tagEMREXTTEXTOUTA(Structure):
     pass
 tagEMREXTTEXTOUTA._fields_ = [
@@ -3663,8 +3663,8 @@ tagEMREXTTEXTOUTA._fields_ = [
 ]
 PEMREXTTEXTOUTA = POINTER(tagEMREXTTEXTOUTA)
 EMREXTTEXTOUTA = tagEMREXTTEXTOUTA
-EMREXTTEXTOUTW = tagEMREXTTEXTOUTA
 PEMREXTTEXTOUTW = POINTER(tagEMREXTTEXTOUTA)
+EMREXTTEXTOUTW = tagEMREXTTEXTOUTA
 class tagEMRPOLYTEXTOUTA(Structure):
     pass
 tagEMRPOLYTEXTOUTA._fields_ = [
@@ -3678,8 +3678,8 @@ tagEMRPOLYTEXTOUTA._fields_ = [
 ]
 PEMRPOLYTEXTOUTA = POINTER(tagEMRPOLYTEXTOUTA)
 EMRPOLYTEXTOUTA = tagEMRPOLYTEXTOUTA
-PEMRPOLYTEXTOUTW = POINTER(tagEMRPOLYTEXTOUTA)
 EMRPOLYTEXTOUTW = tagEMRPOLYTEXTOUTA
+PEMRPOLYTEXTOUTW = POINTER(tagEMRPOLYTEXTOUTA)
 class tagEMRBITBLT(Structure):
     pass
 tagEMRBITBLT._fields_ = [
@@ -3700,8 +3700,8 @@ tagEMRBITBLT._fields_ = [
     ('offBitsSrc', DWORD),
     ('cbBitsSrc', DWORD),
 ]
-PEMRBITBLT = POINTER(tagEMRBITBLT)
 EMRBITBLT = tagEMRBITBLT
+PEMRBITBLT = POINTER(tagEMRBITBLT)
 class tagEMRSTRETCHBLT(Structure):
     pass
 tagEMRSTRETCHBLT._fields_ = [
@@ -3801,8 +3801,8 @@ tagEMRSETDIBITSTODEVICE._fields_ = [
     ('iStartScan', DWORD),
     ('cScans', DWORD),
 ]
-EMRSETDIBITSTODEVICE = tagEMRSETDIBITSTODEVICE
 PEMRSETDIBITSTODEVICE = POINTER(tagEMRSETDIBITSTODEVICE)
+EMRSETDIBITSTODEVICE = tagEMRSETDIBITSTODEVICE
 class tagEMRSTRETCHDIBITS(Structure):
     pass
 tagEMRSTRETCHDIBITS._fields_ = [
@@ -3823,8 +3823,8 @@ tagEMRSTRETCHDIBITS._fields_ = [
     ('cxDest', LONG),
     ('cyDest', LONG),
 ]
-EMRSTRETCHDIBITS = tagEMRSTRETCHDIBITS
 PEMRSTRETCHDIBITS = POINTER(tagEMRSTRETCHDIBITS)
+EMRSTRETCHDIBITS = tagEMRSTRETCHDIBITS
 class tagEMREXTCREATEFONTINDIRECTW(Structure):
     pass
 tagEMREXTCREATEFONTINDIRECTW._fields_ = [
@@ -3863,8 +3863,8 @@ tagEMREXTCREATEPEN._fields_ = [
     ('cbBits', DWORD),
     ('elp', EXTLOGPEN),
 ]
-PEMREXTCREATEPEN = POINTER(tagEMREXTCREATEPEN)
 EMREXTCREATEPEN = tagEMREXTCREATEPEN
+PEMREXTCREATEPEN = POINTER(tagEMREXTCREATEPEN)
 class tagEMRCREATEBRUSHINDIRECT(Structure):
     pass
 tagEMRCREATEBRUSHINDIRECT._fields_ = [
@@ -3872,8 +3872,8 @@ tagEMRCREATEBRUSHINDIRECT._fields_ = [
     ('ihBrush', DWORD),
     ('lb', LOGBRUSH32),
 ]
-PEMRCREATEBRUSHINDIRECT = POINTER(tagEMRCREATEBRUSHINDIRECT)
 EMRCREATEBRUSHINDIRECT = tagEMRCREATEBRUSHINDIRECT
+PEMRCREATEBRUSHINDIRECT = POINTER(tagEMRCREATEBRUSHINDIRECT)
 class tagEMRCREATEMONOBRUSH(Structure):
     pass
 tagEMRCREATEMONOBRUSH._fields_ = [
@@ -3908,8 +3908,8 @@ tagEMRFORMAT._fields_ = [
     ('cbData', DWORD),
     ('offData', DWORD),
 ]
-PEMRFORMAT = POINTER(tagEMRFORMAT)
 EMRFORMAT = tagEMRFORMAT
+PEMRFORMAT = POINTER(tagEMRFORMAT)
 class tagEMRGLSRECORD(Structure):
     pass
 tagEMRGLSRECORD._fields_ = [
@@ -3917,8 +3917,8 @@ tagEMRGLSRECORD._fields_ = [
     ('cbData', DWORD),
     ('Data', BYTE * 1),
 ]
-EMRGLSRECORD = tagEMRGLSRECORD
 PEMRGLSRECORD = POINTER(tagEMRGLSRECORD)
+EMRGLSRECORD = tagEMRGLSRECORD
 class tagEMRGLSBOUNDEDRECORD(Structure):
     pass
 tagEMRGLSBOUNDEDRECORD._fields_ = [
@@ -3927,8 +3927,8 @@ tagEMRGLSBOUNDEDRECORD._fields_ = [
     ('cbData', DWORD),
     ('Data', BYTE * 1),
 ]
-EMRGLSBOUNDEDRECORD = tagEMRGLSBOUNDEDRECORD
 PEMRGLSBOUNDEDRECORD = POINTER(tagEMRGLSBOUNDEDRECORD)
+EMRGLSBOUNDEDRECORD = tagEMRGLSBOUNDEDRECORD
 class tagEMRPIXELFORMAT(Structure):
     pass
 tagEMRPIXELFORMAT._fields_ = [
@@ -3944,20 +3944,20 @@ tagEMRCREATECOLORSPACE._fields_ = [
     ('ihCS', DWORD),
     ('lcs', LOGCOLORSPACEA),
 ]
-PEMRCREATECOLORSPACE = POINTER(tagEMRCREATECOLORSPACE)
 EMRCREATECOLORSPACE = tagEMRCREATECOLORSPACE
+PEMRCREATECOLORSPACE = POINTER(tagEMRCREATECOLORSPACE)
 class tagEMRSETCOLORSPACE(Structure):
     pass
 tagEMRSETCOLORSPACE._fields_ = [
     ('emr', EMR),
     ('ihCS', DWORD),
 ]
-PEMRSETCOLORSPACE = POINTER(tagEMRSETCOLORSPACE)
 EMRSETCOLORSPACE = tagEMRSETCOLORSPACE
+PEMRSETCOLORSPACE = POINTER(tagEMRSETCOLORSPACE)
 EMRSELECTCOLORSPACE = tagEMRSETCOLORSPACE
 PEMRSELECTCOLORSPACE = POINTER(tagEMRSETCOLORSPACE)
-EMRDELETECOLORSPACE = tagEMRSETCOLORSPACE
 PEMRDELETECOLORSPACE = POINTER(tagEMRSETCOLORSPACE)
+EMRDELETECOLORSPACE = tagEMRSETCOLORSPACE
 class tagEMREXTESCAPE(Structure):
     pass
 tagEMREXTESCAPE._fields_ = [
@@ -3968,8 +3968,8 @@ tagEMREXTESCAPE._fields_ = [
 ]
 PEMREXTESCAPE = POINTER(tagEMREXTESCAPE)
 EMREXTESCAPE = tagEMREXTESCAPE
-EMRDRAWESCAPE = tagEMREXTESCAPE
 PEMRDRAWESCAPE = POINTER(tagEMREXTESCAPE)
+EMRDRAWESCAPE = tagEMREXTESCAPE
 class tagEMRNAMEDESCAPE(Structure):
     pass
 tagEMRNAMEDESCAPE._fields_ = [
@@ -3994,8 +3994,8 @@ EMRSETICMPROFILE = tagEMRSETICMPROFILE
 PEMRSETICMPROFILE = POINTER(tagEMRSETICMPROFILE)
 PEMRSETICMPROFILEA = POINTER(tagEMRSETICMPROFILE)
 EMRSETICMPROFILEA = tagEMRSETICMPROFILE
-PEMRSETICMPROFILEW = POINTER(tagEMRSETICMPROFILE)
 EMRSETICMPROFILEW = tagEMRSETICMPROFILE
+PEMRSETICMPROFILEW = POINTER(tagEMRSETICMPROFILE)
 class tagEMRCREATECOLORSPACEW(Structure):
     pass
 tagEMRCREATECOLORSPACEW._fields_ = [
@@ -4018,8 +4018,8 @@ tagCOLORMATCHTOTARGET._fields_ = [
     ('cbData', DWORD),
     ('Data', BYTE * 1),
 ]
-EMRCOLORMATCHTOTARGET = tagCOLORMATCHTOTARGET
 PEMRCOLORMATCHTOTARGET = POINTER(tagCOLORMATCHTOTARGET)
+EMRCOLORMATCHTOTARGET = tagCOLORMATCHTOTARGET
 class tagCOLORCORRECTPALETTE(Structure):
     pass
 tagCOLORCORRECTPALETTE._fields_ = [
@@ -4065,8 +4065,8 @@ tagEMRGRADIENTFILL._fields_ = [
     ('ulMode', ULONG),
     ('Ver', TRIVERTEX * 1),
 ]
-PEMRGRADIENTFILL = POINTER(tagEMRGRADIENTFILL)
 EMRGRADIENTFILL = tagEMRGRADIENTFILL
+PEMRGRADIENTFILL = POINTER(tagEMRGRADIENTFILL)
 class tagEMRTRANSPARENTBLT(Structure):
     pass
 tagEMRTRANSPARENTBLT._fields_ = [
@@ -4089,16 +4089,16 @@ tagEMRTRANSPARENTBLT._fields_ = [
     ('cxSrc', LONG),
     ('cySrc', LONG),
 ]
-PEMRTRANSPARENTBLT = POINTER(tagEMRTRANSPARENTBLT)
 EMRTRANSPARENTBLT = tagEMRTRANSPARENTBLT
+PEMRTRANSPARENTBLT = POINTER(tagEMRTRANSPARENTBLT)
 class _POINTFLOAT(Structure):
     pass
 _POINTFLOAT._fields_ = [
     ('x', FLOAT),
     ('y', FLOAT),
 ]
-POINTFLOAT = _POINTFLOAT
 PPOINTFLOAT = POINTER(_POINTFLOAT)
+POINTFLOAT = _POINTFLOAT
 class _GLYPHMETRICSFLOAT(Structure):
     pass
 _GLYPHMETRICSFLOAT._fields_ = [
@@ -4139,9 +4139,9 @@ tagLAYERPLANEDESCRIPTOR._fields_ = [
     ('bReserved', BYTE),
     ('crTransparent', COLORREF),
 ]
+LAYERPLANEDESCRIPTOR = tagLAYERPLANEDESCRIPTOR
 LPLAYERPLANEDESCRIPTOR = POINTER(tagLAYERPLANEDESCRIPTOR)
 PLAYERPLANEDESCRIPTOR = POINTER(tagLAYERPLANEDESCRIPTOR)
-LAYERPLANEDESCRIPTOR = tagLAYERPLANEDESCRIPTOR
 class _WGLSWAP(Structure):
     pass
 _WGLSWAP._fields_ = [
@@ -4149,8 +4149,8 @@ _WGLSWAP._fields_ = [
     ('uiFlags', UINT),
 ]
 WGLSWAP = _WGLSWAP
-LPWGLSWAP = POINTER(_WGLSWAP)
 PWGLSWAP = POINTER(_WGLSWAP)
+LPWGLSWAP = POINTER(_WGLSWAP)
 class _NETRESOURCEA(Structure):
     pass
 _NETRESOURCEA._fields_ = [
@@ -4177,8 +4177,8 @@ _NETRESOURCEW._fields_ = [
     ('lpComment', LPWSTR),
     ('lpProvider', LPWSTR),
 ]
-NETRESOURCEW = _NETRESOURCEW
 LPNETRESOURCEW = POINTER(_NETRESOURCEW)
+NETRESOURCEW = _NETRESOURCEW
 NETRESOURCE = NETRESOURCEA
 LPNETRESOURCE = LPNETRESOURCEA
 class _CONNECTDLGSTRUCTA(Structure):
@@ -4201,8 +4201,8 @@ _CONNECTDLGSTRUCTW._fields_ = [
     ('dwFlags', DWORD),
     ('dwDevNum', DWORD),
 ]
-LPCONNECTDLGSTRUCTW = POINTER(_CONNECTDLGSTRUCTW)
 CONNECTDLGSTRUCTW = _CONNECTDLGSTRUCTW
+LPCONNECTDLGSTRUCTW = POINTER(_CONNECTDLGSTRUCTW)
 CONNECTDLGSTRUCT = CONNECTDLGSTRUCTA
 LPCONNECTDLGSTRUCT = LPCONNECTDLGSTRUCTA
 class _DISCDLGSTRUCTA(Structure):
@@ -4252,8 +4252,8 @@ _REMOTE_NAME_INFOA._fields_ = [
     ('lpConnectionName', LPSTR),
     ('lpRemainingPath', LPSTR),
 ]
-REMOTE_NAME_INFOA = _REMOTE_NAME_INFOA
 LPREMOTE_NAME_INFOA = POINTER(_REMOTE_NAME_INFOA)
+REMOTE_NAME_INFOA = _REMOTE_NAME_INFOA
 class _REMOTE_NAME_INFOW(Structure):
     pass
 _REMOTE_NAME_INFOW._fields_ = [
@@ -4261,8 +4261,8 @@ _REMOTE_NAME_INFOW._fields_ = [
     ('lpConnectionName', LPWSTR),
     ('lpRemainingPath', LPWSTR),
 ]
-LPREMOTE_NAME_INFOW = POINTER(_REMOTE_NAME_INFOW)
 REMOTE_NAME_INFOW = _REMOTE_NAME_INFOW
+LPREMOTE_NAME_INFOW = POINTER(_REMOTE_NAME_INFOW)
 REMOTE_NAME_INFO = REMOTE_NAME_INFOA
 LPREMOTE_NAME_INFO = LPREMOTE_NAME_INFOA
 class _NETINFOSTRUCT(Structure):
@@ -4294,8 +4294,8 @@ _NETCONNECTINFOSTRUCT._fields_ = [
     ('dwDelay', DWORD),
     ('dwOptDataSize', DWORD),
 ]
-NETCONNECTINFOSTRUCT = _NETCONNECTINFOSTRUCT
 LPNETCONNECTINFOSTRUCT = POINTER(_NETCONNECTINFOSTRUCT)
+NETCONNECTINFOSTRUCT = _NETCONNECTINFOSTRUCT
 CALTYPE = DWORD
 CALID = DWORD
 class _cpinfo(Structure):
@@ -4305,8 +4305,8 @@ _cpinfo._fields_ = [
     ('DefaultChar', BYTE * 2),
     ('LeadByte', BYTE * 12),
 ]
-CPINFO = _cpinfo
 LPCPINFO = POINTER(_cpinfo)
+CPINFO = _cpinfo
 class _cpinfoexA(Structure):
     pass
 _cpinfoexA._fields_ = [
@@ -4343,8 +4343,8 @@ _numberfmtA._fields_ = [
     ('lpThousandSep', LPSTR),
     ('NegativeOrder', UINT),
 ]
-NUMBERFMTA = _numberfmtA
 LPNUMBERFMTA = POINTER(_numberfmtA)
+NUMBERFMTA = _numberfmtA
 class _numberfmtW(Structure):
     pass
 _numberfmtW._fields_ = [
@@ -4355,8 +4355,8 @@ _numberfmtW._fields_ = [
     ('lpThousandSep', LPWSTR),
     ('NegativeOrder', UINT),
 ]
-LPNUMBERFMTW = POINTER(_numberfmtW)
 NUMBERFMTW = _numberfmtW
+LPNUMBERFMTW = POINTER(_numberfmtW)
 NUMBERFMT = NUMBERFMTA
 LPNUMBERFMT = LPNUMBERFMTA
 class _currencyfmtA(Structure):
@@ -4385,8 +4385,8 @@ _currencyfmtW._fields_ = [
     ('PositiveOrder', UINT),
     ('lpCurrencySymbol', LPWSTR),
 ]
-CURRENCYFMTW = _currencyfmtW
 LPCURRENCYFMTW = POINTER(_currencyfmtW)
+CURRENCYFMTW = _currencyfmtW
 CURRENCYFMT = CURRENCYFMTA
 LPCURRENCYFMT = LPCURRENCYFMTA
 
@@ -4400,8 +4400,8 @@ _nlsversioninfo._fields_ = [
     ('dwNLSVersion', DWORD),
     ('dwDefinedVersion', DWORD),
 ]
-NLSVERSIONINFO = _nlsversioninfo
 LPNLSVERSIONINFO = POINTER(_nlsversioninfo)
+NLSVERSIONINFO = _nlsversioninfo
 GEOID = LONG
 GEOTYPE = DWORD
 GEOCLASS = DWORD
@@ -4450,8 +4450,8 @@ pvalueA._fields_ = [
     ('pv_value_context', LPVOID),
     ('pv_type', DWORD),
 ]
-PVALUEA = pvalueA
 PPVALUEA = POINTER(pvalueA)
+PVALUEA = pvalueA
 class pvalueW(Structure):
     pass
 pvalueW._fields_ = [
@@ -4496,8 +4496,8 @@ value_entW._fields_ = [
     ('ve_valueptr', DWORD_PTR),
     ('ve_type', DWORD),
 ]
-VALENTW = value_entW
 PVALENTW = POINTER(value_entW)
+VALENTW = value_entW
 VALENT = VALENTA
 PVALENT = PVALENTA
 u_char = c_ubyte
@@ -4639,8 +4639,8 @@ _QualityOfService._fields_ = [
     ('ReceivingFlowspec', FLOWSPEC),
     ('ProviderSpecific', WSABUF),
 ]
-LPQOS = POINTER(_QualityOfService)
 QOS = _QualityOfService
+LPQOS = POINTER(_QualityOfService)
 GROUP = c_uint
 class _WSANETWORKEVENTS(Structure):
     pass
@@ -4648,16 +4648,16 @@ _WSANETWORKEVENTS._fields_ = [
     ('lNetworkEvents', c_long),
     ('iErrorCode', c_int * 10),
 ]
-LPWSANETWORKEVENTS = POINTER(_WSANETWORKEVENTS)
 WSANETWORKEVENTS = _WSANETWORKEVENTS
+LPWSANETWORKEVENTS = POINTER(_WSANETWORKEVENTS)
 class _WSAPROTOCOLCHAIN(Structure):
     pass
 _WSAPROTOCOLCHAIN._fields_ = [
     ('ChainLen', c_int),
     ('ChainEntries', DWORD * 7),
 ]
-LPWSAPROTOCOLCHAIN = POINTER(_WSAPROTOCOLCHAIN)
 WSAPROTOCOLCHAIN = _WSAPROTOCOLCHAIN
+LPWSAPROTOCOLCHAIN = POINTER(_WSAPROTOCOLCHAIN)
 class _WSAPROTOCOL_INFOA(Structure):
     pass
 _WSAPROTOCOL_INFOA._fields_ = [
@@ -4682,8 +4682,8 @@ _WSAPROTOCOL_INFOA._fields_ = [
     ('dwProviderReserved', DWORD),
     ('szProtocol', CHAR * 256),
 ]
-WSAPROTOCOL_INFOA = _WSAPROTOCOL_INFOA
 LPWSAPROTOCOL_INFOA = POINTER(_WSAPROTOCOL_INFOA)
+WSAPROTOCOL_INFOA = _WSAPROTOCOL_INFOA
 class _WSAPROTOCOL_INFOW(Structure):
     pass
 _WSAPROTOCOL_INFOW._fields_ = [
@@ -4708,8 +4708,8 @@ _WSAPROTOCOL_INFOW._fields_ = [
     ('dwProviderReserved', DWORD),
     ('szProtocol', WCHAR * 256),
 ]
-LPWSAPROTOCOL_INFOW = POINTER(_WSAPROTOCOL_INFOW)
 WSAPROTOCOL_INFOW = _WSAPROTOCOL_INFOW
+LPWSAPROTOCOL_INFOW = POINTER(_WSAPROTOCOL_INFOW)
 WSAPROTOCOL_INFO = WSAPROTOCOL_INFOA
 LPWSAPROTOCOL_INFO = LPWSAPROTOCOL_INFOA
 LPCONDITIONPROC = WINFUNCTYPE(c_int, POINTER(_WSABUF), POINTER(_WSABUF), POINTER(_QualityOfService), POINTER(_QualityOfService), POINTER(_WSABUF), POINTER(_WSABUF), POINTER(GROUP), c_ulong)
@@ -4793,8 +4793,8 @@ _CSADDR_INFO._fields_ = [
     ('iSocketType', INT),
     ('iProtocol', INT),
 ]
-LPCSADDR_INFO = POINTER(_CSADDR_INFO)
 PCSADDR_INFO = POINTER(_CSADDR_INFO)
+LPCSADDR_INFO = POINTER(_CSADDR_INFO)
 CSADDR_INFO = _CSADDR_INFO
 class _SOCKET_ADDRESS_LIST(Structure):
     pass
@@ -4810,24 +4810,24 @@ _AFPROTOCOLS._fields_ = [
     ('iAddressFamily', INT),
     ('iProtocol', INT),
 ]
-AFPROTOCOLS = _AFPROTOCOLS
-PAFPROTOCOLS = POINTER(_AFPROTOCOLS)
 LPAFPROTOCOLS = POINTER(_AFPROTOCOLS)
+PAFPROTOCOLS = POINTER(_AFPROTOCOLS)
+AFPROTOCOLS = _AFPROTOCOLS
 
 # values for enumeration '_WSAEcomparator'
 _WSAEcomparator = c_int # enum
-PWSAECOMPARATOR = POINTER(_WSAEcomparator)
-LPWSAECOMPARATOR = POINTER(_WSAEcomparator)
 WSAECOMPARATOR = _WSAEcomparator
+LPWSAECOMPARATOR = POINTER(_WSAEcomparator)
+PWSAECOMPARATOR = POINTER(_WSAEcomparator)
 class _WSAVersion(Structure):
     pass
 _WSAVersion._fields_ = [
     ('dwVersion', DWORD),
     ('ecHow', WSAECOMPARATOR),
 ]
+WSAVERSION = _WSAVersion
 LPWSAVERSION = POINTER(_WSAVersion)
 PWSAVERSION = POINTER(_WSAVersion)
-WSAVERSION = _WSAVersion
 class _WSAQuerySetA(Structure):
     pass
 _WSAQuerySetA._fields_ = [
@@ -4848,8 +4848,8 @@ _WSAQuerySetA._fields_ = [
     ('lpBlob', LPBLOB),
 ]
 WSAQUERYSETA = _WSAQuerySetA
-PWSAQUERYSETA = POINTER(_WSAQuerySetA)
 LPWSAQUERYSETA = POINTER(_WSAQuerySetA)
+PWSAQUERYSETA = POINTER(_WSAQuerySetA)
 class _WSAQuerySetW(Structure):
     pass
 _WSAQuerySetW._fields_ = [
@@ -4869,8 +4869,8 @@ _WSAQuerySetW._fields_ = [
     ('dwOutputFlags', DWORD),
     ('lpBlob', LPBLOB),
 ]
-WSAQUERYSETW = _WSAQuerySetW
 LPWSAQUERYSETW = POINTER(_WSAQuerySetW)
+WSAQUERYSETW = _WSAQuerySetW
 PWSAQUERYSETW = POINTER(_WSAQuerySetW)
 WSAQUERYSET = WSAQUERYSETA
 PWSAQUERYSET = PWSAQUERYSETA
@@ -4890,8 +4890,8 @@ _WSANSClassInfoA._fields_ = [
     ('dwValueSize', DWORD),
     ('lpValue', LPVOID),
 ]
-PWSANSCLASSINFOA = POINTER(_WSANSClassInfoA)
 WSANSCLASSINFOA = _WSANSClassInfoA
+PWSANSCLASSINFOA = POINTER(_WSANSClassInfoA)
 LPWSANSCLASSINFOA = POINTER(_WSANSClassInfoA)
 class _WSANSClassInfoW(Structure):
     pass
@@ -4902,9 +4902,9 @@ _WSANSClassInfoW._fields_ = [
     ('dwValueSize', DWORD),
     ('lpValue', LPVOID),
 ]
+PWSANSCLASSINFOW = POINTER(_WSANSClassInfoW)
 WSANSCLASSINFOW = _WSANSClassInfoW
 LPWSANSCLASSINFOW = POINTER(_WSANSClassInfoW)
-PWSANSCLASSINFOW = POINTER(_WSANSClassInfoW)
 WSANSCLASSINFO = WSANSCLASSINFOA
 PWSANSCLASSINFO = PWSANSCLASSINFOA
 LPWSANSCLASSINFO = LPWSANSCLASSINFOA
@@ -4916,9 +4916,9 @@ _WSAServiceClassInfoA._fields_ = [
     ('dwCount', DWORD),
     ('lpClassInfos', LPWSANSCLASSINFOA),
 ]
-LPWSASERVICECLASSINFOA = POINTER(_WSAServiceClassInfoA)
 PWSASERVICECLASSINFOA = POINTER(_WSAServiceClassInfoA)
 WSASERVICECLASSINFOA = _WSAServiceClassInfoA
+LPWSASERVICECLASSINFOA = POINTER(_WSAServiceClassInfoA)
 class _WSAServiceClassInfoW(Structure):
     pass
 _WSAServiceClassInfoW._fields_ = [
@@ -4927,8 +4927,8 @@ _WSAServiceClassInfoW._fields_ = [
     ('dwCount', DWORD),
     ('lpClassInfos', LPWSANSCLASSINFOW),
 ]
-WSASERVICECLASSINFOW = _WSAServiceClassInfoW
 LPWSASERVICECLASSINFOW = POINTER(_WSAServiceClassInfoW)
+WSASERVICECLASSINFOW = _WSAServiceClassInfoW
 PWSASERVICECLASSINFOW = POINTER(_WSAServiceClassInfoW)
 WSASERVICECLASSINFO = WSASERVICECLASSINFOA
 PWSASERVICECLASSINFO = PWSASERVICECLASSINFOA
@@ -4942,8 +4942,8 @@ _WSANAMESPACE_INFOA._fields_ = [
     ('dwVersion', DWORD),
     ('lpszIdentifier', LPSTR),
 ]
-WSANAMESPACE_INFOA = _WSANAMESPACE_INFOA
 PWSANAMESPACE_INFOA = POINTER(_WSANAMESPACE_INFOA)
+WSANAMESPACE_INFOA = _WSANAMESPACE_INFOA
 LPWSANAMESPACE_INFOA = POINTER(_WSANAMESPACE_INFOA)
 class _WSANAMESPACE_INFOW(Structure):
     pass
@@ -4989,15 +4989,15 @@ class _SERVICE_DESCRIPTIONA(Structure):
 _SERVICE_DESCRIPTIONA._fields_ = [
     ('lpDescription', LPSTR),
 ]
-LPSERVICE_DESCRIPTIONA = POINTER(_SERVICE_DESCRIPTIONA)
 SERVICE_DESCRIPTIONA = _SERVICE_DESCRIPTIONA
+LPSERVICE_DESCRIPTIONA = POINTER(_SERVICE_DESCRIPTIONA)
 class _SERVICE_DESCRIPTIONW(Structure):
     pass
 _SERVICE_DESCRIPTIONW._fields_ = [
     ('lpDescription', LPWSTR),
 ]
-SERVICE_DESCRIPTIONW = _SERVICE_DESCRIPTIONW
 LPSERVICE_DESCRIPTIONW = POINTER(_SERVICE_DESCRIPTIONW)
+SERVICE_DESCRIPTIONW = _SERVICE_DESCRIPTIONW
 SERVICE_DESCRIPTION = SERVICE_DESCRIPTIONA
 LPSERVICE_DESCRIPTION = LPSERVICE_DESCRIPTIONA
 
@@ -5010,8 +5010,8 @@ _SC_ACTION._fields_ = [
     ('Type', SC_ACTION_TYPE),
     ('Delay', DWORD),
 ]
-LPSC_ACTION = POINTER(_SC_ACTION)
 SC_ACTION = _SC_ACTION
+LPSC_ACTION = POINTER(_SC_ACTION)
 class _SERVICE_FAILURE_ACTIONSA(Structure):
     pass
 _SERVICE_FAILURE_ACTIONSA._fields_ = [
@@ -5032,8 +5032,8 @@ _SERVICE_FAILURE_ACTIONSW._fields_ = [
     ('cActions', DWORD),
     ('lpsaActions', POINTER(SC_ACTION)),
 ]
-LPSERVICE_FAILURE_ACTIONSW = POINTER(_SERVICE_FAILURE_ACTIONSW)
 SERVICE_FAILURE_ACTIONSW = _SERVICE_FAILURE_ACTIONSW
+LPSERVICE_FAILURE_ACTIONSW = POINTER(_SERVICE_FAILURE_ACTIONSW)
 SERVICE_FAILURE_ACTIONS = SERVICE_FAILURE_ACTIONSA
 LPSERVICE_FAILURE_ACTIONS = LPSERVICE_FAILURE_ACTIONSA
 class SC_HANDLE__(Structure):
@@ -5090,8 +5090,8 @@ _ENUM_SERVICE_STATUSA._fields_ = [
     ('lpDisplayName', LPSTR),
     ('ServiceStatus', SERVICE_STATUS),
 ]
-LPENUM_SERVICE_STATUSA = POINTER(_ENUM_SERVICE_STATUSA)
 ENUM_SERVICE_STATUSA = _ENUM_SERVICE_STATUSA
+LPENUM_SERVICE_STATUSA = POINTER(_ENUM_SERVICE_STATUSA)
 class _ENUM_SERVICE_STATUSW(Structure):
     pass
 _ENUM_SERVICE_STATUSW._fields_ = [
@@ -5099,8 +5099,8 @@ _ENUM_SERVICE_STATUSW._fields_ = [
     ('lpDisplayName', LPWSTR),
     ('ServiceStatus', SERVICE_STATUS),
 ]
-LPENUM_SERVICE_STATUSW = POINTER(_ENUM_SERVICE_STATUSW)
 ENUM_SERVICE_STATUSW = _ENUM_SERVICE_STATUSW
+LPENUM_SERVICE_STATUSW = POINTER(_ENUM_SERVICE_STATUSW)
 ENUM_SERVICE_STATUS = ENUM_SERVICE_STATUSA
 LPENUM_SERVICE_STATUS = LPENUM_SERVICE_STATUSA
 class _ENUM_SERVICE_STATUS_PROCESSA(Structure):
@@ -5119,8 +5119,8 @@ _ENUM_SERVICE_STATUS_PROCESSW._fields_ = [
     ('lpDisplayName', LPWSTR),
     ('ServiceStatusProcess', SERVICE_STATUS_PROCESS),
 ]
-ENUM_SERVICE_STATUS_PROCESSW = _ENUM_SERVICE_STATUS_PROCESSW
 LPENUM_SERVICE_STATUS_PROCESSW = POINTER(_ENUM_SERVICE_STATUS_PROCESSW)
+ENUM_SERVICE_STATUS_PROCESSW = _ENUM_SERVICE_STATUS_PROCESSW
 ENUM_SERVICE_STATUS_PROCESS = ENUM_SERVICE_STATUS_PROCESSA
 LPENUM_SERVICE_STATUS_PROCESS = LPENUM_SERVICE_STATUS_PROCESSA
 SC_LOCK = LPVOID
@@ -5140,8 +5140,8 @@ _QUERY_SERVICE_LOCK_STATUSW._fields_ = [
     ('lpLockOwner', LPWSTR),
     ('dwLockDuration', DWORD),
 ]
-QUERY_SERVICE_LOCK_STATUSW = _QUERY_SERVICE_LOCK_STATUSW
 LPQUERY_SERVICE_LOCK_STATUSW = POINTER(_QUERY_SERVICE_LOCK_STATUSW)
+QUERY_SERVICE_LOCK_STATUSW = _QUERY_SERVICE_LOCK_STATUSW
 QUERY_SERVICE_LOCK_STATUS = QUERY_SERVICE_LOCK_STATUSA
 LPQUERY_SERVICE_LOCK_STATUS = LPQUERY_SERVICE_LOCK_STATUSA
 class _QUERY_SERVICE_CONFIGA(Structure):
@@ -5172,8 +5172,8 @@ _QUERY_SERVICE_CONFIGW._fields_ = [
     ('lpServiceStartName', LPWSTR),
     ('lpDisplayName', LPWSTR),
 ]
-QUERY_SERVICE_CONFIGW = _QUERY_SERVICE_CONFIGW
 LPQUERY_SERVICE_CONFIGW = POINTER(_QUERY_SERVICE_CONFIGW)
+QUERY_SERVICE_CONFIGW = _QUERY_SERVICE_CONFIGW
 QUERY_SERVICE_CONFIG = QUERY_SERVICE_CONFIGA
 LPQUERY_SERVICE_CONFIG = LPQUERY_SERVICE_CONFIGA
 LPSERVICE_MAIN_FUNCTIONW = WINFUNCTYPE(None, c_ulong, POINTER(LPWSTR))
@@ -5184,8 +5184,8 @@ _SERVICE_TABLE_ENTRYA._fields_ = [
     ('lpServiceName', LPSTR),
     ('lpServiceProc', LPSERVICE_MAIN_FUNCTIONA),
 ]
-LPSERVICE_TABLE_ENTRYA = POINTER(_SERVICE_TABLE_ENTRYA)
 SERVICE_TABLE_ENTRYA = _SERVICE_TABLE_ENTRYA
+LPSERVICE_TABLE_ENTRYA = POINTER(_SERVICE_TABLE_ENTRYA)
 class _SERVICE_TABLE_ENTRYW(Structure):
     pass
 _SERVICE_TABLE_ENTRYW._fields_ = [
@@ -5237,8 +5237,8 @@ tagCBT_CREATEWNDA._fields_ = [
     ('lpcs', POINTER(tagCREATESTRUCTA)),
     ('hwndInsertAfter', HWND),
 ]
-LPCBT_CREATEWNDA = POINTER(tagCBT_CREATEWNDA)
 CBT_CREATEWNDA = tagCBT_CREATEWNDA
+LPCBT_CREATEWNDA = POINTER(tagCBT_CREATEWNDA)
 class tagCBT_CREATEWNDW(Structure):
     pass
 class tagCREATESTRUCTW(Structure):
@@ -5257,8 +5257,8 @@ tagCBTACTIVATESTRUCT._fields_ = [
     ('fMouse', BOOL),
     ('hWndActive', HWND),
 ]
-CBTACTIVATESTRUCT = tagCBTACTIVATESTRUCT
 LPCBTACTIVATESTRUCT = POINTER(tagCBTACTIVATESTRUCT)
+CBTACTIVATESTRUCT = tagCBTACTIVATESTRUCT
 class SHELLHOOKINFO(Structure):
     pass
 LPSHELLHOOKINFO = POINTER(SHELLHOOKINFO)
@@ -5275,13 +5275,13 @@ tagEVENTMSG._fields_ = [
     ('time', DWORD),
     ('hwnd', HWND),
 ]
-NPEVENTMSGMSG = POINTER(tagEVENTMSG)
-PEVENTMSGMSG = POINTER(tagEVENTMSG)
 EVENTMSG = tagEVENTMSG
 LPEVENTMSGMSG = POINTER(tagEVENTMSG)
+NPEVENTMSGMSG = POINTER(tagEVENTMSG)
+PEVENTMSGMSG = POINTER(tagEVENTMSG)
+PEVENTMSG = POINTER(tagEVENTMSG)
 LPEVENTMSG = POINTER(tagEVENTMSG)
 NPEVENTMSG = POINTER(tagEVENTMSG)
-PEVENTMSG = POINTER(tagEVENTMSG)
 class tagCWPSTRUCT(Structure):
     pass
 tagCWPSTRUCT._fields_ = [
@@ -5303,10 +5303,10 @@ tagCWPRETSTRUCT._fields_ = [
     ('message', UINT),
     ('hwnd', HWND),
 ]
-PCWPRETSTRUCT = POINTER(tagCWPRETSTRUCT)
-CWPRETSTRUCT = tagCWPRETSTRUCT
 LPCWPRETSTRUCT = POINTER(tagCWPRETSTRUCT)
 NPCWPRETSTRUCT = POINTER(tagCWPRETSTRUCT)
+CWPRETSTRUCT = tagCWPRETSTRUCT
+PCWPRETSTRUCT = POINTER(tagCWPRETSTRUCT)
 class tagKBDLLHOOKSTRUCT(Structure):
     pass
 tagKBDLLHOOKSTRUCT._fields_ = [
@@ -5316,9 +5316,9 @@ tagKBDLLHOOKSTRUCT._fields_ = [
     ('time', DWORD),
     ('dwExtraInfo', ULONG_PTR),
 ]
-PKBDLLHOOKSTRUCT = POINTER(tagKBDLLHOOKSTRUCT)
-KBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT
 LPKBDLLHOOKSTRUCT = POINTER(tagKBDLLHOOKSTRUCT)
+KBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT
+PKBDLLHOOKSTRUCT = POINTER(tagKBDLLHOOKSTRUCT)
 class tagMSLLHOOKSTRUCT(Structure):
     pass
 tagMSLLHOOKSTRUCT._fields_ = [
@@ -5328,8 +5328,8 @@ tagMSLLHOOKSTRUCT._fields_ = [
     ('time', DWORD),
     ('dwExtraInfo', ULONG_PTR),
 ]
-PMSLLHOOKSTRUCT = POINTER(tagMSLLHOOKSTRUCT)
 MSLLHOOKSTRUCT = tagMSLLHOOKSTRUCT
+PMSLLHOOKSTRUCT = POINTER(tagMSLLHOOKSTRUCT)
 LPMSLLHOOKSTRUCT = POINTER(tagMSLLHOOKSTRUCT)
 class tagDEBUGHOOKINFO(Structure):
     pass
@@ -5340,8 +5340,8 @@ tagDEBUGHOOKINFO._fields_ = [
     ('wParam', WPARAM),
     ('code', c_int),
 ]
-DEBUGHOOKINFO = tagDEBUGHOOKINFO
 LPDEBUGHOOKINFO = POINTER(tagDEBUGHOOKINFO)
+DEBUGHOOKINFO = tagDEBUGHOOKINFO
 NPDEBUGHOOKINFO = POINTER(tagDEBUGHOOKINFO)
 PDEBUGHOOKINFO = POINTER(tagDEBUGHOOKINFO)
 class tagMOUSEHOOKSTRUCT(Structure):
@@ -5352,9 +5352,9 @@ tagMOUSEHOOKSTRUCT._fields_ = [
     ('wHitTestCode', UINT),
     ('dwExtraInfo', ULONG_PTR),
 ]
+MOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT
 PMOUSEHOOKSTRUCT = POINTER(tagMOUSEHOOKSTRUCT)
 LPMOUSEHOOKSTRUCT = POINTER(tagMOUSEHOOKSTRUCT)
-MOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT
 class tagHARDWAREHOOKSTRUCT(Structure):
     pass
 tagHARDWAREHOOKSTRUCT._fields_ = [
@@ -5363,9 +5363,9 @@ tagHARDWAREHOOKSTRUCT._fields_ = [
     ('wParam', WPARAM),
     ('lParam', LPARAM),
 ]
-LPHARDWAREHOOKSTRUCT = POINTER(tagHARDWAREHOOKSTRUCT)
 HARDWAREHOOKSTRUCT = tagHARDWAREHOOKSTRUCT
 PHARDWAREHOOKSTRUCT = POINTER(tagHARDWAREHOOKSTRUCT)
+LPHARDWAREHOOKSTRUCT = POINTER(tagHARDWAREHOOKSTRUCT)
 class tagMOUSEMOVEPOINT(Structure):
     pass
 tagMOUSEMOVEPOINT._fields_ = [
@@ -5384,8 +5384,8 @@ tagUSEROBJECTFLAGS._fields_ = [
     ('fReserved', BOOL),
     ('dwFlags', DWORD),
 ]
-PUSEROBJECTFLAGS = POINTER(tagUSEROBJECTFLAGS)
 USEROBJECTFLAGS = tagUSEROBJECTFLAGS
+PUSEROBJECTFLAGS = POINTER(tagUSEROBJECTFLAGS)
 class tagWNDCLASSEXA(Structure):
     pass
 tagWNDCLASSEXA._fields_ = [
@@ -5402,10 +5402,10 @@ tagWNDCLASSEXA._fields_ = [
     ('lpszClassName', LPCSTR),
     ('hIconSm', HICON),
 ]
-PWNDCLASSEXA = POINTER(tagWNDCLASSEXA)
-WNDCLASSEXA = tagWNDCLASSEXA
-LPWNDCLASSEXA = POINTER(tagWNDCLASSEXA)
 NPWNDCLASSEXA = POINTER(tagWNDCLASSEXA)
+LPWNDCLASSEXA = POINTER(tagWNDCLASSEXA)
+WNDCLASSEXA = tagWNDCLASSEXA
+PWNDCLASSEXA = POINTER(tagWNDCLASSEXA)
 class tagWNDCLASSEXW(Structure):
     pass
 tagWNDCLASSEXW._fields_ = [
@@ -5423,8 +5423,8 @@ tagWNDCLASSEXW._fields_ = [
     ('hIconSm', HICON),
 ]
 PWNDCLASSEXW = POINTER(tagWNDCLASSEXW)
-LPWNDCLASSEXW = POINTER(tagWNDCLASSEXW)
 WNDCLASSEXW = tagWNDCLASSEXW
+LPWNDCLASSEXW = POINTER(tagWNDCLASSEXW)
 NPWNDCLASSEXW = POINTER(tagWNDCLASSEXW)
 WNDCLASSEX = WNDCLASSEXA
 PWNDCLASSEX = PWNDCLASSEXA
@@ -5444,10 +5444,10 @@ tagWNDCLASSA._fields_ = [
     ('lpszMenuName', LPCSTR),
     ('lpszClassName', LPCSTR),
 ]
-LPWNDCLASSA = POINTER(tagWNDCLASSA)
-NPWNDCLASSA = POINTER(tagWNDCLASSA)
 PWNDCLASSA = POINTER(tagWNDCLASSA)
+LPWNDCLASSA = POINTER(tagWNDCLASSA)
 WNDCLASSA = tagWNDCLASSA
+NPWNDCLASSA = POINTER(tagWNDCLASSA)
 class tagWNDCLASSW(Structure):
     pass
 tagWNDCLASSW._fields_ = [
@@ -5462,17 +5462,17 @@ tagWNDCLASSW._fields_ = [
     ('lpszMenuName', LPCWSTR),
     ('lpszClassName', LPCWSTR),
 ]
-PWNDCLASSW = POINTER(tagWNDCLASSW)
-NPWNDCLASSW = POINTER(tagWNDCLASSW)
 WNDCLASSW = tagWNDCLASSW
 LPWNDCLASSW = POINTER(tagWNDCLASSW)
+NPWNDCLASSW = POINTER(tagWNDCLASSW)
+PWNDCLASSW = POINTER(tagWNDCLASSW)
 WNDCLASS = WNDCLASSA
 PWNDCLASS = PWNDCLASSA
 NPWNDCLASS = NPWNDCLASSA
 LPWNDCLASS = LPWNDCLASSA
-PMSG = POINTER(tagMSG)
 LPMSG = POINTER(tagMSG)
 NPMSG = POINTER(tagMSG)
+PMSG = POINTER(tagMSG)
 class tagMINMAXINFO(Structure):
     pass
 tagMINMAXINFO._fields_ = [
@@ -5492,8 +5492,8 @@ tagCOPYDATASTRUCT._fields_ = [
     ('cbData', DWORD),
     ('lpData', PVOID),
 ]
-PCOPYDATASTRUCT = POINTER(tagCOPYDATASTRUCT)
 COPYDATASTRUCT = tagCOPYDATASTRUCT
+PCOPYDATASTRUCT = POINTER(tagCOPYDATASTRUCT)
 class tagMDINEXTMENU(Structure):
     pass
 tagMDINEXTMENU._fields_ = [
@@ -5501,9 +5501,9 @@ tagMDINEXTMENU._fields_ = [
     ('hmenuNext', HMENU),
     ('hwndNext', HWND),
 ]
+PMDINEXTMENU = POINTER(tagMDINEXTMENU)
 LPMDINEXTMENU = POINTER(tagMDINEXTMENU)
 MDINEXTMENU = tagMDINEXTMENU
-PMDINEXTMENU = POINTER(tagMDINEXTMENU)
 class tagWINDOWPOS(Structure):
     pass
 tagWINDOWPOS._fields_ = [
@@ -5515,9 +5515,9 @@ tagWINDOWPOS._fields_ = [
     ('cy', c_int),
     ('flags', UINT),
 ]
+LPWINDOWPOS = POINTER(tagWINDOWPOS)
 PWINDOWPOS = POINTER(tagWINDOWPOS)
 WINDOWPOS = tagWINDOWPOS
-LPWINDOWPOS = POINTER(tagWINDOWPOS)
 class tagNCCALCSIZE_PARAMS(Structure):
     pass
 tagNCCALCSIZE_PARAMS._fields_ = [
@@ -5543,8 +5543,8 @@ tagACCEL._fields_ = [
     ('key', WORD),
     ('cmd', WORD),
 ]
-ACCEL = tagACCEL
 LPACCEL = POINTER(tagACCEL)
+ACCEL = tagACCEL
 class tagPAINTSTRUCT(Structure):
     pass
 tagPAINTSTRUCT._fields_ = [
@@ -5555,9 +5555,9 @@ tagPAINTSTRUCT._fields_ = [
     ('fIncUpdate', BOOL),
     ('rgbReserved', BYTE * 32),
 ]
-NPPAINTSTRUCT = POINTER(tagPAINTSTRUCT)
-PPAINTSTRUCT = POINTER(tagPAINTSTRUCT)
 LPPAINTSTRUCT = POINTER(tagPAINTSTRUCT)
+PPAINTSTRUCT = POINTER(tagPAINTSTRUCT)
+NPPAINTSTRUCT = POINTER(tagPAINTSTRUCT)
 PAINTSTRUCT = tagPAINTSTRUCT
 tagCREATESTRUCTA._fields_ = [
     ('lpCreateParams', LPVOID),
@@ -5604,8 +5604,8 @@ tagWINDOWPLACEMENT._fields_ = [
     ('rcNormalPosition', RECT),
 ]
 WINDOWPLACEMENT = tagWINDOWPLACEMENT
-PWINDOWPLACEMENT = POINTER(WINDOWPLACEMENT)
 LPWINDOWPLACEMENT = POINTER(WINDOWPLACEMENT)
+PWINDOWPLACEMENT = POINTER(WINDOWPLACEMENT)
 class tagNMHDR(Structure):
     pass
 tagNMHDR._fields_ = [
@@ -5633,9 +5633,9 @@ tagMEASUREITEMSTRUCT._fields_ = [
     ('itemHeight', UINT),
     ('itemData', ULONG_PTR),
 ]
+LPMEASUREITEMSTRUCT = POINTER(tagMEASUREITEMSTRUCT)
 PMEASUREITEMSTRUCT = POINTER(tagMEASUREITEMSTRUCT)
 MEASUREITEMSTRUCT = tagMEASUREITEMSTRUCT
-LPMEASUREITEMSTRUCT = POINTER(tagMEASUREITEMSTRUCT)
 class tagDRAWITEMSTRUCT(Structure):
     pass
 tagDRAWITEMSTRUCT._fields_ = [
@@ -5649,8 +5649,8 @@ tagDRAWITEMSTRUCT._fields_ = [
     ('rcItem', RECT),
     ('itemData', ULONG_PTR),
 ]
-LPDRAWITEMSTRUCT = POINTER(tagDRAWITEMSTRUCT)
 PDRAWITEMSTRUCT = POINTER(tagDRAWITEMSTRUCT)
+LPDRAWITEMSTRUCT = POINTER(tagDRAWITEMSTRUCT)
 DRAWITEMSTRUCT = tagDRAWITEMSTRUCT
 class tagDELETEITEMSTRUCT(Structure):
     pass
@@ -5661,9 +5661,9 @@ tagDELETEITEMSTRUCT._fields_ = [
     ('hwndItem', HWND),
     ('itemData', ULONG_PTR),
 ]
-LPDELETEITEMSTRUCT = POINTER(tagDELETEITEMSTRUCT)
-DELETEITEMSTRUCT = tagDELETEITEMSTRUCT
 PDELETEITEMSTRUCT = POINTER(tagDELETEITEMSTRUCT)
+DELETEITEMSTRUCT = tagDELETEITEMSTRUCT
+LPDELETEITEMSTRUCT = POINTER(tagDELETEITEMSTRUCT)
 class tagCOMPAREITEMSTRUCT(Structure):
     pass
 tagCOMPAREITEMSTRUCT._fields_ = [
@@ -5676,13 +5676,14 @@ tagCOMPAREITEMSTRUCT._fields_ = [
     ('itemData2', ULONG_PTR),
     ('dwLocaleId', DWORD),
 ]
-PCOMPAREITEMSTRUCT = POINTER(tagCOMPAREITEMSTRUCT)
 COMPAREITEMSTRUCT = tagCOMPAREITEMSTRUCT
 LPCOMPAREITEMSTRUCT = POINTER(tagCOMPAREITEMSTRUCT)
+PCOMPAREITEMSTRUCT = POINTER(tagCOMPAREITEMSTRUCT)
 HDEVNOTIFY = PVOID
 PHDEVNOTIFY = POINTER(HDEVNOTIFY)
 class FLASHWINFO(Structure):
     pass
+PFLASHWINFO = POINTER(FLASHWINFO)
 FLASHWINFO._fields_ = [
     ('cbSize', UINT),
     ('hwnd', HWND),
@@ -5690,7 +5691,6 @@ FLASHWINFO._fields_ = [
     ('uCount', UINT),
     ('dwTimeout', DWORD),
 ]
-PFLASHWINFO = POINTER(FLASHWINFO)
 class DLGTEMPLATE(Structure):
     pass
 DLGTEMPLATE._pack_ = 2
@@ -5758,8 +5758,8 @@ tagMENUGETOBJECTINFO._fields_ = [
     ('riid', PVOID),
     ('pvObj', PVOID),
 ]
-MENUGETOBJECTINFO = tagMENUGETOBJECTINFO
 PMENUGETOBJECTINFO = POINTER(tagMENUGETOBJECTINFO)
+MENUGETOBJECTINFO = tagMENUGETOBJECTINFO
 class tagMENUITEMINFOA(Structure):
     pass
 tagMENUITEMINFOA._fields_ = [
@@ -5794,8 +5794,8 @@ tagMENUITEMINFOW._fields_ = [
     ('cch', UINT),
     ('hbmpItem', HBITMAP),
 ]
-MENUITEMINFOW = tagMENUITEMINFOW
 LPMENUITEMINFOW = POINTER(tagMENUITEMINFOW)
+MENUITEMINFOW = tagMENUITEMINFOW
 MENUITEMINFO = MENUITEMINFOA
 LPMENUITEMINFO = LPMENUITEMINFOA
 LPCMENUITEMINFOA = POINTER(MENUITEMINFOA)
@@ -5812,8 +5812,8 @@ tagDROPSTRUCT._fields_ = [
     ('dwControlData', DWORD),
 ]
 DROPSTRUCT = tagDROPSTRUCT
-LPDROPSTRUCT = POINTER(tagDROPSTRUCT)
 PDROPSTRUCT = POINTER(tagDROPSTRUCT)
+LPDROPSTRUCT = POINTER(tagDROPSTRUCT)
 class tagDRAWTEXTPARAMS(Structure):
     pass
 tagDRAWTEXTPARAMS._fields_ = [
@@ -5823,8 +5823,8 @@ tagDRAWTEXTPARAMS._fields_ = [
     ('iRightMargin', c_int),
     ('uiLengthDrawn', UINT),
 ]
-DRAWTEXTPARAMS = tagDRAWTEXTPARAMS
 LPDRAWTEXTPARAMS = POINTER(tagDRAWTEXTPARAMS)
+DRAWTEXTPARAMS = tagDRAWTEXTPARAMS
 class tagHELPINFO(Structure):
     pass
 tagHELPINFO._fields_ = [
@@ -5853,8 +5853,8 @@ tagMSGBOXPARAMSA._fields_ = [
     ('dwLanguageId', DWORD),
 ]
 LPMSGBOXPARAMSA = POINTER(tagMSGBOXPARAMSA)
-MSGBOXPARAMSA = tagMSGBOXPARAMSA
 PMSGBOXPARAMSA = POINTER(tagMSGBOXPARAMSA)
+MSGBOXPARAMSA = tagMSGBOXPARAMSA
 class tagMSGBOXPARAMSW(Structure):
     pass
 tagMSGBOXPARAMSW._fields_ = [
@@ -5869,19 +5869,19 @@ tagMSGBOXPARAMSW._fields_ = [
     ('lpfnMsgBoxCallback', MSGBOXCALLBACK),
     ('dwLanguageId', DWORD),
 ]
-MSGBOXPARAMSW = tagMSGBOXPARAMSW
-LPMSGBOXPARAMSW = POINTER(tagMSGBOXPARAMSW)
 PMSGBOXPARAMSW = POINTER(tagMSGBOXPARAMSW)
+LPMSGBOXPARAMSW = POINTER(tagMSGBOXPARAMSW)
+MSGBOXPARAMSW = tagMSGBOXPARAMSW
 MSGBOXPARAMS = MSGBOXPARAMSA
 PMSGBOXPARAMS = PMSGBOXPARAMSA
 LPMSGBOXPARAMS = LPMSGBOXPARAMSA
 class MENUITEMTEMPLATEHEADER(Structure):
     pass
+PMENUITEMTEMPLATEHEADER = POINTER(MENUITEMTEMPLATEHEADER)
 MENUITEMTEMPLATEHEADER._fields_ = [
     ('versionNumber', WORD),
     ('offset', WORD),
 ]
-PMENUITEMTEMPLATEHEADER = POINTER(MENUITEMTEMPLATEHEADER)
 class MENUITEMTEMPLATE(Structure):
     pass
 MENUITEMTEMPLATE._fields_ = [
@@ -5966,8 +5966,8 @@ tagCLIENTCREATESTRUCT._fields_ = [
     ('hWindowMenu', HANDLE),
     ('idFirstChild', UINT),
 ]
-CLIENTCREATESTRUCT = tagCLIENTCREATESTRUCT
 LPCLIENTCREATESTRUCT = POINTER(tagCLIENTCREATESTRUCT)
+CLIENTCREATESTRUCT = tagCLIENTCREATESTRUCT
 HELPPOLY = DWORD
 class tagMULTIKEYHELPA(Structure):
     pass
@@ -5977,8 +5977,8 @@ tagMULTIKEYHELPA._fields_ = [
     ('szKeyphrase', CHAR * 1),
 ]
 LPMULTIKEYHELPA = POINTER(tagMULTIKEYHELPA)
-MULTIKEYHELPA = tagMULTIKEYHELPA
 PMULTIKEYHELPA = POINTER(tagMULTIKEYHELPA)
+MULTIKEYHELPA = tagMULTIKEYHELPA
 class tagMULTIKEYHELPW(Structure):
     pass
 tagMULTIKEYHELPW._fields_ = [
@@ -5987,8 +5987,8 @@ tagMULTIKEYHELPW._fields_ = [
     ('szKeyphrase', WCHAR * 1),
 ]
 LPMULTIKEYHELPW = POINTER(tagMULTIKEYHELPW)
-PMULTIKEYHELPW = POINTER(tagMULTIKEYHELPW)
 MULTIKEYHELPW = tagMULTIKEYHELPW
+PMULTIKEYHELPW = POINTER(tagMULTIKEYHELPW)
 MULTIKEYHELP = MULTIKEYHELPA
 PMULTIKEYHELP = PMULTIKEYHELPA
 LPMULTIKEYHELP = LPMULTIKEYHELPA
@@ -6003,9 +6003,9 @@ tagHELPWININFOA._fields_ = [
     ('wMax', c_int),
     ('rgchMember', CHAR * 2),
 ]
-PHELPWININFOA = POINTER(tagHELPWININFOA)
-LPHELPWININFOA = POINTER(tagHELPWININFOA)
 HELPWININFOA = tagHELPWININFOA
+LPHELPWININFOA = POINTER(tagHELPWININFOA)
+PHELPWININFOA = POINTER(tagHELPWININFOA)
 class tagHELPWININFOW(Structure):
     pass
 tagHELPWININFOW._fields_ = [
@@ -6017,9 +6017,9 @@ tagHELPWININFOW._fields_ = [
     ('wMax', c_int),
     ('rgchMember', WCHAR * 2),
 ]
-HELPWININFOW = tagHELPWININFOW
 PHELPWININFOW = POINTER(tagHELPWININFOW)
 LPHELPWININFOW = POINTER(tagHELPWININFOW)
+HELPWININFOW = tagHELPWININFOW
 HELPWININFO = HELPWININFOA
 PHELPWININFO = PHELPWININFOA
 LPHELPWININFO = LPHELPWININFOA
@@ -6042,8 +6042,8 @@ tagNONCLIENTMETRICSA._fields_ = [
     ('lfStatusFont', LOGFONTA),
     ('lfMessageFont', LOGFONTA),
 ]
-NONCLIENTMETRICSA = tagNONCLIENTMETRICSA
 LPNONCLIENTMETRICSA = POINTER(tagNONCLIENTMETRICSA)
+NONCLIENTMETRICSA = tagNONCLIENTMETRICSA
 PNONCLIENTMETRICSA = POINTER(tagNONCLIENTMETRICSA)
 class tagNONCLIENTMETRICSW(Structure):
     pass
@@ -6064,9 +6064,9 @@ tagNONCLIENTMETRICSW._fields_ = [
     ('lfStatusFont', LOGFONTW),
     ('lfMessageFont', LOGFONTW),
 ]
-LPNONCLIENTMETRICSW = POINTER(tagNONCLIENTMETRICSW)
-PNONCLIENTMETRICSW = POINTER(tagNONCLIENTMETRICSW)
 NONCLIENTMETRICSW = tagNONCLIENTMETRICSW
+PNONCLIENTMETRICSW = POINTER(tagNONCLIENTMETRICSW)
+LPNONCLIENTMETRICSW = POINTER(tagNONCLIENTMETRICSW)
 NONCLIENTMETRICS = NONCLIENTMETRICSA
 PNONCLIENTMETRICS = PNONCLIENTMETRICSA
 LPNONCLIENTMETRICS = LPNONCLIENTMETRICSA
@@ -6079,9 +6079,9 @@ tagMINIMIZEDMETRICS._fields_ = [
     ('iVertGap', c_int),
     ('iArrange', c_int),
 ]
-MINIMIZEDMETRICS = tagMINIMIZEDMETRICS
-LPMINIMIZEDMETRICS = POINTER(tagMINIMIZEDMETRICS)
 PMINIMIZEDMETRICS = POINTER(tagMINIMIZEDMETRICS)
+LPMINIMIZEDMETRICS = POINTER(tagMINIMIZEDMETRICS)
+MINIMIZEDMETRICS = tagMINIMIZEDMETRICS
 class tagICONMETRICSA(Structure):
     pass
 tagICONMETRICSA._fields_ = [
@@ -6092,8 +6092,8 @@ tagICONMETRICSA._fields_ = [
     ('lfFont', LOGFONTA),
 ]
 PICONMETRICSA = POINTER(tagICONMETRICSA)
-LPICONMETRICSA = POINTER(tagICONMETRICSA)
 ICONMETRICSA = tagICONMETRICSA
+LPICONMETRICSA = POINTER(tagICONMETRICSA)
 class tagICONMETRICSW(Structure):
     pass
 tagICONMETRICSW._fields_ = [
@@ -6104,8 +6104,8 @@ tagICONMETRICSW._fields_ = [
     ('lfFont', LOGFONTW),
 ]
 PICONMETRICSW = POINTER(tagICONMETRICSW)
-LPICONMETRICSW = POINTER(tagICONMETRICSW)
 ICONMETRICSW = tagICONMETRICSW
+LPICONMETRICSW = POINTER(tagICONMETRICSW)
 ICONMETRICS = ICONMETRICSA
 PICONMETRICS = PICONMETRICSA
 LPICONMETRICS = LPICONMETRICSA
@@ -6115,8 +6115,8 @@ tagANIMATIONINFO._fields_ = [
     ('cbSize', UINT),
     ('iMinAnimate', c_int),
 ]
-LPANIMATIONINFO = POINTER(tagANIMATIONINFO)
 ANIMATIONINFO = tagANIMATIONINFO
+LPANIMATIONINFO = POINTER(tagANIMATIONINFO)
 class tagSERIALKEYSA(Structure):
     pass
 tagSERIALKEYSA._fields_ = [
@@ -6128,8 +6128,8 @@ tagSERIALKEYSA._fields_ = [
     ('iPortState', UINT),
     ('iActive', UINT),
 ]
-SERIALKEYSA = tagSERIALKEYSA
 LPSERIALKEYSA = POINTER(tagSERIALKEYSA)
+SERIALKEYSA = tagSERIALKEYSA
 class tagSERIALKEYSW(Structure):
     pass
 tagSERIALKEYSW._fields_ = [
@@ -6141,8 +6141,8 @@ tagSERIALKEYSW._fields_ = [
     ('iPortState', UINT),
     ('iActive', UINT),
 ]
-LPSERIALKEYSW = POINTER(tagSERIALKEYSW)
 SERIALKEYSW = tagSERIALKEYSW
+LPSERIALKEYSW = POINTER(tagSERIALKEYSW)
 SERIALKEYS = SERIALKEYSA
 LPSERIALKEYS = LPSERIALKEYSA
 class tagHIGHCONTRASTA(Structure):
@@ -6175,16 +6175,16 @@ tagFILTERKEYS._fields_ = [
     ('iRepeatMSec', DWORD),
     ('iBounceMSec', DWORD),
 ]
-FILTERKEYS = tagFILTERKEYS
 LPFILTERKEYS = POINTER(tagFILTERKEYS)
+FILTERKEYS = tagFILTERKEYS
 class tagSTICKYKEYS(Structure):
     pass
 tagSTICKYKEYS._fields_ = [
     ('cbSize', UINT),
     ('dwFlags', DWORD),
 ]
-LPSTICKYKEYS = POINTER(tagSTICKYKEYS)
 STICKYKEYS = tagSTICKYKEYS
+LPSTICKYKEYS = POINTER(tagSTICKYKEYS)
 class tagMOUSEKEYS(Structure):
     pass
 tagMOUSEKEYS._fields_ = [
@@ -6241,8 +6241,8 @@ tagSOUNDSENTRYW._fields_ = [
     ('lpszWindowsEffectDLL', LPWSTR),
     ('iWindowsEffectOrdinal', DWORD),
 ]
-LPSOUNDSENTRYW = POINTER(tagSOUNDSENTRYW)
 SOUNDSENTRYW = tagSOUNDSENTRYW
+LPSOUNDSENTRYW = POINTER(tagSOUNDSENTRYW)
 SOUNDSENTRY = SOUNDSENTRYA
 LPSOUNDSENTRY = LPSOUNDSENTRYA
 class tagTOGGLEKEYS(Structure):
@@ -6251,8 +6251,8 @@ tagTOGGLEKEYS._fields_ = [
     ('cbSize', UINT),
     ('dwFlags', DWORD),
 ]
-TOGGLEKEYS = tagTOGGLEKEYS
 LPTOGGLEKEYS = POINTER(tagTOGGLEKEYS)
+TOGGLEKEYS = tagTOGGLEKEYS
 class tagMONITORINFO(Structure):
     pass
 tagMONITORINFO._fields_ = [
@@ -6261,8 +6261,8 @@ tagMONITORINFO._fields_ = [
     ('rcWork', RECT),
     ('dwFlags', DWORD),
 ]
-LPMONITORINFO = POINTER(tagMONITORINFO)
 MONITORINFO = tagMONITORINFO
+LPMONITORINFO = POINTER(tagMONITORINFO)
 class tagMONITORINFOEXA(tagMONITORINFO):
     pass
 tagMONITORINFOEXA._fields_ = [
@@ -6275,8 +6275,8 @@ class tagMONITORINFOEXW(tagMONITORINFO):
 tagMONITORINFOEXW._fields_ = [
     ('szDevice', WCHAR * 32),
 ]
-LPMONITORINFOEXW = POINTER(tagMONITORINFOEXW)
 MONITORINFOEXW = tagMONITORINFOEXW
+LPMONITORINFOEXW = POINTER(tagMONITORINFOEXW)
 MONITORINFOEX = MONITORINFOEXA
 LPMONITORINFOEX = LPMONITORINFOEXA
 MONITORENUMPROC = WINFUNCTYPE(BOOL, POINTER(HMONITOR__), POINTER(HDC__), POINTER(tagRECT), c_long)
@@ -6294,8 +6294,8 @@ tagGUITHREADINFO._fields_ = [
     ('hwndCaret', HWND),
     ('rcCaret', RECT),
 ]
-LPGUITHREADINFO = POINTER(tagGUITHREADINFO)
 PGUITHREADINFO = POINTER(tagGUITHREADINFO)
+LPGUITHREADINFO = POINTER(tagGUITHREADINFO)
 GUITHREADINFO = tagGUITHREADINFO
 class tagCURSORINFO(Structure):
     pass
@@ -6305,9 +6305,9 @@ tagCURSORINFO._fields_ = [
     ('hCursor', HCURSOR),
     ('ptScreenPos', POINT),
 ]
-LPCURSORINFO = POINTER(tagCURSORINFO)
 PCURSORINFO = POINTER(tagCURSORINFO)
 CURSORINFO = tagCURSORINFO
+LPCURSORINFO = POINTER(tagCURSORINFO)
 class tagWINDOWINFO(Structure):
     pass
 tagWINDOWINFO._fields_ = [
@@ -6323,8 +6323,8 @@ tagWINDOWINFO._fields_ = [
     ('wCreatorVersion', WORD),
 ]
 WINDOWINFO = tagWINDOWINFO
-PWINDOWINFO = POINTER(tagWINDOWINFO)
 LPWINDOWINFO = POINTER(tagWINDOWINFO)
+PWINDOWINFO = POINTER(tagWINDOWINFO)
 class tagTITLEBARINFO(Structure):
     pass
 tagTITLEBARINFO._fields_ = [
@@ -6332,8 +6332,8 @@ tagTITLEBARINFO._fields_ = [
     ('rcTitleBar', RECT),
     ('rgstate', DWORD * 6),
 ]
-LPTITLEBARINFO = POINTER(tagTITLEBARINFO)
 PTITLEBARINFO = POINTER(tagTITLEBARINFO)
+LPTITLEBARINFO = POINTER(tagTITLEBARINFO)
 TITLEBARINFO = tagTITLEBARINFO
 class tagMENUBARINFO(Structure):
     pass
@@ -6359,9 +6359,9 @@ tagSCROLLBARINFO._fields_ = [
     ('reserved', c_int),
     ('rgstate', DWORD * 6),
 ]
-PSCROLLBARINFO = POINTER(tagSCROLLBARINFO)
-LPSCROLLBARINFO = POINTER(tagSCROLLBARINFO)
 SCROLLBARINFO = tagSCROLLBARINFO
+LPSCROLLBARINFO = POINTER(tagSCROLLBARINFO)
+PSCROLLBARINFO = POINTER(tagSCROLLBARINFO)
 class tagCOMBOBOXINFO(Structure):
     pass
 tagCOMBOBOXINFO._fields_ = [
@@ -6373,8 +6373,8 @@ tagCOMBOBOXINFO._fields_ = [
     ('hwndItem', HWND),
     ('hwndList', HWND),
 ]
-LPCOMBOBOXINFO = POINTER(tagCOMBOBOXINFO)
 PCOMBOBOXINFO = POINTER(tagCOMBOBOXINFO)
+LPCOMBOBOXINFO = POINTER(tagCOMBOBOXINFO)
 COMBOBOXINFO = tagCOMBOBOXINFO
 class tagALTTABINFO(Structure):
     pass
@@ -6389,9 +6389,9 @@ tagALTTABINFO._fields_ = [
     ('cyItem', c_int),
     ('ptStart', POINT),
 ]
+LPALTTABINFO = POINTER(tagALTTABINFO)
 ALTTABINFO = tagALTTABINFO
 PALTTABINFO = POINTER(tagALTTABINFO)
-LPALTTABINFO = POINTER(tagALTTABINFO)
 class tagVS_FIXEDFILEINFO(Structure):
     pass
 tagVS_FIXEDFILEINFO._fields_ = [
@@ -7142,7 +7142,7 @@ mysql_rollback.restype = my_bool
 mysql_rollback.argtypes = [POINTER(MYSQL)]
 mysql_autocommit = _stdcall_libraries['libmysql.dll'].mysql_autocommit
 mysql_autocommit.restype = my_bool
-mysql_autocommit.argtypes = [POINTER(MYSQL), c_char]
+mysql_autocommit.argtypes = [POINTER(MYSQL), my_bool]
 mysql_more_results = _stdcall_libraries['libmysql.dll'].mysql_more_results
 mysql_more_results.restype = my_bool
 mysql_more_results.argtypes = [POINTER(MYSQL)]
@@ -7221,8 +7221,8 @@ TYPELIB = st_typelib
 POINTER_64_INT = c_ulong
 PVOID64 = c_void_p
 PWCHAR = WSTRING
-LPWCH = WSTRING
 PWCH = WSTRING
+LPWCH = WSTRING
 PCWCH = WSTRING
 LPCWCH = WSTRING
 NWPSTR = WSTRING
@@ -7233,26 +7233,26 @@ PCWSTR = WSTRING
 PCUWSTR = WSTRING
 LPCUWSTR = WSTRING
 PCHAR = STRING
-LPCH = STRING
 PCH = STRING
-LPCCH = STRING
+LPCH = STRING
 PCCH = STRING
+LPCCH = STRING
 NPSTR = STRING
 PCSTR = STRING
 TCHAR = c_char
 PTCHAR = STRING
-TBYTE = c_ubyte
 PTBYTE = POINTER(c_ubyte)
+TBYTE = c_ubyte
 PTCH = LPSTR
 LPTCH = LPSTR
+LPTSTR = LPSTR
 PUTSTR = LPSTR
 PTSTR = LPSTR
-LPTSTR = LPSTR
 LPUTSTR = LPSTR
 LPCUTSTR = LPCSTR
-PCUTSTR = LPCSTR
-PCTSTR = LPCSTR
 LPCTSTR = LPCSTR
+PCTSTR = LPCSTR
+PCUTSTR = LPCSTR
 PSHORT = POINTER(SHORT)
 PLONG = POINTER(LONG)
 PHANDLE = POINTER(HANDLE)
@@ -7315,16 +7315,16 @@ _LIST_ENTRY._fields_ = [
     ('Flink', POINTER(_LIST_ENTRY)),
     ('Blink', POINTER(_LIST_ENTRY)),
 ]
-PLIST_ENTRY = POINTER(_LIST_ENTRY)
 LIST_ENTRY = _LIST_ENTRY
 PRLIST_ENTRY = POINTER(_LIST_ENTRY)
+PLIST_ENTRY = POINTER(_LIST_ENTRY)
 class _SINGLE_LIST_ENTRY(Structure):
     pass
 _SINGLE_LIST_ENTRY._fields_ = [
     ('Next', POINTER(_SINGLE_LIST_ENTRY)),
 ]
-SINGLE_LIST_ENTRY = _SINGLE_LIST_ENTRY
 PSINGLE_LIST_ENTRY = POINTER(_SINGLE_LIST_ENTRY)
+SINGLE_LIST_ENTRY = _SINGLE_LIST_ENTRY
 class LIST_ENTRY32(Structure):
     pass
 LIST_ENTRY32._fields_ = [
@@ -7438,8 +7438,8 @@ _EXCEPTION_RECORD32._fields_ = [
     ('NumberParameters', DWORD),
     ('ExceptionInformation', DWORD * 15),
 ]
-EXCEPTION_RECORD32 = _EXCEPTION_RECORD32
 PEXCEPTION_RECORD32 = POINTER(_EXCEPTION_RECORD32)
+EXCEPTION_RECORD32 = _EXCEPTION_RECORD32
 class _EXCEPTION_RECORD64(Structure):
     pass
 _EXCEPTION_RECORD64._fields_ = [
@@ -7478,8 +7478,8 @@ _LUID_AND_ATTRIBUTES._fields_ = [
     ('Luid', LUID),
     ('Attributes', DWORD),
 ]
-LUID_AND_ATTRIBUTES = _LUID_AND_ATTRIBUTES
 PLUID_AND_ATTRIBUTES = POINTER(_LUID_AND_ATTRIBUTES)
+LUID_AND_ATTRIBUTES = _LUID_AND_ATTRIBUTES
 LUID_AND_ATTRIBUTES_ARRAY = LUID_AND_ATTRIBUTES * 1
 PLUID_AND_ATTRIBUTES_ARRAY = POINTER(LUID_AND_ATTRIBUTES_ARRAY)
 class _SID_IDENTIFIER_AUTHORITY(Structure):
@@ -7497,8 +7497,8 @@ _SID._fields_ = [
     ('IdentifierAuthority', SID_IDENTIFIER_AUTHORITY),
     ('SubAuthority', DWORD * 1),
 ]
-PISID = POINTER(_SID)
 SID = _SID
+PISID = POINTER(_SID)
 
 # values for enumeration '_SID_NAME_USE'
 _SID_NAME_USE = c_int # enum
@@ -7510,8 +7510,8 @@ _SID_AND_ATTRIBUTES._fields_ = [
     ('Sid', PSID),
     ('Attributes', DWORD),
 ]
-SID_AND_ATTRIBUTES = _SID_AND_ATTRIBUTES
 PSID_AND_ATTRIBUTES = POINTER(_SID_AND_ATTRIBUTES)
+SID_AND_ATTRIBUTES = _SID_AND_ATTRIBUTES
 SID_AND_ATTRIBUTES_ARRAY = SID_AND_ATTRIBUTES * 1
 PSID_AND_ATTRIBUTES_ARRAY = POINTER(SID_AND_ATTRIBUTES_ARRAY)
 
@@ -7619,8 +7619,8 @@ _SYSTEM_ALARM_OBJECT_ACE._fields_ = [
     ('InheritedObjectType', GUID),
     ('SidStart', DWORD),
 ]
-SYSTEM_ALARM_OBJECT_ACE = _SYSTEM_ALARM_OBJECT_ACE
 PSYSTEM_ALARM_OBJECT_ACE = POINTER(_SYSTEM_ALARM_OBJECT_ACE)
+SYSTEM_ALARM_OBJECT_ACE = _SYSTEM_ALARM_OBJECT_ACE
 class _ACCESS_ALLOWED_CALLBACK_ACE(Structure):
     pass
 _ACCESS_ALLOWED_CALLBACK_ACE._fields_ = [
@@ -7628,8 +7628,8 @@ _ACCESS_ALLOWED_CALLBACK_ACE._fields_ = [
     ('Mask', ACCESS_MASK),
     ('SidStart', DWORD),
 ]
-PACCESS_ALLOWED_CALLBACK_ACE = POINTER(_ACCESS_ALLOWED_CALLBACK_ACE)
 ACCESS_ALLOWED_CALLBACK_ACE = _ACCESS_ALLOWED_CALLBACK_ACE
+PACCESS_ALLOWED_CALLBACK_ACE = POINTER(_ACCESS_ALLOWED_CALLBACK_ACE)
 class _ACCESS_DENIED_CALLBACK_ACE(Structure):
     pass
 _ACCESS_DENIED_CALLBACK_ACE._fields_ = [
@@ -7637,8 +7637,8 @@ _ACCESS_DENIED_CALLBACK_ACE._fields_ = [
     ('Mask', ACCESS_MASK),
     ('SidStart', DWORD),
 ]
-ACCESS_DENIED_CALLBACK_ACE = _ACCESS_DENIED_CALLBACK_ACE
 PACCESS_DENIED_CALLBACK_ACE = POINTER(_ACCESS_DENIED_CALLBACK_ACE)
+ACCESS_DENIED_CALLBACK_ACE = _ACCESS_DENIED_CALLBACK_ACE
 class _SYSTEM_AUDIT_CALLBACK_ACE(Structure):
     pass
 _SYSTEM_AUDIT_CALLBACK_ACE._fields_ = [
@@ -7655,8 +7655,8 @@ _SYSTEM_ALARM_CALLBACK_ACE._fields_ = [
     ('Mask', ACCESS_MASK),
     ('SidStart', DWORD),
 ]
-SYSTEM_ALARM_CALLBACK_ACE = _SYSTEM_ALARM_CALLBACK_ACE
 PSYSTEM_ALARM_CALLBACK_ACE = POINTER(_SYSTEM_ALARM_CALLBACK_ACE)
+SYSTEM_ALARM_CALLBACK_ACE = _SYSTEM_ALARM_CALLBACK_ACE
 class _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE(Structure):
     pass
 _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE._fields_ = [
@@ -7679,8 +7679,8 @@ _ACCESS_DENIED_CALLBACK_OBJECT_ACE._fields_ = [
     ('InheritedObjectType', GUID),
     ('SidStart', DWORD),
 ]
-PACCESS_DENIED_CALLBACK_OBJECT_ACE = POINTER(_ACCESS_DENIED_CALLBACK_OBJECT_ACE)
 ACCESS_DENIED_CALLBACK_OBJECT_ACE = _ACCESS_DENIED_CALLBACK_OBJECT_ACE
+PACCESS_DENIED_CALLBACK_OBJECT_ACE = POINTER(_ACCESS_DENIED_CALLBACK_OBJECT_ACE)
 class _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE(Structure):
     pass
 _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE._fields_ = [
@@ -7738,8 +7738,8 @@ _SECURITY_DESCRIPTOR_RELATIVE._fields_ = [
     ('Sacl', DWORD),
     ('Dacl', DWORD),
 ]
-PISECURITY_DESCRIPTOR_RELATIVE = POINTER(_SECURITY_DESCRIPTOR_RELATIVE)
 SECURITY_DESCRIPTOR_RELATIVE = _SECURITY_DESCRIPTOR_RELATIVE
+PISECURITY_DESCRIPTOR_RELATIVE = POINTER(_SECURITY_DESCRIPTOR_RELATIVE)
 class _SECURITY_DESCRIPTOR(Structure):
     pass
 _SECURITY_DESCRIPTOR._fields_ = [
@@ -7760,8 +7760,8 @@ _OBJECT_TYPE_LIST._fields_ = [
     ('Sbz', WORD),
     ('ObjectType', POINTER(GUID)),
 ]
-OBJECT_TYPE_LIST = _OBJECT_TYPE_LIST
 POBJECT_TYPE_LIST = POINTER(_OBJECT_TYPE_LIST)
+OBJECT_TYPE_LIST = _OBJECT_TYPE_LIST
 
 # values for enumeration '_AUDIT_EVENT_TYPE'
 _AUDIT_EVENT_TYPE = c_int # enum
@@ -7789,8 +7789,8 @@ PTOKEN_TYPE = POINTER(TOKEN_TYPE)
 
 # values for enumeration '_TOKEN_INFORMATION_CLASS'
 _TOKEN_INFORMATION_CLASS = c_int # enum
-TOKEN_INFORMATION_CLASS = _TOKEN_INFORMATION_CLASS
 PTOKEN_INFORMATION_CLASS = POINTER(_TOKEN_INFORMATION_CLASS)
+TOKEN_INFORMATION_CLASS = _TOKEN_INFORMATION_CLASS
 class _TOKEN_USER(Structure):
     pass
 _TOKEN_USER._fields_ = [
@@ -7804,8 +7804,8 @@ _TOKEN_GROUPS._fields_ = [
     ('GroupCount', DWORD),
     ('Groups', SID_AND_ATTRIBUTES * 1),
 ]
-TOKEN_GROUPS = _TOKEN_GROUPS
 PTOKEN_GROUPS = POINTER(_TOKEN_GROUPS)
+TOKEN_GROUPS = _TOKEN_GROUPS
 class _TOKEN_PRIVILEGES(Structure):
     pass
 _TOKEN_PRIVILEGES._fields_ = [
@@ -7819,22 +7819,22 @@ class _TOKEN_OWNER(Structure):
 _TOKEN_OWNER._fields_ = [
     ('Owner', PSID),
 ]
-PTOKEN_OWNER = POINTER(_TOKEN_OWNER)
 TOKEN_OWNER = _TOKEN_OWNER
+PTOKEN_OWNER = POINTER(_TOKEN_OWNER)
 class _TOKEN_PRIMARY_GROUP(Structure):
     pass
 _TOKEN_PRIMARY_GROUP._fields_ = [
     ('PrimaryGroup', PSID),
 ]
-PTOKEN_PRIMARY_GROUP = POINTER(_TOKEN_PRIMARY_GROUP)
 TOKEN_PRIMARY_GROUP = _TOKEN_PRIMARY_GROUP
+PTOKEN_PRIMARY_GROUP = POINTER(_TOKEN_PRIMARY_GROUP)
 class _TOKEN_DEFAULT_DACL(Structure):
     pass
 _TOKEN_DEFAULT_DACL._fields_ = [
     ('DefaultDacl', PACL),
 ]
-PTOKEN_DEFAULT_DACL = POINTER(_TOKEN_DEFAULT_DACL)
 TOKEN_DEFAULT_DACL = _TOKEN_DEFAULT_DACL
+PTOKEN_DEFAULT_DACL = POINTER(_TOKEN_DEFAULT_DACL)
 class _TOKEN_GROUPS_AND_PRIVILEGES(Structure):
     pass
 _TOKEN_GROUPS_AND_PRIVILEGES._fields_ = [
@@ -7857,24 +7857,24 @@ _TOKEN_AUDIT_POLICY_ELEMENT._fields_ = [
     ('Category', DWORD),
     ('PolicyMask', DWORD),
 ]
-PTOKEN_AUDIT_POLICY_ELEMENT = POINTER(_TOKEN_AUDIT_POLICY_ELEMENT)
 TOKEN_AUDIT_POLICY_ELEMENT = _TOKEN_AUDIT_POLICY_ELEMENT
+PTOKEN_AUDIT_POLICY_ELEMENT = POINTER(_TOKEN_AUDIT_POLICY_ELEMENT)
 class _TOKEN_AUDIT_POLICY(Structure):
     pass
 _TOKEN_AUDIT_POLICY._fields_ = [
     ('PolicyCount', DWORD),
     ('Policy', TOKEN_AUDIT_POLICY_ELEMENT * 1),
 ]
-TOKEN_AUDIT_POLICY = _TOKEN_AUDIT_POLICY
 PTOKEN_AUDIT_POLICY = POINTER(_TOKEN_AUDIT_POLICY)
+TOKEN_AUDIT_POLICY = _TOKEN_AUDIT_POLICY
 class _TOKEN_SOURCE(Structure):
     pass
 _TOKEN_SOURCE._fields_ = [
     ('SourceName', CHAR * 8),
     ('SourceIdentifier', LUID),
 ]
-TOKEN_SOURCE = _TOKEN_SOURCE
 PTOKEN_SOURCE = POINTER(_TOKEN_SOURCE)
+TOKEN_SOURCE = _TOKEN_SOURCE
 class _TOKEN_STATISTICS(Structure):
     pass
 _TOKEN_STATISTICS._fields_ = [
@@ -7899,8 +7899,8 @@ _TOKEN_CONTROL._fields_ = [
     ('ModifiedId', LUID),
     ('TokenSource', TOKEN_SOURCE),
 ]
-PTOKEN_CONTROL = POINTER(_TOKEN_CONTROL)
 TOKEN_CONTROL = _TOKEN_CONTROL
+PTOKEN_CONTROL = POINTER(_TOKEN_CONTROL)
 SECURITY_CONTEXT_TRACKING_MODE = BOOLEAN
 PSECURITY_CONTEXT_TRACKING_MODE = POINTER(BOOLEAN)
 class _SECURITY_QUALITY_OF_SERVICE(Structure):
@@ -7911,8 +7911,8 @@ _SECURITY_QUALITY_OF_SERVICE._fields_ = [
     ('ContextTrackingMode', SECURITY_CONTEXT_TRACKING_MODE),
     ('EffectiveOnly', BOOLEAN),
 ]
-SECURITY_QUALITY_OF_SERVICE = _SECURITY_QUALITY_OF_SERVICE
 PSECURITY_QUALITY_OF_SERVICE = POINTER(_SECURITY_QUALITY_OF_SERVICE)
+SECURITY_QUALITY_OF_SERVICE = _SECURITY_QUALITY_OF_SERVICE
 class _SE_IMPERSONATION_STATE(Structure):
     pass
 _SE_IMPERSONATION_STATE._fields_ = [
@@ -7921,8 +7921,8 @@ _SE_IMPERSONATION_STATE._fields_ = [
     ('EffectiveOnly', BOOLEAN),
     ('Level', SECURITY_IMPERSONATION_LEVEL),
 ]
-PSE_IMPERSONATION_STATE = POINTER(_SE_IMPERSONATION_STATE)
 SE_IMPERSONATION_STATE = _SE_IMPERSONATION_STATE
+PSE_IMPERSONATION_STATE = POINTER(_SE_IMPERSONATION_STATE)
 PSECURITY_INFORMATION = POINTER(DWORD)
 SECURITY_INFORMATION = DWORD
 class _JOB_SET_ARRAY(Structure):
@@ -7932,8 +7932,8 @@ _JOB_SET_ARRAY._fields_ = [
     ('MemberLevel', DWORD),
     ('Flags', DWORD),
 ]
-PJOB_SET_ARRAY = POINTER(_JOB_SET_ARRAY)
 JOB_SET_ARRAY = _JOB_SET_ARRAY
+PJOB_SET_ARRAY = POINTER(_JOB_SET_ARRAY)
 class _NT_TIB(Structure):
     pass
 class _EXCEPTION_REGISTRATION_RECORD(Structure):
@@ -7976,8 +7976,8 @@ _NT_TIB32._fields_ = [
     ('ArbitraryUserPointer', DWORD),
     ('Self', DWORD),
 ]
-NT_TIB32 = _NT_TIB32
 PNT_TIB32 = POINTER(_NT_TIB32)
+NT_TIB32 = _NT_TIB32
 class _NT_TIB64(Structure):
     pass
 class N9_NT_TIB644DOLLAR_10E(Union):
@@ -8008,8 +8008,8 @@ _QUOTA_LIMITS._fields_ = [
     ('PagefileLimit', SIZE_T),
     ('TimeLimit', LARGE_INTEGER),
 ]
-PQUOTA_LIMITS = POINTER(_QUOTA_LIMITS)
 QUOTA_LIMITS = _QUOTA_LIMITS
+PQUOTA_LIMITS = POINTER(_QUOTA_LIMITS)
 class _QUOTA_LIMITS_EX(Structure):
     pass
 _QUOTA_LIMITS_EX._fields_ = [
@@ -8026,8 +8026,8 @@ _QUOTA_LIMITS_EX._fields_ = [
     ('Flags', DWORD),
     ('Reserved5', DWORD),
 ]
-PQUOTA_LIMITS_EX = POINTER(_QUOTA_LIMITS_EX)
 QUOTA_LIMITS_EX = _QUOTA_LIMITS_EX
+PQUOTA_LIMITS_EX = POINTER(_QUOTA_LIMITS_EX)
 class _IO_COUNTERS(Structure):
     pass
 _IO_COUNTERS._fields_ = [
@@ -8067,8 +8067,8 @@ _JOBOBJECT_BASIC_LIMIT_INFORMATION._fields_ = [
     ('PriorityClass', DWORD),
     ('SchedulingClass', DWORD),
 ]
-PJOBOBJECT_BASIC_LIMIT_INFORMATION = POINTER(_JOBOBJECT_BASIC_LIMIT_INFORMATION)
 JOBOBJECT_BASIC_LIMIT_INFORMATION = _JOBOBJECT_BASIC_LIMIT_INFORMATION
+PJOBOBJECT_BASIC_LIMIT_INFORMATION = POINTER(_JOBOBJECT_BASIC_LIMIT_INFORMATION)
 class _JOBOBJECT_EXTENDED_LIMIT_INFORMATION(Structure):
     pass
 _JOBOBJECT_EXTENDED_LIMIT_INFORMATION._fields_ = [
@@ -8079,8 +8079,8 @@ _JOBOBJECT_EXTENDED_LIMIT_INFORMATION._fields_ = [
     ('PeakProcessMemoryUsed', SIZE_T),
     ('PeakJobMemoryUsed', SIZE_T),
 ]
-PJOBOBJECT_EXTENDED_LIMIT_INFORMATION = POINTER(_JOBOBJECT_EXTENDED_LIMIT_INFORMATION)
 JOBOBJECT_EXTENDED_LIMIT_INFORMATION = _JOBOBJECT_EXTENDED_LIMIT_INFORMATION
+PJOBOBJECT_EXTENDED_LIMIT_INFORMATION = POINTER(_JOBOBJECT_EXTENDED_LIMIT_INFORMATION)
 class _JOBOBJECT_BASIC_PROCESS_ID_LIST(Structure):
     pass
 _JOBOBJECT_BASIC_PROCESS_ID_LIST._fields_ = [
@@ -8088,15 +8088,15 @@ _JOBOBJECT_BASIC_PROCESS_ID_LIST._fields_ = [
     ('NumberOfProcessIdsInList', DWORD),
     ('ProcessIdList', ULONG_PTR * 1),
 ]
-JOBOBJECT_BASIC_PROCESS_ID_LIST = _JOBOBJECT_BASIC_PROCESS_ID_LIST
 PJOBOBJECT_BASIC_PROCESS_ID_LIST = POINTER(_JOBOBJECT_BASIC_PROCESS_ID_LIST)
+JOBOBJECT_BASIC_PROCESS_ID_LIST = _JOBOBJECT_BASIC_PROCESS_ID_LIST
 class _JOBOBJECT_BASIC_UI_RESTRICTIONS(Structure):
     pass
 _JOBOBJECT_BASIC_UI_RESTRICTIONS._fields_ = [
     ('UIRestrictionsClass', DWORD),
 ]
-PJOBOBJECT_BASIC_UI_RESTRICTIONS = POINTER(_JOBOBJECT_BASIC_UI_RESTRICTIONS)
 JOBOBJECT_BASIC_UI_RESTRICTIONS = _JOBOBJECT_BASIC_UI_RESTRICTIONS
+PJOBOBJECT_BASIC_UI_RESTRICTIONS = POINTER(_JOBOBJECT_BASIC_UI_RESTRICTIONS)
 class _JOBOBJECT_SECURITY_LIMIT_INFORMATION(Structure):
     pass
 _JOBOBJECT_SECURITY_LIMIT_INFORMATION._fields_ = [
@@ -8106,8 +8106,8 @@ _JOBOBJECT_SECURITY_LIMIT_INFORMATION._fields_ = [
     ('PrivilegesToDelete', PTOKEN_PRIVILEGES),
     ('RestrictedSids', PTOKEN_GROUPS),
 ]
-JOBOBJECT_SECURITY_LIMIT_INFORMATION = _JOBOBJECT_SECURITY_LIMIT_INFORMATION
 PJOBOBJECT_SECURITY_LIMIT_INFORMATION = POINTER(_JOBOBJECT_SECURITY_LIMIT_INFORMATION)
+JOBOBJECT_SECURITY_LIMIT_INFORMATION = _JOBOBJECT_SECURITY_LIMIT_INFORMATION
 class _JOBOBJECT_END_OF_JOB_TIME_INFORMATION(Structure):
     pass
 _JOBOBJECT_END_OF_JOB_TIME_INFORMATION._fields_ = [
@@ -8197,8 +8197,8 @@ _MEMORY_BASIC_INFORMATION32._fields_ = [
     ('Protect', DWORD),
     ('Type', DWORD),
 ]
-MEMORY_BASIC_INFORMATION32 = _MEMORY_BASIC_INFORMATION32
 PMEMORY_BASIC_INFORMATION32 = POINTER(_MEMORY_BASIC_INFORMATION32)
+MEMORY_BASIC_INFORMATION32 = _MEMORY_BASIC_INFORMATION32
 class _MEMORY_BASIC_INFORMATION64(Structure):
     pass
 _MEMORY_BASIC_INFORMATION64._fields_ = [
@@ -8230,8 +8230,8 @@ _FILE_SEGMENT_ELEMENT._fields_ = [
     ('Buffer', PVOID64),
     ('Alignment', ULONGLONG),
 ]
-FILE_SEGMENT_ELEMENT = _FILE_SEGMENT_ELEMENT
 PFILE_SEGMENT_ELEMENT = POINTER(_FILE_SEGMENT_ELEMENT)
+FILE_SEGMENT_ELEMENT = _FILE_SEGMENT_ELEMENT
 class _REPARSE_GUID_DATA_BUFFER(Structure):
     pass
 class N25_REPARSE_GUID_DATA_BUFFER4DOLLAR_14E(Structure):
@@ -8278,18 +8278,18 @@ CM_Power_Data_s._fields_ = [
     ('PD_PowerStateMapping', DEVICE_POWER_STATE * 7),
     ('PD_DeepestSystemWake', SYSTEM_POWER_STATE),
 ]
-CM_POWER_DATA = CM_Power_Data_s
 PCM_POWER_DATA = POINTER(CM_Power_Data_s)
+CM_POWER_DATA = CM_Power_Data_s
 
 # values for enumeration 'POWER_INFORMATION_LEVEL'
 POWER_INFORMATION_LEVEL = c_int # enum
 class BATTERY_REPORTING_SCALE(Structure):
     pass
-PBATTERY_REPORTING_SCALE = POINTER(BATTERY_REPORTING_SCALE)
 BATTERY_REPORTING_SCALE._fields_ = [
     ('Granularity', DWORD),
     ('Capacity', DWORD),
 ]
+PBATTERY_REPORTING_SCALE = POINTER(BATTERY_REPORTING_SCALE)
 class POWER_ACTION_POLICY(Structure):
     pass
 POWER_ACTION_POLICY._fields_ = [
@@ -8380,8 +8380,8 @@ _ADMINISTRATOR_POWER_POLICY._fields_ = [
     ('MinSpindownTimeout', DWORD),
     ('MaxSpindownTimeout', DWORD),
 ]
-ADMINISTRATOR_POWER_POLICY = _ADMINISTRATOR_POWER_POLICY
 PADMINISTRATOR_POWER_POLICY = POINTER(_ADMINISTRATOR_POWER_POLICY)
+ADMINISTRATOR_POWER_POLICY = _ADMINISTRATOR_POWER_POLICY
 class SYSTEM_POWER_CAPABILITIES(Structure):
     pass
 PSYSTEM_POWER_CAPABILITIES = POINTER(SYSTEM_POWER_CAPABILITIES)
@@ -8455,8 +8455,8 @@ _IMAGE_DOS_HEADER._fields_ = [
     ('e_res2', WORD * 10),
     ('e_lfanew', LONG),
 ]
-IMAGE_DOS_HEADER = _IMAGE_DOS_HEADER
 PIMAGE_DOS_HEADER = POINTER(_IMAGE_DOS_HEADER)
+IMAGE_DOS_HEADER = _IMAGE_DOS_HEADER
 class _IMAGE_OS2_HEADER(Structure):
     pass
 _IMAGE_OS2_HEADER._pack_ = 2
@@ -8550,8 +8550,8 @@ _IMAGE_VXD_HEADER._fields_ = [
     ('e32_devid', WORD),
     ('e32_ddkver', WORD),
 ]
-PIMAGE_VXD_HEADER = POINTER(_IMAGE_VXD_HEADER)
 IMAGE_VXD_HEADER = _IMAGE_VXD_HEADER
+PIMAGE_VXD_HEADER = POINTER(_IMAGE_VXD_HEADER)
 class _IMAGE_FILE_HEADER(Structure):
     pass
 _IMAGE_FILE_HEADER._fields_ = [
@@ -8563,8 +8563,8 @@ _IMAGE_FILE_HEADER._fields_ = [
     ('SizeOfOptionalHeader', WORD),
     ('Characteristics', WORD),
 ]
-PIMAGE_FILE_HEADER = POINTER(_IMAGE_FILE_HEADER)
 IMAGE_FILE_HEADER = _IMAGE_FILE_HEADER
+PIMAGE_FILE_HEADER = POINTER(_IMAGE_FILE_HEADER)
 class _IMAGE_DATA_DIRECTORY(Structure):
     pass
 _IMAGE_DATA_DIRECTORY._fields_ = [
@@ -8627,8 +8627,8 @@ _IMAGE_ROM_OPTIONAL_HEADER._fields_ = [
     ('CprMask', DWORD * 4),
     ('GpValue', DWORD),
 ]
-PIMAGE_ROM_OPTIONAL_HEADER = POINTER(_IMAGE_ROM_OPTIONAL_HEADER)
 IMAGE_ROM_OPTIONAL_HEADER = _IMAGE_ROM_OPTIONAL_HEADER
+PIMAGE_ROM_OPTIONAL_HEADER = POINTER(_IMAGE_ROM_OPTIONAL_HEADER)
 class _IMAGE_OPTIONAL_HEADER64(Structure):
     pass
 _IMAGE_OPTIONAL_HEADER64._pack_ = 4
@@ -8664,8 +8664,8 @@ _IMAGE_OPTIONAL_HEADER64._fields_ = [
     ('NumberOfRvaAndSizes', DWORD),
     ('DataDirectory', IMAGE_DATA_DIRECTORY * 16),
 ]
-PIMAGE_OPTIONAL_HEADER64 = POINTER(_IMAGE_OPTIONAL_HEADER64)
 IMAGE_OPTIONAL_HEADER64 = _IMAGE_OPTIONAL_HEADER64
+PIMAGE_OPTIONAL_HEADER64 = POINTER(_IMAGE_OPTIONAL_HEADER64)
 IMAGE_OPTIONAL_HEADER = IMAGE_OPTIONAL_HEADER32
 PIMAGE_OPTIONAL_HEADER = PIMAGE_OPTIONAL_HEADER32
 class _IMAGE_NT_HEADERS64(Structure):
@@ -8675,8 +8675,8 @@ _IMAGE_NT_HEADERS64._fields_ = [
     ('FileHeader', IMAGE_FILE_HEADER),
     ('OptionalHeader', IMAGE_OPTIONAL_HEADER64),
 ]
-IMAGE_NT_HEADERS64 = _IMAGE_NT_HEADERS64
 PIMAGE_NT_HEADERS64 = POINTER(_IMAGE_NT_HEADERS64)
+IMAGE_NT_HEADERS64 = _IMAGE_NT_HEADERS64
 class _IMAGE_NT_HEADERS(Structure):
     pass
 _IMAGE_NT_HEADERS._fields_ = [
@@ -8684,16 +8684,16 @@ _IMAGE_NT_HEADERS._fields_ = [
     ('FileHeader', IMAGE_FILE_HEADER),
     ('OptionalHeader', IMAGE_OPTIONAL_HEADER32),
 ]
-IMAGE_NT_HEADERS32 = _IMAGE_NT_HEADERS
 PIMAGE_NT_HEADERS32 = POINTER(_IMAGE_NT_HEADERS)
+IMAGE_NT_HEADERS32 = _IMAGE_NT_HEADERS
 class _IMAGE_ROM_HEADERS(Structure):
     pass
 _IMAGE_ROM_HEADERS._fields_ = [
     ('FileHeader', IMAGE_FILE_HEADER),
     ('OptionalHeader', IMAGE_ROM_OPTIONAL_HEADER),
 ]
-IMAGE_ROM_HEADERS = _IMAGE_ROM_HEADERS
 PIMAGE_ROM_HEADERS = POINTER(_IMAGE_ROM_HEADERS)
+IMAGE_ROM_HEADERS = _IMAGE_ROM_HEADERS
 IMAGE_NT_HEADERS = IMAGE_NT_HEADERS32
 PIMAGE_NT_HEADERS = PIMAGE_NT_HEADERS32
 class ANON_OBJECT_HEADER(Structure):
@@ -8727,8 +8727,8 @@ _IMAGE_SECTION_HEADER._fields_ = [
     ('NumberOfLinenumbers', WORD),
     ('Characteristics', DWORD),
 ]
-PIMAGE_SECTION_HEADER = POINTER(_IMAGE_SECTION_HEADER)
 IMAGE_SECTION_HEADER = _IMAGE_SECTION_HEADER
+PIMAGE_SECTION_HEADER = POINTER(_IMAGE_SECTION_HEADER)
 class _IMAGE_SYMBOL(Structure):
     pass
 class N13_IMAGE_SYMBOL4DOLLAR_24E(Union):
@@ -9008,8 +9008,8 @@ _IMAGE_BOUND_FORWARDER_REF._fields_ = [
     ('OffsetModuleName', WORD),
     ('Reserved', WORD),
 ]
-IMAGE_BOUND_FORWARDER_REF = _IMAGE_BOUND_FORWARDER_REF
 PIMAGE_BOUND_FORWARDER_REF = POINTER(_IMAGE_BOUND_FORWARDER_REF)
+IMAGE_BOUND_FORWARDER_REF = _IMAGE_BOUND_FORWARDER_REF
 class _IMAGE_RESOURCE_DIRECTORY(Structure):
     pass
 _IMAGE_RESOURCE_DIRECTORY._fields_ = [
@@ -9020,8 +9020,8 @@ _IMAGE_RESOURCE_DIRECTORY._fields_ = [
     ('NumberOfNamedEntries', WORD),
     ('NumberOfIdEntries', WORD),
 ]
-PIMAGE_RESOURCE_DIRECTORY = POINTER(_IMAGE_RESOURCE_DIRECTORY)
 IMAGE_RESOURCE_DIRECTORY = _IMAGE_RESOURCE_DIRECTORY
+PIMAGE_RESOURCE_DIRECTORY = POINTER(_IMAGE_RESOURCE_DIRECTORY)
 class _IMAGE_RESOURCE_DIRECTORY_ENTRY(Structure):
     pass
 class N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E(Union):
@@ -9056,8 +9056,8 @@ _IMAGE_RESOURCE_DIRECTORY_ENTRY._fields_ = [
     ('_0', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_39E),
     ('_1', N31_IMAGE_RESOURCE_DIRECTORY_ENTRY4DOLLAR_41E),
 ]
-PIMAGE_RESOURCE_DIRECTORY_ENTRY = POINTER(_IMAGE_RESOURCE_DIRECTORY_ENTRY)
 IMAGE_RESOURCE_DIRECTORY_ENTRY = _IMAGE_RESOURCE_DIRECTORY_ENTRY
+PIMAGE_RESOURCE_DIRECTORY_ENTRY = POINTER(_IMAGE_RESOURCE_DIRECTORY_ENTRY)
 class _IMAGE_RESOURCE_DIRECTORY_STRING(Structure):
     pass
 _IMAGE_RESOURCE_DIRECTORY_STRING._fields_ = [
@@ -9082,8 +9082,8 @@ _IMAGE_RESOURCE_DATA_ENTRY._fields_ = [
     ('CodePage', DWORD),
     ('Reserved', DWORD),
 ]
-PIMAGE_RESOURCE_DATA_ENTRY = POINTER(_IMAGE_RESOURCE_DATA_ENTRY)
 IMAGE_RESOURCE_DATA_ENTRY = _IMAGE_RESOURCE_DATA_ENTRY
+PIMAGE_RESOURCE_DATA_ENTRY = POINTER(_IMAGE_RESOURCE_DATA_ENTRY)
 class IMAGE_LOAD_CONFIG_DIRECTORY32(Structure):
     pass
 IMAGE_LOAD_CONFIG_DIRECTORY32._fields_ = [
@@ -9158,8 +9158,8 @@ _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY._fields_ = [
     ('HandlerData', ULONGLONG),
     ('PrologEndAddress', ULONGLONG),
 ]
-PIMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY)
 IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY
+PIMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = POINTER(_IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY)
 class _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY(Structure):
     pass
 _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY._fields_ = [
@@ -9236,8 +9236,8 @@ _IMAGE_DEBUG_MISC._fields_ = [
     ('Reserved', BYTE * 3),
     ('Data', BYTE * 1),
 ]
-PIMAGE_DEBUG_MISC = POINTER(_IMAGE_DEBUG_MISC)
 IMAGE_DEBUG_MISC = _IMAGE_DEBUG_MISC
+PIMAGE_DEBUG_MISC = POINTER(_IMAGE_DEBUG_MISC)
 class _IMAGE_FUNCTION_ENTRY(Structure):
     pass
 _IMAGE_FUNCTION_ENTRY._fields_ = [
@@ -9298,8 +9298,8 @@ _NON_PAGED_DEBUG_INFO._fields_ = [
     ('SizeOfImage', DWORD),
     ('ImageBase', ULONGLONG),
 ]
-NON_PAGED_DEBUG_INFO = _NON_PAGED_DEBUG_INFO
 PNON_PAGED_DEBUG_INFO = POINTER(_NON_PAGED_DEBUG_INFO)
+NON_PAGED_DEBUG_INFO = _NON_PAGED_DEBUG_INFO
 class _ImageArchitectureHeader(Structure):
     pass
 _ImageArchitectureHeader._fields_ = [
@@ -9317,8 +9317,8 @@ _ImageArchitectureEntry._fields_ = [
     ('FixupInstRVA', DWORD),
     ('NewInst', DWORD),
 ]
-PIMAGE_ARCHITECTURE_ENTRY = POINTER(_ImageArchitectureEntry)
 IMAGE_ARCHITECTURE_ENTRY = _ImageArchitectureEntry
+PIMAGE_ARCHITECTURE_ENTRY = POINTER(_ImageArchitectureEntry)
 class IMPORT_OBJECT_HEADER(Structure):
     pass
 class N20IMPORT_OBJECT_HEADER4DOLLAR_46E(Union):
@@ -9389,8 +9389,8 @@ _MESSAGE_RESOURCE_ENTRY._fields_ = [
     ('Flags', WORD),
     ('Text', BYTE * 1),
 ]
-MESSAGE_RESOURCE_ENTRY = _MESSAGE_RESOURCE_ENTRY
 PMESSAGE_RESOURCE_ENTRY = POINTER(_MESSAGE_RESOURCE_ENTRY)
+MESSAGE_RESOURCE_ENTRY = _MESSAGE_RESOURCE_ENTRY
 class _MESSAGE_RESOURCE_BLOCK(Structure):
     pass
 _MESSAGE_RESOURCE_BLOCK._fields_ = [
@@ -9398,16 +9398,16 @@ _MESSAGE_RESOURCE_BLOCK._fields_ = [
     ('HighId', DWORD),
     ('OffsetToEntries', DWORD),
 ]
-PMESSAGE_RESOURCE_BLOCK = POINTER(_MESSAGE_RESOURCE_BLOCK)
 MESSAGE_RESOURCE_BLOCK = _MESSAGE_RESOURCE_BLOCK
+PMESSAGE_RESOURCE_BLOCK = POINTER(_MESSAGE_RESOURCE_BLOCK)
 class _MESSAGE_RESOURCE_DATA(Structure):
     pass
 _MESSAGE_RESOURCE_DATA._fields_ = [
     ('NumberOfBlocks', DWORD),
     ('Blocks', MESSAGE_RESOURCE_BLOCK * 1),
 ]
-PMESSAGE_RESOURCE_DATA = POINTER(_MESSAGE_RESOURCE_DATA)
 MESSAGE_RESOURCE_DATA = _MESSAGE_RESOURCE_DATA
+PMESSAGE_RESOURCE_DATA = POINTER(_MESSAGE_RESOURCE_DATA)
 class _OSVERSIONINFOA(Structure):
     pass
 _OSVERSIONINFOA._fields_ = [
@@ -9419,8 +9419,8 @@ _OSVERSIONINFOA._fields_ = [
     ('szCSDVersion', CHAR * 128),
 ]
 LPOSVERSIONINFOA = POINTER(_OSVERSIONINFOA)
-POSVERSIONINFOA = POINTER(_OSVERSIONINFOA)
 OSVERSIONINFOA = _OSVERSIONINFOA
+POSVERSIONINFOA = POINTER(_OSVERSIONINFOA)
 class _OSVERSIONINFOW(Structure):
     pass
 _OSVERSIONINFOW._fields_ = [
@@ -9431,9 +9431,9 @@ _OSVERSIONINFOW._fields_ = [
     ('dwPlatformId', DWORD),
     ('szCSDVersion', WCHAR * 128),
 ]
-PRTL_OSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
-LPOSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
 POSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
+LPOSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
+PRTL_OSVERSIONINFOW = POINTER(_OSVERSIONINFOW)
 RTL_OSVERSIONINFOW = _OSVERSIONINFOW
 OSVERSIONINFOW = _OSVERSIONINFOW
 OSVERSIONINFO = OSVERSIONINFOA
@@ -9454,9 +9454,9 @@ _OSVERSIONINFOEXA._fields_ = [
     ('wProductType', BYTE),
     ('wReserved', BYTE),
 ]
-POSVERSIONINFOEXA = POINTER(_OSVERSIONINFOEXA)
 OSVERSIONINFOEXA = _OSVERSIONINFOEXA
 LPOSVERSIONINFOEXA = POINTER(_OSVERSIONINFOEXA)
+POSVERSIONINFOEXA = POINTER(_OSVERSIONINFOEXA)
 class _OSVERSIONINFOEXW(Structure):
     pass
 _OSVERSIONINFOEXW._fields_ = [
@@ -9473,10 +9473,10 @@ _OSVERSIONINFOEXW._fields_ = [
     ('wReserved', BYTE),
 ]
 LPOSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
+OSVERSIONINFOEXW = _OSVERSIONINFOEXW
+POSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
 PRTL_OSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
 RTL_OSVERSIONINFOEXW = _OSVERSIONINFOEXW
-POSVERSIONINFOEXW = POINTER(_OSVERSIONINFOEXW)
-OSVERSIONINFOEXW = _OSVERSIONINFOEXW
 OSVERSIONINFOEX = OSVERSIONINFOEXA
 POSVERSIONINFOEX = POSVERSIONINFOEXA
 LPOSVERSIONINFOEX = LPOSVERSIONINFOEXA
@@ -9592,8 +9592,8 @@ _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION._fields_ = [
     ('lpAssemblyDirectoryName', PCWSTR),
     ('ulFileCount', DWORD),
 ]
-ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION
 PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION)
+ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION
 PCACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = POINTER(_ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION)
 class _ACTIVATION_CONTEXT_DETAILED_INFORMATION(Structure):
     pass
@@ -9644,8 +9644,8 @@ _EVENTSFORLOGFILE._fields_ = [
     ('ulNumRecords', DWORD),
     ('pEventLogRecords', EVENTLOGRECORD * 0),
 ]
-EVENTSFORLOGFILE = _EVENTSFORLOGFILE
 PEVENTSFORLOGFILE = POINTER(_EVENTSFORLOGFILE)
+EVENTSFORLOGFILE = _EVENTSFORLOGFILE
 class _PACKEDEVENTINFO(Structure):
     pass
 _PACKEDEVENTINFO._fields_ = [
@@ -9709,8 +9709,8 @@ _TAPE_SET_POSITION._fields_ = [
     ('Offset', LARGE_INTEGER),
     ('Immediate', BOOLEAN),
 ]
-TAPE_SET_POSITION = _TAPE_SET_POSITION
 PTAPE_SET_POSITION = POINTER(_TAPE_SET_POSITION)
+TAPE_SET_POSITION = _TAPE_SET_POSITION
 class _TAPE_GET_DRIVE_PARAMETERS(Structure):
     pass
 _TAPE_GET_DRIVE_PARAMETERS._fields_ = [
@@ -9737,8 +9737,8 @@ _TAPE_SET_DRIVE_PARAMETERS._fields_ = [
     ('ReportSetmarks', BOOLEAN),
     ('EOTWarningZoneSize', DWORD),
 ]
-PTAPE_SET_DRIVE_PARAMETERS = POINTER(_TAPE_SET_DRIVE_PARAMETERS)
 TAPE_SET_DRIVE_PARAMETERS = _TAPE_SET_DRIVE_PARAMETERS
+PTAPE_SET_DRIVE_PARAMETERS = POINTER(_TAPE_SET_DRIVE_PARAMETERS)
 class _TAPE_GET_MEDIA_PARAMETERS(Structure):
     pass
 _TAPE_GET_MEDIA_PARAMETERS._fields_ = [
@@ -9748,15 +9748,15 @@ _TAPE_GET_MEDIA_PARAMETERS._fields_ = [
     ('PartitionCount', DWORD),
     ('WriteProtected', BOOLEAN),
 ]
-TAPE_GET_MEDIA_PARAMETERS = _TAPE_GET_MEDIA_PARAMETERS
 PTAPE_GET_MEDIA_PARAMETERS = POINTER(_TAPE_GET_MEDIA_PARAMETERS)
+TAPE_GET_MEDIA_PARAMETERS = _TAPE_GET_MEDIA_PARAMETERS
 class _TAPE_SET_MEDIA_PARAMETERS(Structure):
     pass
 _TAPE_SET_MEDIA_PARAMETERS._fields_ = [
     ('BlockSize', DWORD),
 ]
-TAPE_SET_MEDIA_PARAMETERS = _TAPE_SET_MEDIA_PARAMETERS
 PTAPE_SET_MEDIA_PARAMETERS = POINTER(_TAPE_SET_MEDIA_PARAMETERS)
+TAPE_SET_MEDIA_PARAMETERS = _TAPE_SET_MEDIA_PARAMETERS
 class _TAPE_CREATE_PARTITION(Structure):
     pass
 _TAPE_CREATE_PARTITION._fields_ = [
@@ -9773,8 +9773,8 @@ _TAPE_WMI_OPERATIONS._fields_ = [
     ('DataBufferSize', DWORD),
     ('DataBuffer', PVOID),
 ]
-PTAPE_WMI_OPERATIONS = POINTER(_TAPE_WMI_OPERATIONS)
 TAPE_WMI_OPERATIONS = _TAPE_WMI_OPERATIONS
+PTAPE_WMI_OPERATIONS = POINTER(_TAPE_WMI_OPERATIONS)
 
 # values for enumeration '_TAPE_DRIVE_PROBLEM_TYPE'
 _TAPE_DRIVE_PROBLEM_TYPE = c_int # enum
@@ -9798,12 +9798,12 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'COR_VTABLE_CALL_MOST_DERIVED', 'tagICONMETRICSA',
            'LOGICAL_PROCESSOR_RELATIONSHIP', 'PPOWER_ACTION_POLICY',
            'mysql_stmt_row_seek', '_ACL_INFORMATION_CLASS',
-           'COM_STMT_EXECUTE', 'POBJECT_TYPE_LIST', '_SLIST_HEADER',
-           'tagACCESSTIMEOUT', 'LONG64', 'ENUM_SERVICE_STATUSA',
-           'PIMAGE_OPTIONAL_HEADER32', 'MONITORENUMPROC',
-           'LPVIDEOPARAMETERS', 'WinInteractiveSid',
-           'PowerDeviceMaximum', 'ENUM_SERVICE_STATUSW',
-           'EXTLOGFONTA',
+           'WinBuiltinBackupOperatorsSid', 'POBJECT_TYPE_LIST',
+           '_SLIST_HEADER', 'tagACCESSTIMEOUT', 'LONG64',
+           'ENUM_SERVICE_STATUSA', 'PIMAGE_OPTIONAL_HEADER32',
+           'MONITORENUMPROC', 'LPVIDEOPARAMETERS',
+           'WinInteractiveSid', 'PowerDeviceMaximum',
+           'ENUM_SERVICE_STATUSW', 'EXTLOGFONTA',
            'AssemblyDetailedInformationInActivationContext', '_ABC',
            'PEMRCREATECOLORSPACEW', 'SID', 'st_dynamic_array',
            'HCOLORSPACE__', '_HEAP_INFORMATION_CLASS',
@@ -9861,8 +9861,9 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'IMAGE_CE_RUNTIME_FUNCTION_ENTRY', 'PEMRPOLYLINE',
            'SYSTEM_BATTERY_STATE', 'MFENUMPROC',
            'LPWSAPROTOCOL_INFOW', 'PLIST_ENTRY32', '_TOKEN_CONTROL',
-           'N17_IMAGE_AUX_SYMBOL4DOLLAR_26E', '_SECURITY_ATTRIBUTES',
-           'LPENUMLOGFONTW', 'SERIALKEYSA', 'HWINSTA__', 'IID',
+           'N17_IMAGE_AUX_SYMBOL4DOLLAR_26E',
+           'ProcessorPowerPolicyCurrent', 'LPENUMLOGFONTW',
+           'SERIALKEYSA', 'HWINSTA__', 'IID',
            'mysql_rpl_parse_enabled', 'tagEMRCREATEPALETTE',
            'MESSAGE_RESOURCE_ENTRY', 'mysql_stmt_data_seek',
            'SERIALKEYSW', 'TapeDriveWriteWarning', 'LPENUMLOGFONTA',
@@ -9882,18 +9883,18 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'N17_IMAGE_AUX_SYMBOL4DOLLAR_264DOLLAR_29E',
            'PJOB_SET_ARRAY', 'COMIMAGE_FLAGS_IL_LIBRARY',
            'st_mysql_data', 'FindExInfoMaxInfoLevel', 'LPAFPROTOCOLS',
-           '_TAPE_GET_POSITION', 'MYSQL_TIME',
-           'WinBuiltinBackupOperatorsSid', 'PEMROFFSETCLIPRGN',
-           'PNEWTEXTMETRICA', 'NONCLIENTMETRICSA',
-           'EMRSETICMPROFILEW', 'PWSANSCLASSINFOW',
-           'POWER_ACTION_POLICY', 'PNEWTEXTMETRICW', 'u_char',
-           '_WSABUF', 'SC_ACTION_REBOOT', 'PWSANSCLASSINFOA',
-           'EMRSETICMPROFILEA', 'NONCLIENTMETRICSW',
-           '_SYSTEM_ALARM_OBJECT_ACE', 'NEWTEXTMETRICEX',
-           'PSINJECTDATA', 'FOCUS_EVENT_RECORD', 'LPDISCDLGSTRUCTA',
-           'WinAccountGuestSid', 'tagMENUITEMINFOW',
-           'IMAGE_NT_HEADERS64', 'LPDISCDLGSTRUCTW', 'LPCOMMTIMEOUTS',
-           'LONG_PTR', 'EMRABORTPATH', 'enum_field_types', 'TCHAR',
+           '_TAPE_GET_POSITION', 'MYSQL_TIME', 'COM_STMT_EXECUTE',
+           'PEMROFFSETCLIPRGN', 'PNEWTEXTMETRICA',
+           'NONCLIENTMETRICSA', 'EMRSETICMPROFILEW',
+           'PWSANSCLASSINFOW', 'POWER_ACTION_POLICY',
+           'PNEWTEXTMETRICW', 'u_char', '_WSABUF', 'SC_ACTION_REBOOT',
+           'PWSANSCLASSINFOA', 'EMRSETICMPROFILEA',
+           'NONCLIENTMETRICSW', '_SYSTEM_ALARM_OBJECT_ACE',
+           'NEWTEXTMETRICEX', 'PSINJECTDATA', 'FOCUS_EVENT_RECORD',
+           'LPDISCDLGSTRUCTA', 'WinAccountGuestSid',
+           'tagMENUITEMINFOW', 'IMAGE_NT_HEADERS64',
+           'LPDISCDLGSTRUCTW', 'LPCOMMTIMEOUTS', 'LONG_PTR',
+           'EMRABORTPATH', 'enum_field_types', 'TCHAR',
            'mysql_autocommit', 'WinRemoteLogonIdSid',
            'PEMRSTROKEANDFILLPATH', 'PEMRSELECTCOLORSPACE',
            'MDICREATESTRUCT', 'PHALF_PTR',
@@ -9969,7 +9970,8 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'EMRREALIZEPALETTE', 'TokenImpersonationLevel',
            '_TOKEN_GROUPS_AND_PRIVILEGES', 'COM_STMT_RESET',
            'IMAGE_VXD_HEADER', 'mysql_list_tables', 'DCB',
-           '_SECURITY_IMPERSONATION_LEVEL', 'TapeDriveWriteError',
+           '_SECURITY_IMPERSONATION_LEVEL',
+           'WinAccountPolicyAdminsSid',
            'ASSEMBLY_FILE_DETAILED_INFORMATION', 'LPDLGTEMPLATE',
            'WNDENUMPROC', 'LPEXCEPTION_POINTERS',
            'PTOKEN_AUDIT_POLICY_ELEMENT',
@@ -10206,7 +10208,8 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'tagMOUSEKEYS', 'GLOBALHANDLE', 'SSIZE_T',
            'TokenSandBoxInert', 'LPCMENUINFO', 'LPINT',
            '_SECURITY_DESCRIPTOR', 'JOBOBJECTINFOCLASS',
-           '_OVERLAPPED', 'CONSOLE_SCREEN_BUFFER_INFO',
+           '_OVERLAPPED', '_SECURITY_ATTRIBUTES',
+           'CONSOLE_SCREEN_BUFFER_INFO',
            'VerifyProcessorPowerPolicyDc', 'HMONITOR__',
            'IMAGE_TLS_DIRECTORY', 'mysql_thread_id', 'LOGCOLORSPACE',
            'TOKEN_DEFAULT_DACL', 'EMRDRAWESCAPE', 'SENDASYNCPROC',
@@ -10272,7 +10275,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'mysql_set_local_infile_handler', 'PKEY_EVENT_RECORD',
            'LPSOCKET_ADDRESS_LIST', 'PLIST_ENTRY', 'KERNINGPAIR',
            'TAPE_SET_MEDIA_PARAMETERS', 'COM_DEBUG', 'LONG32',
-           'PEMRCOLORCORRECTPALETTE', 'IMPORT_OBJECT_CONST',
+           'PEMRCOLORCORRECTPALETTE', 'COM_PROCESS_KILL',
            'LPSERVICE_DESCRIPTIONA', 'LPGCP_RESULTS',
            'SYSTEM_POWER_POLICY', 'PEMRFILLRGN', 'MONITORINFOEX',
            'LPNLSVERSIONINFO', 'LPCANDIDATEFORM', 'mysql_info',
@@ -10775,10 +10778,10 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'TOKEN_AUDIT_POLICY_ELEMENT', 'DECIMAL_RESULT',
            'WSAPROTOCOL_INFO', 'mysql_list_dbs',
            'IMAGE_DATA_DIRECTORY', 'IMAGE_RESOURCE_DIRECTORY_ENTRY',
-           'LPBITMAPCOREHEADER', 'HWINEVENTHOOK', 'COM_PROCESS_KILL',
-           'LPSERIALKEYSA', 'EMRARCTO', 'PACCESS_MASK', 'u_int',
-           'COM_CHANGE_USER', 'PTOKEN_OWNER', 'PPSFEATURE_OUTPUT',
-           'LPSERIALKEYSW', 'tagEMRSELECTOBJECT',
+           'LPBITMAPCOREHEADER', 'HWINEVENTHOOK',
+           'IMPORT_OBJECT_CONST', 'LPSERIALKEYSA', 'EMRARCTO',
+           'PACCESS_MASK', 'u_int', 'COM_CHANGE_USER', 'PTOKEN_OWNER',
+           'PPSFEATURE_OUTPUT', 'LPSERIALKEYSW', 'tagEMRSELECTOBJECT',
            'LPREMOTE_NAME_INFOW', 'MYSQL_STATUS_USE_RESULT',
            'PSYSTEM_POWER_STATE', 'EXCEPTION_POINTERS', '_COMSTAT',
            'LPREMOTE_NAME_INFOA', 'tagEVENTMSG', 'CBT_CREATEWNDW',
@@ -10840,14 +10843,13 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'EMRPOLYDRAW16', 'PSYSTEM_POWER_POLICY', 'LPPOINTS',
            'LPHELPWININFOA', 'JobObjectBasicLimitInformation',
            'EMRSTROKEANDFILLPATH', 'IMECHARPOSITION', 'LOGFONTW',
-           'NPPATTERN', 'ProcessorPowerPolicyCurrent',
-           'PROCESSOR_POWER_POLICY_INFO',
+           'NPPATTERN', 'PROCESSOR_POWER_POLICY_INFO',
            'ACCESS_DENIED_CALLBACK_ACE', 'pvalueA',
            '_GET_FILEEX_INFO_LEVELS', 'LOGFONTA',
            'N11_OVERLAPPED4DOLLAR_484DOLLAR_49E', 'HIMC',
            'MYSQL_TYPE_BLOB', 'NPREGISTERWORDW', 'PEMREXTCREATEPEN',
            'IMAGE_BOUND_IMPORT_DESCRIPTOR', '_SERVICE_STATUS_PROCESS',
-           'TPMPARAMS', 'WinAccountPolicyAdminsSid', '_MAT2',
+           'TPMPARAMS', 'TapeDriveWriteError', '_MAT2',
            'POSVERSIONINFOEXA', '_CREATE_THREAD_DEBUG_INFO',
            '_IMAGE_ROM_OPTIONAL_HEADER', 'LPICONMETRICSW', 'LPTCH',
            'APC_CALLBACK_FUNCTION', 'MYSQL_ROW_OFFSET',
@@ -10896,7 +10898,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'LPMENUINFO', 'MYSQL_TYPE_DOUBLE', 'mysql_fetch_fields',
            'STYLEBUFW', 'EMRSTRETCHBLT', 'PPSFEATURE_CUSTPAPER',
            'NPPAINTSTRUCT', 'PPATTERN', 'MYSQL_PROTOCOL_SOCKET',
-           'MYSQL_TYPE_YEAR', 'IMAGE_AUX_SYMBOL', 'PEMRELLIPSE',
+           'COR_VTABLE_32BIT', 'IMAGE_AUX_SYMBOL', 'PEMRELLIPSE',
            'ENHMETARECORD', 'EMRPOLYBEZIER16',
            'N12_devicemodeA4DOLLAR_584DOLLAR_60E',
            'PTAPE_SET_MEDIA_PARAMETERS', 'NPDEBUGHOOKINFO',
@@ -11003,7 +11005,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'SHUTDOWN_DEFAULT', 'ushort', 'PEMRSCALEVIEWPORTEXTEX',
            'PQUOTA_LIMITS_EX', 'tagEMRSETCOLORSPACE',
            'tagEMRPOLYDRAW', 'OUTLINETEXTMETRICW',
-           'ActivationContextBasicInformation', 'PWSAQUERYSET',
+           'TapeDriveScsiConnectionError', 'PWSAQUERYSET',
            'tagPANOSE', 'OUTLINETEXTMETRICA', 'PDROPSTRUCT',
            'SHUTDOWN_WAIT_TRANSACTIONS', 'mysql_set_character_set',
            'WinBuiltinAdministratorsSid', 'PUWSTR', 'EMRARC',
@@ -11033,7 +11035,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'mysql_fetch_field_direct', 'tagKERNINGPAIR', 'LPPELARRAY',
            'WinBuiltinGuestsSid', 'MEMORYSTATUSEX', 'PDRAWPATRECT',
            'MYSQL_OPT_USE_RESULT', 'PWINDOW_BUFFER_SIZE_RECORD',
-           'COR_VTABLE_32BIT', 'mysql_errno', 'PEMREXTESCAPE',
+           'MYSQL_TYPE_YEAR', 'mysql_errno', 'PEMREXTESCAPE',
            'MYSQL_PROTOCOL_PIPE', 'tagEMRGLSRECORD',
            'EMRSETARCDIRECTION', 'NPNEWTEXTMETRICW', 'list_delete',
            'st_mysql_manager', 'mysql_character_set_name', 'NET',
@@ -11109,7 +11111,7 @@ __all__ = ['PowerDeviceUnspecified', 'LPDEVMODEW', 'PLCID',
            'mysql_escape_string', 'CALINFO_ENUMPROCEXW', 'NPSTYLEBUF',
            'tagEMRSETMAPPERFLAGS', 'WINEVENTPROC',
            'LPUNIVERSAL_NAME_INFOW', 'AdministratorPowerPolicy',
-           'HACCEL__', 'TapeDriveScsiConnectionError',
+           'HACCEL__', 'ActivationContextBasicInformation',
            '_CM_ERROR_CONTROL_TYPE', 'LPCBT_CREATEWNDW', 'sockaddr',
            'OSVERSIONINFOEXW', 'LPQUERY_SERVICE_CONFIGA',
            'tagEMRSETVIEWPORTEXTEX', 'HUMPD__',

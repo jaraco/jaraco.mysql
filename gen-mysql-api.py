@@ -22,10 +22,13 @@ import os
 import subprocess
 import copy
 from ctypeslib import h2xml, xml2py
+import logging
 
 setup_root = os.path.dirname(__file__)
 sys.path.append(os.path.join(setup_root, 'root'))
 from _mysql_api_util import get_mysql_root, get_platform_name
+
+log = logging.getLogger(__name__)
 
 def merge_args(common_args, variable_args):
 	for args in variable_args:
@@ -93,16 +96,22 @@ class LibGenerator(object):
 	def fix_lib_path(self):
 		pass
 
+	def fix_autocommit_arg2(self):
+		f = self.api_file
+		incorrect = 'mysql_autocommit.argtypes = [POINTER(MYSQL), c_char]'
+		correct = 'mysql_autocommit.argtypes = [POINTER(MYSQL), my_bool]'
+		f = f.replace(incorrect, correct)
+		if f == self.api_file:
+			log.info('autocommit args unchanged')
+		self.api_file = f
+
+
 	def patch_mysql_api(self):
-		"""
-		Todo:
-		1) Change mysql_autocommit arg2 from c_char to my_bool (may not be necessary under unix)
-		"""
 		self.api_file = open(os.path.join(self.libroot, 'api.py'), 'r').read()
 		self.fix_my_bool()
 		self.fix_lib_path()
+		self.fix_autocommit_arg2()
 		open(os.path.join(self.libroot, 'api.py',), 'w').write(self.api_file)
-		print self.patch_mysql_api.__doc__
 
 
 class WindowsLibGenerator(LibGenerator):
