@@ -85,7 +85,7 @@ class LibGenerator(object):
 	def create_package(self):
 		if not os.path.exists(self.libroot):
 			os.makedirs(self.libroot)
-		open(os.path.join(libroot, '__init__.py')).close()
+		open(os.path.join(self.libroot, '__init__.py')).close()
 
 	def fix_my_bool(self, api_file):
 		return api_file.replace('my_bool = c_int8\n', 'my_bool = c_char\n')
