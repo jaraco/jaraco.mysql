@@ -99,7 +99,7 @@ class LibGenerator(object):
 		api_file = open(os.path.join(self.libroot, 'api.py'), 'r').read()
 		api_file = self.fix_my_bool(api_file)
 		open(os.path.join(self.libroot, 'api.py',), 'w').write(api_file)
-		print patch_mysql_api.__doc__
+		print self.patch_mysql_api.__doc__
 
 
 class WindowsLibGenerator(LibGenerator):
