@@ -75,6 +75,6 @@ def setup_platform_namespace(space):
 	"""
 	plat = get_platform_name()
 	for mod_name in ('api', 'version', 'errmsg', 'errors'):
-		mod = __import__('_mysql_%(plat)s.%(mod_name)s' % vars, space)
+		mod = __import__('_mysql_%(plat)s.%(mod_name)s' % vars(), space)
 		mod_name = '_mysql_%s' % mod_name
 		space[mod_name] = mod
