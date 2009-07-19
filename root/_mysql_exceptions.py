@@ -5,7 +5,12 @@ These classes are dictated by the DB API v2.0:
     http://www.python.org/topics/database/DatabaseAPI-2.0.html
 """
 
-StandardError = Exception
+try:
+	# Python 3 doesn't have StandardError
+	StandardError
+except NameError:
+	# they say use Exception instead
+	StardardError = Exception
 
 class MySQLError(StandardError):
     
