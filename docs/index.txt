@@ -38,13 +38,20 @@ one it finds in the path.  Consider using `virtualenv
 <http://pypi.python.org/pypi/virtualenv>`_ to create an isolated
 environment if you are testing.
 
-You must have the MySQL dynamic library installed on the system. For
-Windows, this package uses the registry informamtion to locate the
-library.  For Unix, the library location routine still needs to be
-coded (see ``root/_mysql_api_util.py`` for NotImplemented details).
+You must have the MySQL 5.x client library installed on the system.
 
 Changes
 -------
+
+1.1
+~~~
+
+* Implemented Python 3.x compatibility.  This package can now be installed
+  on Python 3 without any problems.  Note, however, that this package is
+  largely useless without mysql-python, which does not have Python 3.x
+  compatibility yet.
+* jaraco.mysql is now tested under Ubuntu Linux against MySQL 5.0 and
+  passes all unit tests.
 
 1.0
 ~~~
