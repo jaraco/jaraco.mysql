@@ -85,6 +85,26 @@ Index: setup_windows.py
      extra_objects = []
      static = enabled(options, 'static')
      # XXX static doesn't actually do anything on Windows
+Index: tests/test_MySQLdb_capabilities.py
+===================================================================
+--- tests/test_MySQLdb_capabilities.py	(revision 620)
++++ tests/test_MySQLdb_capabilities.py	(working copy)
+@@ -12,6 +12,15 @@
+     connect_args = ()
+     connect_kwargs = dict(db='test', read_default_file='~/.my.cnf',
+                           charset='utf8', sql_mode="ANSI,STRICT_TRANS_TABLES,TRADITIONAL")
++
++    import re, os
++    # grab parameters from a sqlalchemy-style URI out of the
++    #  environment.
++    uri_pattern = re.compile('mysql://(?P<user>.*):(?P<passwd>.*)@(?P<host>.*)/(?P<db>.*)')
++    uri_match = uri_pattern.match(os.environ.get('MYSQL_TEST_DB'))
++    if uri_match:
++		connect_kwargs.update(uri_match.groupdict())
++
+     create_table_extra = "ENGINE=INNODB CHARACTER SET UTF8"
+     leak_test = False
+     
 Index: site.cfg
 ===================================================================
 --- site.cfg	(revision 620)
@@ -98,3 +118,16 @@ Index: site.cfg
 -registry_key = SOFTWARE\MySQL AB\MySQL Server 5.0
 +# Override this if the latest version installed is not adequate
 +#registry_key = SOFTWARE\MySQL AB\MySQL Server 5.0
+Index: MySQLdb/cursors.py
+===================================================================
+--- MySQLdb/cursors.py	(revision 620)
++++ MySQLdb/cursors.py	(working copy)
+@@ -168,6 +168,8 @@
+                 self.errorhandler(self, TypeError, m)
+         except:
+             exc, value, tb = exc_info()
++            #import traceback
++            #traceback.print_exc()
+             del tb
+             self.messages.append((exc, value))
+             self.errorhandler(self, exc, value)
