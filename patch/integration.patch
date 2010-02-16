@@ -1,128 +1,7 @@
-Index: MySQLdb/MySQLdb/__init__.py
+Index: setup.py
 ===================================================================
---- MySQLdb/MySQLdb/__init__.py	(revision 620)
-+++ MySQLdb/MySQLdb/__init__.py	(working copy)
-@@ -16,7 +16,13 @@
- __revision__ = """$Revision$"""[11:-2]
- from release import __version__, version_info, __author__
- 
--import _mysql
-+# by default, import extension module for _mysql
-+# also support jaraco.mysql module if extension module isn't present
-+try:
-+    import _mysql
-+    import _mysql_exceptions
-+except ImportError:
-+    from jaraco.mysql import _mysql, _mysql_exceptions
- 
- if version_info != _mysql.version_info:
-     raise ImportError("this is MySQLdb version %s, but _mysql is version %r" %
-@@ -26,7 +32,10 @@
- apilevel = "2.0"
- paramstyle = "format"
- 
--from _mysql import *
-+try:
-+    from _mysql import *
-+except ImportError:
-+    from jaraco.mysql._mysql import *
- from MySQLdb.constants import FIELD_TYPE
- from MySQLdb.times import Date, Time, Timestamp, \
-     DateFromTicks, TimeFromTicks, TimestampFromTicks
-Index: MySQLdb/MySQLdb/connections.py
-===================================================================
---- MySQLdb/MySQLdb/connections.py	(revision 620)
-+++ MySQLdb/MySQLdb/connections.py	(working copy)
-@@ -7,13 +7,16 @@
- 
- """
- import cursors
--from _mysql_exceptions import Warning, Error, InterfaceError, DataError, \
--     DatabaseError, OperationalError, IntegrityError, InternalError, \
--     NotSupportedError, ProgrammingError
--import types, _mysql
-+import types
-+from MySQLdb import _mysql, _mysql_exceptions
-+_exception_names = [
-+    'Warning', 'Error', 'InterfaceError', 'DataError', 'DatabaseError',
-+    'OperationalError', 'IntegrityError', 'InternalError',
-+    'NotSupportedError', 'ProgrammingError',]
-+__import__(_mysql_exceptions.__name__, globals(), locals(),
-+    _exception_names)
- import re
- 
--
- def defaulterrorhandler(connection, cursor, errorclass, errorvalue):
-     """
- 
-Index: MySQLdb/MySQLdb/converters.py
-===================================================================
---- MySQLdb/MySQLdb/converters.py	(revision 620)
-+++ MySQLdb/MySQLdb/converters.py	(working copy)
-@@ -32,7 +32,11 @@
- 
- """
- 
--from _mysql import string_literal, escape_sequence, escape_dict, escape, NULL
-+from MySQLdb import _mysql
-+names = ['string_literal', 'escape_sequence',
-+    'escape_dict', 'escape', 'NULL']
-+__import__(_mysql.__name__, globals(), locals(), names)
-+del names
- from constants import FIELD_TYPE, FLAG
- from times import *
- import types
-Index: MySQLdb/MySQLdb/cursors.py
-===================================================================
---- MySQLdb/MySQLdb/cursors.py	(revision 620)
-+++ MySQLdb/MySQLdb/cursors.py	(working copy)
-@@ -14,10 +14,13 @@
-         r")+\))")
- 
- insert_values= re.compile(restr)
--from _mysql_exceptions import Warning, Error, InterfaceError, DataError, \
--     DatabaseError, OperationalError, IntegrityError, InternalError, \
--     NotSupportedError, ProgrammingError
- 
-+from MySQLdb import _mysql_exceptions
-+_exception_names = [
-+    'Warning', 'Error', 'InterfaceError', 'DataError', 'DatabaseError',
-+    'OperationalError', 'IntegrityError', 'InternalError',
-+    'NotSupportedError', 'ProgrammingError',]
-+__import__(_mysql_exceptions.__name__, globals(), locals(), _exception_names)
- 
- class BaseCursor(object):
-     
-@@ -38,9 +41,8 @@
- 
-     """
- 
--    from _mysql_exceptions import MySQLError, Warning, Error, InterfaceError, \
--         DatabaseError, DataError, OperationalError, IntegrityError, \
--         InternalError, ProgrammingError, NotSupportedError
-+    __import__(_mysql_exceptions.__name__, globals(), locals(),
-+        _exception_names + ['MySQLError'])
-     
-     _defer_warnings = False
-     
-Index: MySQLdb/MySQLdb/times.py
-===================================================================
---- MySQLdb/MySQLdb/times.py	(revision 620)
-+++ MySQLdb/MySQLdb/times.py	(working copy)
-@@ -7,7 +7,8 @@
- import math
- from time import localtime
- from datetime import date, datetime, time, timedelta
--from _mysql import string_literal
-+import MySQLdb
-+string_literal = MySQLdb._mysql.string_literal
- 
- Date = date
- Time = time
-Index: MySQLdb/setup.py
-===================================================================
---- MySQLdb/setup.py	(revision 620)
-+++ MySQLdb/setup.py	(working copy)
+--- setup.py	(revision 620)
++++ setup.py	(working copy)
 @@ -3,6 +3,7 @@
  import os
  import sys
@@ -131,10 +10,10 @@ Index: MySQLdb/setup.py
  
  if sys.version_info < (2, 3):
      raise Error("Python-2.3 or newer is required")
-Index: MySQLdb/setup_jaraco_mysql.py
+Index: setup_jaraco_mysql.py
 ===================================================================
---- MySQLdb/setup_jaraco_mysql.py	(revision 0)
-+++ MySQLdb/setup_jaraco_mysql.py	(revision 0)
+--- setup_jaraco_mysql.py	(revision 0)
++++ setup_jaraco_mysql.py	(revision 0)
 @@ -0,0 +1,24 @@
 +#!/usr/bin/env python
 +
@@ -161,15 +40,15 @@ Index: MySQLdb/setup_jaraco_mysql.py
 +except ValueError:
 +	setup = setuptools_setup
 
-Property changes on: MySQLdb\setup_jaraco_mysql.py
+Property changes on: setup_jaraco_mysql.py
 ___________________________________________________________________
 Added: svn:keywords
    + Id Rev Author Date
 
-Index: MySQLdb/setup_windows.py
+Index: setup_windows.py
 ===================================================================
---- MySQLdb/setup_windows.py	(revision 620)
-+++ MySQLdb/setup_windows.py	(working copy)
+--- setup_windows.py	(revision 620)
++++ setup_windows.py	(working copy)
 @@ -1,12 +1,31 @@
 +
 +import _winreg as winreg
@@ -206,10 +85,10 @@ Index: MySQLdb/setup_windows.py
      extra_objects = []
      static = enabled(options, 'static')
      # XXX static doesn't actually do anything on Windows
-Index: MySQLdb/site.cfg
+Index: site.cfg
 ===================================================================
---- MySQLdb/site.cfg	(revision 620)
-+++ MySQLdb/site.cfg	(working copy)
+--- site.cfg	(revision 620)
++++ site.cfg	(working copy)
 @@ -13,6 +13,5 @@
  #mysql_config = /usr/local/bin/mysql_config
  
