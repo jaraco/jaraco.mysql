@@ -1,0 +1,202 @@
+Index: MySQLdb/_mysql.c
+===================================================================
+--- MySQLdb/_mysql.c	(revision 565)
++++ MySQLdb/_mysql.c	(working copy)
+@@ -29,6 +29,7 @@
+ #include "pymemcompat.h"
+ #include "structmember.h"
+ #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(WIN32) || defined(MS_WIN32)
++#include <winsock2.h>
+ #include <windows.h>
+ #include <config-win.h>
+ #else
+Index: MySQLdb/metadata.cfg
+===================================================================
+--- MySQLdb/metadata.cfg	(revision 565)
++++ MySQLdb/metadata.cfg	(working copy)
+@@ -45,7 +45,6 @@
+         Topic :: Database
+         Topic :: Database :: Database Engines/Servers
+ py_modules:
+-        _mysql_exceptions
+         MySQLdb.converters
+         MySQLdb.connections
+         MySQLdb.cursors
+Index: MySQLdb/MySQLdb/__init__.py
+===================================================================
+--- MySQLdb/MySQLdb/__init__.py	(revision 565)
++++ MySQLdb/MySQLdb/__init__.py	(working copy)
+@@ -16,7 +16,7 @@
+ __revision__ = """$Revision$"""[11:-2]
+ from release import __version__, version_info, __author__
+ 
+-import _mysql
++from jaraco.mysql import _mysql
+ 
+ if version_info != _mysql.version_info:
+     raise ImportError, "this is MySQLdb version %s, but _mysql is version %r" %\
+@@ -26,7 +26,7 @@
+ apilevel = "2.0"
+ paramstyle = "format"
+ 
+-from _mysql import *
++from jaraco.mysql._mysql import *
+ from MySQLdb.constants import FIELD_TYPE
+ from MySQLdb.times import Date, Time, Timestamp, \
+     DateFromTicks, TimeFromTicks, TimestampFromTicks
+Index: MySQLdb/MySQLdb/connections.py
+===================================================================
+--- MySQLdb/MySQLdb/connections.py	(revision 565)
++++ MySQLdb/MySQLdb/connections.py	(working copy)
+@@ -7,10 +7,12 @@
+ 
+ """
+ import cursors
+-from _mysql_exceptions import Warning, Error, InterfaceError, DataError, \
++from jaraco.mysql._mysql_exceptions import Warning, Error, \
++     InterfaceError, DataError, \
+      DatabaseError, OperationalError, IntegrityError, InternalError, \
+      NotSupportedError, ProgrammingError
+-import types, _mysql
++import types
++from jaraco.mysql import _mysql
+ 
+ 
+ def defaulterrorhandler(connection, cursor, errorclass, errorvalue):
+Index: MySQLdb/MySQLdb/converters.py
+===================================================================
+--- MySQLdb/MySQLdb/converters.py	(revision 565)
++++ MySQLdb/MySQLdb/converters.py	(working copy)
+@@ -32,7 +32,8 @@
+ 
+ """
+ 
+-from _mysql import string_literal, escape_sequence, escape_dict, escape, NULL
++from jaraco.mysql._mysql import string_literal,\
++	escape_sequence, escape_dict, escape, NULL
+ from constants import FIELD_TYPE, FLAG
+ from times import *
+ import types
+Index: MySQLdb/MySQLdb/cursors.py
+===================================================================
+--- MySQLdb/MySQLdb/cursors.py	(revision 565)
++++ MySQLdb/MySQLdb/cursors.py	(working copy)
+@@ -14,7 +14,8 @@
+         r")+\))")
+ 
+ insert_values= re.compile(restr)
+-from _mysql_exceptions import Warning, Error, InterfaceError, DataError, \
++from jaraco.mysql._mysql_exceptions import Warning, Error, \
++     InterfaceError, DataError, \
+      DatabaseError, OperationalError, IntegrityError, InternalError, \
+      NotSupportedError, ProgrammingError
+ 
+@@ -38,7 +39,8 @@
+ 
+     """
+ 
+-    from _mysql_exceptions import MySQLError, Warning, Error, InterfaceError, \
++    from jaraco.mysql._mysql_exceptions import MySQLError, Warning, \
++	     Error, InterfaceError, \
+          DatabaseError, DataError, OperationalError, IntegrityError, \
+          InternalError, ProgrammingError, NotSupportedError
+     
+Index: MySQLdb/MySQLdb/release.py
+===================================================================
+--- MySQLdb/MySQLdb/release.py	(revision 0)
++++ MySQLdb/MySQLdb/release.py	(revision 0)
+@@ -0,0 +1,4 @@
++
++__author__ = "Andy Dustman <adustman@users.sourceforge.net>"
++version_info = (1,2,3,'beta',1)
++__version__ = "1.2.3"
+
+Property changes on: MySQLdb\MySQLdb\release.py
+___________________________________________________________________
+Added: svn:keywords
+   + Id Rev Author Date
+
+Index: MySQLdb/MySQLdb/times.py
+===================================================================
+--- MySQLdb/MySQLdb/times.py	(revision 565)
++++ MySQLdb/MySQLdb/times.py	(working copy)
+@@ -6,7 +6,7 @@
+ 
+ from time import localtime
+ from datetime import date, datetime, time, timedelta
+-from _mysql import string_literal
++from jaraco.mysql._mysql import string_literal
+ 
+ Date = date
+ Time = time
+Index: MySQLdb/setup.py
+===================================================================
+--- MySQLdb/setup.py	(revision 565)
++++ MySQLdb/setup.py	(working copy)
+@@ -13,6 +13,6 @@
+     from setup_windows import get_config
+ 
+ metadata, options = get_config()
+-metadata['ext_modules'] = [Extension(sources=['_mysql.c'], **options)]
++#metadata['ext_modules'] = [Extension(sources=['_mysql.c'], **options)]
+ metadata['long_description'] = metadata['long_description'].replace(r'\n', '')
+ setup(**metadata)
+Index: MySQLdb/site.cfg
+===================================================================
+--- MySQLdb/site.cfg	(revision 565)
++++ MySQLdb/site.cfg	(working copy)
+@@ -15,4 +15,4 @@
+ # The Windows registry key for MySQL.
+ # This has to be set for Windows builds to work.
+ # Only change this if you have a different version.
+-registry_key = SOFTWARE\MySQL AB\MySQL Server 5.0
++registry_key = SOFTWARE\MySQL AB\MySQL Server 5.1
+Index: MySQLdb/test_capabilities.py
+===================================================================
+--- MySQLdb/test_capabilities.py	(revision 565)
++++ MySQLdb/test_capabilities.py	(working copy)
+@@ -71,10 +71,11 @@
+ 
+         """
+         self.table = self.new_table_name()
+-        self.cursor.execute('CREATE TABLE %s (%s) %s' % 
++        query = 'CREATE TABLE %s (%s) %s' % \
+                             (self.table,
+                              ',\n'.join(columndefs),
+-                             self.create_table_extra))
++                             self.create_table_extra)
++        self.cursor.execute(query)
+ 
+     def check_data_integrity(self, columndefs, generator):
+         # insert
+Index: MySQLdb/test_MySQLdb_capabilities.py
+===================================================================
+--- MySQLdb/test_MySQLdb_capabilities.py	(revision 565)
++++ MySQLdb/test_MySQLdb_capabilities.py	(working copy)
+@@ -6,12 +6,26 @@
+ 
+ warnings.filterwarnings('error')
+ 
++def connect_args_from_env():
++    """
++    get the args from an environment variable that looks like
++    a sqlalchemy connect uri.
++    """
++    import re
++    import os
++    uri_pattern = re.compile('mysql://(?P<user>.*):(?P<passwd>.*)@(?P<host>.*)/(?P<db>.*)')
++    uri_match = uri_pattern.match(os.environ['MYSQL_TEST_DB'])
++    if uri_match: return uri_match.groupdict()
++    return dict()
++
++
+ class test_MySQLdb(test_capabilities.DatabaseTest):
+ 
+     db_module = MySQLdb
+     connect_args = ()
+     connect_kwargs = dict(db='test', read_default_file='~/.my.cnf',
+                           charset='utf8', sql_mode="ANSI,STRICT_TRANS_TABLES,TRADITIONAL")
++    connect_kwargs.update(connect_args_from_env())
+     create_table_extra = "ENGINE=INNODB CHARACTER SET UTF8"
+     leak_test = False
+     
