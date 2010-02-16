@@ -1,6 +1,6 @@
 Index: MySQLdb/MySQLdb/__init__.py
 ===================================================================
---- MySQLdb/MySQLdb/__init__.py	(revision 610)
+--- MySQLdb/MySQLdb/__init__.py	(revision 620)
 +++ MySQLdb/MySQLdb/__init__.py	(working copy)
 @@ -16,7 +16,13 @@
  __revision__ = """$Revision$"""[11:-2]
@@ -31,9 +31,9 @@ Index: MySQLdb/MySQLdb/__init__.py
      DateFromTicks, TimeFromTicks, TimestampFromTicks
 Index: MySQLdb/MySQLdb/connections.py
 ===================================================================
---- MySQLdb/MySQLdb/connections.py	(revision 610)
+--- MySQLdb/MySQLdb/connections.py	(revision 620)
 +++ MySQLdb/MySQLdb/connections.py	(working copy)
-@@ -7,12 +7,15 @@
+@@ -7,13 +7,16 @@
  
  """
  import cursors
@@ -49,6 +49,7 @@ Index: MySQLdb/MySQLdb/connections.py
 +    'NotSupportedError', 'ProgrammingError',]
 +__import__(_mysql_exceptions.__name__, globals(), locals(),
 +    _exception_names)
+ import re
  
 -
  def defaulterrorhandler(connection, cursor, errorclass, errorvalue):
@@ -56,7 +57,7 @@ Index: MySQLdb/MySQLdb/connections.py
  
 Index: MySQLdb/MySQLdb/converters.py
 ===================================================================
---- MySQLdb/MySQLdb/converters.py	(revision 610)
+--- MySQLdb/MySQLdb/converters.py	(revision 620)
 +++ MySQLdb/MySQLdb/converters.py	(working copy)
 @@ -32,7 +32,11 @@
  
@@ -73,7 +74,7 @@ Index: MySQLdb/MySQLdb/converters.py
  import types
 Index: MySQLdb/MySQLdb/cursors.py
 ===================================================================
---- MySQLdb/MySQLdb/cursors.py	(revision 610)
+--- MySQLdb/MySQLdb/cursors.py	(revision 620)
 +++ MySQLdb/MySQLdb/cursors.py	(working copy)
 @@ -14,10 +14,13 @@
          r")+\))")
@@ -106,10 +107,10 @@ Index: MySQLdb/MySQLdb/cursors.py
      
 Index: MySQLdb/MySQLdb/times.py
 ===================================================================
---- MySQLdb/MySQLdb/times.py	(revision 610)
+--- MySQLdb/MySQLdb/times.py	(revision 620)
 +++ MySQLdb/MySQLdb/times.py	(working copy)
-@@ -6,7 +6,8 @@
- 
+@@ -7,7 +7,8 @@
+ import math
  from time import localtime
  from datetime import date, datetime, time, timedelta
 -from _mysql import string_literal
@@ -120,14 +121,13 @@ Index: MySQLdb/MySQLdb/times.py
  Time = time
 Index: MySQLdb/setup.py
 ===================================================================
---- MySQLdb/setup.py	(revision 610)
+--- MySQLdb/setup.py	(revision 620)
 +++ MySQLdb/setup.py	(working copy)
-@@ -3,6 +3,8 @@
+@@ -3,6 +3,7 @@
  import os
  import sys
  from setuptools import setup, Extension
-+if '--use-jaraco.mysql' in sys.argv:
-+	from setup_jaraco_mysql import setup
++from setup_jaraco_mysql import setup
  
  if sys.version_info < (2, 3):
      raise Error("Python-2.3 or newer is required")
@@ -135,7 +135,7 @@ Index: MySQLdb/setup_jaraco_mysql.py
 ===================================================================
 --- MySQLdb/setup_jaraco_mysql.py	(revision 0)
 +++ MySQLdb/setup_jaraco_mysql.py	(revision 0)
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,24 @@
 +#!/usr/bin/env python
 +
 +"""
@@ -143,19 +143,79 @@ Index: MySQLdb/setup_jaraco_mysql.py
 +modules from the build and add a dependency on jaraco.mysql.
 +"""
 +
++import sys
 +from setuptools import setup as setuptools_setup
 +
-+def setup(**metadata):
++def jaraco_mysql_setup(**metadata):
 +	# remove extension modules
 +	del metadata['ext_modules']
++	metadata['name'] = 'mysqldb-jaraco'
 +	metadata['py_modules'].remove('_mysql_exceptions')
 +	# add jaraco.mysql to the required modules
 +	metadata.setdefault('install_requires', []).append('jaraco.mysql')
 +	setuptools_setup(**metadata)
-\ No newline at end of file
++
++try:
++	sys.argv.remove('--use-jaraco-mysql')
++	setup = jaraco_mysql_setup
++except ValueError:
++	setup = setuptools_setup
 
 Property changes on: MySQLdb\setup_jaraco_mysql.py
 ___________________________________________________________________
 Added: svn:keywords
    + Id Rev Author Date
 
+Index: MySQLdb/setup_windows.py
+===================================================================
+--- MySQLdb/setup_windows.py	(revision 620)
++++ MySQLdb/setup_windows.py	(working copy)
+@@ -1,12 +1,31 @@
++
++import _winreg as winreg
++from itertools import count
++
++def registry_key_subkeys(key):
++    for index in count():
++        try:
++            yield winreg.EnumKey(key, index)
++        except WindowsError:
++            break
++
++def get_mysql_root(options):
++    mySQLKey = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\MySQL AB")
++    installedVersions = registry_key_subkeys(mySQLKey)
++    latestServerKeyName = sorted(installedVersions)[-1]
++    serverKeyName = options.get('registry_key', latestServerKeyName)
++    serverKey = winreg.OpenKey(mySQLKey, serverKeyName)
++    mysql_root, dummy = winreg.QueryValueEx(serverKey,'Location')
++    return mysql_root
++
+ def get_config():
+-    import os, sys, _winreg
++    import os, sys
+     from setup_common import get_metadata_and_options, enabled, create_release_file
+ 
+     metadata, options = get_metadata_and_options()
+ 
+-    serverKey = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, options['registry_key'])
+-    mysql_root, dummy = _winreg.QueryValueEx(serverKey,'Location')
+-
++    mysql_root = get_mysql_root(options)
++    
+     extra_objects = []
+     static = enabled(options, 'static')
+     # XXX static doesn't actually do anything on Windows
+Index: MySQLdb/site.cfg
+===================================================================
+--- MySQLdb/site.cfg	(revision 620)
++++ MySQLdb/site.cfg	(working copy)
+@@ -13,6 +13,5 @@
+ #mysql_config = /usr/local/bin/mysql_config
+ 
+ # The Windows registry key for MySQL.
+-# This has to be set for Windows builds to work.
+-# Only change this if you have a different version.
+-registry_key = SOFTWARE\MySQL AB\MySQL Server 5.0
++# Override this if the latest version installed is not adequate
++#registry_key = SOFTWARE\MySQL AB\MySQL Server 5.0
