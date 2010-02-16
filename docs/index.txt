@@ -25,7 +25,7 @@ Usage
 -----
 
 First, download the `latest patch for mysql-python
-<http://dl.getdropbox.com/u/54081/jaraco-mysql-integration.patch>`_.
+<https://svn.jaraco.com/jaraco/python/jaraco.mysql/patch/integration.patch>`_.
 
 Apply that to the `1.2 branch of mysql-python
 <http://mysql-python.svn.sourceforge.net/svnroot/mysql-python/branches/MySQLdb-1.2>`_.

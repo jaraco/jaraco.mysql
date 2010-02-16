@@ -85,4 +85,4 @@ class NotSupportedError(DatabaseError):
     has transactions turned off."""
 
 
-del StandardError
+if 'StandardError' in globals(): del StandardError
