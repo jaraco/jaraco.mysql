@@ -85,6 +85,28 @@ Index: MySQLdb/setup_windows.py
      extra_objects = []
      static = enabled(options, 'static')
      # XXX static doesn't actually do anything on Windows
+Index: MySQLdb/tests/test_MySQLdb_dbapi20.py
+===================================================================
+--- MySQLdb/tests/test_MySQLdb_dbapi20.py	(revision 629)
++++ MySQLdb/tests/test_MySQLdb_dbapi20.py	(working copy)
+@@ -2,6 +2,7 @@
+ import dbapi20
+ import unittest
+ import MySQLdb
++from test_MySQLdb_capabilities import get_env_args
+ 
+ class test_MySQLdb(dbapi20.DatabaseAPI20Test):
+     driver = MySQLdb
+@@ -10,7 +11,8 @@
+                            read_default_file='~/.my.cnf',
+                            charset='utf8',
+                            sql_mode="ANSI,STRICT_TRANS_TABLES,TRADITIONAL")
+-
++    connect_kw_args.update(get_env_args())
++    
+     def test_setoutputsize(self): pass
+     def test_setoutputsize_basic(self): pass
+     def test_nextset(self): pass
 Index: MySQLdb/tests/test_MySQLdb_capabilities.py
 ===================================================================
 --- MySQLdb/tests/test_MySQLdb_capabilities.py	(revision 629)
@@ -127,16 +149,3 @@ Index: MySQLdb/site.cfg
 -registry_key = SOFTWARE\MySQL AB\MySQL Server 5.0
 +# Override this if the latest version installed is not adequate
 +#registry_key = SOFTWARE\MySQL AB\MySQL Server 5.0
-Index: MySQLdb/MySQLdb/cursors.py
-===================================================================
---- MySQLdb/MySQLdb/cursors.py	(revision 629)
-+++ MySQLdb/MySQLdb/cursors.py	(working copy)
-@@ -169,6 +169,8 @@
-                 self.errorhandler(self, TypeError, m)
-         except:
-             exc, value, tb = sys.exc_info()
-+            #import traceback
-+            #traceback.print_exc()
-             del tb
-             self.messages.append((exc, value))
-             self.errorhandler(self, exc, value)
