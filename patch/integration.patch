@@ -33,7 +33,7 @@ Index: MySQLdb/MySQLdb/connections.py
 ===================================================================
 --- MySQLdb/MySQLdb/connections.py	(revision 610)
 +++ MySQLdb/MySQLdb/connections.py	(working copy)
-@@ -7,12 +7,14 @@
+@@ -7,12 +7,15 @@
  
  """
  import cursors
@@ -43,11 +43,12 @@ Index: MySQLdb/MySQLdb/connections.py
 -import types, _mysql
 +import types
 +from MySQLdb import _mysql, _mysql_exceptions
-+for name in [
++_exception_names = [
 +    'Warning', 'Error', 'InterfaceError', 'DataError', 'DatabaseError',
 +    'OperationalError', 'IntegrityError', 'InternalError',
-+    'NotSupportedError', 'ProgrammingError',]:
-+    globals()[name] = getattr(_mysql_exceptions, name)
++    'NotSupportedError', 'ProgrammingError',]
++__import__(_mysql_exceptions.__name__, globals(), locals(),
++    _exception_names)
  
 -
  def defaulterrorhandler(connection, cursor, errorclass, errorvalue):
@@ -57,15 +58,16 @@ Index: MySQLdb/MySQLdb/converters.py
 ===================================================================
 --- MySQLdb/MySQLdb/converters.py	(revision 610)
 +++ MySQLdb/MySQLdb/converters.py	(working copy)
-@@ -32,7 +32,10 @@
+@@ -32,7 +32,11 @@
  
  """
  
 -from _mysql import string_literal, escape_sequence, escape_dict, escape, NULL
 +from MySQLdb import _mysql
-+for name in ['string_literal', 'escape_sequence',
-+    'escape_dict', 'escape', 'NULL',]:
-+    globals()[name] = getattr(_mysql, name)
++names = ['string_literal', 'escape_sequence',
++    'escape_dict', 'escape', 'NULL']
++__import__(_mysql.__name__, globals(), locals(), names)
++del names
  from constants import FIELD_TYPE, FLAG
  from times import *
  import types
@@ -73,33 +75,34 @@ Index: MySQLdb/MySQLdb/cursors.py
 ===================================================================
 --- MySQLdb/MySQLdb/cursors.py	(revision 610)
 +++ MySQLdb/MySQLdb/cursors.py	(working copy)
-@@ -14,11 +14,13 @@
+@@ -14,10 +14,13 @@
          r")+\))")
  
  insert_values= re.compile(restr)
 -from _mysql_exceptions import Warning, Error, InterfaceError, DataError, \
 -     DatabaseError, OperationalError, IntegrityError, InternalError, \
 -     NotSupportedError, ProgrammingError
+ 
 +from MySQLdb import _mysql_exceptions
-+for name in [
++_exception_names = [
 +    'Warning', 'Error', 'InterfaceError', 'DataError', 'DatabaseError',
 +    'OperationalError', 'IntegrityError', 'InternalError',
-+    'NotSupportedError', 'ProgrammingError',]:
-+    globals()[name] = getattr(_mysql_exceptions, name)
++    'NotSupportedError', 'ProgrammingError',]
++__import__(_mysql_exceptions.__name__, globals(), locals(), _exception_names)
  
--
  class BaseCursor(object):
      
-     """A base for Cursor classes. Useful attributes:
-@@ -38,7 +40,8 @@
+@@ -38,9 +41,8 @@
  
      """
  
 -    from _mysql_exceptions import MySQLError, Warning, Error, InterfaceError, \
-+    from jaraco.mysql._mysql_exceptions import MySQLError, Warning, \
-+	     Error, InterfaceError, \
-          DatabaseError, DataError, OperationalError, IntegrityError, \
-          InternalError, ProgrammingError, NotSupportedError
+-         DatabaseError, DataError, OperationalError, IntegrityError, \
+-         InternalError, ProgrammingError, NotSupportedError
++    __import__(_mysql_exceptions.__name__, globals(), locals(),
++        _exception_names + ['MySQLError'])
+     
+     _defer_warnings = False
      
 Index: MySQLdb/MySQLdb/times.py
 ===================================================================
