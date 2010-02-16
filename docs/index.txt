@@ -43,6 +43,11 @@ You must have the MySQL 5.x client library installed on the system.
 Changes
 -------
 
+1.1.1
+~~~~~
+
+* Fixed issue in Python 2.x introduced by 3.x compatibility.
+
 1.1
 ~~~
 

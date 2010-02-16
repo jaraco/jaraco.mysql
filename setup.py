@@ -16,7 +16,7 @@ __date__ = '$Date$'[7:-2]
 name = 'jaraco.mysql'
 
 setup (name = name,
-		version = '1.2',
+		version = '1.1.1',
 		description = 'MySQLDB-compatible MySQL wrapper by Jason R. Coombs',
 		long_description = open('docs/index.txt').read().strip(),
 		author = 'Jason R. Coombs',
