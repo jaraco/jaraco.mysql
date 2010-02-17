@@ -34,14 +34,37 @@ def registry_key_subkeys(key):
 				break
 	return list(enumerated_subkeys(key))
 
+def __find_mysql_registered_installs():
+	"""
+	Find the mysql installs by inspecting the registry.
+	
+	When installing MySQL x64 on 64-bit Windows, MySQL doesn't
+	store the registry information in the right place. See
+	http://bugs.mysql.com/bug.php?id=42423 for details.
+	This function works around that limitation, but gives priority
+	to installs in the correct location.
+	"""
+	keys = [
+		(winreg.HKEY_LOCAL_MACHINE, r'SOFTWARE\MySQL AB'),
+		(winreg.HKEY_LOCAL_MACHINE, r'SOFTWARE\Wow6432Node\MySQL AB'),
+		]
+	for key in keys:
+		try:
+			key = winreg.OpenKey(*key)
+		except WindowsError:
+			continue
+		for instance_name in registry_key_subkeys(key):
+			# skip other MySQL products such as MySQL Workbench
+			if not instance_name.startswith('MySQL Server'): continue
+			instance_key = winreg.OpenKey(key, instance_name)
+			mysql_root, dummy = winreg.QueryValueEx(instance_key, 'Location')
+			yield instance_name, mysql_root
+
 def get_mysql_root_windows():
-	mySQLKey = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\MySQL AB")
-	installedVersions = registry_key_subkeys(mySQLKey)
-	latestServerKeyName = sorted(installedVersions)[-1]
-	serverKeyName = latestServerKeyName # todo, allow selection by version
-	serverKey = winreg.OpenKey(mySQLKey, serverKeyName)
-	mysql_root, dummy = winreg.QueryValueEx(serverKey,'Location')
-	return mysql_root
+	installs = __find_mysql_registered_installs()
+	latest_install = next(iter(sorted(installs, reverse=True)))
+	version, root = latest_install
+	return root
 
 def get_mysql_root_unix():
 	return os.path.devnull
